@@ -1,0 +1,170 @@
+def df_obtenido(esc,mes,anio):    
+    ruta = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Dataset\\MSCI\\'+ anio+mes+' TD.xlsx'
+    wb = xw.Book(ruta ,read_only=True, update_links=False)  
+    sheet = wb.sheets[0]
+    sheet = sheet.used_range.value 
+    df = pd.DataFrame(sheet) # se llama df mi base
+
+    df.columns = df.iloc[0,::] 
+    df = df.drop([0],axis=0)  # elimnamos la fila cero qeu contenia el nombre de las columnas
+    df.columns
+    df['client2'] = df['client1'].astype(str).str[:2]
+    df = df.drop(df.loc[df['Security_Status'].isin(["Out of Scope"])].index)
+
+
+    
+    ########## Abrimos archivo Parametro_BU.xlsx
+    ##ETF_ETY
+    wb2 = xw.Book(r"Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Parametria11.xlsx", read_only = True, update_links= False)
+    sheet2 = wb2.sheets['Codigo Valor']
+    sheet2 = sheet2.used_range.value
+    df2 = pd.DataFrame(sheet2)
+    df2.columns = df2.iloc[0,::]
+    df2 = df2.drop([0], axis = 0)
+    wb2.close()
+    df2 = df2.set_index("Código Valor")
+    dic = df2.to_dict()
+    df['Valor'] = df['client2'].map(dic['Descripción Valor'])
+    df['EVIC'] = '1'
+    df['CO2'] = '1'
+    df['%DebtPub']= '100'
+    df['CO2/Debt(Intensidad)'] = df['FUND_FINANCED_CARBON_EMISSIONS']
+    df_td_esg = df.get(['FUND_NAME', 'Client_ID','client1','client2','Valor','FUND_GEO_FOCUS','FUND_LIPPER_GLOBAL_CLASS','EVIC','CO2','FUND_FINANCED_CARBON_EMISSIONS','FUND_ESG_QUALITY_SCORE','ESG_ENVIRONMENTAL_SCORE','ESG_SOCIAL_SCORE','ESG_GOVERNANCE_SCORE',"FUND_SEVERE_CONTROVERSY_PCT","FUND_WEIGHTED_AVG_CARBON_INTEN","FUND_GOV_GLOBAL_LEADERS_PCT","FUND_ESG_RATING",'CO2/Debt(Intensidad)','%DebtPub'])
+    df_td_esg = df_td_esg.dropna(subset=['FUND_FINANCED_CARBON_EMISSIONS'])
+    df_td_esg = df_td_esg.rename(columns={"FUND_NAME": "Nombre","FUND_GEO_FOCUS": "País","FUND_LIPPER_GLOBAL_CLASS": "Sector","FUND_FINANCED_CARBON_EMISSIONS": "CO2/EVIC","FUND_ESG_QUALITY_SCORE": "ESG","ESG_ENVIRONMENTAL_SCORE": "E","ESG_SOCIAL_SCORE": "S","ESG_GOVERNANCE_SCORE": "G","FUND_SEVERE_CONTROVERSY_PCT":"Controversia","FUND_WEIGHTED_AVG_CARBON_INTEN":"Co2/Sales","FUND_GOV_GLOBAL_LEADERS_PCT":"Gov_pctl","FUND_ESG_RATING":"Rating",'%DebtPub':'%DebtPub','CO2/Debt(Intensidad)':'CO2/Debt(Intensidad)'})
+    df_td_esg['CAT'] = 'ETF_ETY'
+    #df['Rating'] = 'NA'
+    df_ETF_ETY = df_td_esg.copy(deep=True)
+
+
+    #########################################################################################################soberanos en ETF
+    ## ETF_SOV
+    ruta = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Dataset\\MSCI\\'+ anio+mes+' TD.xlsx'
+    wb = xw.Book(ruta ,read_only=True, update_links=False)  
+    sheet = wb.sheets[0]
+    sheet = sheet.used_range.value
+    df = pd.DataFrame(sheet)
+    wb.close()
+    df.columns = df.iloc[0,::]
+    df = df.drop([0],axis=0)
+    df.columns
+    df['client2'] = df['client1'].astype(str).str[:2]
+    df = df.drop(df.loc[df['Security_Status'].isin(["Out of Scope"])].index)
+    wb2 = xw.Book(r"Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Parametria11.xlsx", read_only = True, update_links= False)
+    sheet2 = wb2.sheets['Codigo Valor']
+    sheet2 = sheet2.used_range.value
+    df2 = pd.DataFrame(sheet2)
+    df2.columns = df2.iloc[0,::]
+    df2 = df2.drop([0], axis = 0)
+    wb2.close()
+    df2 = df2.set_index("Código Valor")
+    dic = df2.to_dict()
+    df['Valor'] = df['client2'].map(dic['Descripción Valor'])
+    df['EVIC'] = '1'
+    df['CO2'] = '1'
+    df['%DebtPub']= '100' #por temas practicos se esta tomando este valor como 100, falta de standard
+    df['CO2/Debt(Intensidad)'] = df['FUND_WEIGHTED_AVG_SOV_CARBON_INTEN']
+
+    df_td_esg = df.get(['FUND_NAME', 'Client_ID','client1','client2','Valor','FUND_GEO_FOCUS','FUND_LIPPER_GLOBAL_CLASS','EVIC','CO2','FUND_WEIGHTED_AVG_SOV_CARBON_INTEN','FUND_ESG_QUALITY_SCORE','ESG_ENVIRONMENTAL_SCORE','ESG_SOCIAL_SCORE','ESG_GOVERNANCE_SCORE','FUND_FINANCED_CARBON_EMISSIONS',"FUND_SEVERE_CONTROVERSY_PCT","FUND_WEIGHTED_AVG_CARBON_INTEN","FUND_GOV_GLOBAL_LEADERS_PCT","FUND_ESG_RATING",'CO2/Debt(Intensidad)','%DebtPub'])
+    df_td_esg['FUND_FINANCED_CARBON_EMISSIONS'].fillna('1', inplace=True)
+    df_td_esg = df_td_esg.loc[df_td_esg['FUND_FINANCED_CARBON_EMISSIONS'].isin(["1"])] 
+    df_td_esg = df_td_esg.dropna(subset=['FUND_WEIGHTED_AVG_SOV_CARBON_INTEN'])
+    df_td_esg = df_td_esg.rename(columns={"FUND_NAME": "Nombre","FUND_GEO_FOCUS": "País","FUND_LIPPER_GLOBAL_CLASS": "Sector","FUND_WEIGHTED_AVG_SOV_CARBON_INTEN": "CO2/EVIC","FUND_ESG_QUALITY_SCORE": "ESG","ESG_ENVIRONMENTAL_SCORE": "E","ESG_SOCIAL_SCORE": "S","ESG_GOVERNANCE_SCORE": "G","FUND_SEVERE_CONTROVERSY_PCT":"Controversia","FUND_WEIGHTED_AVG_CARBON_INTEN":"Co2/Sales","FUND_GOV_GLOBAL_LEADERS_PCT":"Gov_pctl","FUND_ESG_RATING":"Rating", 'CO2/Debt(Intensidad)':'CO2/Debt(Intensidad)','%DebtPub':'%DebtPub'})
+    df_td_esg = df_td_esg.drop(['FUND_FINANCED_CARBON_EMISSIONS'], axis=1)
+    df_td_esg['CAT'] = 'ETF_SOV'
+    
+    df_ETF_SOV = df_td_esg.copy(deep=True)
+
+    
+    ###RF_SOV---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    ruta = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Dataset\\MSCI\\'+ anio+mes+' Soberanos.xlsx'
+    wb = xw.Book(ruta ,read_only=True, update_links=False)  
+    sheet = wb.sheets[0]
+    sheet = sheet.used_range.value
+    df = pd.DataFrame(sheet)
+
+    df.columns = df.iloc[0,::]
+    df = df.drop([0],axis=0)
+    df.columns
+    df['client2'] = df['client1'].astype(str).str[:2]
+    df = df.drop(df.loc[df['Security_Status'].isin(["Out of Scope"])].index)
+    wb2 = xw.Book(r"Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Parametria11.xlsx", read_only = True, update_links= False)
+    sheet2 = wb2.sheets['Codigo Valor']
+    sheet2 = sheet2.used_range.value
+    df2 = pd.DataFrame(sheet2)
+    df2.columns = df2.iloc[0,::]
+    df2 = df2.drop([0], axis = 0)
+    wb2.close()
+    df2 = df2.set_index("Código Valor")
+    dic = df2.to_dict()
+    df['Valor'] = df['client2'].map(dic['Descripción Valor'])
+    df['%DebtPub']=df['CARBON_GOVERNMENT_RAW_PUBLIC_DEBT']
+    df['CO2/Debt(Intensidad)'] = df['CARBON_GOVERNMENT_GHG_INTENSITY_KG_PPP_MR']*1000
+
+    df_td_esg = df.get(['ISSUER_NAME', 'Client_ID','client1','client2','Valor','ISSUER_CNTRY_DOMICILE','IVA_INDUSTRY','CARBON_GOVERNMENT_GDP_NOMINAL_USD','CARBON_GOVERNMENT_CO2','CARBON_GOVERNMENT_CO2_INTENSITY_GDP_TONPERMN','INDUSTRY_ADJUSTED_SCORE','ENVIRONMENTAL_PILLAR_SCORE','SOCIAL_PILLAR_SCORE','GOVERNANCE_PILLAR_SCORE','CARBON_EMISSIONS_EVIC_SCOPE_12_INTEN',"CARBON_EMISSIONS_SCOPE_12_INTEN",'GOVERNANCE_PCTL_GLOBAL','IVA_COMPANY_RATING','CARBON_GOVERNMENT_RAW_PUBLIC_DEBT','CARBON_GOVERNMENT_GHG_INTENSITY_KG_PPP_MR','%DebtPub','CO2/Debt(Intensidad)'])
+
+    df_td_esg['CARBON_EMISSIONS_EVIC_SCOPE_12_INTEN'].fillna('1', inplace=True)
+    df_td_esg = df_td_esg.loc[df_td_esg['CARBON_EMISSIONS_EVIC_SCOPE_12_INTEN'].isin(["1"])] 
+    df_td_esg = df_td_esg.dropna(subset=['CARBON_GOVERNMENT_CO2_INTENSITY_GDP_TONPERMN'])
+    df_td_esg = df_td_esg.rename(columns={"ISSUER_NAME": "Nombre","ISSUER_CNTRY_DOMICILE": "País","IVA_INDUSTRY": "Sector","CARBON_GOVERNMENT_GDP_NOMINAL_USD": "EVIC","CARBON_GOVERNMENT_CO2": "CO2","CARBON_GOVERNMENT_CO2_INTENSITY_GDP_TONPERMN": "CO2/EVIC","INDUSTRY_ADJUSTED_SCORE": "ESG","ENVIRONMENTAL_PILLAR_SCORE": "E","SOCIAL_PILLAR_SCORE": "S","GOVERNANCE_PILLAR_SCORE": "G","CARBON_EMISSIONS_SCOPE_12_INTEN":"Co2/Sales","GOVERNANCE_PCTL_GLOBAL":"Gov_pctl","IVA_COMPANY_RATING":"Rating","CARBON_GOVERNMENT_GHG_INTENSITY_KG_PPP_MR":"Carbon Intensity PPS","CARBON_GOVERNMENT_RAW_PUBLIC_DEBT":'Raw Public Debt','CO2/Debt(Intensidad)':'CO2/Debt(Intensidad)','%DebtPub':'%DebtPub'})
+    df_td_esg = df_td_esg.drop(['CARBON_EMISSIONS_EVIC_SCOPE_12_INTEN','Raw Public Debt','Carbon Intensity PPS'], axis=1)
+
+    df_td_esg['CAT'] = 'RF_SOV'
+    df_td_esg['Sector'] = 'Soberano'
+    df_RF_SOV = df_td_esg.copy(deep=True)
+
+
+    #################################################################################################################
+    ##RV_EQT
+    ruta = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Dataset\\MSCI\\'+ anio+mes+' Soberanos.xlsx'
+    wb = xw.Book(ruta ,read_only=True, update_links=False)  
+    sheet = wb.sheets[0]
+    sheet = sheet.used_range.value
+    df = pd.DataFrame(sheet)
+    wb.close()
+    df.columns = df.iloc[0,::]
+    df = df.drop([0],axis=0)
+    df.columns
+    df['client2'] = df['client1'].astype(str).str[:2]
+    df = df.drop(df.loc[df['Security_Status'].isin(["Out of Scope"])].index)
+    wb2 = xw.Book(r"Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Parametria11.xlsx", read_only = True, update_links= False)
+    sheet2 = wb2.sheets['Codigo Valor']
+    sheet2 = sheet2.used_range.value
+    df2 = pd.DataFrame(sheet2)
+    df2.columns = df2.iloc[0,::]
+    df2 = df2.drop([0], axis = 0)
+    wb2.close()
+    df2 = df2.set_index("Código Valor")
+    dic = df2.to_dict()
+    df['Valor'] = df['client2'].map(dic['Descripción Valor'])
+    df['%DebtPub']= '100'
+    df['CO2/Debt(Intensidad)'] = df['CARBON_EMISSIONS_EVIC_SCOPE_12_INTEN']
+    
+    df_td_esg = df.get(['ISSUER_NAME', 'Client_ID','client1','client2','Valor','ISSUER_CNTRY_DOMICILE','IVA_INDUSTRY','EVIC_USD_RECENT','CARBON_EMISSIONS_SCOPE_12','CARBON_EMISSIONS_EVIC_SCOPE_12_INTEN','INDUSTRY_ADJUSTED_SCORE','ENVIRONMENTAL_PILLAR_SCORE','SOCIAL_PILLAR_SCORE','GOVERNANCE_PILLAR_SCORE','TOTAL_NUMBER_CONTROVERSIES','GOVERNANCE_PCTL_GLOBAL','IVA_COMPANY_RATING','CARBON_GOVERNMENT_RAW_PUBLIC_DEBT'
+,'CARBON_GOVERNMENT_GHG_INTENSITY_KG_PPP_MR','%DebtPub','CO2/Debt(Intensidad)'])
+
+
+    df_td_esg = df_td_esg.dropna(subset=['CARBON_EMISSIONS_EVIC_SCOPE_12_INTEN'])
+    df_td_esg = df_td_esg.drop(['CARBON_GOVERNMENT_RAW_PUBLIC_DEBT','CARBON_GOVERNMENT_GHG_INTENSITY_KG_PPP_MR'], axis=1)
+
+    df_td_esg = df_td_esg.rename(columns={"ISSUER_NAME": "Nombre","ISSUER_CNTRY_DOMICILE": "País","IVA_INDUSTRY": "Sector","EVIC_USD_RECENT": "EVIC","CARBON_EMISSIONS_SCOPE_12": "CO2","CARBON_EMISSIONS_EVIC_SCOPE_12_INTEN": "CO2/EVIC","INDUSTRY_ADJUSTED_SCORE": "ESG","ENVIRONMENTAL_PILLAR_SCORE": "E","SOCIAL_PILLAR_SCORE": "S","GOVERNANCE_PILLAR_SCORE": "G","TOTAL_NUMBER_CONTROVERSIES":"Controversia","GOVERNANCE_PCTL_GLOBAL":"Gov_pctl","IVA_COMPANY_RATING":"Rating",'%DebtPub':'%DebtPub','CO2/Debt(Intensidad)':'CO2/Debt(Intensidad)'})
+
+    df_td_esg['CAT'] = 'RV_EQT'
+    df_RV_EQT = df_td_esg.copy(deep=True)
+    
+    
+    
+    
+    ######Concatenado y exportacion
+    DF_Total = pd.concat([df_ETF_ETY,  df_ETF_SOV, df_RF_SOV, df_RV_EQT]).sort_index(ignore_index=True) 
+    
+    escenario = esc
+    
+    with pd.ExcelWriter("Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Dataset\\MSCI\\Base MSCI (Sob+ETF+BU).xlsx",  mode="a", engine="openpyxl", if_sheet_exists = 'replace') as writer:
+           DF_Total.to_excel(writer, sheet_name=escenario, index=False)
+
+
+
+
+    
+             
