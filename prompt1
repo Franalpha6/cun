@@ -1,0 +1,23 @@
+Al correr el script de Python que he copiado a "huella_carbono.txt",  se me hace extraño obtener menos data (menos filas, como aproximadamente 244 filas menos, ósea 244 instrumentos menos) para el periodo correspondiente a 202606, si lo comparo con el anterior periodo 202512, por ejemplo "Republica del Peru" y "Republic of South África" si aparece en la columna Nombre (columna A) de la hoja "202512" pero no asi en "202606" de "Base MSCI (Sob+ETF+BU).xlsx", al igual creo que 202512 Soberanos.xlsx y 202606 Soberanos.xlsx muestran una cantidad data que se me hace mas razonable, al igual que si comparo 202512 TD.xlsx y 202606 TD.xlsx, entonces necesito saber bien porque si mis archivos input son aparentemente de igual tamaño en valores e incluso para el periodo 202606 los archivos input tiene mas instruementos que en 202512, entonces porque el archivo output que genera el código me muestra una cantidad con 244 instrumentos (filas) menos al corte de 2026 06 que si lo comparo con el anterior corte 202512. Adjunto los archivos input y output de de los periodos 202512 y 202606:
+202512 Soberanos.xlsx
+202512 TD.xlsx
+202606 Soberanos.xlsx
+202606 TD.xlsx
+Base MSCI (Sob+ETF+BU).xlsx
+Parametria11.xlsx
+
+Asimismo, como otro hecho informativo al correr el código que copie en el txt adjunto , en Python me sale: C:\Users\p048546\AppData\Local\Temp\ipykernel_12828\1575598191.py:69: ChainedAssignmentError: A value is being set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+Such inplace method never works to update the original DataFrame or Series, because the intermediate object on which we are setting values always behaves as a copy (due to Copy-on-Write).
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' instead, to perform the operation inplace on the original object, or try to avoid an inplace operation using 'df[col] = df[col].method(value)'.
+
+See the documentation for a more detailed explanation: https://pandas.pydata.org/pandas-docs/stable/user_guide/copy_on_write.html
+  df_td_esg['FUND_FINANCED_CARBON_EMISSIONS'].fillna('1', inplace=True)
+C:\Users\p048546\AppData\Local\Temp\ipykernel_12828\1575598191.py:106: ChainedAssignmentError: A value is being set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+Such inplace method never works to update the original DataFrame or Series, because the intermediate object on which we are setting values always behaves as a copy (due to Copy-on-Write).
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' instead, to perform the operation inplace on the original object, or try to avoid an inplace operation using 'df[col] = df[col].method(value)'.
+
+See the documentation for a more detailed explanation: https://pandas.pydata.org/pandas-docs/stable/user_guide/copy_on_write.html
+  df_td_esg['CARBON_EMISSIONS_EVIC_SCOPE_12_INTEN'].fillna('1', inplace=True)
+
