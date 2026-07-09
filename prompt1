@@ -1,23 +1,181 @@
-Al correr el script de Python que he copiado a "huella_carbono.txt",  se me hace extraño obtener menos data (menos filas, como aproximadamente 244 filas menos, ósea 244 instrumentos menos) para el periodo correspondiente a 202606, si lo comparo con el anterior periodo 202512, por ejemplo "Republica del Peru" y "Republic of South África" si aparece en la columna Nombre (columna A) de la hoja "202512" pero no asi en "202606" de "Base MSCI (Sob+ETF+BU).xlsx", al igual creo que 202512 Soberanos.xlsx y 202606 Soberanos.xlsx muestran una cantidad data que se me hace mas razonable, al igual que si comparo 202512 TD.xlsx y 202606 TD.xlsx, entonces necesito saber bien porque si mis archivos input son aparentemente de igual tamaño en valores e incluso para el periodo 202606 los archivos input tiene mas instruementos que en 202512, entonces porque el archivo output que genera el código me muestra una cantidad con 244 instrumentos (filas) menos al corte de 2026 06 que si lo comparo con el anterior corte 202512. Adjunto los archivos input y output de de los periodos 202512 y 202606:
-202512 Soberanos.xlsx
-202512 TD.xlsx
-202606 Soberanos.xlsx
-202606 TD.xlsx
-Base MSCI (Sob+ETF+BU).xlsx
-Parametria11.xlsx
+obtuve este output al ejeuctar el codigo de python contenido en le txt adjunto dentro del zip: [INFO] ============================================================
+[INFO] ANÁLISIS DE RIESGOS FÍSICOS DE CARTERA (MINERÍA + FINANCIERO) — INICIO
+[INFO] ============================================================
+[INFO] Producción : Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\21. TCFD\Reporte TCFD\Reporte TCFD\Mapeo de Distribución de Distritos - Riesgos Fisicos\Python\Inputs\Producción Minera 2025.xlsx
+[INFO] Riesgos    : Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\21. TCFD\Reporte TCFD\Reporte TCFD\Mapeo de Distribución de Distritos - Riesgos Fisicos\Python\Riesgos Fisicos (Mapa Distrital) - 2026.xlsx
+[INFO] GeoJSON local: Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\21. TCFD\Reporte TCFD\Reporte TCFD\Mapeo de Distribución de Distritos - Riesgos Fisicos\Python\Output\peru_distritos.geojson
+[INFO] Suplemento GeoJSON aplicado: 2 distrito(s) añadido(s), 2 reemplazado(s).
+[INFO] CENEPRED: 332 distritos con score.
+[INFO] Holdings: hoja 'Holdings', 23 renglón(es) leído(s).
+[INFO] Producción minera: peso = suma del semestre anterior (Julio–Julio); 1 mes(es).
+[INFO] Producción: 824 filas válidas; 74 de las empresas del universo (7 empresas).
+[INFO] Exposición: S/ 3,062,801,918 en 7 empresas.
+[INFO] Minería: 'Nexa Resources Perú' AUM ajustado por factor Perú 0.75 (S/ 303,903,060 -> S/ 227,927,295); 25% extranjero fuera.
+[INFO] Holdings: hoja 'Holdings', 23 renglón(es) leído(s).
+[INFO] Exposición financiera: S/ 3,543,805,096 en 13 entidad(es).
+[INFO]       [Aenza] = Aenza: S/ 59,060,165
+[INFO]       [Alicorp] = Alicorp: S/ 351,812,912
+[INFO]       [BBVA] = BBVA: S/ 65,938,505
+[INFO]       [Banbif] = Banbif: S/ 144,255,802
+[INFO]       [Banco de Crédito del Perú] = Banco de Crédito del Perú: S/ 350,985,963
+[INFO]       [Compartamos Banco] = Compartamos Banco: S/ 32,286,040
+[INFO]       [Credicorp] = Credicorp: S/ 1,450,946,652
+[INFO]       [IFS] = IFS: S/ 360,921,827
+[INFO]       [Interbank] = Interbank: S/ 284,394,723
+[INFO]       [Intercorp Perú] = Intercorp Perú: S/ 92,457,702
+[INFO]       [MiBanco] = MiBanco: S/ 19,578,970
+[INFO]       [Nexa Resources Perú] = Nexa Resources Perú: S/ 279,264,750
+[INFO]       [Santander Perú] = Santander Peru: S/ 51,901,086
+[WARN]       Nombres en col H que parecen del sector y NO están mapeados (revisa la equivalencia de exposición):
+[WARN]         · 'BlackRock - iShares Euro Stoxx Banks 30-15 UCITS'  (S/ 429,087,833)
+[WARN]         · 'BBVA Bancomer'  (S/ 198,118,826)
+[WARN]         · 'Santander Consumer Bank'  (S/ 116,271,717)
+[WARN]         · 'BlueBay - Financial Capital Bond - E'  (S/ 104,834,203)
+[WARN]         · 'Banco Davivienda S.A.'  (S/ 65,515,442)
+[WARN]         · 'Sura Credicorp Infraestructura'  (S/ 55,948,809)
+[WARN]         · 'Scotia Titulizadora'  (S/ 54,897,680)
+[WARN]         · 'Banco GNB'  (S/ 53,566,020)
+[WARN]         · 'Banco BCI Peru'  (S/ 51,216,372)
+[WARN]         · 'BCP Fondo Inmobiliario'  (S/ 46,486,643)
+[WARN]         · 'Banco de Crédito e Inversiones'  (S/ 17,937,711)
+[WARN]         · 'Banco de la Nación'  (S/ 5,479,727)
+[INFO] Financiero : Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\21. TCFD\Reporte TCFD\Reporte TCFD\Mapeo de Distribución de Distritos - Riesgos Fisicos\Python\Inputs\B-2358-resumen-012026.xlsx
+[WARN] Bancos en el resumen NO mapeados (se omiten). Si alguno debe incluirse, agrégalo a EQUIV_BANCOS_GEO en CONFIG:
+[WARN]       · 'ALFIN BANCO'
+[WARN]       · 'BANCO FALABELLA'
+[WARN]       · 'BANCO PICHINCHA'
+[WARN]       · 'BANCO RIPLEY'
+[WARN]       · 'BANCOM2'
+[WARN]       · 'BANK OF CHINA (PERU)'
+[WARN]       · 'CITIBANK DEL PERU'
+[WARN]       · 'ICBC PERU BANK S.A.'
+[INFO] Geografía de bancos: 847 filas de 11 banco(s).
+[WARN] Holdings: 'MiBanco' tiene AUM_Factor que suma 0.16 (≠ 1.00); se mapea esa fracción de su AUM.
+[WARN] Holdings: 'Banco de Crédito del Perú' tiene AUM_Factor que suma 0.84 (≠ 1.00); se mapea esa fracción de su AUM.
+[WARN] 12 fila(s) de Financiero NO geocodificadas (0.10 miles S/). Detalle por motivo:
+[WARN]       Arequipa / Arequipa / Bustamante y Rivero  [no_encontrado]  filas=1
+[WARN]       Lima / Callao / Bellavista  [no_encontrado]  filas=1
+[WARN]       Lima / Callao / Callao  [no_encontrado]  filas=1
+[WARN]       Lima / Cañete / San Vicente  [no_encontrado]  filas=1
+[WARN]       Lima / Lima / Angamos  [no_encontrado]  filas=1
+[WARN]       Lima / Lima / Atocongo  [no_encontrado]  filas=1
+[WARN]       Lima / Lima / Canta Callao  [no_encontrado]  filas=1
+[WARN]       Lima / Lima / Huancayo  [no_encontrado]  filas=1
+[WARN]       Lima / Lima / La Marina  [no_encontrado]  filas=1
+[WARN]       Lima / Lima / Monterrico  [no_encontrado]  filas=1
+[WARN]       Piura / Piura / 26 de Octubre  [no_encontrado]  filas=1
+[WARN]       Ucayali / Pucallpa / Pucallpa  [no_encontrado]  filas=1
+[WARN] 1 fila(s) de Financiero NO geocodificadas (70,776.90 miles S/). Detalle por motivo:
+[WARN]       Tacna / Tacna / Coronel Gregorio Albarracín L  [no_encontrado]  filas=1
+[INFO] Excluidas 1 fila(s) de Financiero en el EXTRANJERO (sin riesgo físico en Perú): 797,987.65 miles S/.
+[INFO] Excluidas 1 fila(s) de Financiero en el EXTRANJERO (sin riesgo físico en Perú): 797,987.65 miles S/.
+[WARN] 1 fila(s) de Financiero NO geocodificadas (70,776.90 miles S/). Detalle por motivo:
+[WARN]       Tacna / Tacna / Coronel Gregorio Albarracín L  [no_encontrado]  filas=1
+[WARN] Holdings: 'Scotiabank Perú' sin AUM en Valorización (o factor 0); se omite ese renglón.
+[WARN] 1 fila(s) de Financiero NO geocodificadas (26,925.07 miles S/). Detalle por motivo:
+[WARN]       Tacna / Tacna / Coronel Gregorio Albarracín L  [no_encontrado]  filas=1
+[WARN] Holdings: 'Santander Consumer' sin AUM en Valorización (o factor 0); se omite ese renglón.
+[WARN] Holdings: 'Aenza' sin activos en []; se omite ese renglón.
+[INFO] Holdings: 'Aenza' business line en Chile (factor 0.13) queda informativo; no se mapea (activos fuera de Perú).
+[INFO] Holdings: 'Aenza' business line en Colombia (factor 0.14) queda informativo; no se mapea (activos fuera de Perú).
+[WARN] Holdings: 'Alicorp' sin activos en []; se omite ese renglón.
+[INFO] Holdings: 'Alicorp' business line en Bolivia (factor 0.05) queda informativo; no se mapea (activos fuera de Perú).
+[INFO] Holdings: 'Alicorp' business line en Ecuador (factor 0.03) queda informativo; no se mapea (activos fuera de Perú).
+[INFO] Holdings: 'Alicorp' business line en Chile (factor 0.03) queda informativo; no se mapea (activos fuera de Perú).
+[INFO] Holdings: 'Alicorp' business line en Honduras (factor 0.03) queda informativo; no se mapea (activos fuera de Perú).
+[INFO] Utilities  : \\sppeapp00023\Inversiones\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\BD Utilities.xlsm
+C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\openpyxl\worksheet\_reader.py:329: UserWarning: Data Validation extension is not supported and will be removed
+  warn(msg)
+[INFO] Utilities: sumando potencia efectiva del semestre anterior (2026-07 a 2026-07); 6 columna(s).
+[WARN]       Meses del semestre sin columna en 'BD ptf': 2026-07. Se usaron los 6 meses más recientes disponibles. Revisa la fila 1 de fechas si el periodo no es el esperado.
+[INFO] Ubicaciones 'Centrales Eléctricas': 36 activos cargados.
+[WARN] 1 central(es) de generación SIN ubicación en la hoja 'Centrales Eléctricas'. Agrégalas ahí (columnas Central/Empresa/Departamento/Provincia/Distrito):
+[WARN]       · Engie | 'NE - PUERTO ILO' | 47.08 MW  -> falta su fila en la hoja
+[INFO] Utilities: 26 central(es) ubicadas de 3 empresa(s).
+[INFO] Exposición utilities: S/ 511,600,588 en 2 entidad(es).
+[INFO]       [Orygen] = Orygen: S/ 291,276,664
+[INFO]       [Engie] = Engie: S/ 220,323,925
+[INFO] Construcción: \\sppeapp00023\Inversiones\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\BD Construcción.xlsm
+[INFO] Construcción: sumando despachos del semestre anterior (2026-07 a 2026-07); 6 columna(s).
+[WARN]       Meses del semestre sin columna en 'Despachos': 2026-07. Se usaron los 6 meses más recientes disponibles. Revisa la fila de fechas si el periodo no es el esperado.
+[INFO] Ubicaciones 'Centrales Eléctricas': 36 activos cargados.
+[INFO] Construcción: 5 planta-distrito de 2 empresa(s).
+[INFO] Exposición construcción: S/ 374,941,130 en 2 entidad(es).
+[INFO]       [Unacem] = Unacem: S/ 123,979,625
+[INFO]       [Pacasmayo] = Pacasmayo: S/ 250,961,505
+[INFO] Exposición empresas-hoja: S/ 1,589,404,424 en 14 entidad(es).
+[INFO]       [Aenza] = Aenza: S/ 59,060,165
+[INFO]       [Alicorp] = Alicorp: S/ 351,812,912
+[INFO]       [Auna] = Auna: S/ 148,605,548
+[INFO]       [Ferreycorp] = Ferreycorp: S/ 536,540,055
+[INFO]       [Pluz Energía] = Pluz Energía: S/ 94,112,875
+[INFO]       [Puerto Chancay] = Puerto Chancay: S/ 54,821,451
+[INFO]       [Casa Andina] = Casa Andina: S/ 28,177,240
+[INFO]       [Hermes] = Hermes: S/ 6,957,636
+[INFO]       [Hunt Oil] = Hunt Oil: S/ 87,927,411
+[INFO]       [Inca Rail] = Inca Rail: S/ 30,547,552
+[INFO]       [Jockey Plaza] = Jockey Plaza: S/ 57,157,116
+[INFO]       [Primax] = Primax: S/ 51,254,539
+[INFO]       [Tecsup] = Tecsup: S/ 1,764,204
+[INFO]       [Rutas de Lima] = Rutas de Lima: S/ 80,665,720
+[INFO] Integrando empresas con hoja propia (peso = % de distribución):
+[INFO]    [Aenza] 50 ubicación(es) | peso='%' | suma=10.0000
+[INFO]    [Alicorp] 18 ubicación(es) | peso='Participación %' | suma=1.0000
+[INFO]    [Auna] 15 ubicación(es) | peso='Peso Servicios' | suma=25.0000
+[INFO]    [Ferreycorp] 47 ubicación(es) | peso='Participación %' | suma=1.0000
+[INFO]    [Pluz Energía] 68 ubicación(es) | peso='% Porcentaje' | suma=1.0000
+[INFO]    [Puerto Chancay] 1 ubicación(es) | peso='% Porcentaje' | suma=1.0000
+[INFO]    [Casa Andina] 46 ubicación(es) | peso='% Criterio (las ubicaciones pesan igual)' | suma=1.0000
+[INFO]    [Colegios Peruanos] 58 ubicación(es) | peso='% Criterio (las ubicaciones pesan igual)' | suma=1.0000
+[INFO]    [Hermes] 19 ubicación(es) | peso='% Criterio (las ubicaciones pesan igual)' | suma=1.0000
+[INFO]    [Hunt Oil] 5 ubicación(es) | peso='% Criterio (las ubicaciones pesan igual)' | suma=1.0000
+[INFO]    [Inca Rail] 4 ubicación(es) | peso='% Porcentaje' | suma=1.0000
+[INFO]    [InRetail] 21 ubicación(es) | peso='% Porcentaje' | suma=1.0000
+[INFO]    [Intursa] 6 ubicación(es) | peso='% Criterio (Ingresos)' | suma=1.0000
+[WARN]    [Jockey Plaza] columna de peso vacía; reparto equitativo (1/2).
+[INFO]    [Jockey Plaza] 2 ubicación(es) | peso='% Porcentaje' | suma=1.0000
+[INFO]    [Lima Expresa] 15 ubicación(es) | peso='% Criterio (las ubicaciones pesan igual)' | suma=1.0000
+[INFO]    [Primax] 217 ubicación(es) | peso='% Criterio (las ubicaciones pesan igual)' | suma=1.0000
+[INFO]    [Tecsup] 3 ubicación(es) | peso='% Porcentaje' | suma=1.0000
+[INFO]    [Rutas de Lima] 7 ubicación(es) | peso='% Criterio (las ubicaciones pesan igual)' | suma=1.0000
+[WARN] 1 fila(s) de Infraestructura NO geocodificadas (0.12 TMF). Detalle por motivo:
+[WARN]       Ica / Nasca / Nasca  [no_encontrado]  filas=1
+[WARN] 3 fila(s) de Consumo NO geocodificadas (0.03 TMF). Detalle por motivo:
+[WARN]       Ica / Nasca / Nasca  [no_encontrado]  filas=3
+[WARN] 3 fila(s) de Energía NO geocodificadas (0.60 TMF). Detalle por motivo:
+[WARN]       Cusco / La Convencion / Megantoni  [no_encontrado]  filas=3
+[INFO] Empresas-hoja integradas: 18 en 6 sector(es) (Consumo, Educación, Energía, Infraestructura, Salud, Utilities).
+[WARN]       Sin AUM en Valorización (col H): ['Colegios Peruanos', 'InRetail', 'Intursa', 'Lima Expresa']
+[INFO] ENFEN: 126 meses leídos (2016-01 a 2026-06).
+[INFO] Clima: 7 indicador(es) cargado(s): ICEN, MEIv2, ONI, NINO1+2, ERSSTv5, ITCP, LABCOS.
+[INFO] SBS: 3 banco(s), 5 indicador(es) homologados. Default: 'Créditos Refinanciados y Reestructurados / Créditos Directos'.
+[INFO]       · Créditos Refinanciados y Reestructurados / Créditos Directos: 2001-01 -> 2026-04
+[INFO]       · Morosidad: Créditos Atrasados / Créditos Directos: 2001-01 -> 2026-04
+[INFO]       · Provisiones / Créditos Atrasados: 2001-01 -> 2026-04
+[INFO]       · ROAA: 2005-01 -> 2026-04
+[INFO]       · ROEA: 2005-01 -> 2026-04
+C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\openpyxl\worksheet\_reader.py:329: UserWarning: Data Validation extension is not supported and will be removed
+  warn(msg)
+[WARN] BD Prod: no se hallaron columnas ETAPA/TITULAR en la fila 1.
+[INFO] Utilities (serie mensual): 3 empresa(s), hasta 2026-03.
+[INFO] Construcción (serie mensual): 2 empresa(s), hasta 2026-04.
+[INFO] Excel generado : Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\21. TCFD\Reporte TCFD\Reporte TCFD\Mapeo de Distribución de Distritos - Riesgos Fisicos\Python\Output\Riesgos_Fisicos_Cartera_20260708_2321.xlsx
+[INFO] Logo embebido desde Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\21. TCFD\Reporte TCFD\Reporte TCFD\Mapeo de Distribución de Distritos - Riesgos Fisicos\Python\Inputs\integra_logo.png.
+[INFO] HTML generado  : Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\21. TCFD\Reporte TCFD\Reporte TCFD\Mapeo de Distribución de Distritos - Riesgos Fisicos\Python\Output\Mapa_Riesgos_Fisicos_20260708_2321.html
+[WARN] No se pudo generar la extensión RF (el dashboard original no se afecta): No module named 'rf_extension'
+[INFO] [Activos] Tipo de cambio USD leído: 3.3609 (fecha 31/12/2025).
+[INFO] [Activos] Mitigantes: no se encontro hoja para ['2S26', '1S26']. Hojas disponibles: ['Extrae mitigante', 'Mitigantes - Físicos', '2S25', '1S26 ']
+[INFO] [Activos] HTML generado: Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\21. TCFD\Reporte TCFD\Reporte TCFD\Mapeo de Distribución de Distritos - Riesgos Fisicos\Python\Output\Dashboard_Activos_Riesgo_20260708_2321.html
+[INFO] [Activos] Excel generado: Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\21. TCFD\Reporte TCFD\Reporte TCFD\Mapeo de Distribución de Distritos - Riesgos Fisicos\Python\Output\Riesgos Climáticos - 2S26.xlsx
+[INFO] [Activos] Clasificación ERR leída de la columna 'Clasificación ERR'.
+[INFO] [Activos] Excel resumen (por desastre) generado: Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\21. TCFD\Reporte TCFD\Reporte TCFD\Mapeo de Distribución de Distritos - Riesgos Fisicos\Python\Output\Exposicion Riesgo CENEPRED - 2S26.xlsx
+[INFO] [FEN_Apoyo] 25 departamentos cargados, categorías: ['Lluvias', 'Temperaturas y Lluvias', 'Sequías', 'Sin Impacto'], regiones: ['Centro', 'Norte', 'Oriente', 'Sur'].
+[INFO] [FEN_Apoyo] HTML generado: Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\21. TCFD\Reporte TCFD\Reporte TCFD\Mapeo de Distribución de Distritos - Riesgos Fisicos\Python\Output\FEN_Impacto_20260708_2321.html
+[INFO] [FEN_Apoyo] HTML FEN generado: Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\21. TCFD\Reporte TCFD\Reporte TCFD\Mapeo de Distribución de Distritos - Riesgos Fisicos\Python\Output\FEN_Impacto_20260708_2321.html
+[INFO] ============================================================
+[INFO] PROCESO COMPLETADO
+[INFO] ============================================================
+, y quiero que analices el proceso y procesos que intervienen en la generacion de "Exposicion Riesgo CENEPRED - 2S26.xlsx" y añadir al codigo algun aviso de la relacion de emisores (columna AE de la hoja "Valorización de Instrumentos" pero que en la columna AA del header aproximado de "Clasificación ERR" tenga como valores a "Equity directo - Local" o "Deuda corporativa directa - Local", dado que esto me dira cuantos emisores se deben analizar, asimismo necesito que esto represente una columna en una hoja nueva "Cobertura" dentro del archivo output generado "Exposicion Riesgo CENEPRED - {periodo}.xlsx" y , en otra columna salga la categoria de "Clasificación ERR" a la que corresponde dicho emisor, te recuerdo que la columna AE (de header "Nombre (G&P)" en fila 3) que corresponde al nombre del emisor, esta tipicamente en celda formulada, asi que manejalo bien porque lo que vale es el valor que entrega o representa dicha formula, asimismo necesito otra columna de header "Cobertura" que contenga valores dummy de "Si" si es que dicho emisor si fue considerado en todo el proceso del script (osea cuenta con score y AUM total, aqui cobertura se entiende a que el emisor tiene exposicion y tambien hay al menos un valor por activo fisico) , y "No" si es que no fue considerado. Asimismo otra columna "Comentario" que muestre la razon detras de que "Cobertura" = "No", porque a veces puede que no tenga cobertura porque hubo algo que el codigo no identifico bien, pero tambien por que otra cosa falto o algun input fallo, y pues es un buen comparador de que emisores si considero el output versus cuantos debia considerar. Asimismo, ten en cuenta que los nombre de los emisores s epueden repetiur en la columna AE dado que se repite por instrumento (cada fila es un instrumento) en "Valorización de Instrumentos"    
 
-Asimismo, como otro hecho informativo al correr el código que copie en el txt adjunto , en Python me sale: C:\Users\p048546\AppData\Local\Temp\ipykernel_12828\1575598191.py:69: ChainedAssignmentError: A value is being set on a copy of a DataFrame or Series through chained assignment using an inplace method.
-Such inplace method never works to update the original DataFrame or Series, because the intermediate object on which we are setting values always behaves as a copy (due to Copy-on-Write).
 
-For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' instead, to perform the operation inplace on the original object, or try to avoid an inplace operation using 'df[col] = df[col].method(value)'.
-
-See the documentation for a more detailed explanation: https://pandas.pydata.org/pandas-docs/stable/user_guide/copy_on_write.html
-  df_td_esg['FUND_FINANCED_CARBON_EMISSIONS'].fillna('1', inplace=True)
-C:\Users\p048546\AppData\Local\Temp\ipykernel_12828\1575598191.py:106: ChainedAssignmentError: A value is being set on a copy of a DataFrame or Series through chained assignment using an inplace method.
-Such inplace method never works to update the original DataFrame or Series, because the intermediate object on which we are setting values always behaves as a copy (due to Copy-on-Write).
-
-For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' instead, to perform the operation inplace on the original object, or try to avoid an inplace operation using 'df[col] = df[col].method(value)'.
-
-See the documentation for a more detailed explanation: https://pandas.pydata.org/pandas-docs/stable/user_guide/copy_on_write.html
-  df_td_esg['CARBON_EMISSIONS_EVIC_SCOPE_12_INTEN'].fillna('1', inplace=True)
-
+https://www.transfernow.net/dl/20260709oe81xExV
