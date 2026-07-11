@@ -1,0 +1,47 @@
+<>:8: SyntaxWarning: "\ " is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\ "? A raw string is also an option.
+<>:113: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+<>:8: SyntaxWarning: "\ " is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\ "? A raw string is also an option.
+<>:113: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+C:\Users\p048546\AppData\Local\Temp\ipykernel_2576\4088429442.py:8: SyntaxWarning: "\ " is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\ "? A raw string is also an option.
+  - deriva SEMESTRE -> rutas Z:\ + fechas embebidas,
+C:\Users\p048546\AppData\Local\Temp\ipykernel_2576\4088429442.py:113: SyntaxWarning: "\." is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\."? A raw string is also an option.
+  Raíz Z:\...\Dataset. Sobrescribible para pruebas locales.
+Config(semestre=202606, B1=20260630, MMYYYY=062026, T-1=202512, base_msci_sheet='202606', base_msci_sheet_t1='202512')
+
+************************************************************************
+  ANTES DE CORRER EL PIPELINE (refresco MANUAL de queries):
+    1) Abre el workbook:
+       Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Reporte\Reporte de la Huella  Región con Proxies  202606.xlsm
+    2) En la hoja 'Valorización de Instrumentos', fija B1 = 20260630
+    3) Datos -> Actualizar todo (RefreshAll).
+    4) Guarda y CIERRA el archivo.
+  Python solo LEE la data ya materializada (openpyxl, sin bloqueo).
+************************************************************************
+
+========================================================================
+  BLINDAJE DE INPUTS — SEMESTRE 202606 (B1=20260630, MMYYYY=062026, T-1=202512)
+========================================================================
+  [FALTA] Workbook Huella (query base, B1=20260630)
+          Crea/deposita el archivo en:
+          Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Reporte\Reporte de la Huella  Región con Proxies  202606.xlsm
+  [OK ] Base MSCI (Sob+ETF+BU).xlsx
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\MSCI\Base MSCI (Sob+ETF+BU).xlsx
+  [OK ] G&P_MLab_062026.xlsm
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\G&P input\G&P_MLab_062026.xlsm
+  [FALTA] Nueva Lista Proxies (corte 062026).xlsx
+          Crea/deposita el archivo en:
+          Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Proxies\Nueva Lista Proxies (corte 062026).xlsx
+  [OK ] Market Cap.xlsx (AUM benchmarks)
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Comparables\Market Cap.xlsx
+  [OK ] Base MSCI hoja periodo: '202606'
+  [OK ] Base MSCI hoja T-1: '202512'
+------------------------------------------------------------------------
+  RESULTADO: faltan 2 input(s). Corrige antes de continuar.
+========================================================================
+
+  [AVISO] No puedo validar B1: workbook ausente en
+          Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Reporte\Reporte de la Huella  Región con Proxies  202606.xlsm , y "Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Huella Total  (SURA e Integra)\Nueva Lista Proxies (corte 062026).xlsx"
+
+>>> Hay inputs faltantes: deposita los archivos indicados y vuelve a correr antes de lanzar los módulos 1..14.
+
+,recuerda que tengo ""Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Reporte de la Huella(Región) con Proxies - 202606.xlsm""
