@@ -1,0 +1,13 @@
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[15], line 16
+     12 ###############################################################################
+     13 
+     14 # Campos-valor (columna origen en Valorización -> nombre en el pivot, R8).
+     15 FINAL_VALUE_FIELDS = {
+---> 16     V_AD: "Sum of Inv MM$",          # Inv MM$
+     17     V_AK: "Emisiones Financiadas",   # Huella   (renombre)
+     18     V_AL: " Intensidad",             # Intensidad (con ESPACIO inicial, tal cual spec)
+     19 }
+
+NameError: name 'V_AD' is not defined
