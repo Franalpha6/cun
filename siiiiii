@@ -1,0 +1,63 @@
+Config(semestre=202606, B1=20260630, MMYYYY=062026, T-1=202512, base_msci_sheet='202606', base_msci_sheet_t1='202512')
+************************************************************************
+  ANTES DE CORRER EL PIPELINE (refresco MANUAL de queries):
+    1) Abre el workbook:
+       Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Reporte de la Huella(Región) con Proxies - 202606.xlsm
+    2) En la hoja 'Valorización de Instrumentos', fija B1 = 20260630
+    3) Datos -> Actualizar todo (RefreshAll).
+    4) Guarda y CIERRA el archivo.
+  Python solo LEE la data ya materializada (openpyxl, sin bloqueo).
+************************************************************************
+========================================================================
+  BLINDAJE DE INPUTS — SEMESTRE 202606 (B1=20260630, MMYYYY=062026, T-1=202512)
+========================================================================
+  [OK ] Workbook Huella (query base, B1=20260630)
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Reporte de la Huella(Región) con Proxies - 202606.xlsm
+  [OK ] Base MSCI (Sob+ETF+BU).xlsx
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\MSCI\Base MSCI (Sob+ETF+BU).xlsx
+  [OK ] G&P_MLab_062026.xlsm
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\G&P input\G&P_MLab_062026.xlsm
+  [OK ] Nueva Lista Proxies (corte 062026).xlsx
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Huella Total  (SURA e Integra)\Nueva Lista Proxies (corte 062026).xlsx
+  [OK ] Market Cap.xlsx (AUM benchmarks)
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Comparables\Market Cap.xlsx
+  [OK ] Base MSCI hoja periodo: '202606'
+  [OK ] Base MSCI hoja T-1: '202512'
+------------------------------------------------------------------------
+  RESULTADO: todos los inputs presentes. OK
+========================================================================
+  [OK ] B1 del workbook = 20260630 coincide con SEMESTRE.
+  [Módulo 1] 'Valorización de Instrumentos' -> 627 filas x 43 cols (mapeadas: 24).
+  [Módulo 1] 'Cálculo Caja' -> 22 filas x 8 cols (mapeadas: 8).
+  [Módulo 1] 'Tipo de Cambio' -> 35 filas x 6 cols (mapeadas: 6).
+  [Módulo 1] QueryData(valorizacion=(627, 43), caja=(22, 8), tipo_cambio=(35, 6))
+  [Módulo 2] CajaLoader: 5 portafolios.
+  [Módulo 3] USD (código '2') = 3.4075
+  [Módulo 4] Abriendo G&P (read_only), cols 2..17. Puede tardar (~120MB)...
+  [Módulo 4] Detallado -> 2714 SBS únicos.
+
+
+
+
+
+
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+Cell In[1], line 2119
+   2115 
+   2116     # --- Módulos 4,5 --------------------------------------------------------
+   2117     gyp = GyPDetalladoLoader(cfg).build()
+   2118     sbs_val = data.valorizacion["CODIGO_SBS"].dropna().unique().tolist()
+-> 2119     param = ParametriaBuilder(gyp.as_lookup(), sbs_list=sbs_val).build()
+   2120     sector_lookup = ParametriaBuilder.leer_sector_buckets(cfg)
+   2121 
+   2122     # --- Módulos 6,7 --------------------------------------------------------
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\generic.py:6206, in NDFrame.__getattr__(self, name)
+   6202             and name not in self._accessors
+   6203             and self._info_axis._can_hold_identifiers_and_holds_name(name)
+   6204         ):
+   6205             return self[name]
+-> 6206         return object.__getattribute__(self, name)
+
+AttributeError: 'DataFrame' object has no attribute 'as_lookup'
