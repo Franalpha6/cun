@@ -1,0 +1,7 @@
+Por que estas empresas "Hochschild, Hudbay y Cerro Verde" no se muestran con Score Global (necesito la razón porque creo que el código es perfectible). Por otro lado en la leyenda, ya no es necesario mostrar la leyenda que muestra colores azules de distintas tonalidades. Por otro lado no quiero una leyenda tan poco estetica como "Activos:
+1
+2
+3
+4
+5
+Círculo: color = CENEPRED · tamaño ∝ % del AUM de su emisor" . Podemos mejorar la forma en como se muestra la leyenda en esos casos. Por otro lado creo que es posible elegir mejores colores que el marron y plomo como colores de relleno de las visualizaciones circulares de activos fisicos (por ejmplo preferiria que el primer color prioritario sea el roj en lugar del tono tierra o naranja) mantenidendo el resto de logica sin tocarse (desvanecido de la intensidad del color segun la categoria de riesgo cenepred y el tamaño proporcial de las visualizaciones ciruclares)
