@@ -1,0 +1,3 @@
+#1E2E6E - color de letra de los valores de la columna (no aplica para los valores de la columna "Score" y "Mitigante" los cuales deben ser con letra color negro, y en negrita)
+#FFC000 - color de letra únicamente del header name "Score" (el score por empresa)
+Los chart tipo tabla deben tener un cuerpo de tabla limpio sobre fondo blanco tal cual como la imagen, y todo los tipo de letra en general de todo deben ser "Trebuchet MS"
