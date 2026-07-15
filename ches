@@ -1,0 +1,13 @@
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[1], line 151
+    147 # --- FUENTE DE GEOGRAFÍA MINERA: "Producción metálica <año>.xlsx" (MINEM) --------
+    148 # Solo sirve para mapear (TITULAR, UNIDAD) -> DEP/PROV/DIST. Se leen TODOS los años
+    149 # presentes (unión); la hoja "INFORMACION GENERAL" puede variar ligeramente de nombre
+    150 # y los headers se detectan dinámicamente (fila con TITULAR/UNIDAD/DEPARTAMENTO).
+--> 151 METALICA_DIR = os.path.join(MACRO_DIR, "Complementos BD", "Minería", "BD",
+    152                             "Producción Minera")
+    153 METALICA_PATTERNS = ["Producci*met*lica*.xls*", "*met*lica*.xls*"]
+    154 
+
+NameError: name 'MACRO_DIR' is not defined
