@@ -1,0 +1,30 @@
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+Cell In[4], line 1009
+   1005         _plot_precios(pdf, ctx)
+   1006 
+   1007 
+   1008 if __name__ == "__main__":
+-> 1009     main()
+
+Cell In[4], line 491, in main()
+    487         df_AUM_Share.div(TC_F["USDPEN"], axis=0).dropna(axis=0, how="all").copy()
+    488     )
+    489 
+    490     # ----- Precios --------------------------------------------------------
+--> 491     Precios_Con_Dividendos_R, Precios_Sin_Dividendos_R = cargar_precios(
+    492         MONITOR_RENTABILIDAD, Fecha_Corte
+    493     )
+    494     Dividendos = Precios_Con_Dividendos_R - Precios_Sin_Dividendos_R  # noqa: F841
+
+Cell In[4], line 355, in cargar_precios(path, fecha_corte, fila_codigos, col_fecha)
+    351 
+    352     # Validación temprana y clara: la fila de códigos SBS no puede estar vacía.
+    353     codigos = precios_rvl.iloc[fila_codigos].dropna()
+    354     if codigos.empty:
+--> 355         raise ValueError(
+    356             f"La fila de códigos SBS de la hoja 'RVL' (fila Excel "
+    357             f"{fila_codigos + 1}) está vacía. El pipeline nombra las columnas "
+    358             f"por código SBS y no puede continuar sin ellos. Verifica que esa "
+
+ValueError: La fila de códigos SBS de la hoja 'RVL' (fila Excel 4) está vacía. El pipeline nombra las columnas por código SBS y no puede continuar sin ellos. Verifica que esa fila contenga los códigos SBS de cada instrumento.
