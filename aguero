@@ -1,0 +1,120 @@
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:2144, in _iLocIndexer._setitem_single_column(self, loc, value, plane_indexer)
+   2143 try:
+-> 2144     self.obj._mgr.column_setitem(
+   2145         loc, plane_indexer, value, inplace_only=True
+   2146     )
+   2147 except (ValueError, TypeError, LossySetitemError) as exc:
+   2148     # If we're setting an entire column and we can't do it inplace,
+   2149     #  then we can use value's dtype (or inferred dtype)
+   2150     #  instead of object
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\internals\managers.py:1518, in BlockManager.column_setitem(self, loc, idx, value, inplace_only)
+   1517 if inplace_only:
+-> 1518     col_mgr.setitem_inplace(idx, value)
+   1519 else:
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\internals\managers.py:2226, in SingleBlockManager.setitem_inplace(self, indexer, value)
+   2224     value = value[0, ...]
+-> 2226 arr[indexer] = value
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\arrays\arrow\array.py:2225, in ArrowExtensionArray.__setitem__(self, key, value)
+   2224 key = check_array_indexer(self, key)
+-> 2225 value = self._maybe_convert_setitem_value(value)
+   2227 if com.is_null_slice(key):
+   2228     # fast path (GH50248)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\arrays\string_arrow.py:299, in ArrowStringArray._maybe_convert_setitem_value(self, value)
+    296     if len(value) and not (
+    297         value.ndim == 1 and lib.is_string_array(value, skipna=True)
+    298     ):
+--> 299         raise TypeError(
+    300             "Invalid value for dtype 'str'. Value should be a "
+    301             "string or missing value (or array of those)."
+    302         )
+    303 return super()._maybe_convert_setitem_value(value)
+
+TypeError: Invalid value for dtype 'str'. Value should be a string or missing value (or array of those).
+
+The above exception was the direct cause of the following exception:
+
+TypeError                                 Traceback (most recent call last)
+Cell In[3], line 763
+    759 # SBS y colisionan, o etiquetas de campo tipo 'Px_last'), df[nombre] devolvería
+    760 # un DataFrame y pd.to_numeric fallaría con "arg must be a 1-d array". Iterando
+    761 # por posición con .iloc cada columna es siempre una Serie 1-D.
+    762 for _j in range(Precios_Con_Dividendos_R.shape[1]):
+--> 763     Precios_Con_Dividendos_R.iloc[:, _j] = pd.to_numeric(
+    764         Precios_Con_Dividendos_R.iloc[:, _j], errors='coerce'
+    765     ).fillna(0).astype('float64')
+    766 Precios_Con_Dividendos_R = Precios_Con_Dividendos_R.loc[:Fecha_Corte].copy()
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:938, in _LocationIndexer.__setitem__(self, key, value)
+    933 self._has_valid_setitem_indexer(key)
+    935 iloc: _iLocIndexer = (
+    936     cast("_iLocIndexer", self) if self.name == "iloc" else self.obj.iloc
+    937 )
+--> 938 iloc._setitem_with_indexer(indexer, value, self.name)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:1953, in _iLocIndexer._setitem_with_indexer(self, indexer, value, name)
+   1950 # align and set the values
+   1951 if take_split_path:
+   1952     # We have to operate column-wise
+-> 1953     self._setitem_with_indexer_split_path(indexer, value, name)
+   1954 else:
+   1955     self._setitem_single_block(indexer, value, name)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:1997, in _iLocIndexer._setitem_with_indexer_split_path(self, indexer, value, name)
+   1993     self._setitem_with_indexer_2d_value(indexer, value)
+   1995 elif len(ilocs) == 1 and lplane_indexer == len(value) and not is_scalar(pi):
+   1996     # We are setting multiple rows in a single column.
+-> 1997     self._setitem_single_column(ilocs[0], value, pi)
+   1999 elif len(ilocs) == 1 and 0 != lplane_indexer != len(value):
+   2000     # We are trying to set N values into M entries of a single
+   2001     #  column, which is invalid for N != M
+   2002     # Exclude zero-len for e.g. boolean masking that is all-false
+   2004     if len(value) == 1 and not is_integer(info_axis):
+   2005         # This is a case like df.iloc[:3, [1]] = [0]
+   2006         #  where we treat as df.iloc[:3, 1] = 0
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:2163, in _iLocIndexer._setitem_single_column(self, loc, value, plane_indexer)
+   2151         dtype = self.obj.dtypes.iloc[loc]
+   2152         if dtype not in (np.void, object) and not self.obj.empty:
+   2153             # - Exclude np.void, as that is a special case for expansion.
+   2154             #   We want to raise for
+   (...)   2161             # - Exclude empty initial object with enlargement,
+   2162             #   as then there's nothing to be inconsistent with.
+-> 2163             raise TypeError(
+   2164                 f"Invalid value '{value}' for dtype '{dtype}'"
+   2165             ) from exc
+   2166         self.obj.isetitem(loc, value)
+   2167 else:
+   2168     # set value into the column (first attempting to operate inplace, then
+   2169     #  falling back to casting if necessary)
+
+TypeError: Invalid value 'Fecha
+2019-01-01    23.445
+2019-01-02    23.817
+2019-01-03    24.189
+2019-01-04    25.677
+2019-01-07    25.677
+               ...  
+2026-07-09    27.164
+2026-07-10    27.703
+2026-07-13    27.703
+2026-07-14    27.703
+2026-07-15    27.703
+Name: 300009100001, Length: 1967, dtype: float64' for dtype 'str'
+
+
+
+2026-07-16 14:12:15,912 | WARNING | 21 instrumento(s) en Parametria sin Moneda asignada (se conservan en Lista_Isins, pero NO se les aplicará conversión de FX): ['MPLE PE', 'BVL', 'CASAGRC1', 'ENTEL', 'FVI', 'FVI2', 'INREF', 'ISA', 'LAUR', 'MMG LTD', 'PAAS', 'PARAUCO', 'PTAL', 'RIO', 'RIPLEY', 'FALABELLA', 'THO', 'TV', 'TFPM', 'WPM', 'Cash']
+2026-07-16 14:12:16,728 | WARNING | Could not determine dtype for column 63, falling back to string
+2026-07-16 14:12:49,497 | INFO    | DQ IN: última fecha en base = 2026-07-13 00:00:00
+2026-07-16 14:12:52,652 | INFO    | DQ SIS: última fecha en base = 2025-12-26 00:00:00
+Soles
+DOL
+GBP
+CAD
+2026-07-16 14:14:15,957 | WARNING | 8 ticker(s) de RVL no se pudieron mapear a SBS vía Parametria (se conservan con su nombre original; sus columnas de precio no cruzarán con los benchmarks EPU/ETFPERU): ['SMT CN Equity', 'ARA CN Equity', 'GBVLAC1 PE Equity', 'FSM US Equity', 'FSM US Equity2', 'TAL CN Equity', '1506604D CN Equity', 'FALAB CI Equity']
