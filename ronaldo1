@@ -1,0 +1,43 @@
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+Cell In[5], line 1080
+   1076         _plot_precios(pdf, ctx)
+   1077 
+   1078
+
+
+
+   1079 if __name__ == "__main__":
+-> 1080     main()
+
+Cell In[5], line 562, in main()
+    558         df_AUM_Share.div(TC_F["USDPEN"], axis=0).dropna(axis=0, how="all").copy()
+    559     )
+    560 
+    561     # ----- Precios --------------------------------------------------------
+--> 562     Precios_Con_Dividendos_R, Precios_Sin_Dividendos_R = cargar_precios(
+    563         MONITOR_RENTABILIDAD, Fecha_Corte, par
+    564     )
+    565     Dividendos = Precios_Con_Dividendos_R - Precios_Sin_Dividendos_R  # noqa: F841
+
+Cell In[5], line 428, in cargar_precios(path, fecha_corte, parametria, fila_codigos, fila_ticker, col_fecha)
+    424     precios_rvl = _read_openpyxl(path, "RVL", nrows=4600).copy()
+    425 
+    426     # Códigos SBS por columna: de la fila de encabezado, o mapeados desde el
+    427     # ticker Bloomberg si esa fila está vacía (con parada clara si algo no casa).
+--> 428     precios_rvl.iloc[fila_codigos] = _resolver_codigos_sbs(
+    429         precios_rvl, fila_codigos, fila_ticker,
+    430         parametria["bbg2sbs"], parametria["raiz2sbs"],
+    431     ).values
+
+Cell In[5], line 386, in _resolver_codigos_sbs(precios_rvl, fila_codigos, fila_ticker, bbg2sbs, raiz2sbs)
+    382             faltan.append(tk)
+    383 
+    384     if faltan:
+    385         faltan = sorted(set(faltan))
+--> 386         raise ValueError(
+    387             "La hoja 'RVL' no trae los códigos SBS en su fila de encabezado y "
+    388             "no se pudo mapear automáticamente el ticker Bloomberg a SBS para "
+    389             f"estos {len(faltan)} instrumentos: {faltan}. "
+
+ValueError: La hoja 'RVL' no trae los códigos SBS en su fila de encabezado y no se pudo mapear automáticamente el ticker Bloomberg a SBS para estos 8 instrumentos: ['1506604D CN', 'ARA CN', 'FALAB CI', 'FSM US', 'FSM US Equity2', 'GBVLAC1 PE', 'SMT CN', 'TAL CN']. Corrige el nombre Bloomberg de estos instrumentos en la hoja 'Parametria' (columna Bloomberg) para que coincida con el de RVL, o repobla la fila de códigos SBS de la hoja 'RVL'.
