@@ -1,0 +1,46 @@
+---------------------------------------------------------------------------
+IndexError                                Traceback (most recent call last)
+Cell In[6], line 1062
+   1058         _plot_precios(pdf, ctx)
+   1059 
+   1060 
+   1061 if __name__ == "__main__":
+-> 1062     main()
+
+Cell In[6], line 517, in main()
+    513     DQ_SIS_BD = _read_xl(MONITOR_RENTABILIDAD, "DQ_SIS", header=None)
+    514     df2 = _read_xl(QEST, "DQ_RV", header=None)
+    515 
+    516     Base_Integra = DQ_IN(df1, DQ_IN_BD, par["lista_in"], par["lista_usados"])
+--> 517     Base_Sistema = DQ_SIS(df2, DQ_SIS_BD, par["lista_ex"]).reset_index(drop=True)
+    518 
+    519     Fecha_Corte = pd.to_datetime(
+    520         Base_Integra.iloc[::-1, 2].reset_index().iloc[0, 1]
+
+Cell In[6], line 224, in DQ_SIS(df2, DQ_SIS_BD, ListaEx)
+    220     filtrada_sis = df3[df3["Isins"].isin(ListaEx)]
+    221     filtrada_sis = filtrada_sis.transpose()
+    222     filtrada_sis = filtrada_sis.reset_index(drop=True)
+    223     filtrada_sis = filtrada_sis.dropna(how="all")
+--> 224     filtrada_sis.columns = filtrada_sis.iloc[2].to_list()
+    225     filtrada_sis = filtrada_sis.drop(2)
+    226     filtrada_sis = filtrada_sis.drop(["Fondo"], axis=1)
+    227 
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:1207, in _LocationIndexer.__getitem__(self, key)
+   1205 maybe_callable = com.apply_if_callable(key, self.obj)
+   1206 maybe_callable = self._raise_callable_usage(key, maybe_callable)
+-> 1207 return self._getitem_axis(maybe_callable, axis=axis)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:1773, in _iLocIndexer._getitem_axis(self, key, axis)
+   1770     raise TypeError("Cannot index by location index with a non-integer key")
+   1772 # validate the location
+-> 1773 self._validate_integer(key, axis)
+   1775 return self.obj._ixs(key, axis=axis)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:1706, in _iLocIndexer._validate_integer(self, key, axis)
+   1704 len_axis = len(self.obj._get_axis(axis))
+   1705 if key >= len_axis or key < -len_axis:
+-> 1706     raise IndexError("single positional indexer is out-of-bounds")
+
+IndexError: single positional indexer is out-of-bounds
