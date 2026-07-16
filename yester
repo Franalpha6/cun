@@ -1,0 +1,77 @@
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py:3641, in Index.get_loc(self, key)
+   3640 try:
+-> 3641     return self._engine.get_loc(casted_key)
+   3642 except KeyError as err:
+
+File pandas/_libs/index.pyx:168, in pandas._libs.index.IndexEngine.get_loc()
+--> 168 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/index.pyx:197, in pandas._libs.index.IndexEngine.get_loc()
+--> 197 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/hashtable_class_helper.pxi:7668, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+-> 7668 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/hashtable_class_helper.pxi:7676, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+-> 7676 'Could not get source, probably due dynamically evaluated source code.'
+
+KeyError: '5460042E8427'
+
+The above exception was the direct cause of the following exception:
+
+KeyError                                  Traceback (most recent call last)
+Cell In[2], line 966
+    962         _plot_precios(pdf, ctx)
+    963 
+    964 
+    965 if __name__ == "__main__":
+--> 966     main()
+
+Cell In[2], line 449, in main()
+    445     )
+    446     Dividendos = Precios_Con_Dividendos_R - Precios_Sin_Dividendos_R  # noqa: F841
+    447 
+    448     # EPU / ETFPERU acumulados (para los gráficos)
+--> 449     EPU = Precios_Con_Dividendos_R["5460042E8427"].dropna()
+    450     EPU_Var = EPU.pct_change(fill_method=None).copy()
+    451     EPU_Var_Acum = (1 + EPU_Var).cumprod() * 100
+    452 
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py:4378, in DataFrame.__getitem__(self, key)
+   4374 
+   4375         if is_single_key:
+   4376             if self.columns.nlevels > 1:
+   4377                 return self._getitem_multilevel(key)
+-> 4378             indexer = self.columns.get_loc(key)
+   4379             if is_integer(indexer):
+   4380                 indexer = [indexer]
+   4381         else:
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py:3648, in Index.get_loc(self, key)
+   3643     if isinstance(casted_key, slice) or (
+   3644         isinstance(casted_key, abc.Iterable)
+   3645         and any(isinstance(x, slice) for x in casted_key)
+   3646     ):
+   3647         raise InvalidIndexError(key) from err
+-> 3648     raise KeyError(key) from err
+   3649 except TypeError:
+   3650     # If we have a listlike key, _check_indexing_error will raise
+   3651     #  InvalidIndexError. Otherwise we fall through and re-raise
+   3652     #  the TypeError.
+   3653     self._check_indexing_error(key)
+
+KeyError: '5460042E8427'
+
+
+
+Could not determine dtype for column 63, falling back to string
+DQ IN: 2026-07-13 00:00:00
+DQ SIS: 2025-11-21 00:00:00
+C:\Users\p048546\AppData\Local\Temp\ipykernel_28016\3954038063.py:86: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  for column in df.select_dtypes(include="object").columns:
+C:\Users\p048546\AppData\Local\Temp\ipykernel_28016\3954038063.py:86: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  for column in df.select_dtypes(include="object").columns:
