@@ -1,0 +1,93 @@
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+Cell In[1], line 947
+    943         _plot_precios(pdf, ctx)
+    944 
+    945 
+    946 if __name__ == "__main__":
+--> 947     main()
+
+Cell In[1], line 419, in main()
+    415     df_AUM_Share = calculo_Aum(df_Aum, FONDOS, AFPS)
+    416     ultfechadisp = df_AUM_Share.index[-1]
+    417 
+    418     # ----- Tipo de cambio: AUM se lleva a USD -----------------------------
+--> 419     TC_F = cargar_tc(BDPRECIOS)
+    420     df_AUM_Share = (
+    421         df_AUM_Share.div(TC_F["USDPEN"], axis=0).dropna(axis=0, how="all").copy()
+    422     )
+
+Cell In[1], line 264, in cargar_tc(path)
+    260         filtrada_tc[filtrada_tc["Campo"].str.contains("P")]
+    261         .drop(["Campo"], axis=1)
+    262         .reset_index(drop=True)
+    263     )
+--> 264     TC["Fecha"] = pd.to_datetime(TC["Fecha"], dayfirst=True)
+    265     TC = TC.set_index("Fecha")
+    266     TC = TC.replace("ND", 0).fillna(0).astype(np.float64)
+    267     return TC
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\tools\datetimes.py:1040, in to_datetime(arg, errors, dayfirst, yearfirst, utc, format, exact, unit, origin, cache)
+   1038         result = arg.map(cache_array)
+   1039     else:
+-> 1040         values = convert_listlike(arg._values, format)
+   1041         result = arg._constructor(values, index=arg.index, name=arg.name)
+   1042 elif isinstance(arg, (ABCDataFrame, abc.MutableMapping)):
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\tools\datetimes.py:435, in _convert_listlike_datetimes(arg, format, name, utc, unit, errors, dayfirst, yearfirst, exact)
+    433 # `format` could be inferred, or user didn't ask for mixed-format parsing.
+    434 if format is not None and format != "mixed":
+--> 435     return _array_strptime_with_fallback(arg, name, utc, format, exact, errors)
+    437 result, tz_parsed = objects_to_datetime64(
+    438     arg,
+    439     dayfirst=dayfirst,
+   (...)    443     allow_object=True,
+    444 )
+    446 if tz_parsed is not None:
+    447     # We can take a shortcut since the datetime64 numpy array
+    448     # is in UTC
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\tools\datetimes.py:470, in _array_strptime_with_fallback(arg, name, utc, fmt, exact, errors)
+    459 def _array_strptime_with_fallback(
+    460     arg,
+    461     name,
+   (...)    465     errors: str,
+    466 ) -> Index:
+    467     """
+    468     Call array_strptime, with fallback behavior depending on 'errors'.
+    469     """
+--> 470     result, tz_out = array_strptime(arg, fmt, exact=exact, errors=errors, utc=utc)
+    471     if tz_out is not None:
+    472         unit = np.datetime_data(result.dtype)[0]
+
+File pandas/_libs/tslibs/strptime.pyx:563, in pandas._libs.tslibs.strptime.array_strptime()
+--> 563 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/tslibs/strptime.pyx:511, in pandas._libs.tslibs.strptime.array_strptime()
+--> 511 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/tslibs/strptime.pyx:617, in pandas._libs.tslibs.strptime._parse_with_format()
+--> 617 'Could not get source, probably due dynamically evaluated source code.'
+
+ValueError: time data "2021-01-13 00:00:00" doesn't match format "%Y-%d-%m %H:%M:%S". You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+
+
+Could not determine dtype for column 63, falling back to string
+DQ IN: 2026-07-13 00:00:00
+DQ SIS: 2025-11-21 00:00:00
+
+
+
+
+
+
+
+
+
+https://www.transfernow.net/dl/20260716HYM6Na4Z
+
+
+
