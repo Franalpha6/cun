@@ -1,0 +1,69 @@
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py:3641, in Index.get_loc(self, key)
+   3640 try:
+-> 3641     return self._engine.get_loc(casted_key)
+   3642 except KeyError as err:
+
+File pandas/_libs/index.pyx:168, in pandas._libs.index.IndexEngine.get_loc()
+--> 168 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/index.pyx:197, in pandas._libs.index.IndexEngine.get_loc()
+--> 197 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/hashtable_class_helper.pxi:7668, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+-> 7668 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/hashtable_class_helper.pxi:7676, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+-> 7676 'Could not get source, probably due dynamically evaluated source code.'
+
+KeyError: '5460042E8427'
+
+The above exception was the direct cause of the following exception:
+
+KeyError                                  Traceback (most recent call last)
+Cell In[3], line 1003
+    999         _plot_precios(pdf, ctx)
+   1000 
+   1001 
+   1002 if __name__ == "__main__":
+-> 1003     main()
+
+Cell In[3], line 485, in main()
+    481     )
+    482     Dividendos = Precios_Con_Dividendos_R - Precios_Sin_Dividendos_R  # noqa: F841
+    483 
+    484     # EPU / ETFPERU acumulados (para los gráficos)
+--> 485     EPU = Precios_Con_Dividendos_R["5460042E8427"].dropna()
+    486     EPU_Var = EPU.pct_change(fill_method=None).copy()
+    487     EPU_Var_Acum = (1 + EPU_Var).cumprod() * 100
+    488 
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py:4378, in DataFrame.__getitem__(self, key)
+   4374 
+   4375         if is_single_key:
+   4376             if self.columns.nlevels > 1:
+   4377                 return self._getitem_multilevel(key)
+-> 4378             indexer = self.columns.get_loc(key)
+   4379             if is_integer(indexer):
+   4380                 indexer = [indexer]
+   4381         else:
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py:3648, in Index.get_loc(self, key)
+   3643     if isinstance(casted_key, slice) or (
+   3644         isinstance(casted_key, abc.Iterable)
+   3645         and any(isinstance(x, slice) for x in casted_key)
+   3646     ):
+   3647         raise InvalidIndexError(key) from err
+-> 3648     raise KeyError(key) from err
+   3649 except TypeError:
+   3650     # If we have a listlike key, _check_indexing_error will raise
+   3651     #  InvalidIndexError. Otherwise we fall through and re-raise
+   3652     #  the TypeError.
+   3653     self._check_indexing_error(key)
+
+KeyError: '5460042E8427'
+
+Could not determine dtype for column 63, falling back to string
+DQ IN: 2026-07-13 00:00:00
+DQ SIS: 2025-11-21 00:00:00
