@@ -1,0 +1,31 @@
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+Cell In[1], line 744
+    740 Precios_Con_Dividendos_R.replace("NA", np.nan, inplace=True)
+    741 Precios_Con_Dividendos_R.bfill(inplace=True)
+    742 Precios_Con_Dividendos_R = Precios_Con_Dividendos_R.fillna(0)
+    743 for column in Precios_Con_Dividendos_R.select_dtypes(include=['object','string']).columns:
+--> 744     Precios_Con_Dividendos_R[column] = pd.to_numeric(Precios_Con_Dividendos_R[column], errors='coerce').fillna(
+    745         0).astype('float64')
+    746 Precios_Con_Dividendos_R = Precios_Con_Dividendos_R.loc[:Fecha_Corte].copy()
+    747 # %% md
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\tools\numeric.py:212, in to_numeric(arg, errors, downcast, dtype_backend)
+    210     values = np.array([arg], dtype="O")
+    211 elif getattr(arg, "ndim", 1) > 1:
+--> 212     raise TypeError("arg must be a list, tuple, 1-d array, or Series")
+    213 else:
+    214     values = arg
+
+TypeError: arg must be a list, tuple, 1-d array, or Series
+
+
+2026-07-16 13:43:24,574 | WARNING | 21 instrumento(s) en Parametria sin Moneda asignada (se conservan en Lista_Isins, pero NO se les aplicará conversión de FX): ['MPLE PE', 'BVL', 'CASAGRC1', 'ENTEL', 'FVI', 'FVI2', 'INREF', 'ISA', 'LAUR', 'MMG LTD', 'PAAS', 'PARAUCO', 'PTAL', 'RIO', 'RIPLEY', 'FALABELLA', 'THO', 'TV', 'TFPM', 'WPM', 'Cash']
+2026-07-16 13:43:24,959 | WARNING | Could not determine dtype for column 63, falling back to string
+2026-07-16 13:43:48,249 | INFO    | DQ IN: última fecha en base = 2026-07-13 00:00:00
+2026-07-16 13:43:51,718 | INFO    | DQ SIS: última fecha en base = 2025-12-26 00:00:00
+Soles
+DOL
+GBP
+CAD
+2026-07-16 13:45:11,259 | WARNING | 77 ticker(s) de RVL no se pudieron mapear a SBS vía Parametria (se conservan con su nombre original; sus columnas de precio no cruzarán con los benchmarks EPU/ETFPERU): ['2018-12-31 00:00:00', '23.445', '1.999', '42', '#N/A N/A', '221.67', '2.6', '6.45', '5', '9.499', '1.871', '#N/A Invalid Security', '#N/A Invalid Security', '9.33', '0.7', '2.54', '2.729', '162.956083', '#N/A N/A', '0.322', '6.02', '#N/A Invalid Security', '53.6', '16.22', '11.9', '4.2', '20.8', '1.38', '#N/A N/A', '0.563', '156.05', '156.05', '6.46', '4.72', '1.76', '2.42', '10.95', '1.122', '2.844', '5.84', '#N/A N/A', '9.95', '#N/A N/A', '20.55', '28.3', '1.59', '0.126', '#N/A Invalid Security', '#N/A N/A', '1.15', '1.15', '#N/A N/A', '35.5', '#N/A N/A', '6.2', '#N/A N/A', '2.98', '4.06', '5381.6', '3.64', '3.64', '#N/A N/A', '13980', '15.24', '3.172', '19.93', '1523.86', '0.235', '#N/A N/A', '577.24', '5089.6', '28.356', '4.97', '#N/A Invalid Security', '#N/A N/A', '26.65', '2.36']
