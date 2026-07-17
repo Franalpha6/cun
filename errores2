@@ -1,0 +1,90 @@
+---------------------------------------------------------------------------
+com_error                                 Traceback (most recent call last)
+Cell In[1], line 1839
+   1835     log.exception("Fallo al escribir/guardar la hoja BD. Cambios NO guardados.")
+   1836     raise
+   1837 finally:
+   1838     try:
+-> 1839         wb1.app.quit()
+   1840     except Exception:
+   1841         log.warning("No se pudo cerrar limpiamente la instancia de Excel abierta por xlwings.")
+   1842 
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\main.py:1258, in Book.save(self, path, password)
+   1256     path = utils.fspath(path)
+   1257 with self.app.properties(display_alerts=False):
+-> 1258     self.impl.save(path, password=password)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\_xlwindows.py:872, in Book.save(self, path, password)
+    869     file_format = ext_to_file_format[target_ext]
+    870 if (saved_path != "") and (path is None):
+    871     # Previously saved: Save under existing name
+--> 872     self.xl.Save()
+    873 elif (
+    874     (saved_path != "") and (path is not None) and (os.path.split(path)[0] == "")
+    875 ):
+    876     # Save existing book under new name in cwd if no path has been provided
+    877     path = os.path.join(os.getcwd(), path)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\_xlwindows.py:122, in COMRetryMethodWrapper.__call__(self, *args, **kwargs)
+    120 while True:
+    121     try:
+--> 122         v = self.__method(*args, **kwargs)
+    123         if isinstance(v, (CDispatch, CoClassBaseClass, DispatchBaseClass)):
+    124             return COMRetryObjectWrapper(v)
+
+File ~\AppData\Local\Temp\gen_py\3.14\00020813-0000-0000-C000-000000000046x0x1x9.py:46911, in _Workbook.Save(self)
+  46910         def Save(self):
+> 46911                 return self._oleobj_.InvokeTypes(283, LCID, 1, (24, 0), (),)
+
+com_error: (-2147352567, 'Ocurrió una excepción.', (0, 'Microsoft Excel', "We can't save '\\\\SPPEAPP00023\\Inversiones\\Mesa de Inversiones\\Bottom-Up\\5 Estrategia del Portafolio\\Monitores\\Rendimiento RVL\\Rendimiento RVL.xlsm' because the file is read-only.\n\nTo keep your changes, you'll need to save the workbook with a new name or in a different location.", 'xlmain11.chm', 0, -2146827284), None)
+
+
+2026-07-17 16:08:59,061 | WARNING | 21 instrumento(s) en Parametria sin Moneda asignada (se conservan en Lista_Isins, pero NO se les aplicará conversión de FX): ['MPLE PE', 'BVL', 'CASAGRC1', 'ENTEL', 'FVI', 'FVI2', 'INREF', 'ISA', 'LAUR', 'MMG LTD', 'PAAS', 'PARAUCO', 'PTAL', 'RIO', 'RIPLEY', 'FALABELLA', 'THO', 'TV', 'TFPM', 'WPM', 'Cash']
+2026-07-17 16:09:02,543 | WARNING | Could not determine dtype for column 63, falling back to string
+2026-07-17 16:10:17,995 | INFO    | DQ IN: última fecha en base = 2026-07-14 00:00:00
+2026-07-17 16:10:24,786 | INFO    | DQ SIS: última fecha en base = 2025-12-26 00:00:00
+Soles
+DOL
+GBP
+CAD
+2026-07-17 16:12:28,510 | WARNING | 8 ticker(s) de RVL no se pudieron mapear a SBS vía Parametria (se conservan con su nombre original; sus columnas de precio no cruzarán con los benchmarks EPU/ETFPERU): ['SMT CN Equity', 'ARA CN Equity', 'GBVLAC1 PE Equity', 'FSM US Equity', 'FSM US Equity2', 'TAL CN Equity', '1506604D CN Equity', 'FALAB CI Equity']
+2026-07-17 16:12:28,753 | WARNING | 8 ticker(s) de RVL no se pudieron mapear a SBS vía Parametria (se conservan con su nombre original; sus columnas de precio no cruzarán con los benchmarks EPU/ETFPERU): ['SMT CN Equity', 'ARA CN Equity', 'GBVLAC1 PE Equity', 'FSM US Equity', 'FSM US Equity2', 'TAL CN Equity', '1506604D CN Equity', 'FALAB CI Equity']
+C:\Users\p048546\AppData\Local\Temp\ipykernel_21308\923311846.py:1666: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_21308\923311846.py:1666: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_21308\923311846.py:1666: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_21308\923311846.py:1666: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_21308\923311846.py:1666: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_21308\923311846.py:1666: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_21308\923311846.py:1666: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_21308\923311846.py:1666: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_21308\923311846.py:1758: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df_final = pd.concat(df_exportar, axis=1)
+2026-07-17 16:12:41,335 | INFO    | Calendario BD: 2125 filas -> 1886 (removidas 239 por finde/feriado).
+C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\conversion\pandas_conv.py:48: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  value = value.reset_index()
+2026-07-17 16:13:35,111 | ERROR   | Fallo al escribir/guardar la hoja BD. Cambios NO guardados.
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_21308\923311846.py", line 1832, in <module>
+    wb1.save()
+    ~~~~~~~~^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\main.py", line 1258, in save
+    self.impl.save(path, password=password)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\_xlwindows.py", line 872, in save
+    self.xl.Save()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\_xlwindows.py", line 122, in __call__
+    v = self.__method(*args, **kwargs)
+  File "C:\Users\p048546\AppData\Local\Temp\gen_py\3.14\00020813-0000-0000-C000-000000000046x0x1x9.py", line 46911, in Save
+    return self._oleobj_.InvokeTypes(283, LCID, 1, (24, 0), (),)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pywintypes.com_error: (-2147352567, 'Ocurrió una excepción.', (0, 'Microsoft Excel', "We can't save '\\\\SPPEAPP00023\\Inversiones\\Mesa de Inversiones\\Bottom-Up\\5 Estrategia del Portafolio\\Monitores\\Rendimiento RVL\\Rendimiento RVL.xlsm' because the file is read-only.\n\nTo keep your changes, you'll need to save the workbook with a new name or in a different location.", 'xlmain11.chm', 0, -2146827284), None)
