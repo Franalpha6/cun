@@ -1,0 +1,33 @@
+2026-07-17 00:09:53,533 | WARNING | 21 instrumento(s) en Parametria sin Moneda asignada (se conservan en Lista_Isins, pero NO se les aplicará conversión de FX): ['MPLE PE', 'BVL', 'CASAGRC1', 'ENTEL', 'FVI', 'FVI2', 'INREF', 'ISA', 'LAUR', 'MMG LTD', 'PAAS', 'PARAUCO', 'PTAL', 'RIO', 'RIPLEY', 'FALABELLA', 'THO', 'TV', 'TFPM', 'WPM', 'Cash']
+2026-07-17 00:09:57,554 | WARNING | Could not determine dtype for column 63, falling back to string
+2026-07-17 00:11:07,262 | INFO    | DQ IN: última fecha en base = 2026-07-14 00:00:00
+2026-07-17 00:11:16,748 | INFO    | DQ SIS: última fecha en base = 2025-12-26 00:00:00
+Soles
+DOL
+GBP
+CAD
+2026-07-17 00:15:39,289 | WARNING | 8 ticker(s) de RVL no se pudieron mapear a SBS vía Parametria (se conservan con su nombre original; sus columnas de precio no cruzarán con los benchmarks EPU/ETFPERU): ['SMT CN Equity', 'ARA CN Equity', 'GBVLAC1 PE Equity', 'FSM US Equity', 'FSM US Equity2', 'TAL CN Equity', '1506604D CN Equity', 'FALAB CI Equity']
+2026-07-17 00:15:39,548 | WARNING | 8 ticker(s) de RVL no se pudieron mapear a SBS vía Parametria (se conservan con su nombre original; sus columnas de precio no cruzarán con los benchmarks EPU/ETFPERU): ['SMT CN Equity', 'ARA CN Equity', 'GBVLAC1 PE Equity', 'FSM US Equity', 'FSM US Equity2', 'TAL CN Equity', '1506604D CN Equity', 'FALAB CI Equity']
+C:\Users\p048546\AppData\Local\Temp\ipykernel_31572\3481138474.py:1646: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_31572\3481138474.py:1646: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_31572\3481138474.py:1646: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_31572\3481138474.py:1646: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_31572\3481138474.py:1646: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_31572\3481138474.py:1646: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_31572\3481138474.py:1646: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_31572\3481138474.py:1646: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  Solo_Totales_Retornos_Sectoriales[key] = pd.concat([Solo_Totales_Retornos_Sectoriales[key], column_total],
+C:\Users\p048546\AppData\Local\Temp\ipykernel_31572\3481138474.py:1738: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df_final = pd.concat(df_exportar, axis=1)
+C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\conversion\pandas_conv.py:48: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  value = value.reset_index()
+2026-07-17 00:17:34,285 | INFO    | 'Z:\Mesa de Inversiones\Bottom-Up\5 Estrategia del Portafolio\Monitores\Rendimiento RVL\Rendimiento RVL.xlsm' guardado correctamente.
+2026-07-17 00:17:56,165 | INFO    | PDF completo generado: Z:\Mesa de Inversiones\Bottom-Up\5 Estrategia del Portafolio\Monitores\Rendimiento RVL\PDFs\Rendimiento RVL YTD.pdf
+2026-07-17 00:18:15,886 | INFO    | PDF reducido generado: Z:\Mesa de Inversiones\Bottom-Up\5 Estrategia del Portafolio\Monitores\Rendimiento RVL\PDFs\Rendimiento RVL YTD Reducido.pdf
