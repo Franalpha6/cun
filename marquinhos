@@ -1,0 +1,8 @@
+Me salio este error en la consola de pycharm al ejecutar "etl_juntas": usage: ipykernel_launcher.py [-h] [--anio ANIO] [--bd BD] [--origen ORIGEN]
+                             [--sbs SBS] [--simular]
+ipykernel_launcher.py: error: unrecognized arguments: -f C:\Users\p048546\AppData\Roaming\jupyter\runtime\kernel-a0694a7d-c1c8-4da9-8b1b-b33d384c3f5c.json
+An exception has occurred, use %tb to see the full traceback.
+
+SystemExit: 2
+C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\IPython\core\interactiveshell.py:3755: UserWarning: To exit: use 'exit', 'quit', or Ctrl-D.
+  warn("To exit: use 'exit', 'quit', or Ctrl-D.", stacklevel=1)
