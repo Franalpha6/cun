@@ -1,0 +1,42 @@
+https://www.transfernow.net/dl/20260720KGfpL7QD
+
+adjunto mis dos archivos: "Z:\Mesa de Inversiones\Bottom-Up\0 Juntas de Accionistas\Dashboard Python\Inputs\Propuestas de JGA 2026.xlsx"
+y "Z:\Mesa de Inversiones\Bottom-Up\0 Juntas de Accionistas\Dashboard Python\BD_Juntas_Accionistas.xlsx", los cuales use con los ultimos codigo que pasaste, y pues el dashboard html quedo tal y como esperaba, ya no toques nada mas, lo unico que necesito que mejores sin perjudicar al resto, es el chart de la seccion "Motivos de voto en contra (directores)" el cual sale vacio, aunque no se si tenga algo que ver con lo que salio en mi consola: C:\Users\p048546\PyCharmMiscProject\.venv\Scripts\python.exe "Z:\Mesa de Inversiones\Bottom-Up\0 Juntas de Accionistas\Dashboard Python\Dashboard Juntas - intento 9.py" 
+======================================================================
+JUNTAS DE ACCIONISTAS - generacion de reportes
+======================================================================
+[OK] BD leida: 243 filas, 25 empresas parametrizadas.
+
+[AVISOS] 24
+  - Fila 4: voto En Contra sin Motivo
+  - Fila 34: voto En Contra sin Motivo
+  - Fila 41: voto En Contra sin Motivo
+  - Fila 52: voto En Contra sin Motivo
+  - Fila 57: voto En Contra sin Motivo
+  - Fila 74: voto En Contra sin Motivo
+  - Fila 89: voto En Contra sin Motivo
+  - Fila 90: voto En Contra sin Motivo
+  - Fila 91: voto En Contra sin Motivo
+  - Fila 92: voto En Contra sin Motivo
+  - Fila 99: voto En Contra sin Motivo
+  - Fila 100: voto En Contra sin Motivo
+  - Fila 156: voto En Contra sin Motivo
+  - Fila 159: voto En Contra sin Motivo
+  - Fila 178: voto En Contra sin Motivo
+  - Fila 194: director sin Especialidad
+  - Fila 200: voto En Contra sin Motivo
+  - Fila 212: director sin Especialidad
+  - Fila 214: director sin Especialidad
+  - Fila 215: director sin Especialidad
+  ... y 4 mas
+[OK] Validacion: 243 filas, sin errores bloqueantes.
+[OK] Dashboard  -> .\Dashboard_Juntas_20260720_1647.html
+[OK] Word       -> .\Reporte_Juntas_periodo_completo_20260720_1647.docx
+======================================================================
+Listo.
+
+Process finished with exit code 0
+
+
+, asimismo me gustaria que los charts del documento word creado tengan la capacidad de ser editables manualmente (asi como cuando pego un chart de excel a word y se puede editar a mano sus valores y con el estilo y tipo de grafico), eso ayudaria mucho.
+Pero en lineas generales, estoy muy satisfecho con el word generado (por alli consider aajustar detalles adicionales de estilo, formato, etc siguiendo el ultimo reporte publicado que adjunto en este chat "reporte-de-juntas-de-accionistas-2025.pdf"). Asimismo, por si es interesante agregar el logo tal como el "reporte-de-juntas-de-accionistas-2025.pdf" , tengo una imagen en "Z:\Mesa de Inversiones\Bottom-Up\0 Juntas de Accionistas\Dashboard Python\Inputs\logo_integra.png".
