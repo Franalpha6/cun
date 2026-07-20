@@ -1,0 +1,33 @@
+C:\Users\p048546\PyCharmMiscProject\.venv\Scripts\python.exe "Z:\Mesa de Inversiones\Bottom-Up\0 Juntas de Accionistas\Dashboard Python\Reporte - Juntas de accionistas.py" 
+======================================================================
+JUNTAS DE ACCIONISTAS - generacion de reportes
+======================================================================
+[OK] BD leida: 243 filas, 25 empresas parametrizadas.
+
+[AVISOS] 24
+  - Fila 4: voto En Contra sin Motivo
+  - Fila 34: voto En Contra sin Motivo
+  - Fila 41: voto En Contra sin Motivo
+  - Fila 52: voto En Contra sin Motivo
+  - Fila 57: voto En Contra sin Motivo
+  - Fila 74: voto En Contra sin Motivo
+  - Fila 89: voto En Contra sin Motivo
+  - Fila 90: voto En Contra sin Motivo
+  - Fila 91: voto En Contra sin Motivo
+  - Fila 92: voto En Contra sin Motivo
+  - Fila 99: voto En Contra sin Motivo
+  - Fila 100: voto En Contra sin Motivo
+  - Fila 156: voto En Contra sin Motivo
+  - Fila 159: voto En Contra sin Motivo
+  - Fila 178: voto En Contra sin Motivo
+  - Fila 194: director sin Especialidad
+  - Fila 200: voto En Contra sin Motivo
+  - Fila 212: director sin Especialidad
+  - Fila 214: director sin Especialidad
+  - Fila 215: director sin Especialidad
+  ... y 4 mas
+
+[ERRORES] 1 - el proceso se detiene
+  - Fila 24: sin Tema (Credicorp 03)
+
+Process finished with exit code 1
