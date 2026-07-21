@@ -1,0 +1,62 @@
+---------------------------------------------------------------------------
+IndexError                                Traceback (most recent call last)
+Cell In[1], line 733
+    729 
+    730 if __name__ == "__main__":
+    731     try:
+    732         main()
+--> 733     except KeyboardInterrupt:
+    734         sys.exit("\n[CANCELADO] Ejecución interrumpida por el usuario.")
+
+Cell In[1], line 454, in main()
+    450     DQ_SIS_BD = leer_excel(MONITOR_PATH, "DQ_SIS", header=None)
+    451     df2       = leer_excel(QEST_PATH, "DQ_RV", header=None)
+    452 
+    453     base_integra = actualizar_DQ_IN(df1, DQ_IN_BD, lista_in)
+--> 454     base_sistema = actualizar_DQ_SIS(df2, DQ_SIS_BD, lista_ex).reset_index(drop=True)
+    455 
+    456     fecha_corte = pd.to_datetime(base_integra["Fecha"].iloc[-1])
+    457     print(f"Fecha de corte: {fecha_corte:%d-%m-%Y}")
+
+Cell In[1], line 202, in actualizar_DQ_SIS(df2, DQ_SIS_BD, lista_ex)
+    198     """Anexa a DQ_SIS los registros nuevos del QEST (sistema HA/PF/RI)."""
+    199     df3 = df2.iloc[11:].transpose().rename(columns={13: "Isins"})
+    200     filtrada = df3[df3["Isins"].isin(lista_ex)].transpose()
+    201     filtrada = filtrada.reset_index(drop=True).dropna(how="all")
+--> 202     filtrada.columns = filtrada.iloc[2].to_list()
+    203     filtrada = filtrada.drop(2).drop(columns=["Fondo"])
+    204 
+    205     base = DQ_SIS_BD.copy()
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:1207, in _LocationIndexer.__getitem__(self, key)
+   1205 maybe_callable = com.apply_if_callable(key, self.obj)
+   1206 maybe_callable = self._raise_callable_usage(key, maybe_callable)
+-> 1207 return self._getitem_axis(maybe_callable, axis=axis)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:1773, in _iLocIndexer._getitem_axis(self, key, axis)
+   1770     raise TypeError("Cannot index by location index with a non-integer key")
+   1772 # validate the location
+-> 1773 self._validate_integer(key, axis)
+   1775 return self.obj._ixs(key, axis=axis)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:1706, in _iLocIndexer._validate_integer(self, key, axis)
+   1704 len_axis = len(self.obj._get_axis(axis))
+   1705 if key >= len_axis or key < -len_axis:
+-> 1706     raise IndexError("single positional indexer is out-of-bounds")
+
+IndexError: single positional indexer is out-of-bounds
+
+
+Rendimiento RVL — corrida 21.07.26
+C:\Users\p048546\AppData\Local\Temp\ipykernel_14160\4251991612.py:125: UserWarning: python-calamine no instalado; usando openpyxl (más lento). Recomendado:  pip install python-calamine
+  warnings.warn("python-calamine no instalado; usando openpyxl (más lento). "
+C:\Users\p048546\AppData\Local\Temp\ipykernel_14160\4251991612.py:125: UserWarning: python-calamine no instalado; usando openpyxl (más lento). Recomendado:  pip install python-calamine
+  warnings.warn("python-calamine no instalado; usando openpyxl (más lento). "
+C:\Users\p048546\AppData\Local\Temp\ipykernel_14160\4251991612.py:125: UserWarning: python-calamine no instalado; usando openpyxl (más lento). Recomendado:  pip install python-calamine
+  warnings.warn("python-calamine no instalado; usando openpyxl (más lento). "
+C:\Users\p048546\AppData\Local\Temp\ipykernel_14160\4251991612.py:125: UserWarning: python-calamine no instalado; usando openpyxl (más lento). Recomendado:  pip install python-calamine
+  warnings.warn("python-calamine no instalado; usando openpyxl (más lento). "
+C:\Users\p048546\AppData\Local\Temp\ipykernel_14160\4251991612.py:125: UserWarning: python-calamine no instalado; usando openpyxl (más lento). Recomendado:  pip install python-calamine
+  warnings.warn("python-calamine no instalado; usando openpyxl (más lento). "
+DQ IN — última fecha en Monitor: 2026-07-15 00:00:00
+DQ IN — 6 registros nuevos anexados.
