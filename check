@@ -1,0 +1,68 @@
+Config(semestre=202606, B1=20260630, MMYYYY=062026, T-1=202512, base_msci_sheet='202606', base_msci_sheet_t1='202512')
+************************************************************************
+  ANTES DE CORRER EL PIPELINE (refresco MANUAL de queries):
+    1) Abre el workbook:
+       Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Inputs\BD Huella con Proxies - Propuesta Franco.xlsm
+    2) En la hoja 'Valorización de Instrumentos', fija B1 = 20260630
+    3) Datos -> Actualizar todo (RefreshAll).
+    4) Guarda y CIERRA el archivo.
+  Python solo LEE la data ya materializada (openpyxl, sin bloqueo).
+************************************************************************
+========================================================================
+  BLINDAJE DE INPUTS — SEMESTRE 202606 (B1=20260630, MMYYYY=062026, T-1=202512)
+========================================================================
+  [OK ] BD Huella con Proxies - Propuesta Franco.xlsm (query base, B1=20260630)
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Inputs\BD Huella con Proxies - Propuesta Franco.xlsm
+  [OK ] Base MSCI (Sob+ETF+BU).xlsx
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\MSCI\Base MSCI (Sob+ETF+BU).xlsx
+  [OK ] G&P_MLab_062026.xlsm
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\G&P input\G&P_MLab_062026.xlsm
+  [OK ] Nueva Lista Proxies (corte 062026).xlsx
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Huella Total  (SURA e Integra)\Nueva Lista Proxies (corte 062026).xlsx
+  [OK ] Comparables MSCI - Huella.xlsx (intensidades benchmarks)
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Inputs\Comparables MSCI - Huella.xlsx
+  [OK ] Base MSCI hoja periodo: '202606'
+  [OK ] Base MSCI hoja T-1: '202512'
+------------------------------------------------------------------------
+  RESULTADO: todos los inputs presentes. OK
+========================================================================
+  [DESAJUSTE] B1 del workbook = '20251231' pero se esperaba '20260630'.
+              Revisa el refresco manual antes de leer.
+  [Módulo 1] 'Valorización de Instrumentos' -> 649 filas x 43 cols (mapeadas: 24).
+  [Módulo 1] 'Cálculo Caja' -> 22 filas x 8 cols (mapeadas: 8).
+  [Módulo 1] 'Tipo de Cambio' -> 35 filas x 6 cols (mapeadas: 6).
+  [Módulo 1] QueryData(valorizacion=(649, 43), caja=(22, 8), tipo_cambio=(35, 6))
+  [Módulo 2] CajaLoader: 5 portafolios.
+  [Módulo 3] USD (código '2') = 3.3609
+  [Módulo 2] AUM multifondos = 11,038.86 USD MM (TC 3.3609)
+  [Módulo 5] Parametria directa (input manual): 3132 SBS.
+  [Módulo 5] Sector-buckets (Name->Sector): 245 emisores.
+  [Módulo 6] BD(MSCI) hoja '202606' -> 1000x24.
+  [Módulo 6] Proxies hoja 'Alts': +50 filas.
+  [Módulo 6] Proxies hoja 'TD': +10 filas.
+  [Módulo 6] Proxies hoja 'BU': +89 filas.
+  [Módulo 6] BD(MSCI) con proxies: 1000 -> 1071 filas (149 de proxies, los repetidos sobrescriben).
+  [Módulo 7] BD MSCI (T-1): hoja '202512'.
+  [Módulo 6] BD(MSCI) hoja '202512' -> 977x24.
+  [Módulo 8] 'Perdieron Huella' -> 11 instrumentos.
+  [Módulo 9] Overrides de proxies: 30 Client_ID.
+  [Módulo 9] BD(MSCI).T tras proxies: 1084 Client_ID.
+  [Módulo 10] Filtro exclusión (IN-FONDO0 / DPZ* / CDLP): 182 filas excluidas, quedan 467.
+  [Módulo 10] Descartadas 19 col(s) formuladas del Excel (se recalculan en Python).
+  [Módulo 9] Herencia por emisor: 23 instrumentos heredaron.
+  [Módulo 10] CO2-H sin match -> 0. Legítimos (sin exposición): 8. PROBLEMÁTICOS (con exposición, revisar): 9.
+  [Módulo 10] [ATENCIÓN] 9 instrumentos con inversión pero sin huella. Ver reporte 'NoMatch_conExposicion'.
+  [Módulo 10] AU4 (SUM Huella) = 1,020,784.64
+  [Módulo 10] Valorización formulada -> 467x48.
+  [MarketCap] [AVISO] no se pudo leer la hoja MKT: Worksheet named 'MKT' not found
+  [Comparables] hoja 202606 | {'ILF': 109.31, 'EMB': 388.1, 'ACWI': 33.99, 'CEMB': 186.25}
+  [Módulo 12] Distribución de Plus: {'Portafolio': 259, 'ETF': 138, 'Cuestionario Integra': 32, 'SOV': 30}
+  [Módulo 12] [AVISO] NO hay filas con Plus='Proxies'. Los bloques BU/TD/ALT Proxies saldrán en cero. Revisar ProxyEngine y la col W de BD(MSCI).
+  [Módulo 12] [AVISO] sector_lookup cubre solo 18% de los nombres: Materials/Utilities saldrán casi vacíos. Revisar Parametria col O vs Valorización Nombre.
+  [Módulo 12] 17 objetos construidos (459 registros tras filtros de pivot).
+  [Módulo 13] Histórico -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Output\Huella_Historico.xlsx
+  [Módulo 14] Dashboard -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Output\Dashboard_Huella.html
+
+Listo:
+  Histórico : Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Output\Huella_Historico.xlsx
+  Dashboard : Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Output\Dashboard_Huella.html
