@@ -1,0 +1,66 @@
+Rendimiento RVL — corrida 21.07.26
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:125: UserWarning: python-calamine no instalado; usando openpyxl (más lento). Recomendado:  pip install python-calamine
+  warnings.warn("python-calamine no instalado; usando openpyxl (más lento). "
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:125: UserWarning: python-calamine no instalado; usando openpyxl (más lento). Recomendado:  pip install python-calamine
+  warnings.warn("python-calamine no instalado; usando openpyxl (más lento). "
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:125: UserWarning: python-calamine no instalado; usando openpyxl (más lento). Recomendado:  pip install python-calamine
+  warnings.warn("python-calamine no instalado; usando openpyxl (más lento). "
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:125: UserWarning: python-calamine no instalado; usando openpyxl (más lento). Recomendado:  pip install python-calamine
+  warnings.warn("python-calamine no instalado; usando openpyxl (más lento). "
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:125: UserWarning: python-calamine no instalado; usando openpyxl (más lento). Recomendado:  pip install python-calamine
+  warnings.warn("python-calamine no instalado; usando openpyxl (más lento). "
+DQ IN — última fecha en Monitor: 2026-07-15 00:00:00
+DQ IN — 6 registros nuevos anexados.
+DQ SIS — última fecha en Monitor: 2025-12-26 00:00:00
+Fecha de corte: 17-07-2026
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:125: UserWarning: python-calamine no instalado; usando openpyxl (más lento). Recomendado:  pip install python-calamine
+  warnings.warn("python-calamine no instalado; usando openpyxl (más lento). "
+AUM — última fecha disponible: 15-07-2026
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:125: UserWarning: python-calamine no instalado; usando openpyxl (más lento). Recomendado:  pip install python-calamine
+  warnings.warn("python-calamine no instalado; usando openpyxl (más lento). "
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:125: UserWarning: python-calamine no instalado; usando openpyxl (más lento). Recomendado:  pip install python-calamine
+  warnings.warn("python-calamine no instalado; usando openpyxl (más lento). "
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:579: UserWarning: 7 ISIN(s) de Parametria sin precio en BDat_Act (se tratarán como 0): ['312051100001', '302048100002', '302057100001', '4020571CS002', '302059100001']…
+  warnings.warn(f"{len(faltan)} ISIN(s) de Parametria sin precio en BDat_Act "
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:346: UserWarning: Hoja RVL/TOT_RETURN_INDEX_GROSS_DVDS: 1048571 filas de datos vs 0 fechas; se alinean las primeras 0.
+  warnings.warn(f"Hoja RVL/{campo}: {len(df)} filas de datos vs "
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:346: UserWarning: Hoja RVL/Px_last: 1048571 filas de datos vs 0 fechas; se alinean las primeras 0.
+  warnings.warn(f"Hoja RVL/{campo}: {len(df)} filas de datos vs "
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:387: UserWarning: weights: 1 fecha(s) con PxQ total = 0 → pesos NaN esas fechas.
+  warnings.warn(f"weights: {n} fecha(s) con PxQ total = 0 → pesos NaN esas fechas.")
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:387: UserWarning: weights: 1 fecha(s) con PxQ total = 0 → pesos NaN esas fechas.
+  warnings.warn(f"weights: {n} fecha(s) con PxQ total = 0 → pesos NaN esas fechas.")
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:387: UserWarning: weights: 1 fecha(s) con PxQ total = 0 → pesos NaN esas fechas.
+  warnings.warn(f"weights: {n} fecha(s) con PxQ total = 0 → pesos NaN esas fechas.")
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:387: UserWarning: weights: 1 fecha(s) con PxQ total = 0 → pesos NaN esas fechas.
+  warnings.warn(f"weights: {n} fecha(s) con PxQ total = 0 → pesos NaN esas fechas.")
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:387: UserWarning: weights: 1 fecha(s) con PxQ total = 0 → pesos NaN esas fechas.
+  warnings.warn(f"weights: {n} fecha(s) con PxQ total = 0 → pesos NaN esas fechas.")
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:387: UserWarning: weights: 1 fecha(s) con PxQ total = 0 → pesos NaN esas fechas.
+  warnings.warn(f"weights: {n} fecha(s) con PxQ total = 0 → pesos NaN esas fechas.")
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:387: UserWarning: weights: 1 fecha(s) con PxQ total = 0 → pesos NaN esas fechas.
+  warnings.warn(f"weights: {n} fecha(s) con PxQ total = 0 → pesos NaN esas fechas.")
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:387: UserWarning: weights: 1 fecha(s) con PxQ total = 0 → pesos NaN esas fechas.
+  warnings.warn(f"weights: {n} fecha(s) con PxQ total = 0 → pesos NaN esas fechas.")
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:387: UserWarning: weights: 1 fecha(s) con PxQ total = 0 → pesos NaN esas fechas.
+  warnings.warn(f"weights: {n} fecha(s) con PxQ total = 0 → pesos NaN esas fechas.")
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:387: UserWarning: weights: 1 fecha(s) con PxQ total = 0 → pesos NaN esas fechas.
+  warnings.warn(f"weights: {n} fecha(s) con PxQ total = 0 → pesos NaN esas fechas.")
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:387: UserWarning: weights: 1 fecha(s) con PxQ total = 0 → pesos NaN esas fechas.
+  warnings.warn(f"weights: {n} fecha(s) con PxQ total = 0 → pesos NaN esas fechas.")
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:387: UserWarning: weights: 1 fecha(s) con PxQ total = 0 → pesos NaN esas fechas.
+  warnings.warn(f"weights: {n} fecha(s) con PxQ total = 0 → pesos NaN esas fechas.")
+C:\Users\p048546\AppData\Local\Temp\ipykernel_26288\4088205294.py:765: Pandas4Warning: Sorting by default when concatenating all DatetimeIndex is deprecated.  In the future, pandas will respect the default of `sort=False`. Specify `sort=True` or `sort=False` to silence this message. If you see this warnings when not directly calling concat, report a bug to pandas.
+  df_final = pd.concat(df_exportar, axis=1)
+Hoja BD — exportando matriz 1445 x 5528…
+C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\conversion\pandas_conv.py:48: PerformanceWarning: DataFrame is highly fragmented.  This is usually the result of calling `frame.insert` many times, which has poor performance.  Consider joining all columns at once using pd.concat(axis=1) instead. To get a de-fragmented frame, use `newframe = frame.copy()`
+  value = value.reset_index()
+Monitor guardado (DQ_IN, DQ_SIS y BD actualizados).
+PDF generado: Z:\Mesa de Inversiones\Bottom-Up\5 Estrategia del Portafolio\Monitores\Rendimiento RVL\PDFs\Rendimiento RVL YTD.pdf
+
+Proceso completado sin errores.
+
+
+
+
+
