@@ -1,0 +1,87 @@
+https://www.transfernow.net/dl/2026072243xnHOZP
+
+obtuve este output para la hoja "BD", asimismo veo varios huecos alli, hay como 3667 columnas(desde "Ret_IN_F1_O_300009100001" hasta "Ret_EXSIS_F3_O_IL_Total") que presentan celdas vacias(aproximadamente 709 filas para esas columnas, que estan vacias por ejemplo como para las fechas: 31/12/2018
+1/01/2019
+2/01/2019
+3/01/2019
+4/01/2019
+7/01/2019
+10/12/2025
+2/01/2026
+8/01/2026
+9/01/2026
+12/01/2026
+5/02/2026
+9/02/2026
+10/02/2026
+11/02/2026
+12/02/2026
+5/03/2026
+9/03/2026
+10/03/2026
+11/03/2026
+12/03/2026
+1/04/2026
+7/04/2026
+8/04/2026
+9/04/2026
+10/04/2026
+4/05/2026
+7/05/2026
+8/05/2026
+11/05/2026
+12/05/2026
+8/06/2026
+9/06/2026
+10/06/2026
+11/06/2026
+12/06/2026
+2/07/2026
+3/07/2026
+6/07/2026
+8/07/2026
+9/07/2026
+10/07/2026
+)  para ciertas fechas , finalmente te dejo el output de tu codigo en consola, asi como subo el arhcivo Rendimiento RVL.xlsm tal como lo dejo tu codigo python.
+
+
+
+Rendimiento RVL — corrida 22.07.26
+DQ IN — última fecha en Monitor: 2026-07-17 00:00:00
+DQ IN — sin registros nuevos (Monitor ya al día).
+DQ SIS — última fecha en Monitor: 2025-12-26 00:00:00
+Fecha de corte: 17-07-2026
+AUM — última fecha disponible: 15-07-2026
+[INFO] 28 código(s) SBS de Parametria no están en BDat_Act (normal para instrumentos fuera de la BD de precios; van con 0): ['312051100001', '302048100002', '302057100001', '4020571CS002', '302059100001']…
+Hoja RVL — leídas 1973 filas útiles (lectura acotada, rápida).
+C:\Users\p048546\AppData\Local\Temp\ipykernel_27264\749809366.py:442: UserWarning: Hoja RVL/TOT_RETURN_INDEX_GROSS_DVDS: 2 columna(s) sin código SBS identificable, se excluyen (agrégalas en la columna A de Parametria si las necesitas): ['ARA CN Equity', 'SMT CN Equity']
+  warnings.warn(
+C:\Users\p048546\AppData\Local\Temp\ipykernel_27264\749809366.py:442: UserWarning: Hoja RVL/Px_last: 2 columna(s) sin código SBS identificable, se excluyen (agrégalas en la columna A de Parametria si las necesitas): ['ARA CN Equity', 'SMT CN Equity']
+  warnings.warn(
+[INFO] DQ_SIS: 144 registro(s) con fecha de cartera posterior al corte (17-07-2026); se excluyen de BD.
+Hoja BD — exportando matriz 1970 x 6512 (31-12-2018 → 17-07-2026, solo días hábiles, 1 fila por día)…
+
+========================================================================
+COMPROBACIÓN AUTOMÁTICA DE LA HOJA BD (para revisar a ojo)
+========================================================================
+  [OK] Una fila por día hábil, sin huecos ni sobras
+  [OK] Sin fechas duplicadas
+  [OK] Sin sábados ni domingos
+  [OK] Sin fechas basura (1970 / posteriores al corte)
+  [OK] Última fila = fecha de corte
+
+  Retornos compuestos POR FECHAS al 17-07-2026 (compáralos con los charts del Resumen):
+  Serie           Day      WTD      MTD      YTD
+  IN F1       -0.04%    0.01%   -0.14%    7.45%
+  IN F2        0.12%   -0.42%   -0.69%    6.41%
+  IN F3       -0.02%   -0.86%   -1.69%    4.16%
+  IN M         0.09%   -0.47%   -0.82%    6.10%
+  EXSIS F1     0.02%   -0.95%   -2.11%    3.58%
+  EPU          0.00%    0.39%    3.83%   21.78%
+  ETFPERU      0.00%    3.31%    4.49%   30.73%
+  (Day = fila del corte; WTD desde el lunes; MTD desde el 1 del mes; YTD desde el 1 de enero. Diferencias grandes vs Resumen = problema; diferencias mínimas por feriados son normales.)
+========================================================================
+Monitor guardado (DQ_IN, DQ_SIS y BD actualizados).
+PDF generado: Z:\Mesa de Inversiones\Bottom-Up\5 Estrategia del Portafolio\Monitores\Rendimiento RVL\PDFs\Rendimiento RVL YTD.pdf
+
+Proceso completado sin errores.
