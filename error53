@@ -1,3 +1,9 @@
+
+An exception has occurred, use %tb to see the full traceback.
+
+SystemExit: 
+[ERROR] AUM: no se encontró la serie 'IN-FONDO1' en DataHistórica de DataValorCuota_IN.xlsm.
+
 C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\IPython\core\interactiveshell.py:3755: UserWarning: To exit: use 'exit', 'quit', or Ctrl-D.
   warn("To exit: use 'exit', 'quit', or Ctrl-D.", stacklevel=1)
 Rendimiento RVL — corrida 21.07.26
