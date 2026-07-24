@@ -1,0 +1,37 @@
+Prompt: Revisión de controversias ASG (Ambientales, Sociales y de Gobernanza) — versión para Copilot
+Instrucciones de uso: reemplaza los campos entre corchetes [ ] antes de enviar el prompt. Pensado para usarse en Microsoft Copilot con acceso a búsqueda web activado.
+PROMPT
+Actúa como un analista senior de riesgo ASG (ESG) especializado en empresas peruanas listadas en la Bolsa de Valores de Lima. Necesito que hagas una revisión exhaustiva de controversias ambientales, sociales y de gobernanza de la empresa [NOMBRE DE LA EMPRESA] (ticker: [TICKER/BVL]), cubriendo el período desde el 1 de enero de [AÑO] hasta la fecha actual.
+Importante: esta tarea requiere información actual y verificable. No respondas basándote solo en lo que ya sabes: realiza búsquedas activas en internet para esta consulta, usando varias búsquedas distintas (no una sola consulta genérica), antes de responder.
+Alcance de la búsqueda
+Cubre explícitamente estos tres tipos de fuentes, y busca cada una por separado:
+Medios locales/regionales de las zonas donde la empresa tiene operaciones (plantas, minas, proyectos, comunidades de influencia directa). Estos medios suelen reportar accidentes, conflictos comunitarios y sucesos que no llegan a la prensa nacional.
+Medios nacionales generalistas (El Comercio, La República, Gestión, Perú21, RPP, Infobae Perú, etc.).
+Medios financieros/especializados y fuentes regulatorias (Investing.com, Bloomberg Línea, SMV — hechos de importancia, BVL, memorias anuales, reportes de sostenibilidad, comunicados de la propia empresa, Poder Judicial, OEFA, SUNAFIL, OSINERGMIN, Defensoría del Pueblo, INDECOPI, según aplique al sector).
+Categorías de eventos a buscar explícitamente
+No uses solo términos genéricos como "ESG" o "sostenibilidad" — esos términos sesgan los resultados hacia comunicados corporativos positivos. Haz búsquedas adicionales con términos específicos como:
+Fatalidades y accidentes: "muerto", "fallecido", "accidente laboral", "accidente fatal", "trabajador fallecido", incluyendo trabajadores de empresas contratistas/subcontratistas, no solo personal directo.
+Delitos y temas judiciales: "denuncia", "demanda", "investigación fiscal", "proceso judicial", "sentencia", "sanción", "multa", "Poder Judicial", "Ministerio Público", "Contraloría".
+Temas ambientales: "derrame", "contaminación", "impacto ambiental", "OEFA", "multa ambiental", "fuga", "vertimiento".
+Temas sociales/comunitarios: "conflicto social", "conflicto comunitario", "paro", "huelga", "bloqueo", "protesta", "consulta previa", "Defensoría del Pueblo".
+Gobernanza: "corrupción", "soborno", "conflicto de interés", "renuncia de directorio", "auditoría", "irregularidades contables", "extorsión" (relevante en construcción/transporte en Perú).
+Seguridad y salud ocupacional: "SUNAFIL", "infracción laboral", "condiciones de trabajo".
+Adicionalmente, revisa si hay seguimiento o cierre de eventos identificados (por ejemplo: resultado de una investigación, sanción impuesta, acuerdo con comunidades, etc.).
+Si tus resultados iniciales solo muestran comunicados corporativos, reconocimientos o rankings de sostenibilidad, es una señal de que faltan búsquedas más específicas — continúa buscando con los términos anteriores antes de concluir que no hay controversias.
+Formato de salida esperado
+Presenta los resultados en una tabla o lista, y para cada evento encontrado incluye:
+Fecha (o rango aproximado)
+Categoría (Ambiental / Social / Gobernanza / Fatalidad-Accidente / Judicial)
+Descripción breve (2-3 líneas, en tus propias palabras, sin citas textuales extensas)
+Estado (confirmado / denuncia sin resolver / en investigación / judicializado / resuelto)
+Fuente (nombre del medio + tipo: local/nacional/financiero/regulatorio)
+Link/URL de la nota o documento original, escrito de forma explícita junto a cada evento (no solo como referencia numerada al final). Este campo es obligatorio para cada evento reportado. Si no encuentras un link verificable para un hallazgo, no lo presentes como evento confirmado; menciónalo aparte como "señal sin fuente verificable" y explica por qué.
+Organiza los resultados en orden cronológico (más reciente primero) y agrupa por categoría si el volumen lo amerita.
+Requisitos de rigor
+Cada evento reportado debe incluir su link/URL de origen escrito junto al evento. No te limites a las notas de referencia automáticas al pie de página: quiero el enlace visible junto a cada hallazgo.
+Distingue claramente entre hechos confirmados, denuncias no verificadas y acusaciones en disputa. No presentes una denuncia como un hecho probado.
+Si una fuente es un comunicado de la propia empresa o de una contratista (no prensa independiente), acláralo.
+Si no encuentras controversias en alguna categoría, dilo explícitamente en lugar de omitir la categoría — la ausencia de resultados también es información relevante, pero debe distinguirse de "no busqué esto".
+Al final, incluye una nota breve sobre posibles limitaciones de la búsqueda (ej. medios locales no indexados, paywalls, cobertura sesgada hacia comunicados corporativos, eventos muy recientes que aún no tienen cobertura).
+Si el volumen de resultados es muy extenso, prioriza fatalidades, delitos y temas judiciales por encima de menciones menores, y ofrece continuar con el resto en una siguiente respuesta.
+Nota: reemplaza [NOMBRE DE LA EMPRESA], [TICKER/BVL] y [AÑO] según corresponda. Puedes ajustar el rango de fechas si buscas un periodo distinto al año en curso
