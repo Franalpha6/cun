@@ -1,0 +1,1108 @@
+#%% md
+# 2. BD_G&P
+
+### Archivos utilizados:
+
+#### G&P: Z:\Mesa de Inversiones\Bottom-Up\Vane - Rafa - Papo\rod\G&P_MLab 26-04.xlsm
+#### VP: Z:\Benchmarking\VP.xlsm
+#### Valor Cuota:  Z:\Valor Cuota\DataValorCuota_IN.xlsm
+#### Excel Riesgo General: Z:\Mesa de Inversiones\Trading\RIESGO - Consulta General.xlsm
+#### Comparables: 
+#### Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Comparables\EPU US.xlsx
+#### Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Comparables\ETF Perú.xlsx
+#### Parametría: Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Parametria.xlsx
+
+#%%
+### Librerías 
+import pandas as pd
+import numpy as np
+import xlwings as xw
+import re
+import time
+from datetime import datetime
+import pandas as pd
+import xlwings as xw
+#%%
+dia = '30'
+mes = '06'
+anio = '2026'
+escenario_input = 'T'
+#%%
+fecha_input = anio + "-" + mes + "-" + dia
+fecha_aum = anio + "-" + mes + "-" + dia
+#%% md
+# Obtener G&P
+#%%
+def recor(dato):
+    if(str(dato)!= "None"):
+        dato = str(dato)
+        dato = dato[0:2]   
+    return dato
+#%%
+rutaG = r'Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\G&P'
+#%%
+def df_obtenido(escenario):
+    wb = xw.Book(r'Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\G&P input\G&P_MLab_' + mes + anio + '.xlsm',read_only=True, update_links=False)  ###### Poner la verdadera ruta del archivo
+    sheet = wb.sheets['Abs']
+    sheet.range('E3').value = escenario
+
+    sheet_df = wb.sheets['Detallado']
+    time.sleep(10)
+    print(sheet_df.range('C5').value)
+    sheet = sheet_df.used_range.value
+    df = pd.DataFrame(sheet)
+    wb.close()
+    df = df.iloc[8::,1:60]
+
+
+
+
+    #  DEBUG
+    print("Fila 9 (posible header 1):")
+    print(df.iloc[0].tolist())
+
+    print("Fila 10 (posible header 2):")
+    print(df.iloc[1].tolist())
+
+
+
+    header1 = df.iloc[0]  # única fila de encabezado real
+
+    df.columns = header1.astype(str).str.strip()
+
+    df = df.iloc[1:]  # los datos empiezan justo después del encabezado
+
+
+    #df.columns = df.iloc[0,::]
+    df= df.iloc[:,[0,2,4,6,7,8,11,14,15, 22,23,24,25,26,27,28,29,30,31,33,34,35,36,37,38,39,40,41,42,44,45,46,47,48,49,50,51,52,53]]
+
+    # df = df.drop([8],axis=0)
+    df = df.reset_index(drop=True)
+    print(df.columns.tolist())
+
+
+    df.insert(1, 'SBS2', df["SBS"].apply(recor))
+    del df['PBS']
+    df.columns = ['SBS', 'SBS2','Nombre', 'Asset Class', 'Cat', 'SubCat', 'Sub Cat2', 'Categoría','AC Dir', 'Rank Rt', 
+               'INF1', 'HAF1GAP', 'RIF1GAP', 'PFF1GAP', 'SIF1GAP',
+               'INF2', 'HAF2GAP', 'RIF2GAP', 'PFF2GAP', 'SIF2GAP',
+               'INF3', 'HAF3GAP', 'RIF3GAP', 'PFF3GAP', 'SIF3GAP']
+    
+    
+    wb2 = xw.Book(r'Z:\Benchmarking\VP.xlsm',read_only=True, update_links=False)  ###### Poner la verdadera ruta del archivo
+    sheet2 = wb2.sheets['CalcP']
+    sheet2 = sheet2.used_range.value
+    wb2.close()
+    df2 = pd.DataFrame(sheet2)
+    df2 = df2.iloc[4:,[2,3,10]]
+    df2.columns = df2.iloc[0,::]
+    df2 = df2.drop([4],axis=0)
+    df2 = df2.set_index("SBS")
+    dic = df2.to_dict()
+    
+    df.insert(0, 'ISIN', df["SBS"].map(dic['ISIN']))
+    #df.insert(1, 'Precio', df["SBS"].map(dic['T']))
+    
+    
+    return df   
+#%%
+def asignacion(fecha, df):
+    try:
+        array = df.loc[ fecha , : ] 
+        array = pd.array(array)
+    except:
+        df = df.dropna() 
+        array = df.iloc[ -1 , : ] 
+        array = pd.array(array)
+        
+    return array[3], array[4],array[5],array[0],array[1],array[2],array[9],array[10],array[11],array[6],array[7],array[8]
+#%%
+def generador_de_variables(fecha):
+    wb = xw.Book(r'Z:\Valor Cuota\DataValorCuota_IN.xlsm',read_only=True, update_links=False) ##### Poner la verdadera ruta del archivo
+    sheet = wb.sheets['DataHistórica']
+    print('bien 1')
+    sheet = sheet.used_range.value
+    print('bien 2')
+    wb.close()
+    df = pd.DataFrame(sheet)
+    df.columns = df.iloc[5,::]
+    df = df.iloc[6::,1:22]
+    df= df.iloc[:,[0,2,3,4,
+                10,11,12,
+                14,15,16,
+                18,19,20]]
+    df = df.set_index("Fecha")
+    auminf1,auminf2,auminf3,aumhaf1,aumhaf2,aumhaf3,aumrif1,aumrif2,aumrif3,aumpff1,aumpff2,aumpff3 = asignacion(fecha, df)
+    return auminf1,auminf2,auminf3,aumhaf1,aumhaf2,aumhaf3,aumrif1,aumrif2,aumrif3,aumpff1,aumpff2,aumpff3
+#%%
+def valor_dolar(fecha):
+    wb = xw.Book(r'Z:\Mesa de Inversiones\Trading\RIESGO - Consulta General.xlsm',read_only=True, update_links=False)  ##### Poner la verdadera ruta del archivo
+    sheet = wb.sheets['Tipo de Cambio']
+    fecha = re.sub("-","",fecha)
+    sheet.range('B1').value = fecha
+    time.sleep(5)
+    sheet = sheet.used_range.value
+    wb.close()
+    df = pd.DataFrame(sheet)
+    for i,j in zip(df[4],df[3]):
+        if(i == '2'):
+            valor  = j
+    print(valor)
+    return valor
+#%%
+def generador_input(escenario, fecha):
+    auminf1,auminf2,auminf3,aumhaf1,aumhaf2,aumhaf3,aumrif1,aumrif2,aumrif3,aumpff1,aumpff2,aumpff3 = generador_de_variables(fecha_aum)
+    return df_obtenido(escenario),auminf1,auminf2,auminf3,aumhaf1,aumhaf2,aumhaf3,aumrif1,aumrif2,aumrif3,aumpff1,aumpff2,aumpff3, valor_dolar(fecha), fecha
+#%%
+df, auminf1,auminf2,auminf3,aumhaf1,aumhaf2,aumhaf3,aumrif1,aumrif2,aumrif3,aumpff1,aumpff2,aumpff3, valor, fecha = generador_input(escenario_input,fecha_input)
+
+aumsif1 = aumhaf1 + aumpff1 + aumrif1
+aumsif2 = aumhaf2 + aumpff2 + aumrif2
+aumsif3 = aumhaf3 + aumpff3 + aumrif3
+
+variables = [aumsif1, aumsif2, aumsif3, auminf1, auminf2, auminf3, aumhaf1, aumhaf2, aumhaf3, aumrif1, aumrif2, aumrif3, aumpff1, aumpff2, aumpff3]
+
+for var in variables:
+    var = (var/valor)/1000000
+#%% md
+## <font color='green'>  Generar archivo excel </font>
+#%%
+def generar_excel(df, fecha):
+    fecha = re.sub("-","",fecha)
+    ruta = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Dataset\\G&P\\' + anio + mes + ' G&P.xlsx'
+    df.to_excel(ruta, index = False)
+#%%
+generar_excel(df, fecha)
+#%%
+def operaciones(df):
+    for a,b in zip(['HAF1','RIF1','PFF1','SIF1','HAF2','RIF2','PFF2','SIF2','HAF3','RIF3','PFF3','SIF3'],["INF1", "INF1", "INF1", "INF1","INF2","INF2","INF2","INF2","INF3","INF3","INF3","INF3"]):
+        df[a] = df[b] - df[a+"GAP"]
+    # En la columna Asset Class solo me quedo con Renta fija y renta variable
+    df = df.loc[df['Asset Class'].isin(['Renta Fija', 'Renta Variable'])] 
+    # Eliminar las filas 'Gobierno' de las columnas Cat, SubCat ...   
+    return df
+#%%
+def FM(dato):
+    dato = str(dato)
+    fm = re.findall('FM', dato)
+    if(fm==['FM']):
+        dato = "borrar"
+    return dato
+#%%
+def BU(df):
+    df_BU = df.copy(deep=True)
+    df_BU = df_BU.drop(df.loc[df['Cat'].isin(['Gobierno'])].index)
+    df_BU = df_BU.drop(df.loc[df['SubCat'].isin(['Gobierno'])].index)
+    df_BU = df_BU.drop(df.loc[df['Sub Cat2'].isin(['Gobierno'])].index)  
+    
+    df_BU['Categoría'] = df_BU['Categoría'].apply(FM)
+    df_BU = df_BU.drop(df_BU.loc[df_BU['Categoría'].isin(["borrar"])].index) 
+    df_BU = df_BU.loc[df_BU['AC Dir'].isin(["PE", "PEC", "EMC","INTER"])]  
+    df_BU = df_BU.drop(df_BU.loc[df_BU['SBS2'].isin(["52","54","50","48","PR","08","01","FT","PT"])].index)  
+    return df_BU   
+
+#Existen 3 fondos de BU que se eliminan en este filtro. Estos fondos no estan cubiertos por MSCI: BD Capital "4974252SCBDC", Sigma Operativo "491105206SI1" y Macrocapitales SAFI "4911141MIND1" 
+#%%
+def df_result(fondo,data):
+    df = data.copy(deep=True)
+    df= df.drop(df[df[fondo]<=0].index)
+    df = df.get(['SBS','ISIN', 'Nombre','Rank Rt',fondo])
+    fd = fondo[-2:]
+    df['Fondo'] = fd
+    df = df.rename(columns={fondo: "Weight"})
+    return df
+#%%
+def X_AFP(f1,f2,f3,data,nombre,tipo):
+    df1  = df_result(f1,data)
+    df2  = df_result(f2,data)
+    df3  = df_result(f3,data)
+    df = pd.concat([df1, df2, df3]).sort_index(ignore_index=True) 
+    
+    df["Strategy"] = tipo
+    df["Afp"] = nombre
+    return df
+#%%
+def TD(df_fondo):
+    df_TD = df_fondo.copy(deep=True)
+    df_TD = df_TD.loc[df_TD['SBS2'].isin(['52', '54','50','48','49'])].sort_index(ignore_index=True)  
+    
+    return df_TD
+#%%
+def usd_f1(dato):
+    if (dato == "F1"):
+        val = 1
+    else:
+        val = 0
+    return val
+#%%
+def usd_f2(dato):
+    if (dato == "F2"):
+        val = 1
+    else:
+        val = 0
+    return val
+#%%
+def usd_f3(dato):
+    if (dato == "F3"):
+        val = 1
+    else:
+        val = 0
+    return val
+#%%
+def BU_TD_AFP(df1,df2,auminf1,auminf2,auminf3):
+    df = pd.concat([df1,df2]).sort_index(ignore_index=True)
+    df["F1"],df["F2"],df["F3"] = auminf1, auminf2, auminf3
+    df["USD1"],df["USD2"],df["USD3"] = df["Fondo"].apply(usd_f1), df["Fondo"].apply(usd_f2), df["Fondo"].apply(usd_f3)
+    df["AUM"] = df["F1"]*df["USD1"] + df["F2"]*df["USD2"] + df["F3"]*df["USD3"]
+    df = df.drop(['USD1', 'USD2', 'USD3', 'F1', 'F2', 'F3'], axis=1)  
+    
+    return df
+#%%
+def X_AFP_(df,auminf1,auminf2,auminf3):
+    df = df.copy(deep=True)
+    df["F1"],df["F2"],df["F3"] = auminf1*df["Weight"], auminf2*df["Weight"], auminf3*df["Weight"]
+    df["USD1"],df["USD2"],df["USD3"] = df["Fondo"].apply(usd_f1), df["Fondo"].apply(usd_f2), df["Fondo"].apply(usd_f3)
+    df["USD"] = df["F1"]*df["USD1"] + df["F2"]*df["USD2"] + df["F3"]*df["USD3"]
+    df = df.drop(['Fondo','AUM','USD1', 'USD2', 'USD3', 'F1', 'F2', 'F3', 'Weight'], axis=1).sort_index(ignore_index=True) 
+   
+    df = df.groupby(['SBS','ISIN', "Nombre","Rank Rt", "Strategy","Afp"]).sum()
+    aum = auminf1 + auminf2 + auminf3
+    ########## Poner como una columna el aum 
+    df["AUM"] = aum
+    df["Weight"] = df["USD"]/ aum
+    df = df.drop(['USD'], axis=1)
+    df["Fondo"] = "Multifondos"
+    df.reset_index( inplace=True)
+
+    return df
+#%%
+df_temporal = operaciones(df)
+df_BU = BU(df_temporal)
+BUIN = X_AFP('INF1','INF2','INF3',df_BU, "Integra","BU")
+BUHA = X_AFP('HAF1','HAF2','HAF3',df_BU, "Habitat","BU")
+BUPF = X_AFP('PFF1','PFF2','PFF3',df_BU, "Profuturo","BU")
+BURI = X_AFP('RIF1','RIF2','RIF3',df_BU, "Prima","BU")
+BUSI = X_AFP('SIF1','SIF2','SIF3',df_BU, "Ex_Integra","BU")
+BU = pd.concat([BUIN, BUHA, BUPF, BURI,BUSI]).sort_index(ignore_index=True)
+
+df_TD = TD(df_temporal)
+TDIN = X_AFP('INF1','INF2','INF3',df_TD, "Integra", "TD")
+TDHA = X_AFP('HAF1','HAF2','HAF3',df_TD, "Habitat", "TD")
+TDPF = X_AFP('PFF1','PFF2','PFF3',df_TD, "Profuturo", "TD")
+TDRI = X_AFP('RIF1','RIF2','RIF3',df_TD, "Prima", "TD")
+TDSI = X_AFP('SIF1','SIF2','SIF3',df_TD, "Ex_Integra","TD")
+TD = pd.concat([TDIN, TDHA, TDPF, TDRI, TDSI]).sort_index(ignore_index=True) 
+
+BD = pd.concat([BU, TD]).sort_index(ignore_index=True) 
+
+
+
+IN = BU_TD_AFP(BUIN,TDIN,auminf1,auminf2,auminf3)
+HA = BU_TD_AFP(BUHA,TDHA,aumhaf1,aumhaf2,aumhaf3)
+PF = BU_TD_AFP(BUPF,TDPF,aumpff1,aumpff2,aumpff3)
+RI = BU_TD_AFP(BURI,TDRI,aumrif1,aumrif2,aumrif3)
+SI = BU_TD_AFP(BUSI,TDSI,aumsif1,aumsif2,aumsif3)
+
+
+
+Portafolio  = pd.concat([IN, HA, PF, RI, SI]).sort_index(ignore_index=True) 
+
+IN_ = X_AFP_(IN,auminf1,auminf2,auminf3)
+HA_ = X_AFP_(HA,aumhaf1,aumhaf2,aumhaf3)
+PF_ = X_AFP_(PF,aumpff1,aumpff2,aumpff3)
+RI_ = X_AFP_(RI,aumrif1,aumrif2,aumrif3)
+SI_ = X_AFP_(SI,aumsif1,aumsif2,aumsif3)
+
+Multifondos = pd.concat([IN_, HA_, PF_, RI_, SI_]).sort_index(ignore_index=True) 
+
+input1  = pd.concat([Portafolio, Multifondos]).sort_index(ignore_index=True) #### Este df incorporará precios y cantidades luego
+
+########################################  EXCEL  #####################################################
+#input1.to_excel("09_arch\\Portafolio_Multifondos.xlsx", index="False")
+#%%
+### Variables que se usarán para referenciar el día, mes y año
+anio = fecha[0:4] 
+mes = fecha[5:7]
+dia = fecha[8::]
+fecha_nueva = dia + "/" + mes + "/" + anio
+input1.insert(0, "Fecha", fecha_nueva) ### Se agrega la fecha de corte
+#%%
+def crear_txt_IN(df1,df2,nombre):
+    dfAIN = df1.copy(deep=True)
+    dfIN = df2.copy(deep=True)
+    dfT = pd.concat([dfAIN, dfIN]).sort_index(ignore_index=True)
+    dfT = dfT.get(['ISIN','Weight', 'Fondo','Rank Rt','Strategy'])
+    dfT.columns = ['SECURITY_ID','WEIGHT', 'fondo','class','Strategy']
+    ruta = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Base Alerta\\'+nombre+'.txt'
+    dfT.to_csv(ruta,sep=',',index=False)
+#%%
+def crear_txt_IN1(df1,df2,nombre):
+    dfAIN = df1.copy(deep=True)
+    dfIN = df2.copy(deep=True)
+    dfT = pd.concat([dfAIN, dfIN]).sort_index(ignore_index=True)
+    dfT = dfT.get(['ISIN','Weight', 'Fondo','Rank Rt','Strategy'])
+    dfT.columns = ['SECURITY_ID','WEIGHT', 'fondo','class','Strategy']
+    dfT = dfT.drop(dfT.loc[dfT['fondo'].isin(["F3","F2","Multifondos"])].index)  
+    ruta = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Base Alerta\\'+nombre+'F1 INBU.txt'
+    dfT.to_csv(ruta,sep=',',index=False)
+#%%
+def crear_txt_IN2(df1,df2,nombre):
+    dfAIN = df1.copy(deep=True)
+    dfIN = df2.copy(deep=True)
+    dfT = pd.concat([dfAIN, dfIN]).sort_index(ignore_index=True)
+    dfT = dfT.get(['ISIN','Weight', 'Fondo','Rank Rt','Strategy'])
+    dfT.columns = ['SECURITY_ID','WEIGHT', 'fondo','class','Strategy']
+    dfT = dfT.drop(dfT.loc[dfT['fondo'].isin(["F1","F3","Multifondos"])].index)  
+    ruta = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Base Alerta\\'+nombre+'F2 INBU.txt'
+    dfT.to_csv(ruta,sep=',',index=False)
+#%%
+def crear_txt_IN3(df1,df2,nombre):
+    dfAIN = df1.copy(deep=True)
+    dfIN = df2.copy(deep=True)
+    dfT = pd.concat([dfAIN, dfIN]).sort_index(ignore_index=True)
+    dfT = dfT.get(['ISIN','Weight', 'Fondo','Rank Rt','Strategy'])
+    dfT.columns = ['SECURITY_ID','WEIGHT', 'fondo','class','Strategy']
+    dfT = dfT.drop(dfT.loc[dfT['fondo'].isin(["F1","F2","Multifondos"])].index)  
+    ruta = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Base Alerta\\'+nombre+'F3 INBU.txt'
+    dfT.to_csv(ruta,sep=',',index=False)
+#%%
+def crear_txt_INM(df1,df2,nombre):
+    dfAIN = df1.copy(deep=True)
+    dfIN = df2.copy(deep=True)
+    dfT = pd.concat([dfAIN, dfIN]).sort_index(ignore_index=True)
+    dfT = dfT.get(['ISIN','Weight', 'Fondo','Rank Rt','Strategy'])
+    dfT.columns = ['SECURITY_ID','WEIGHT', 'fondo','class','Strategy']
+    dfT = dfT.drop(dfT.loc[dfT['fondo'].isin(["F1","F2","F3"])].index)  
+    ruta = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Base Alerta\\'+nombre+'M INBU.txt'
+    dfT.to_csv(ruta,sep=',',index=False)
+#%%
+crear_txt_IN(BUIN,IN_,mes+ anio + 'BUIN_')
+crear_txt_IN(TDIN,IN_,'TDIN_'+mes+anio)
+
+crear_txt_IN1(BUIN,IN_,mes+ anio + 'BUIN_')
+crear_txt_IN2(BUIN,IN_,mes+ anio + 'BUIN_')
+crear_txt_IN3(BUIN,IN_,mes+ anio + 'BUIN_')
+crear_txt_INM(BUIN,IN_,mes+ anio + 'BUIN_')
+#%%
+def leer_DQ_IN():
+    ruta = 'Z:\\Benchmarking\\QEST_BD.xlsm' 
+    wb = xw.Book(ruta,read_only=True, update_links=False)  
+    sheet = wb.sheets['DQ_IN']
+    sheet = sheet.used_range.value
+    sheet1 = wb.sheets['DQ_RV']
+    sheet1 = sheet1.used_range.value
+    sheet2 = wb.sheets['DQ_RF']
+    sheet2 = sheet2.used_range.value 
+    
+    wb.close()
+    df = pd.DataFrame(sheet) 
+    df1 = pd.DataFrame(sheet1) 
+    df2 = pd.DataFrame(sheet2)
+     
+    return df, df1, df2
+#%%
+#### Variables dataFrames que se usarán en el proceso
+df, df1, df2 = leer_DQ_IN()
+df.iloc[10:,::]
+df.columns = df.iloc[10,::]
+df = df.drop([10],axis=0)
+mask1 = df['Dato']=='Q'
+mask2 = df['Fecha']== datetime.fromisoformat(fecha_aum + ' 00:00:00')
+df_resultante = df[mask1]
+df_resultante = df_resultante[mask2]
+dataframe1 = df_resultante.transpose()
+dataframe1.columns = dataframe1.iloc[0,::]
+dic_sbs = dataframe1.to_dict()
+#%%
+def retorna_f1(row):
+    if ((row['Fondo'] == "F1") and (row['Afp'] == "Integra")):
+        val = row['F1']  
+    else:
+        val = 0
+    return val
+#%%
+def retorna_f2(row):
+    if ((row['Fondo'] == "F2") and (row['Afp'] == "Integra")):
+        val = row['F2']  
+    else:
+        val = 0
+    return val
+#%%
+def retorna_f3(row):
+    if ((row['Fondo'] == "F3") and (row['Afp'] == "Integra")):
+        val = row['F3']  
+    else:
+        val = 0
+    return val
+#%%
+def Q_AFP(df):
+    IN_PORT = df.copy(deep=True)
+    
+    IN_PORT.insert(9, 'F1', IN_PORT["SBS"].map(dic_sbs['IN-FONDO1']))
+    IN_PORT.insert(10, 'F2', IN_PORT["SBS"].map(dic_sbs['IN-FONDO2']))
+    IN_PORT.insert(11, 'F3', IN_PORT["SBS"].map(dic_sbs['IN-FONDO3']))
+    
+    IN_PORT['F1'] = IN_PORT.apply(retorna_f1,axis=1)
+    IN_PORT['F2'] = IN_PORT.apply(retorna_f2,axis=1)
+    IN_PORT['F3'] = IN_PORT.apply(retorna_f3,axis=1)
+    
+    IN_PORT["Q"] = IN_PORT['F1']+IN_PORT['F2']+IN_PORT['F3']
+    IN_PORT = IN_PORT.drop(['F1', 'F2', 'F3'], axis=1)  
+    
+    return IN_PORT
+#%%
+def QM_AFP(df):
+    IN_M = df.copy(deep=True)
+    
+    IN_M.insert(9, 'F1', IN_M["SBS"].map(dic_sbs['IN-FONDO1']))
+    IN_M.insert(10, 'F2', IN_M["SBS"].map(dic_sbs['IN-FONDO2']))
+    IN_M.insert(11, 'F3', IN_M["SBS"].map(dic_sbs['IN-FONDO3']))
+    
+    IN_M["Q"] = IN_M['F1']+IN_M['F2']+IN_M['F3']
+    IN_M = IN_M.drop(['F1', 'F2', 'F3'], axis=1)  
+    
+    return IN_M
+#%%
+IN_PORT =  Q_AFP(Portafolio)
+IN_M = QM_AFP(IN_)
+df_IN_PORT_M = pd.concat([IN_PORT, IN_M]).sort_index(ignore_index=True)
+#%%
+
+#%%
+def Q_X_OPE(df, fecha, AFP):
+    df.iloc[15:,::]
+    df.columns = df.iloc[15,::]
+    df = df.drop([15],axis=0)
+    
+    filtro1, filtro2, filtro3 = AFP + "-FONDO1_" + fecha, AFP + "-FONDO2_" + fecha, AFP + "-FONDO3_" + fecha
+    mask1 = df['Fondo_Fecha']== filtro1
+    mask2 = df['Fondo_Fecha']== filtro2
+    mask3 = df['Fondo_Fecha']== filtro3
+    
+    df_resultante = df[mask1|mask2|mask3]
+   
+    dataframe1 = df_resultante.transpose()
+    dataframe1.columns = dataframe1.iloc[0,::]
+    
+    return dataframe1
+#%%
+def generar_dic(df1, df2, fecha_nueva, abrAFP):
+    
+    df1= Q_X_OPE(df1, fecha_nueva, abrAFP)
+    df2 = Q_X_OPE(df2, fecha_nueva, abrAFP)
+    df3 = pd.concat([df1, df2])
+    dic_sbs_p_m = df3.to_dict()
+    return dic_sbs_p_m
+#%%
+def return_f1(row):
+    if (row['Fondo'] == "F1"):
+        val = row['F1'] 
+    elif (row['Fondo'] == "Multifondos"):
+        val = row['F1'] 
+    else:
+        val = 0
+    return val
+#%%
+def return_f2(row):
+    if (row['Fondo'] == "F2") :
+        val = row['F2'] 
+    elif (row['Fondo'] == "Multifondos"):
+        val = row['F2'] 
+    else:
+        val = 0
+    return val
+#%%
+def return_f3(row):
+    if (row['Fondo'] == "F3"):
+        val = row['F3']  
+    elif (row['Fondo'] == "Multifondos"):
+        val = row['F3'] 
+    else:
+        val = 0
+    return val
+#%%
+def return_multi(row):
+    if (row['Fondo'] == "Multifondos"):
+        val = row['F1'] + row['F2'] +row['F3']
+    else:
+        val = 0
+    return val
+#%%
+def correc_multi1(row):
+    if (row['Fondo'] == "Multifondos"):
+        return 0
+        
+    elif (row['Fondo'] == "F1" ):
+        return row["F1"]
+    
+        
+#%%
+def correc_multi2(row):
+    if (row['Fondo'] == "Multifondos"):
+        return 0
+        
+    elif (row['Fondo'] == "F2" ):
+        return row["F2"]
+#%%
+def correc_multi3(row):
+    if (row['Fondo'] == "Multifondos"):
+        return 0
+        
+    elif (row['Fondo'] == "F3" ):
+        return row["F3"]
+#%%
+def Q_AFP(AFP,AFP_,f1,f2,f3,df1, df2, fecha_nueva, abrAFP):
+    PORT_M = pd.concat([AFP, AFP_])
+    
+    dic_sbs_p_m = generar_dic(df1, df2, fecha_nueva, abrAFP)
+    
+    PORT_M.insert(9, 'F1', PORT_M["SBS"].map(dic_sbs_p_m[f1]))
+    PORT_M.insert(10, 'F2', PORT_M["SBS"].map(dic_sbs_p_m[f2]))
+    PORT_M.insert(11, 'F3', PORT_M["SBS"].map(dic_sbs_p_m[f3]))
+    
+    PORT_M['F1'] = PORT_M.apply(return_f1,axis=1)
+    PORT_M['F2'] = PORT_M.apply(return_f2,axis=1)
+    PORT_M['F3'] = PORT_M.apply(return_f3,axis=1)
+    
+    PORT_M.insert(12, 'Multifondos', PORT_M.apply(return_multi,axis=1))
+  
+    PORT_M['F1'] = PORT_M.apply(correc_multi1,axis=1)
+    PORT_M['F2'] = PORT_M.apply(correc_multi2,axis=1)
+    PORT_M['F3'] = PORT_M.apply(correc_multi3,axis=1)
+    
+    PORT_M['F1'] = PORT_M['F1'].replace(np.nan, 0)
+    PORT_M['F2'] = PORT_M['F2'].replace(np.nan, 0)
+    PORT_M['F3'] = PORT_M['F3'].replace(np.nan, 0)
+    
+    PORT_M["Q"] = PORT_M['F1']+PORT_M['F2']+PORT_M['F3'] +PORT_M['Multifondos']   
+    PORT_M = PORT_M.drop(['F1', 'F2', 'F3', 'Multifondos'], axis=1)  
+    
+    return PORT_M
+#%%
+mask_integra = df_IN_PORT_M["Afp"] == "Integra"
+df_IN_PORT_M_Integra = df_IN_PORT_M[mask_integra]
+df_IN_PORT_M_Integra["Afp"].unique()
+#%%
+## df1 y df2 se generaron con leer_DQ_IN()
+
+PORT_M_HA = Q_AFP(HA,HA_, 'HA-FONDO1', 'HA-FONDO2','HA-FONDO3',df1, df2, fecha_nueva, 'HA')
+PORT_M_PF = Q_AFP(PF,PF_, 'PF-FONDO1', 'PF-FONDO2','PF-FONDO3',df1, df2, fecha_nueva, 'PF')
+PORT_M_RI = Q_AFP(RI,RI_, 'RI-FONDO1', 'RI-FONDO2','RI-FONDO3',df1, df2, fecha_nueva, 'RI')
+
+PORT_M_TOTAL = pd.concat([df_IN_PORT_M_Integra,PORT_M_HA,PORT_M_PF, PORT_M_RI]).sort_index(ignore_index=True) 
+#%%
+PORT_M_EX_IN = pd.concat([PORT_M_HA,PORT_M_PF, PORT_M_RI]).sort_index(ignore_index=True) 
+#%%
+def renom_afp(row):
+    if(row['Fondo'] == 'F1'):
+        a = 'Ex_INF1'
+    elif(row['Fondo'] == 'F2'):
+        a = 'Ex_INF2'
+    elif(row['Fondo'] == 'F3'):
+        a = 'Ex_INF3'
+    elif(row['Fondo'] == 'Multifondos'):
+        a = 'Ex_INFM'
+        
+    return a
+#%%
+PORT_M_EX_IN['Afp'] = PORT_M_EX_IN.apply(renom_afp, axis = 1)
+PORT_M_EX_IN['Key'] = PORT_M_EX_IN['SBS'] + PORT_M_EX_IN['ISIN'] + PORT_M_EX_IN['Fondo'] + PORT_M_EX_IN['Strategy']
+PORT_M_EX_IN_dic = PORT_M_EX_IN.get(['Key','Q'])
+PORT_M_EX_IN_dic['Suma'] = PORT_M_EX_IN_dic.groupby(["Key"])['Q'].transform('sum')
+PORT_M_EX_IN_dic = PORT_M_EX_IN_dic.set_index("Key")
+PORT_M_EX_IN_dic_ = PORT_M_EX_IN_dic.to_dict()
+EX_IN = input1.loc[input1['Afp'].isin(['Ex_Integra'])].sort_index(ignore_index=True)  
+EX_IN['Key'] = EX_IN['SBS'] + EX_IN['ISIN'] + EX_IN['Fondo'] + EX_IN['Strategy']
+EX_IN['Q'] = EX_IN['Key'].map(PORT_M_EX_IN_dic_['Suma'])
+EX_IN = EX_IN.drop(['Key'],axis = 1)
+
+#%%
+PORT_M_TOTAL = pd.concat([PORT_M_TOTAL,EX_IN]).sort_index(ignore_index=True) 
+PORT_M_TOTAL =  PORT_M_TOTAL.drop(['Fecha'],axis = 1)
+#%%
+def codEmisor(dato):
+    dato = str(dato)[2:6]
+    return dato
+#%%
+def if_BU(row):
+    if row['Strategy'] == "BU" :
+        val = row['Name_P']  
+    else:
+        val = row['Nombre'] 
+    return val
+#%% md
+### modificar que se por sbs y no por emisor
+#%%
+def dic_emisor(df1, valor, fecha_nueva):
+    ruta = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Dataset\\Parametria.xlsx" 
+    wb = xw.Book(ruta,read_only=True, update_links=False)  
+    sheet = wb.sheets['BU']
+    sheet = sheet.used_range.value
+    wb.close()
+    df = pd.DataFrame(sheet)    
+    df.columns = df.iloc[0,::]
+    df = df.drop([0],axis=0)
+    df = df.set_index("SBS")
+    dic = df.to_dict()
+    
+    df_p_m = df1.copy(deep=True)
+    
+    df_p_m.insert(11, 'Name_P', df_p_m["SBS"].map(dic['Name']))
+    df_p_m['Nombre'] = df_p_m.apply(if_BU,axis=1)
+    df_p_m = df_p_m.drop(['Name_P'], axis=1)
+    df_p_m['Tipo'], df_p_m['Fecha'] = valor , fecha_nueva
+    df_p_m = df_p_m.rename(columns={"Rank Rt": "assetclass"})
+    
+    
+    df_p_m = df_p_m.get(['SBS', 'ISIN', 'Weight', 'Fondo', 'assetclass','Strategy', 'Afp', 'AUM', 'Tipo', 'Q','Nombre', 'Fecha','codEmisor'])
+    
+    return df_p_m
+#%%
+PORT_M_TOTAL['codEmisor'] = PORT_M_TOTAL['SBS'].apply(codEmisor)
+df_p_m = dic_emisor(PORT_M_TOTAL, valor, fecha_nueva)
+#%%
+def precios_act(df_p_m,fecha):
+    ruta = "Z:\\Benchmarking\\BDPrecios_VB_IN.xlsx"
+    wb = xw.Book(ruta,read_only=True, update_links=False)  
+    sheet = wb.sheets['BDat_Act']
+    sheet = sheet.used_range.value
+    wb.close()
+    df_p = pd.DataFrame(sheet)
+    
+    df_p.iloc[13:,::]
+    df_p.columns = df_p.iloc[13,::]
+    df_p = df_p.drop([13],axis=0)
+
+    mask1 = df_p['Fecha']== datetime.fromisoformat(fecha_aum + ' 00:00:00')
+    mask2 = df_p['Campo']=='P'
+    
+    df_resultante = df_p[mask1]
+    df_resultante = df_resultante[mask2]
+    
+    dataframe1 = df_resultante.transpose()
+    dataframe1.columns = dataframe1.iloc[0,::]
+    
+    dic_p = dataframe1.to_dict()
+    
+    df_p_m['Precio'] = df_p_m["SBS"].map(dic_p['P'])
+    
+    ###########################################  EXCEL  ##################################################
+    #df_p_m.to_excel('09_arch\\df_p_m.xlsx')   #### Cambiar nombre excel
+    
+    return df_p_m
+#%%
+dic_p = precios_act(df_p_m, fecha)
+#%%
+nueva_fecha = '01/' + mes + '/' + anio 
+fecha_time = datetime.strptime(nueva_fecha , '%d/%m/%Y')
+df_p_m['Fecha'] = fecha_time
+#%%
+df_p_m
+#%%
+wb = xw.Book(r'Z:\Mesa de Inversiones\Trading\RIESGO - Consulta General.xlsm',read_only=True, update_links=False)  ##### Poner la verdadera ruta del archivo
+sheet = wb.sheets['Tipo de Cambio']
+fecha = re.sub("-","",fecha)
+sheet.range('B1').value = fecha
+time.sleep(6)
+sheet = sheet.used_range.value
+wb.close()
+df = pd.DataFrame(sheet)
+df = df.drop([0],axis=0)
+df = df.drop([1],axis=0)
+df.columns = df.iloc[0,::]
+
+df = df.set_index("CODIGO_MONEDA_SBS")
+dic = df.to_dict()
+
+dic_p['Cod.Moneda'] = dic_p['SBS'].str.get(6)
+
+dic_p['Tipo'] = dic_p['Cod.Moneda'].map(dic['VALOR'])
+dic_p = dic_p.drop('Cod.Moneda', axis=1)
+#%%
+dic_p['Inversión'] = dic_p['Precio']*dic_p['Q']*dic_p['Tipo']
+#%%
+dic_p.to_excel('Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\' + anio + mes + ' BD1.xlsx', index = False)
+#%%
+dic_p
+#%% md
+# Incorporar EPU
+#%%
+def _col_market_value(df):
+    """Localiza la columna de Market Value tolerando cambios de sufijo/espacios en el header."""
+    for c in df.columns:
+        if str(c).strip().startswith("Market Value"):
+            return c
+    raise KeyError(f"No se encontró columna 'Market Value...'. Columnas disponibles: {list(df.columns)}")
+
+
+def plantilla_epu_etf(anio, mes):
+    ruta = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Dataset\\Comparables\\"+anio+mes+" EPU US.xlsx"
+    wb = xw.Book(ruta,read_only=True, update_links=False)
+    sheet = wb.sheets[0]
+    sheet = sheet.used_range.value
+    wb.close()
+
+    df_p = pd.DataFrame(sheet)
+    df_p.columns = df_p.iloc[0,::]
+    df_p = df_p.drop([0],axis=0)
+    df_p = df_p[df_p["ISIN"].notna()]
+    col_mv = _col_market_value(df_p)
+    df_p = df_p[df_p[col_mv].notna()]
+
+    df_p[col_mv] = df_p[col_mv]/100
+    df_p = df_p.get(['ISIN', col_mv])
+    df_p = df_p.rename(columns={col_mv: 'Market Value (%) (P)'})
+    df_p['Market Value (%) (P)'] = df_p['Market Value (%) (P)'].fillna(0)
+
+    df_epu = pd.DataFrame()
+    for i in ["Integra","Habitat","Prima","Profuturo","Ex_Integra"]:
+        for j in ["F1","F2","F3","Multifondos"]:
+            df = df_p.copy(deep=True)
+            df["Fondo"]=j
+            df["AFP"]=i
+            df_epu = pd.concat([df_epu, df])
+
+    df_epu = df_epu.reset_index()
+    df_epu = df_epu.drop(['index'], axis=1)
+
+    df_epu["SBS"] = '5460042E8427'
+    df_epu["key1"] = df_epu["SBS"]+ df_epu["Fondo"] + df_epu["AFP"]
+
+    ##################################################################################################
+    ruta = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Dataset\\Comparables\\"+anio+mes+" ETF Perú.xlsx"
+    wb = xw.Book(ruta,read_only=True, update_links=False)
+    sheet2 = wb.sheets[0]
+    sheet2 = sheet2.used_range.value
+
+    df_p2 = pd.DataFrame(sheet2)
+    wb.close()
+    df_p2.columns = df_p2.iloc[0,::]
+    df_p2 = df_p2.drop([0],axis=0)
+    df_p2 = df_p2[df_p2["ISIN"].notna()]
+    col_mv2 = _col_market_value(df_p2)
+    df_p2 = df_p2[df_p2[col_mv2].notna()]
+
+    df_p2[col_mv2] = df_p2[col_mv2]/100
+    df_p2 = df_p2.get(['ISIN', col_mv2])
+    df_p2 = df_p2.rename(columns={col_mv2: 'Market Value (%) (P)'})
+    df_p2['Market Value (%) (P)'] = df_p2['Market Value (%) (P)'].fillna(0)
+
+    df_ETF = pd.DataFrame()
+    for i in ["Integra","Habitat","Prima","Profuturo","Ex_Integra"]:
+        for j in ["F1","F2","F3","Multifondos"]:
+            df = df_p2.copy(deep=True)
+            df["Fondo"]=j
+            df["AFP"]=i
+            df_ETF = pd.concat([df_ETF, df])
+
+    df_ETF = df_ETF.reset_index()
+    df_ETF = df_ETF.drop(['index'], axis=1)
+
+    df_ETF["SBS"] = '5076822E0800'
+    df_ETF["key1"] = df_ETF["SBS"]+ df_ETF["Fondo"] + df_ETF["AFP"]
+
+    return df_epu, df_ETF
+
+#%%
+plantilla_epu, plantilla_ETF  = plantilla_epu_etf(anio, mes)
+#%%
+
+#%%
+df_epu_etf =  pd.concat([plantilla_epu, plantilla_ETF])
+#%%
+df_epu_etf["SBS"].unique()
+#%%
+def operaciones_df_p_m(df):
+    df = df.copy(deep=True)
+    df.insert(1, 'SBS2', df["SBS"].apply(recor))
+    df = df.loc[df['SBS2'].isin(['54','50'])].sort_index(ignore_index=True)
+    df['Strategy']='BU' ### Reemplazar TD por BU
+    df["key1"] = df["SBS"]+ df["Fondo"] + df["Afp"] ### Creo una columna concatenando SBS Fondo y afp y se va llamar key1
+    
+    return df
+#%%
+def traer_BD(anio, mes): 
+    ruta = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\' + anio + mes + ' BD1.xlsx'
+    wb = xw.Book(ruta,read_only=True, update_links=False)  
+    sheet = wb.sheets['Sheet1']
+    sheet = sheet.used_range.value
+    df = pd.DataFrame(sheet)
+    df.columns = df.iloc[0,::]
+    df = df.drop([0],axis=0)   
+    df = operaciones_df_p_m(df) ####### Realizar operaciones
+    wb.close()
+    return df
+#%%
+df_BD = traer_BD(anio, mes)
+#%%
+def generar_relacion(df1,df2):
+    epu = df1.copy(deep=True)
+    BD = df2.copy(deep=True)
+    
+    BD = BD.set_index("key1")
+    dicBD = BD.to_dict()
+    
+    for i in ['Weight','assetclass', 'Strategy',
+       'AUM', 'Tipo', 'Precio', 'Q', 'Nombre', 'Fecha', 'codEmisor']:
+        epu[i] = epu["key1"].map(dicBD[i])
+
+     
+    epu = epu.dropna(subset=['Weight'])
+    
+    epu['peso'] = epu["Market Value (%) (P)"] * epu['Weight'] 
+    
+    epu = epu.drop(['Market Value (%) (P)','key1','Weight'], axis=1)
+    
+    epu.rename(columns={'peso':'Weight'},inplace=True)
+    
+    return epu
+#%%
+epu = generar_relacion(df_epu_etf,df_BD)
+#%%
+def unir_port_epu(epu):
+    ruta = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\'+ anio + mes + ' BD1.xlsx'
+    wb = xw.Book(ruta,read_only=True, update_links=False)  
+    sheet = wb.sheets['Sheet1']
+    sheet = sheet.used_range.value
+    df = pd.DataFrame(sheet)
+    df.columns = df.iloc[0,::]
+    df = df.drop([0],axis=0)  
+    
+    df.insert(1, 'SBS2', df["SBS"].apply(recor))
+    df = df.drop(df.loc[df['SBS2'].isin(["54","50"])].index)  
+    df = df.drop(['SBS2'], axis=1) 
+    
+    
+    df["key1"] = df["ISIN"]+ df["Fondo"] + df["Afp"]  + df["assetclass"]  + df["Strategy"]
+    #######
+    df_epu = epu.copy(deep=True)
+    df_epu["key1"] = df_epu["ISIN"]+ df_epu["Fondo"] + df_epu["AFP"]  + df_epu["assetclass"]  + df_epu["Strategy"]
+    
+    df_epu_d = df_epu.set_index("key1")
+    dic_epu = df_epu_d.to_dict()
+    ########
+    
+    df['Weight2'] = df["key1"].map(dic_epu["Weight"])
+    
+    df['Weight'].fillna(0, inplace = True)
+    df['Weight2'].fillna(0, inplace = True)
+    #df['weight_T'] = df['weight'] + df['weight2']
+
+    df.insert(2, 'Weight_T', df['Weight'] + df['Weight2'])
+    
+    df_port = df.drop(['Weight','Weight2'], axis=1) 
+    df_port.rename(columns={'Weight_T':'Weight','Afp':'AFP'},inplace=True)
+    
+    
+    return df_port
+    
+#%%
+df_port_epu = unir_port_epu(epu)
+#%%
+df_port_epu
+#%%
+#falta corregir esta parte, porque no entrea el 50 a pesar de estar
+def unir_port_epu2(epu):
+    ruta = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\' + anio  + mes + ' BD1.xlsx'
+    wb = xw.Book(ruta,read_only=True, update_links=False)  
+    sheet = wb.sheets['Sheet1']
+    sheet = sheet.used_range.value
+    df = pd.DataFrame(sheet)
+    df.columns = df.iloc[0,::]
+    df = df.drop([0],axis=0)  
+    
+    df.insert(1, 'SBS2', df["SBS"].apply(recor))
+    df = df.drop(df.loc[df['SBS2'].isin(["54","50"])].index)  
+    df = df.drop(['SBS2'], axis=1)     
+    df["key1"] = df["ISIN"]+ df["Fondo"] + df["Afp"]  + df["assetclass"]  + df["Strategy"]
+    
+    df_d = df.set_index("key1")
+    dic_df = df_d.to_dict()
+    
+    df_epu = epu.copy(deep=True)
+    df_epu["key1"] = df_epu["ISIN"]+ df_epu["Fondo"] + df_epu["AFP"]  + df_epu["assetclass"]  + df_epu["Strategy"]
+    
+    df_epu["Eliminar"] = df_epu["key1"].map(dic_df["SBS"])
+    ####
+    mask2 = df_epu['Eliminar'].isin([np.nan])
+    df_solo_epu = df_epu[mask2]
+    df_solo_epu = df_solo_epu.drop(['Eliminar'], axis=1) 
+    
+    return df_solo_epu
+#%%
+df_solo_epu = unir_port_epu2(epu)
+#%%
+df_total = pd.concat([df_port_epu,df_solo_epu])
+#%%
+df_p_m = dic_emisor(PORT_M_TOTAL, valor, fecha_nueva)
+df_p_m
+#%%
+ruta = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Dataset\\Parametria.xlsx" 
+wb = xw.Book(ruta,read_only=True, update_links=False)  
+sheet = wb.sheets['BU']
+sheet = sheet.used_range.value
+wb.close()
+df = pd.DataFrame(sheet)    
+df.columns = df.iloc[0,::]
+df = df.drop([0],axis=0)
+df = df.set_index("ISIN")
+dic = df.to_dict()
+dic_p1 = df_total.copy(deep=True)
+
+condicion = dic_p1['Strategy'] == 'BU'
+dic_p1.loc[condicion, 'Nombre'] = dic_p1[condicion]['ISIN'].map(dic['Nombre'])
+dic_p1['Empresa'] = dic_p1['Nombre']
+#%%
+def reemplazar_nombre(row):
+    if(str(row['Strategy']) == 'BU'):
+        try:
+            n = dic['ID'][row["ISIN"]]
+        except:
+            n = row['Empresa']
+    else:
+        n = row['Empresa']
+    return n
+#%%
+wb_p = xw.Book(r'Z:\Benchmarking\VP.xlsm',read_only=True, update_links=False)  ###### Poner la verdadera ruta del archivo
+sheet2 = wb_p.sheets['CalcP']
+sheet2 = sheet2.used_range.value
+
+df2 = pd.DataFrame(sheet2)
+df2 = df2.iloc[4:,[3,4]]
+df2.columns = df2.iloc[0,::]
+df2 = df2.drop([4],axis=0)
+df2 = df2.set_index("ISIN")
+dic = df2.to_dict()
+
+dic_p1['Empresa'] = dic_p1.apply(reemplazar_nombre,axis = 1)
+column_order = [ 'SBS','ISIN', 'Weight', 'Fondo', 'assetclass', 'Strategy', 'AFP',
+                'AUM', 'Tipo', 'Precio', 'Q','Inversión', 'Nombre', 'Empresa', 'Fecha', 'codEmisor',
+                'key1']
+
+# Reordenar las columnas del DataFrame según el orden definido
+dic_p1 = dic_p1[column_order]
+
+#%%
+dic_p1.to_excel('Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\'+anio + mes+' Portafolio.xlsx', index = False)
+#%%
+
+#%%
+dic_p1
+#%% md
+## Nuevos instrumentos
+#%%
+def par_bu():
+    
+    ########## Abrimos archivo Parametro_BU.xlsx
+    wb = xw.Book(r"Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Parametria.xlsx", read_only = True, update_links= False)
+    sheet = wb.sheets['BU']
+    sheet = sheet.used_range.value
+    df = pd.DataFrame(sheet)
+    df.columns = df.iloc[0,::]
+    df = df.drop([0], axis = 0) ## axis = 0 (fila)
+    #df = df.drop([None], axis=1)  ## Elimina las columnas vacías axis = 1 (columna)
+    df = df.drop(df.loc[df['ISIN'].isin([None])].index)
+    wb.close()
+    
+    
+    ########### Usamos los ISIN del archivo como diccionario
+    df2 = df.copy()
+    df2['validador'] = "Existe"
+    df2 = df2.set_index("ISIN")
+    dic = df2.to_dict()
+    
+
+    ########## Abrimos archivo Portafolio_BU_102022.xlsx
+    ruta = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\"  + anio + mes + " Portafolio.xlsx" 
+    wb2 = xw.Book(ruta, read_only = True, update_links= False)
+    sheet2 = wb2.sheets['Sheet1']
+    sheet2 = sheet2.used_range.value
+    df_pbu = pd.DataFrame(sheet2)
+    df_pbu.columns = df_pbu.iloc[0,::]
+    df_pbu = df_pbu.drop([0], axis = 0)
+    df_pbu = df_pbu.loc[df_pbu['Strategy'].isin(['BU'])]
+    wb2.close()
+    
+
+    ########### Obtenemos los nuevos security_id
+    df_pbu["validador"] =  df_pbu["ISIN"].map(dic['validador'])
+    df_pbu = df_pbu.loc[df_pbu["validador"].isin([np.nan])]
+    df_pbu  = df_pbu.get(['ISIN', 'SBS', 'codEmisor', 'Nombre'])
+    df_pbu.columns = ['ISIN', 'SBS', 'Cod.Emisor', 'Nombre']
+    
+    
+    ######### Creamos nuevo diccionario de index Cod. Emisor del archivo 
+    ########## Abrimos archivo Diccionario_BU.xlsx
+    wb3 = xw.Book(r"Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Parametria.xlsx", read_only = True, update_links= False)
+    sheet3 = wb3.sheets['BU']
+    sheet3 = sheet3.used_range.value
+    df3 = pd.DataFrame(sheet3)
+    df3.columns = df3.iloc[0,::]
+    df3 = df3.drop([0], axis = 0)
+    df3 = df3.drop(df3.loc[df3['Cod.Emisor'].isin([None])].index)
+    df3 = df3.set_index('Cod.Emisor')
+    dic3 = df3.to_dict()
+    
+    
+    ######## Agregar las nuevas columnas a df_pbu moneda,sector,pais,Region,mercado
+    df_pbu.insert(4, 'Moneda', df_pbu['Cod.Emisor'].map(dic3['moneda']))
+    df_pbu.insert(5, 'Sector', df_pbu['Cod.Emisor'].map(dic3['Sector']))
+    df_pbu.insert(6, 'Pais', df_pbu['Cod.Emisor'].map(dic3['País']))
+    df_pbu.insert(7, 'Region', df_pbu['Cod.Emisor'].map(dic3['Region']))
+    df_pbu.insert(8, 'Mercado', df_pbu['Cod.Emisor'].map(dic3['mercado']))
+    
+
+    ########## Unimos Parametro_BU.xlsx con los nuevos security_id de Portafolio_BU_102022.xlsx
+    df_Total = pd.concat([df, df_pbu])
+    
+    return  df_Total
+#%%
+df_Total = par_bu()
+df_Total
+#%%
+# import pandas as pd
+# import openpyxl as px
+
+# # Ruta del archivo Excel
+# ruta_excel = r"Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\dataset\Parametria.xlsx"
+
+
+# # Cargar el archivo Excel
+# wb = px.load_workbook(ruta_excel)
+
+
+#%%
+
+# # Nombre de la hoja que deseas reemplazar
+# nombre_hoja_reemplazar = "BU"
+
+
+# # Obtener la hoja que deseas reemplazar
+# hoja_existente = wb[nombre_hoja_reemplazar]
+
+
+# # Crear un writer usando pandas
+# writer = pd.ExcelWriter(ruta_excel, engine='openpyxl')
+# writer.book = wb
+
+
+# # Guardar el DataFrame en la hoja existente
+# df_Total.to_excel(writer, index=False, sheet_name=nombre_hoja_reemplazar)
+# writer.save()
+#%%
+df_Total.to_excel(r"Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Para.xlsx", index=False)
+#%%
+writer.close()
+#%%
+listo
+#%%
+
+#%%
+
+#%%
+
+#%%
+
+#%%
+
+#%%
