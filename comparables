@@ -1,0 +1,316 @@
+#%% md
+# 1. Comparables
+
+### Archivos utilizados:
+
+### Excel Riesgo General : Z:\Mesa de Inversiones\Trading\RIESGO - Consulta General.xlsm
+##### Se utiliza para obtener la información del tipo de cambio de la fecha de corte
+### Market Cap: Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Comparables\Market Cap.xlsx
+### Comparables: 
+#### Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Comparables\EPU US.xlsx
+#### Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Comparables\ETF Perú.xlsx
+#### Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Comparables\SWDA LN.xlsx
+#### Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Comparables\EEM US.xlsx
+#### Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Comparables\ACWI US.xlsx
+#### Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Comparables\ILF US.xlsx
+#### Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Comparables\CEMB US.xlsx
+#### Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Comparables\IEMG US.xlsx
+
+### Base subyacentes (riesgos): Y:\Riesgos Inversiones\1. Nueva organización de Carpetas\AFP\4. Riesgos de Mercado\4.10 Reportes Regulatorios\4.10.15 Base maestra - Inventario\0 Subyacentes.xlsx
+
+#### De esta base, que riesgos actualiza, en este código SOLO se utiliza la pestaña "Parámetros" (Que tiene la información y clasificaciones de los paises). Se utilzaran las columnas "Nombre País","Geografía Integra", "Mercado" y "Country Code". Luego de tener estas columnas, se establece como diccionario a "Country Code". 
+#### Luego, se utiilzará este diccionario para hacer un "index match" con su correspondiente de los exceles de "Comparables" (Cntry (Risk)) y se crean las columnas "País" con "Nombre País", "Región" con "Geografía Integra", y "Mercado" con "Mercado"
+
+
+
+
+
+
+#%%
+# pip install xlrd
+#%%
+import pandas as pd
+import numpy as np
+import xlwings as xw
+import re
+import time
+import datetime
+import os
+import xlrd
+from pathlib import Path
+from pandas.tseries.offsets import MonthEnd
+import xlwings as xw
+from pandas.tseries.offsets import CustomBusinessDay
+import xlwings as xw
+from datetime import datetime
+from os import listdir
+import tkinter as tk
+import xlwings as xw
+from tkinter import *
+from tkinter import ttk
+from tkinter.ttk import Style
+from datetime import datetime
+import datetime
+#%%
+dia = '21'
+mes = '07'
+anio = '2026'
+#%%
+
+#%%
+def tc1(dia,mes, anio):
+    fecha = anio + '-'+ mes + '-' + dia
+    print(fecha)
+    wb = xw.Book(r'Z:\Mesa de Inversiones\Trading\RIESGO - Consulta General.xlsm',read_only=True, update_links=False)  ##### Poner la verdadera ruta del archivo
+    sheet = wb.sheets['Tipo de Cambio']
+    fecha = re.sub("-","",fecha)
+    sheet.range('B1').value = fecha
+    time.sleep(5)
+    sheet = sheet.used_range.value
+    wb.close()
+    df = pd.DataFrame(sheet)
+    for i,j in zip(df[4],df[3]):
+        if(i == '2'):
+            valor  = j
+   
+    print(valor)
+    return valor
+#%%
+def comparables(dia,mes,anio):
+    tc = tc1(dia,mes,anio)
+    ruta = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Dataset\\Comparables\\Market Cap.xlsx"
+    wb = xw.Book(ruta, read_only=True, update_links=False)
+    df_Total = pd.DataFrame()
+    sheet = wb.sheets['MKT']
+    sheet = sheet.used_range.value
+    df_h = pd.DataFrame(sheet)
+    df_h = df_h.drop([0])
+    df_h.columns = df_h.iloc[0, ::]
+    df_h = df_h.drop([1])
+    import datetime
+
+    fecha_col = '01' + '/' + mes + '/' + anio
+    fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+
+    print(fecha_col)
+
+
+    df_h = df_h.loc[df_h['FECHA'] == fecha_col]
+    df_h.columns = df_h.columns.str.replace(' Equity', '')
+
+    if len(df_h) != 1:
+        raise ValueError(
+            f"Se esperaba 1 fila para la fecha {fecha_col}, pero se encontraron {len(df_h)}"
+        )
+
+    iemg = float(df_h["IEMG US"].iloc[0])
+    cemb = float(df_h["CEMB US"].iloc[0])
+    ilf  = float(df_h["ILF US"].iloc[0])
+    acwi = float(df_h["ACWI US"].iloc[0])
+    eem  = float(df_h["EEM US"].iloc[0])
+    swda = float(df_h["SWDA LN"].iloc[0])
+    epu  = float(df_h["EPU US"].iloc[0])
+    etfperu = float(df_h["ETFPERUD PE"].iloc[0])
+
+    print(acwi)
+    wb.close()
+
+
+    if len(df_h) != 1:
+        raise ValueError(f"Se esperaba 1 fila para la fecha {fecha_col}, pero se encontraron {len(df_h)}")
+
+
+    carpeta = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Dataset\\Comparables\\"
+    nombres_archivos = [anio + mes + ' ACWI US.xlsx',anio + mes +  ' CEMB US.xlsx', anio + mes + ' EEM US.xlsx',anio + mes +  ' EPU US.xlsx',anio + mes +  ' ETF Perú.xlsx', anio + mes + ' IEMG US.xlsx', anio + mes + ' ILF US.xlsx', anio + mes + ' SWDA LN.xlsx']
+    #nombres_archivos = [añio + mes+ ' ACWI US.xlsx', 'CEMB US.xlsx', 'EEM US.xlsx', 'EPU US.xlsx', 'ETF Peru.xlsx', 'IEMG US.xlsx', 'ILF US.xlsx', 'SWDA LN.xlsx']
+    df_Total = pd.DataFrame()
+    print(df_h.columns.tolist())
+    for nombre_archivo in nombres_archivos:
+        print(nombre_archivo)
+        ruta = os.path.join(carpeta, nombre_archivo)
+        df_h = pd.read_excel(ruta)
+        df_h['Sector1'] = df_h['Name'].apply(lambda x: x[2:] if str(x).startswith('› ') else '')
+
+        # Rellenar los espacios en blanco en la columna "Sector"
+        # df_h['Sector1'].replace('', method='ffill', inplace=True)
+        df_h['Sector1'].replace('', np.nan, inplace=True)
+        df_h['Sector1'] = df_h['Sector1'].ffill()
+
+
+        df_h = df_h[df_h["ISIN"].notna()]### Eliminar vacíos
+        df_h = df_h[df_h['Market Value (%) (P)'].notna()]
+        df_h.insert(3, 'AFP', nombre_archivo[7:-5])   #### solo toma una parte del nombre en excel
+        df_h['Market Value (%) (P)'] = df_h['Market Value (%) (P)'] / 100
+        print('El Market Value en el archivo ' + nombre_archivo + ' es: ' + str(sum(df_h['Market Value (%) (P)'])))
+        df_Total = pd.concat([df_Total, df_h]).sort_index(ignore_index=True)
+
+
+    df_Total = df_Total.get(['ISIN', 'Market Value (%) (P)','AFP', 'Name', 'MSCI ESG Rating (P)', 'Crncy', 'Cntry (Risk)','Class - Broad','Px Close (P)','Sector1' ])
+
+    df_Total.insert(2, 'Fondo', 'Multifondos')
+    df_Total.insert(3, 'AssetClass', 'RVI')
+    df_Total.insert(4, 'Strategy', 'BU')
+    df_Total.insert(6, 'AUM', '')
+    df_Total.insert(7, 'Tipo', tc)
+    df_Total.insert(8, 'Precio', '')
+    df_Total.insert(9, 'Q', '')
+
+    df_Total['Precio'] = df_Total['Px Close (P)']
+    df_Total = df_Total.drop('Px Close (P)', axis=1)
+
+    df_Total.insert(11, 'Empresa', df_Total['Name'] )
+    df_Total.insert(12, 'SBS', '')
+
+    fecha = '01' +'/'+ mes +'/'+anio
+    fecha = datetime.datetime.strptime(fecha, '%d/%m/%Y')
+    df_Total.insert(13, 'Fecha', fecha)
+
+    df_Total.insert(14, 'cod emisor', '')
+
+    df_Total.insert(15, 'key', df_Total["ISIN"] + df_Total["AFP"] + df_Total["Name"])
+
+    df_Total = df_Total.rename(columns={"Market Value (%) (P)" : "Weight", "Name" : "Nombre", "Sector1" : "Sector GICS"})
+
+    wb3 = xw.Book(r"Y:\Riesgos Inversiones\1. Nueva organización de Carpetas\AFP\4. Riesgos de Mercado\4.10 Reportes Regulatorios\4.10.15 Base maestra - Inventario\0 Subyacentes.xlsx",read_only=True, update_links=False)
+    sheet3 = wb3.sheets['Parametros']
+    sheet3 = sheet3.used_range.value
+    df_dic3 = pd.DataFrame(sheet3)
+    df_dic3.columns = df_dic3.iloc[1,::]
+    df_dic3 = df_dic3.drop([0,1],axis=0)
+    df_dic3 = df_dic3.get(['Nombre País', 'Geografía Integra', 'Mercado', 'Country Code'])
+
+    df_dic3 = df_dic3.set_index("Country Code")
+    diccionario2 = df_dic3.to_dict()
+
+    df_Total.insert(19, 'País', df_Total["Cntry (Risk)"].map(diccionario2['Nombre País']))
+    df_Total.insert(20, 'Región', df_Total["Cntry (Risk)"].map(diccionario2['Geografía Integra']))
+    df_Total.insert(21, 'Mercado', df_Total["Cntry (Risk)"].map(diccionario2['Mercado']))
+    df_Total
+
+    def AUM(row):
+        if (row['AFP'] == "EEM US"):
+            val = eem
+        elif (row['AFP'] == "ETF Perú"):
+            val = etfperu
+        elif (row['AFP'] == "IEMG US"):
+            val = iemg
+        elif (row['AFP'] == "ILF US"):
+            val = ilf
+        elif (row['AFP'] == "EPU US"):
+            val = epu
+        elif (row['AFP'] == "CEMB US"):
+            val = cemb
+        elif (row['AFP'] == "SWDA LN"):
+            val = swda
+        elif (row['AFP'] == "ACWI US"):
+            val = acwi
+        else:
+            val = etfperu
+        return val
+
+    print(acwi)
+    df_Total['AUM'] = df_Total.apply(AUM,axis=1)
+    df_Total['Pct_FFMM'] = df_Total['Weight']
+    df_Total.drop('key', axis=1, inplace=True)
+
+    ruta = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\' + anio + mes + ' Comparables.xlsx'
+    df_Total.to_excel(ruta, index = False)
+    wb3.close()
+    
+    return 1
+#%%
+df = comparables(dia,mes,anio)
+#%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py:3641, in Index.get_loc(self, key)
+   3640 try:
+-> 3641     return self._engine.get_loc(casted_key)
+   3642 except KeyError as err:
+
+File pandas/_libs/index.pyx:168, in pandas._libs.index.IndexEngine.get_loc()
+--> 168 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/index.pyx:197, in pandas._libs.index.IndexEngine.get_loc()
+--> 197 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/hashtable_class_helper.pxi:7668, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+-> 7668 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/hashtable_class_helper.pxi:7676, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+-> 7676 'Could not get source, probably due dynamically evaluated source code.'
+
+KeyError: 'Name'
+
+The above exception was the direct cause of the following exception:
+
+KeyError                                  Traceback (most recent call last)
+Cell In[12], line 1
+----> 1 df = comparables(dia,mes,anio)
+
+Cell In[11], line 54, in comparables(dia, mes, anio)
+     50     for nombre_archivo in nombres_archivos:
+     51         print(nombre_archivo)
+     52         ruta = os.path.join(carpeta, nombre_archivo)
+     53         df_h = pd.read_excel(ruta)
+---> 54         df_h['Sector1'] = df_h['Name'].apply(lambda x: x[2:] if str(x).startswith('› ') else '')
+     55 
+     56         # Rellenar los espacios en blanco en la columna "Sector"
+     57         # df_h['Sector1'].replace('', method='ffill', inplace=True)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py:4378, in DataFrame.__getitem__(self, key)
+   4374 
+   4375         if is_single_key:
+   4376             if self.columns.nlevels > 1:
+   4377                 return self._getitem_multilevel(key)
+-> 4378             indexer = self.columns.get_loc(key)
+   4379             if is_integer(indexer):
+   4380                 indexer = [indexer]
+   4381         else:
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py:3648, in Index.get_loc(self, key)
+   3643     if isinstance(casted_key, slice) or (
+   3644         isinstance(casted_key, abc.Iterable)
+   3645         and any(isinstance(x, slice) for x in casted_key)
+   3646     ):
+   3647         raise InvalidIndexError(key) from err
+-> 3648     raise KeyError(key) from err
+   3649 except TypeError:
+   3650     # If we have a listlike key, _check_indexing_error will raise
+   3651     #  InvalidIndexError. Otherwise we fall through and re-raise
+   3652     #  the TypeError.
+   3653     self._check_indexing_error(key)
+
+KeyError: 'Name'
+2026-07-21
+3.6555
+2026-07-01 00:00:00
+32820.9
+['FECHA', NaT, 'IEMG US', 'CEMB US', 'ILF US', 'ACWI US', 'EEM US', 'SWDA LN', 'EPU US', 'ETFPERUD PE', 'EMB US', None, None, None, None, '#N/A Field Not Applicable']
+202607 ACWI US.xlsx
+C:\Users\p048546\AppData\Local\Temp\ipykernel_29420\1627850759.py:58: ChainedAssignmentError: A value is being set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+Such inplace method never works to update the original DataFrame or Series, because the intermediate object on which we are setting values always behaves as a copy (due to Copy-on-Write).
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' instead, to perform the operation inplace on the original object, or try to avoid an inplace operation using 'df[col] = df[col].method(value)'.
+
+See the documentation for a more detailed explanation: https://pandas.pydata.org/pandas-docs/stable/user_guide/copy_on_write.html
+  df_h['Sector1'].replace('', np.nan, inplace=True)
+El Market Value en el archivo 202607 ACWI US.xlsx es: 0.9994576211638836
+202607 CEMB US.xlsx
