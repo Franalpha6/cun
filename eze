@@ -1,0 +1,31 @@
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+Cell In[1], line 743
+    739     return dic_p1
+    740 
+    741 
+    742 if __name__ == "__main__":
+--> 743     resultado = main()
+    744     print(resultado.head())
+
+Cell In[1], line 607, in main(dia, mes, anio, escenario)
+    603     dic_sbs = dq_in[mask].transpose()
+    604     dic_sbs.columns = dic_sbs.iloc[0]
+    605     dic_sbs = dic_sbs.to_dict()
+    606 
+--> 607     IN_PORT = Q_integra(Portafolio, dic_sbs, solo_integra=True)
+    608     IN_M = Q_integra(MULTI["Integra"], dic_sbs, solo_integra=False)
+    609     df_IN = pd.concat([IN_PORT, IN_M]).sort_index(ignore_index=True)
+    610     df_IN = df_IN[df_IN["Afp"] == "Integra"]
+
+Cell In[1], line 429, in Q_integra(df, dic_sbs, solo_integra)
+    425       solo_integra=True  -> Portafolio  (Q solo si Fondo coincide y Afp == Integra)
+    426       solo_integra=False -> Multifondos (Q = suma de los 3 fondos)
+    427     """
+    428     out = df.copy()
+--> 429     f = [pd.to_numeric(out["SBS"].map(dic_sbs[f"IN-FONDO{i}"]), errors="coerce")
+    430          for i in (1, 2, 3)]
+    431 
+    432     if solo_integra:
+
+KeyError: 'IN-FONDO1'
