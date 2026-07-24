@@ -1,0 +1,22 @@
+01:09:21 | INFO    | === BD G&P 202607 | corte 2026-07-22 | escenario 'T' ===
+01:09:31 | INFO    | Abriendo G&P (G&P_MLab_072026.xlsm) con escenario 'T'...
+01:12:39 | INFO    | Detallado!C5 = 2026-07-22 00:00:00
+01:13:13 | INFO    | Leyendo VP.xlsm [CalcP]
+01:13:36 | INFO    | G&P cargado: 2752 filas.
+01:13:36 | INFO    | Consultando tipo de cambio para 20260722...
+01:14:47 | INFO    | Tipo de cambio = 3.6555
+01:14:51 | INFO    | Instancia dedicada de Excel cerrada.
+01:14:51 | INFO    | Leyendo DataValorCuota_IN.xlsm [DataHistórica]
+01:15:03 | WARNING | Fecha 2026-07-22 no encontrada en DataHistórica; se usa la última fila.
+01:15:10 | INFO    | Generado: 202607 G&P.xlsx
+01:15:10 | INFO    | BU: 1100 posiciones tras filtros.
+01:15:10 | INFO    | TD: 677 posiciones.
+01:15:13 | INFO    | Generado: 072026BUIN_.txt (337 filas)
+01:15:14 | INFO    | Generado: TDIN_072026.txt (317 filas)
+01:15:14 | INFO    | Generado: 072026BUIN_F1 INBU.txt (72 filas)
+01:15:14 | INFO    | Generado: 072026BUIN_F2 INBU.txt (72 filas)
+01:15:14 | INFO    | Generado: 072026BUIN_F3 INBU.txt (27 filas)
+01:15:15 | INFO    | Generado: 072026BUIN_M INBU.txt (166 filas)
+01:15:15 | INFO    | Leyendo QEST_BD.xlsm [DQ_IN]
+01:17:46 | INFO    | Leyendo QEST_BD.xlsm [DQ_RV]
+01:19:57 | INFO    | Leyendo QEST_BD.xlsm [DQ_RF]
