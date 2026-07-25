@@ -1,0 +1,39 @@
+Procesando periodo 202607 (fecha de corte 25/07/2026)
+Tipo de cambio: 3.6555
+AUM por benchmark: {'ACWI US': 32820.9, 'CEMB US': 399.08, 'EEM US': 29373.597, 'EPU US': 544.5625, 'ETF Perú': 96.39, 'IEMG US': 153730.98, 'ILF US': 3772.5375, 'SWDA LN': 106893.8147}
+C:\Users\p048546\AppData\Local\Temp\ipykernel_1436\1275589668.py:310: ChainedAssignmentError: A value is being set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+Such inplace method never works to update the original DataFrame or Series, because the intermediate object on which we are setting values always behaves as a copy (due to Copy-on-Write).
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' instead, to perform the operation inplace on the original object, or try to avoid an inplace operation using 'df[col] = df[col].method(value)'.
+
+See the documentation for a more detailed explanation: https://pandas.pydata.org/pandas-docs/stable/user_guide/copy_on_write.html
+  df_h["Sector1"].replace("", np.nan, inplace=True)
+  ACWI US: Market Value = 0.9994576211638837
+  [ERROR] CEMB US: 'Name'
+  [ERROR] EEM US: 'Name'
+C:\Users\p048546\AppData\Local\Temp\ipykernel_1436\1275589668.py:310: ChainedAssignmentError: A value is being set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+Such inplace method never works to update the original DataFrame or Series, because the intermediate object on which we are setting values always behaves as a copy (due to Copy-on-Write).
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' instead, to perform the operation inplace on the original object, or try to avoid an inplace operation using 'df[col] = df[col].method(value)'.
+
+See the documentation for a more detailed explanation: https://pandas.pydata.org/pandas-docs/stable/user_guide/copy_on_write.html
+  df_h["Sector1"].replace("", np.nan, inplace=True)
+  EPU US: Market Value = 0.9998592898615849
+  [ERROR] ETF Perú: 'Name'
+C:\Users\p048546\AppData\Local\Temp\ipykernel_1436\1275589668.py:310: ChainedAssignmentError: A value is being set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+Such inplace method never works to update the original DataFrame or Series, because the intermediate object on which we are setting values always behaves as a copy (due to Copy-on-Write).
+
+For example, when doing 'df[col].method(value, inplace=True)', try using 'df.method({col: value}, inplace=True)' instead, to perform the operation inplace on the original object, or try to avoid an inplace operation using 'df[col] = df[col].method(value)'.
+
+See the documentation for a more detailed explanation: https://pandas.pydata.org/pandas-docs/stable/user_guide/copy_on_write.html
+  df_h["Sector1"].replace("", np.nan, inplace=True)
+  IEMG US: Market Value = 0.999339706651659
+  [ERROR] ILF US: 'Name'
+  [ERROR] SWDA LN: 'Name'
+OK -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\202607 Comparables.xlsx
+Benchmarks con error (revisar):
+  - CEMB US: 'Name'
+  - EEM US: 'Name'
+  - ETF Perú: 'Name'
+  - ILF US: 'Name'
+  - SWDA LN: 'Name'
