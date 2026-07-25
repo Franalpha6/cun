@@ -1,0 +1,8 @@
+
+[ERROR CONTROLADO]
+Fecha forzada inválida '-f' (use YYYY-MM-DD).
+An exception has occurred, use %tb to see the full traceback.
+
+SystemExit: 1
+C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\IPython\core\interactiveshell.py:3755: UserWarning: To exit: use 'exit', 'quit', or Ctrl-D.
+  warn("To exit: use 'exit', 'quit', or Ctrl-D.", stacklevel=1)
