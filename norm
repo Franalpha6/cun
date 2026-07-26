@@ -1,0 +1,13 @@
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[1], line 170
+    166 # Rellena aquí las unidades que el AVISO 1 reporte como "SIN geografía".
+    167 # Ej: ("Volcan", norm("SAN CRISTOBAL")): "120125",
+    168 OVERRIDE_UNIDAD_UBIGEO = {
+    169     # --- Verificadas (distrito confirmado; ubigeo tomado de tu hoja 'Ubigeo Distrital') ---
+--> 170     ("Buenaventura",        norm("COLQUIJIRCA N°1")):            "190111",  # Tinyahuarco, Pasco, Pasco
+    171     ("Buenaventura",        norm("COLQUIJIRCA Nº 2")):           "190111",  # Tinyahuarco, Pasco, Pasco
+    172     ("Buenaventura",        norm("JULCANI")):                    "090304",  # Ccochaccasa, Angaraes, Huancavelica
+    173     ("Hochschild",          norm("ACUMULACION GRAN INMACULADA")):"050806",  # Oyolo, Páucar del Sara Sara, Ayacucho
+
+NameError: name 'norm' is not defined
