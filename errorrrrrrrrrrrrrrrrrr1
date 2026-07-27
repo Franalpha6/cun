@@ -1,0 +1,159 @@
+adjunto en este mensaje mi archivo de proxies "Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Huella Total  (SURA e Integra)\Lista Proxies - Huella y Comite mensual ASG.xlsx" , asimismo revisa el codigo por que salio un error en la consola al ejecutar:
+---------------------------------------------------------------------------
+com_error                                 Traceback (most recent call last)
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\_xlwindows.py:767, in Books.__call__(self, name_or_index)
+    766 try:
+--> 767     return Book(xl=self.xl(name_or_index))
+    768 except pywintypes.com_error:
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\_xlwindows.py:236, in COMRetryObjectWrapper.__call__(self, *args, **kwargs)
+    235 try:
+--> 236     v = self._inner(*args, **kwargs)
+    237     if isinstance(v, (CDispatch, CoClassBaseClass, DispatchBaseClass)):
+
+File ~\AppData\Local\Temp\gen_py\3.14\00020813-0000-0000-C000-000000000046x0x1x9.py:41420, in Workbooks.__call__(self, Index)
+  41419         def __call__(self, Index=defaultNamedNotOptArg):
+> 41420 		ret = self._oleobj_.InvokeTypes(0, LCID, 2, (13, 0), ((12, 1),),Index
+  41421                         )
+
+com_error: (-2147352567, 'Ocurrió una excepción.', (0, None, None, None, 0, -2147352565), None)
+
+During handling of the above exception, another exception occurred:
+
+KeyError                                  Traceback (most recent call last)
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\main.py:5392, in Books.open(self, fullname, update_links, read_only, format, password, write_res_password, ignore_read_only_recommended, origin, delimiter, editable, notify, converter, add_to_mru, local, corrupt_load, json)
+   5391 try:
+-> 5392     impl = self.impl(name)
+   5393     if not os.path.samefile(impl.fullname, fullname):
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\_xlwindows.py:769, in Books.__call__(self, name_or_index)
+    768 except pywintypes.com_error:
+--> 769     raise KeyError(name_or_index)
+
+KeyError: 'Lista Proxies - Huella y Comite mensual ASG.xlsx'
+
+During handling of the above exception, another exception occurred:
+
+com_error                                 Traceback (most recent call last)
+Cell In[2], line 393
+    389 result_bd = pd.concat([df_BU, df_TD])
+    390 # Capa adicional de proxies ESG: completa registros 'NoCov' antes de calcular
+    391 # 'Cobertura' en Opr(), de modo que un instrumento con proxy pase a 'Cov' de
+    392 # forma transparente, sin alterar su identidad dentro del portafolio.
+--> 393 result_bd = aplicar_proxies_esg(result_bd, ruta_proxies, periodo_proxy_manual)
+    394 result_bd['Nombre'] = result_bd['Nombre_MSCI']
+    395 result_bd = result_bd.drop(['Nombre_MSCI'], axis=1)
+    396 result_bd1 = Opr(result_bd)
+
+Cell In[2], line 320, in aplicar_proxies_esg(result_bd, ruta_proxies, periodo_manual)
+    316     correspondiente. No modifica los atributos propios del instrumento
+    317     (ISIN, Cod. Originador, Fondo, Afp, Weight, Fecha, etc.).
+    318     """
+    319     periodo = calcular_periodo_proxy(periodo_manual)
+--> 320     mapa_proxy = cargar_mapa_proxies(ruta_proxies)
+    321     esg_proxy_dict = cargar_esg_proxy(ruta_proxies, periodo)
+    322 
+    323     result_bd = result_bd.copy()
+
+Cell In[2], line 265, in cargar_mapa_proxies(ruta_proxies)
+    261     """
+    262     Lee la hoja 'Reporte ASG Mensual' del archivo de proxies y arma el diccionario
+    263     ISIN original (columna B) -> ISIN proxy (columna H).
+    264     """
+--> 265     wb = xw.Book(ruta_proxies, read_only=True, update_links=False)
+    266     sheet = wb.sheets['Reporte ASG Mensual']
+    267     datos = sheet.used_range.value
+    268     wb.close()
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\main.py:986, in Book.__init__(self, fullname, update_links, read_only, format, password, write_res_password, ignore_read_only_recommended, origin, delimiter, editable, notify, converter, add_to_mru, local, corrupt_load, impl, json, mode, engine, **kwargs)
+    984     if not app:
+    985         app = App(add_book=False)
+--> 986     impl = app.books.open(
+    987         fullname,
+    988         update_links,
+    989         read_only,
+    990         format,
+    991         password,
+    992         write_res_password,
+    993         ignore_read_only_recommended,
+    994         origin,
+    995         delimiter,
+    996         editable,
+    997         notify,
+    998         converter,
+    999         add_to_mru,
+   1000         local,
+   1001         corrupt_load,
+   1002     ).impl
+   1003 elif len(candidates) > 1:
+   1004     raise Exception(
+   1005         "Workbook '%s' is open in more than one Excel instance."
+   1006         % fullname
+   1007     )
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\main.py:5399, in Books.open(self, fullname, update_links, read_only, format, password, write_res_password, ignore_read_only_recommended, origin, delimiter, editable, notify, converter, add_to_mru, local, corrupt_load, json)
+   5394         raise ValueError(
+   5395             "Cannot open two workbooks named '%s', even if they are saved in"
+   5396             "different locations." % name
+   5397         )
+   5398 except KeyError:
+-> 5399     impl = self.impl.open(
+   5400         fullname,
+   5401         update_links,
+   5402         read_only,
+   5403         format,
+   5404         password,
+   5405         write_res_password,
+   5406         ignore_read_only_recommended,
+   5407         origin,
+   5408         delimiter,
+   5409         editable,
+   5410         notify,
+   5411         converter,
+   5412         add_to_mru,
+   5413         local,
+   5414         corrupt_load,
+   5415     )
+   5416 return Book(impl=impl)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\_xlwindows.py:800, in Books.open(self, fullname, update_links, read_only, format, password, write_res_password, ignore_read_only_recommended, origin, delimiter, editable, notify, converter, add_to_mru, local, corrupt_load)
+    797     update_links = UpdateLinks.xlUpdateLinksAlways
+    798 # Workbooks.Open params are position only on pywin32
+    799 return Book(
+--> 800     xl=self.xl.Open(
+    801         fullname,
+    802         update_links,
+    803         read_only,
+    804         format,
+    805         password,
+    806         write_res_password,
+    807         ignore_read_only_recommended,
+    808         origin,
+    809         delimiter,
+    810         editable,
+    811         notify,
+    812         converter,
+    813         add_to_mru,
+    814         local,
+    815         corrupt_load,
+    816     )
+    817 )
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\xlwings\_xlwindows.py:122, in COMRetryMethodWrapper.__call__(self, *args, **kwargs)
+    120 while True:
+    121     try:
+--> 122         v = self.__method(*args, **kwargs)
+    123         if isinstance(v, (CDispatch, CoClassBaseClass, DispatchBaseClass)):
+    124             return COMRetryObjectWrapper(v)
+
+File ~\AppData\Local\Temp\gen_py\3.14\00020813-0000-0000-C000-000000000046x0x1x9.py:41297, in Workbooks.Open(self, Filename, UpdateLinks, ReadOnly, Format, Password, WriteResPassword, IgnoreReadOnlyRecommended, Origin, Delimiter, Editable, Notify, Converter, AddToMru, Local, CorruptLoad)
+  41293 	def Open(self, Filename=defaultNamedNotOptArg, UpdateLinks=defaultNamedOptArg, ReadOnly=defaultNamedOptArg, Format=defaultNamedOptArg
+  41294                         , Password=defaultNamedOptArg, WriteResPassword=defaultNamedOptArg, IgnoreReadOnlyRecommended=defaultNamedOptArg, Origin=defaultNamedOptArg, Delimiter=defaultNamedOptArg
+  41295                         , Editable=defaultNamedOptArg, Notify=defaultNamedOptArg, Converter=defaultNamedOptArg, AddToMru=defaultNamedOptArg, Local=defaultNamedOptArg
+  41296                         , CorruptLoad=defaultNamedOptArg):
+> 41297 		ret = self._oleobj_.InvokeTypes(1923, LCID, 1, (13, 0), ((8, 1), (12, 17), (12, 17), (12, 17), (12, 17), (12, 17), (12, 17), (12, 17), (12, 17), (12, 17), (12, 17), (12, 17), (12, 17), (12, 17), (12, 17)),Filename
+  41298                         , UpdateLinks, ReadOnly, Format, Password, WriteResPassword
+  41299                         , IgnoreReadOnlyRecommended, Origin, Delimiter, Editable, Notify
+  41300                         , Converter, AddToMru, Local, CorruptLoad)
+
+com_error: (-2147352567, 'Ocurrió una excepción.', (0, 'Microsoft Excel', 'Open method of Workbooks class failed', 'xlmain11.chm', 0, -2146827284), None)
