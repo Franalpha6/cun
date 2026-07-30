@@ -1,0 +1,17 @@
+Failed to load resource: the server responded with a status of 404 (File not found)
+allow pasting
+VM62:1 Uncaught SyntaxError: Unexpected identifier 'pasting'
+Warning: Don’t paste code into the DevTools Console that you don’t understand or haven’t reviewed yourself. This could allow attackers to steal your identity or take control of your computer. Please type “allow pasting” below and press Enter to allow pasting.
+
+
+adicionalmente, el Abrir_Dashboard.py me muestra en consola: Dashboard sirviéndose en: http://127.0.0.1:8000/Dashboard_Huella.html
+Deja ESTA ejecución corriendo mientras lo miras.
+Para cerrarlo: botón rojo (Stop) en PyCharm.
+127.0.0.1 - - [30/Jul/2026 11:06:56] "GET /Dashboard_Huella.html HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jul/2026 11:07:01] code 404, message File not found
+127.0.0.1 - - [30/Jul/2026 11:07:01] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [30/Jul/2026 11:19:05] code 404, message File not found
+127.0.0.1 - - [30/Jul/2026 11:19:05] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
+
+
+  creo que esta demas seguir insistiendo por este camino, hay que realizar ajustes a nuestro codigo (anteriormente en otros trabajos ya habiamos obtenido dashboard interactivos en html que fueron solidos y no mostraban charts en blanco como ahora)
