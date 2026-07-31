@@ -1,0 +1,270 @@
+#%% md
+# 3. VP
+
+### Archivos utilizados:
+
+#### VP: Z:\Benchmarking\VP.xlsm
+#### Emisores Latam: Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\MSCI\202405 LATAM.xlsx
+
+#### Base Riesgos: Y:\Riesgos Inversiones\1. Nueva organización de Carpetas\AFP\4. Riesgos de Mercado\4.10 Reportes Regulatorios\4.10.15 Base maestra - Inventario\0 Subyacentes 2.xlsx
+#%%
+### Librerías 
+import pandas as pd
+import numpy as np
+import re
+from pathlib import Path
+from openpyxl import load_workbook
+#%%
+dia = '30'
+mes = '06'
+anio = '2026'
+escenario_input = 'T'
+#%%
+# NUEVA FUNCION PROPIA
+def leer_hoja(ruta, hoja):
+    wb = load_workbook(ruta, read_only=True, data_only=True, keep_links=False)
+    ws = wb[hoja]
+    # Forzar recalculo de dimensiones: archivos MSCI/exportados suelen
+    # traer <dimension> corrupto y read_only lee solo 1x1.
+    ws.reset_dimensions()
+    data = list(ws.iter_rows(values_only=True))
+    wb.close()
+    return pd.DataFrame(data)
+#%%
+def recor(dato):
+    if(str(dato)!= "None"):
+        dato = str(dato)[0:2] 
+    return dato
+
+def verif(dato):
+    dato = str(dato)
+    if(re.findall("index",dato) != []):
+        n = 'Eliminar' 
+    elif(re.findall("Index",dato) != []):
+        n = 'Eliminar'
+    elif(re.findall("Com",dato) != []):
+        n = 'Eliminar'
+    elif(re.findall("PUT",dato) != []):
+        
+        n = 'Eliminar'
+    elif(re.findall("CALL",dato) != []):
+        
+        n = 'Eliminar'
+    elif(dato == "-" or dato == "ISIN" or dato == "Name"):
+        
+        n = 'Eliminar'
+    else:
+        n = 'Mantener'
+    return n
+
+def txt_obtenido(mes,anio):
+
+    df = leer_hoja(r'Z:\Benchmarking\VP.xlsm', 'CalcP')
+
+
+
+    df = df.iloc[4:,[3,2]]
+    df.columns = df.iloc[0,::]
+    df = df.drop([4],axis=0)
+    df.insert(2, 'SBS2', df["SBS"].apply(recor))
+    df = df.drop(df.loc[df['SBS2'].isin(["01","08","53","51","PT","77","78"])].index)   
+    df_vp = df.drop(['SBS2'], axis=1)
+
+
+    df_latam = leer_hoja("Z:/Mesa de Inversiones/Bottom-Up/2 Proceso de Inversión Renta Fija/Corporates - Emisiones/Crédito - BU/3. ESG/9. ESG Manager - MSCI/1.Data Histórica/Dataset/MSCI/" + anio + mes +" LATAM.xlsx", 'Data')
+
+
+    df_latam.columns = df_latam.iloc[0,::]
+    df_latam = df_latam.drop([0],axis=0)
+    df_latam = df_latam.get(["ISSUER_ISIN"])
+    df_latam = df_latam.rename(columns={"ISSUER_ISIN": "ISIN"})
+    df_latam["SBS"] = None
+    
+    df_vp_latam = pd.concat([df_vp, df_latam])
+    df_vp_latam = df_vp_latam.dropna(subset=['ISIN'])
+    
+    df_vp_latam.insert(2, 'verificador', df_vp_latam["ISIN"].apply(verif))
+    df_vp_latam = df_vp_latam.drop(df_vp_latam.loc[df_vp_latam['verificador'].isin(['Eliminar'])].index) 
+    df_vp_latam = df_vp_latam.drop(['verificador'], axis=1)
+    
+    ruta2 = 'Z:/Mesa de Inversiones/Bottom-Up/2 Proceso de Inversión Renta Fija/Corporates - Emisiones/Crédito - BU/3. ESG/9. ESG Manager - MSCI/1.Data Histórica/Dataset/VP/' + mes + anio + ' VP Detallada.txt'
+    df_vp_latam.to_csv(Path(ruta2),sep=',',index=False)
+    return df_vp_latam
+
+vp_detallada = txt_obtenido(mes,anio)
+vp_  = vp_detallada.drop_duplicates()
+
+def nueva_fecha(mes,anio):
+    if (int(mes) == 1):
+        mes_n = str(12)
+        anio_n = str(int(anio)-1)
+    else:
+        if (mes=="12" or mes == "11"):
+            mes_n = str(int(mes) - 1) 
+        else:
+            mes_n = str(int(mes) - 1)
+            mes_n = "0" + mes_n
+        
+        anio_n = anio
+    
+    return mes_n, anio_n
+def float_str(x):
+    if (type(x) == float or type(x)==int):
+        x = int(x)
+        x = str(x)
+    else:
+        x = str(x)
+        
+    return x
+#%% md
+# TD 
+#%%
+def txt_TD(mes,anio):
+    #### VP ####
+
+
+    df = leer_hoja(r'Z:\Benchmarking\VP.xlsm', 'CalcP')
+
+    df = df.iloc[4:,[3,2]]
+    df.columns = df.iloc[0,::]
+    df = df.drop([4],axis=0)
+    df.insert(2, 'SBS2', df["SBS"].apply(recor))
+    df = df.loc[df['SBS2'].isin(['52'])]
+    df_vp = df.drop(['SBS2'], axis=1)
+
+    #### TD_ESG_Histórico ####
+    mes_n, anio_n = nueva_fecha(mes, anio)
+    hoja = mes_n + anio_n
+
+    df_td = leer_hoja(
+        r'Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\MSCI\TD_ESG_Histórico.xlsx',
+        hoja
+    )
+
+
+
+
+    df_td.columns = df_td.iloc[0,::]
+    df_td = df_td.drop([0],axis=0)
+
+    df_td = df_td.rename(columns={"client1": "SBS"})
+    
+    df_td = df_td.get(["Client_ID","SBS"])
+    df_td = df_td.rename(columns={"Client_ID": "ISIN"})
+     
+    
+    df_vp_td = pd.concat([df_vp, df_td])
+    df_vp_td = df_vp_td.dropna(subset=['ISIN'])
+    df_vp_td  = df_vp_td.drop_duplicates()
+    
+    df_vp_td['ISIN'] = df_vp_td['ISIN'].apply(float_str)
+    df_vp_td['SBS'] = df_vp_td['SBS'].apply(float_str)
+   
+
+    df_vp_td.insert(2, 'verificador', df_vp_td["ISIN"].apply(verif))
+    df_vp_td = df_vp_td.drop(df_vp_td.loc[df_vp_td['verificador'].isin(['Eliminar'])].index) 
+    df_vp_td = df_vp_td.drop(['verificador'], axis=1)
+
+    ruta2 = 'Z:/Mesa de Inversiones/Bottom-Up/2 Proceso de Inversión Renta Fija/Corporates - Emisiones/Crédito - BU/3. ESG/9. ESG Manager - MSCI/1.Data Histórica/Dataset/VP/' + anio + mes + ' VPTD.txt'
+    df_vp_td.to_csv(ruta2,sep=',',index=False)
+    
+
+    #### Observar los ISIN duplicados con diferente SBS en consola 
+    df_isin_duplicados  = df_vp_td[df_vp_td["ISIN"].duplicated(keep=False)].sort_values(by="ISIN")
+    
+    #print("Mismo ISIN con diferente SBS")
+    #print(df_isin_duplicados)
+    print("Total de fondos mutuos: ", len(df_vp_td))
+ 
+
+    return df_td
+df_prueba_123 = txt_TD(mes,anio)
+#%% md
+# VP_BU
+#%%
+def vp_bu(df_v):
+    df = df_v.copy()
+    df.insert(2, 'SBS2', df["SBS"].apply(recor))
+    df = df.drop(df.loc[df['SBS2'].isin(["52"])].index)   
+    df = df.drop(['SBS2'], axis=1)
+    df = df.drop(df.loc[df['ISIN'].isin(["-"])].index)  
+    return df
+vp_bu = vp_bu(vp_detallada)
+
+def parametroBU():
+
+
+    df = leer_hoja(r'Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\Parametria.xlsx', 'BU')
+
+    df.columns = df.iloc[0,::]
+    df = df.drop([0],axis=0)
+    df =df.get(['ISIN','SBS'])
+    df.columns = ['ISIN','SBS']
+    
+    
+    return df
+df_p_b = parametroBU()
+df_total = pd.concat([vp_bu, df_p_b])
+df_sin_none = df_total.drop(df_total.loc[df_total['ISIN'].isin([None])].index) 
+df_sin_duplicados = df_sin_none.drop_duplicates(subset ="ISIN") 
+df_sin_duplicados.insert(2, 'verificador', df_sin_duplicados["ISIN"].apply(verif))
+df_sin_duplicados = df_sin_duplicados.drop(df_sin_duplicados.loc[df_sin_duplicados['verificador'].isin(['Eliminar'])].index)
+df_sin_duplicados = df_sin_duplicados.drop(['verificador'], axis=1)
+ruta_t = 'Z:/Mesa de Inversiones/Bottom-Up/2 Proceso de Inversión Renta Fija/Corporates - Emisiones/Crédito - BU/3. ESG/9. ESG Manager - MSCI/1.Data Histórica/Dataset/VP/' + mes + anio + ' Histórico BU.txt'
+df_sin_duplicados.to_csv(Path(ruta_t),sep=',',index=False)
+#%% md
+# VP _Dashboard
+#%%
+def dashboard(df_sin_duplicados):
+    import xlwings as xw
+    import re
+    df_s_d = df_sin_duplicados.copy()
+    df_s_d = df_s_d.get(['ISIN'])
+
+    df_sub = leer_hoja(
+        r'Y:\Riesgos Inversiones\1. Nueva organización de Carpetas\AFP\4. Riesgos de Mercado\4.10 Reportes Regulatorios\4.10.15 Base maestra - Inventario\0 Subyacentes 2.xlsx',
+        'Base'
+    )
+    
+    df_sub.columns = df_sub.iloc[0,::]
+    df_sub = df_sub.drop([0],axis=0)
+    df_sub = df_sub.rename(columns={"Codigo ISIN": "ISIN"})
+    df_sub =df_sub.get(['ISIN'])
+    df_sub = df_sub.drop(df_sub.loc[df_sub['ISIN'].isin(['None'])].index)
+
+    ### Comparablessss::::::::::::::::::
+
+    df_com = leer_hoja('Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\'+ anio + mes + ' Comparables.xlsx', 'Sheet1')
+    
+    df_com.columns = df_com.iloc[0,::]
+    df_com = df_com.drop([0],axis=0)
+    df_com =df_com.get(['ISIN'])
+    df_com = df_com.drop(df_com.loc[df_com['ISIN'].isin(['None'])].index)
+    df_com = df_com.drop_duplicates(subset ="ISIN") 
+    df_vp_dashboard = pd.concat([df_s_d, df_sub, df_com])
+    df_vp_dashboard = df_vp_dashboard.drop_duplicates(subset ="ISIN") 
+    df_vp_dashboard.insert(1, 'verificador', df_vp_dashboard["ISIN"].apply(verif))
+    df_vp_dashboard = df_vp_dashboard.drop(df_vp_dashboard.loc[df_vp_dashboard['verificador'].isin(['Eliminar'])].index)
+    df_vp_dashboard = df_vp_dashboard.drop(['verificador'], axis=1)
+    
+    
+    num_filas = len(df_vp_dashboard)
+    indice_medio = num_filas // 2
+    # df1, df2 = np.split(df_vp_dashboard, [indice_medio])
+
+
+    df1 = df_vp_dashboard.iloc[:indice_medio]
+    df2 = df_vp_dashboard.iloc[indice_medio:]
+
+
+    ruta_t2 = 'Z:/Mesa de Inversiones/Bottom-Up/2 Proceso de Inversión Renta Fija/Corporates - Emisiones/Crédito - BU/3. ESG/9. ESG Manager - MSCI/1.Data Histórica/Dataset/VP/' + mes + anio + ' Dashboard parte 1.txt'
+    df1.to_csv(Path(ruta_t2),sep=',',index=False)
+    
+    
+    ruta_t2 = 'Z:/Mesa de Inversiones/Bottom-Up/2 Proceso de Inversión Renta Fija/Corporates - Emisiones/Crédito - BU/3. ESG/9. ESG Manager - MSCI/1.Data Histórica/Dataset/VP/' + mes + anio + ' Dashboard parte 2.txt'
+    df2.to_csv(Path(ruta_t2),sep=',',index=False)
+
+
+    return df_vp_dashboard
+df_obtenido = dashboard(df_sin_duplicados)
+#%%
