@@ -1,0 +1,86 @@
+#%%
+def recor(dato):
+    if(str(dato)!= "None"):
+        dato = str(dato)[0:2] 
+    return dato
+
+def verif(dato):
+    dato = str(dato)
+    if(re.findall("index",dato) != []):
+        n = 'Eliminar' 
+    elif(re.findall("Index",dato) != []):
+        n = 'Eliminar'
+    elif(re.findall("Com",dato) != []):
+        n = 'Eliminar'
+    elif(re.findall("PUT",dato) != []):
+        
+        n = 'Eliminar'
+    elif(re.findall("CALL",dato) != []):
+        
+        n = 'Eliminar'
+    elif(dato == "-" or dato == "ISIN" or dato == "Name"):
+        
+        n = 'Eliminar'
+    else:
+        n = 'Mantener'
+    return n
+
+def txt_obtenido(mes,anio):
+
+    df = leer_hoja(r'Z:\Benchmarking\VP.xlsm', 'CalcP')
+
+
+
+    df = df.iloc[4:,[3,2]]
+    df.columns = df.iloc[0,::]
+    df = df.drop([4],axis=0)
+    df.insert(2, 'SBS2', df["SBS"].apply(recor))
+    df = df.drop(df.loc[df['SBS2'].isin(["01","08","53","51","PT","77","78"])].index)   
+    df_vp = df.drop(['SBS2'], axis=1)
+
+
+    df_latam = leer_hoja("Z:/Mesa de Inversiones/Bottom-Up/2 Proceso de Inversión Renta Fija/Corporates - Emisiones/Crédito - BU/3. ESG/9. ESG Manager - MSCI/1.Data Histórica/Dataset/MSCI/" + anio + mes +" LATAM.xlsx", 'Data')
+
+
+    df_latam.columns = df_latam.iloc[0,::]
+    df_latam = df_latam.drop([0],axis=0)
+    df_latam = df_latam.get(["ISSUER_ISIN"])
+    df_latam = df_latam.rename(columns={"ISSUER_ISIN": "ISIN"})
+    df_latam["SBS"] = None
+    
+    df_vp_latam = pd.concat([df_vp, df_latam])
+    df_vp_latam = df_vp_latam.dropna(subset=['ISIN'])
+    
+    df_vp_latam.insert(2, 'verificador', df_vp_latam["ISIN"].apply(verif))
+    df_vp_latam = df_vp_latam.drop(df_vp_latam.loc[df_vp_latam['verificador'].isin(['Eliminar'])].index) 
+    df_vp_latam = df_vp_latam.drop(['verificador'], axis=1)
+    
+    ruta2 = 'Z:/Mesa de Inversiones/Bottom-Up/2 Proceso de Inversión Renta Fija/Corporates - Emisiones/Crédito - BU/3. ESG/9. ESG Manager - MSCI/1.Data Histórica/Dataset/VP/' + mes + anio + ' VP Detallada.txt'
+    df_vp_latam.to_csv(Path(ruta2),sep=',',index=False)
+    return df_vp_latam
+
+vp_detallada = txt_obtenido(mes,anio)
+vp_  = vp_detallada.drop_duplicates()
+
+def nueva_fecha(mes,anio):
+    if (int(mes) == 1):
+        mes_n = str(12)
+        anio_n = str(int(anio)-1)
+    else:
+        if (mes=="12" or mes == "11"):
+            mes_n = str(int(mes) - 1) 
+        else:
+            mes_n = str(int(mes) - 1)
+            mes_n = "0" + mes_n
+        
+        anio_n = anio
+    
+    return mes_n, anio_n
+def float_str(x):
+    if (type(x) == float or type(x)==int):
+        x = int(x)
+        x = str(x)
+    else:
+        x = str(x)
+        
+    return x
