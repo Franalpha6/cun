@@ -1,0 +1,2 @@
+ Del archivo "Z:\Benchmarking\VP.xlsm" ubicada en la carpeta Benchmarking, en la hoja "CalcP" extraer todos los ISIN y SBS (remover duplicados) de los activos y crear el texto archivo txt "YYYYMM" & " Soberanos" (ejemplo: "202412 Soberanos" si en los parametros iniciales tuvieramos mes = '12'y anio = '2024')  y guardarlo en la ruta: 
+Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\VP
