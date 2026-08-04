@@ -1,0 +1,50 @@
+quiero un codigo de python que ingrese y ejecute en la ruta "Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\codigos_SBS" todos los scripts ".ipynb" los cuales comiencen con algun numero como por ejemplo "1,2,3,4,5, etc" asi como los siguientes:
+
+1. Balance General (IS).ipynb
+10. Ratios Morosidad por Incumplimiento.ipynb
+11. Créditos Empresariales por Sector Económico.ipynb
+12. Flujo Créditos Castigados por Tipo.ipynb
+13. Estructura del Activo.ipynb
+14. Estruc Créditos por Tipo y Modalidad.ipynb
+15. Estructura del Pasivo.ipynb
+16. Estructura Depósitos por Tipo.ipynb
+17. Estructura Patrimonio Efectivo.ipynb
+18. Ranking Créditos, Depósitos y Patrimonio.ipynb
+19. Ranking Créditos por Tipo.ipynb
+2. Estados Financieros (BS).ipynb
+20. Ranking Depósitos por Tipo.ipynb
+21. Estruc Créditos por Departamentos.ipynb
+22. Depósitos por Tipo y Persona.ipynb
+23. Tasas de Interés Activas.ipynb
+24. Tasas de Interés Pasivas.ipynb
+25. Locales.ipynb
+3. Indicadores Financieros.ipynb
+4. Requerimiento de Patrimonio Efectivo.ipynb
+5. Créditos Directos según Situación.ipynb
+6. Credito Directo Según tipo de Crédito y Situación.ipynb
+7. Estruc Créditos según Categoría de Riesgo del Deudor.ipynb
+8. Estructura de Crédito por Tipo y  Categoría del Deudor.ipynb
+9. Morosidad por crédito y modalidad.ipynb
+
+pero no asi se ejecute los scripts sin numeros al inicio como:
+Codigo Corre Codigos - Financiera.ipynb
+Posicion GP-CORTES.ipynb
+Posicion GP-T.ipynb
+Posicion GP.ipynb
+
+
+
+
+, en lo cual todos los script tienen (osea pueden tener o no pueden tener) los parametros inicio = '012025'
+final = '012025', lo cuales representan fechas como MMYYYY, los cuales deben poder ser editables manualmente al inicio por el  usuario pero de que por default siempre tenga un valor correspondiente al mes de hace dos meses al mes de ahora, y con el año actual, por ejemplo si hoy es 04 de agosto del 2026, entonces el valor que toma inicio y final, seria: 062026 porque corresponderia junio 2026. Por otro lado si alguno de los script tuviese algun error y no se llegara a ejecutar, necesito un print en mi consola que especificque el nombre del script para yo despues verlo, pero que esta ejecucion fracasada del script o mas script, no suponga que el codigo se detenga y deje de proseguir con el siguiente script. Asimismo algo mas avanzado, sería que de alguna forma (no se viendo la fecha de creacion de los outputs, o memorizando la fecha y hora en que se corrio el script, etc te lo dejo a tu ingenio), seamos capaces de que por ejemplo si yo ejecuto el script que me vas a dar a continuacion y llega a correr exitosamente 10 scripts pero deja 15 con error de ejecucion, yo configuro los 15 scripts fracasados, y cuando vuelva a correr el script que me vas a dar, no tenga que esperar a que se ejecuten nuevamente los 10 scripts exitosos ejecutados recientemente hace 2 horas o ultimas 24 horas (esta parte quiza pueda ser editable como parametro inclusive, dejando por default algun valor), y pues valla directamente a ejecutar los 15 scripts fracasados porque me ahorraria mucho tiempo, y seriamos mas eficientes 
+
+
+
+
+
+
+
+
+
+
+
