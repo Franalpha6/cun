@@ -1,0 +1,69 @@
+
+<>:28: SyntaxWarning: "\C" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\C"? A raw string is also an option.
+<>:28: SyntaxWarning: "\C" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\C"? A raw string is also an option.
+C:\Users\p048546\AppData\Local\Temp\ipykernel_19828\3380892867.py:28: SyntaxWarning: "\C" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\C"? A raw string is also an option.
+  archivo = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\Carpeta de Descarga\1. IS y BS\descargas_SBS\Bancos\\" + "B-2201-" + mesB + a + ".XLS"
+
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py:3641, in Index.get_loc(self, key)
+   3640 try:
+-> 3641     return self._engine.get_loc(casted_key)
+   3642 except KeyError as err:
+
+File pandas/_libs/index.pyx:168, in pandas._libs.index.IndexEngine.get_loc()
+--> 168 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/index.pyx:197, in pandas._libs.index.IndexEngine.get_loc()
+--> 197 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/hashtable_class_helper.pxi:7668, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+-> 7668 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/hashtable_class_helper.pxi:7676, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+-> 7676 'Could not get source, probably due dynamically evaluated source code.'
+
+KeyError: nan
+
+The above exception was the direct cause of the following exception:
+
+KeyError                                  Traceback (most recent call last)
+Cell In[10], line 7
+      3     mes = meses[int(m)-1]
+      4     anio = i[2::]
+      5     mes_ = meses_[int(m)-1]
+      6     print(mes + ' ' + anio)
+----> 7     main1(mes,mes_,anio)
+
+Cell In[9], line 205, in main1(mes, mes_, anio)
+    201 
+    202     DF.columns = c.iloc[0,::]
+    203     DF = DF.iloc[3::]
+    204 
+--> 205     del DF[np.nan]
+    206     del DF['Activo']
+    207 
+    208     ruta_renombre = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Diccionario_SBS.xlsx'
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\generic.py:4350, in NDFrame.__delitem__(self, key)
+   4346         if not deleted:
+   4347             # If the above loop ran and didn't delete anything because
+   4348             # there was no match, this call should raise the appropriate
+   4349             # exception:
+-> 4350             loc = self.axes[-1].get_loc(key)
+   4351             self._mgr = self._mgr.idelete(loc)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py:3648, in Index.get_loc(self, key)
+   3643     if isinstance(casted_key, slice) or (
+   3644         isinstance(casted_key, abc.Iterable)
+   3645         and any(isinstance(x, slice) for x in casted_key)
+   3646     ):
+   3647         raise InvalidIndexError(key) from err
+-> 3648     raise KeyError(key) from err
+   3649 except TypeError:
+   3650     # If we have a listlike key, _check_indexing_error will raise
+   3651     #  InvalidIndexError. Otherwise we fall through and re-raise
+   3652     #  the TypeError.
+   3653     self._check_indexing_error(key)
+
+KeyError: nan
