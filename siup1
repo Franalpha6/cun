@@ -1,0 +1,57 @@
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+Cell In[3], line 1198
+   1196     except Exception as e:
+   1197         # Fail-fast identificando el periodo exacto que falló
+-> 1198         raise RuntimeError(
+   1199             "Error procesando el periodo {} {} -> {}: {}".format(mes, anio, type(e).__name__, e)
+
+Cell In[3], line 308, in main(mes, mes_, anio)
+    306         c['Unnamed: ' + str(i + 2)] = a + ' TOTAL'
+    307 
+--> 308     DF.columns = c.iloc[0, ::]
+    309     DF = DF.iloc[3::]
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\generic.py:6221, in NDFrame.__setattr__(self, name, value)
+   6219             object.__getattribute__(self, name)
+   6220             return object.__setattr__(self, name, value)
+-> 6221         except AttributeError:
+   6222             pass
+
+File pandas/_libs/properties.pyx:69, in pandas._libs.properties.AxisProperty.__set__()
+---> 69 'Could not get source, probably due dynamically evaluated source code.'
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\generic.py:766, in NDFrame._set_axis(self, axis, labels)
+    764         """
+    765         labels = ensure_index(labels)
+--> 766         self._mgr.set_axis(axis, labels)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\internals\managers.py:273, in BaseBlockManager.set_axis(self, axis, new_labels)
+    271 def set_axis(self, axis: AxisInt, new_labels: Index) -> None:
+    272     # Caller is responsible for ensuring we have an Index object.
+--> 273     self._validate_set_axis(axis, new_labels)
+    274     self.axes[axis] = new_labels
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\internals\managers.py:288, in BaseBlockManager._validate_set_axis(self, axis, new_labels)
+    287 elif new_len != old_len:
+--> 288     raise ValueError(
+    289         f"Length mismatch: Expected axis has {old_len} elements, new "
+    290         f"values have {new_len} elements"
+    291     )
+
+ValueError: Length mismatch: Expected axis has 27 elements, new values have 28 elements
+
+The above exception was the direct cause of the following exception:
+
+RuntimeError                              Traceback (most recent call last)
+Cell In[3], line 1198
+   1194     try:
+   1195         valores = main(mes, mes_, anio)
+   1196     except Exception as e:
+   1197         # Fail-fast identificando el periodo exacto que falló
+-> 1198         raise RuntimeError(
+   1199             "Error procesando el periodo {} {} -> {}: {}".format(mes, anio, type(e).__name__, e)
+   1200         ) from e
+   1201     if valores:
+
+RuntimeError: Error procesando el periodo Junio 2026 -> ValueError: Length mismatch: Expected axis has 27 elements, new values have 28 elements
