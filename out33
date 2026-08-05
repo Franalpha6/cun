@@ -1,0 +1,35 @@
+G&P C5 = 2026-07-22 00:00:00
+valor dólar = 3.4005
+
+================  RAMA NORMAL  ================
+[OK] Portafolio -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 Portafolio.xlsx
+[OK] BD1 -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 BD1.xlsx
+
+[DESCARTES] Resumen para rama NORMAL:
+
+================  INSTRUMENTOS DESCARTADOS  ================
+IOPub data rate exceeded.
+The Jupyter server will temporarily stop sending output
+to the client in order to avoid crashing it.
+To change this limit, set the config variable
+`--ServerApp.iopub_data_rate_limit`.
+
+Current values:
+ServerApp.iopub_data_rate_limit=1000000.0 (bytes/sec)
+ServerApp.rate_limit_window=3.0 (secs)
+
+[OK] Portafolio_S -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 Portafolio_S.xlsx
+[OK] BD1_S -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 BD1_S.xlsx
+
+[DESCARTES] Resumen para rama SOBERANOS:
+
+================  INSTRUMENTOS DESCARTADOS  ================
+IOPub data rate exceeded.
+The Jupyter server will temporarily stop sending output
+to the client in order to avoid crashing it.
+To change this limit, set the config variable
+`--ServerApp.iopub_data_rate_limit`.
+
+Current values:
+ServerApp.iopub_data_rate_limit=1000000.0 (bytes/sec)
+ServerApp.rate_limit_window=3.0 (secs)
