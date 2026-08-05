@@ -1,0 +1,40 @@
+---------------------------------------------------------------------------
+RuntimeError                              Traceback (most recent call last)
+Cell In[1], line 215
+    213 except Exception as e:
+    214     # Fail-fast con contexto claro para identificar el problema al instante
+--> 215     raise RuntimeError(
+    216         "[BLOQUE COM] Error copiando Hoja1 de Libro2.xlsx a Libro3.xlsx -> {}: {}".format(
+
+Cell In[1], line 169, in copiar_hoja_libro2_a_libro3()
+    167 
+    168     # Libro destino (abierto en Excel / OneDrive)
+--> 169     excel, wb_destino = _resolver_workbook_destino("Libro3.xlsx")
+    170     _log("Libro destino localizado: {}".format(getattr(wb_destino, "Name", "?")))
+
+Cell In[1], line 121, in _resolver_workbook_destino(nombre_objetivo)
+    119             pass
+    120     disponibles = sorted(set(disponibles))
+--> 121     raise RuntimeError(
+    122         "No se encontró el libro destino '{}' entre los libros de Excel abiertos.\n"
+
+RuntimeError: No se encontró el libro destino 'Libro3.xlsx' entre los libros de Excel abiertos.
+Libros actualmente abiertos: []
+Abre 'Libro3.xlsx' en Excel antes de ejecutar esta celda.
+
+The above exception was the direct cause of the following exception:
+
+RuntimeError                              Traceback (most recent call last)
+Cell In[1], line 215
+    211     copiar_hoja_libro2_a_libro3()
+    212     print("Proceso terminado.")
+    213 except Exception as e:
+    214     # Fail-fast con contexto claro para identificar el problema al instante
+--> 215     raise RuntimeError(
+    216         "[BLOQUE COM] Error copiando Hoja1 de Libro2.xlsx a Libro3.xlsx -> {}: {}".format(
+    217             type(e).__name__, e
+    218         )
+
+RuntimeError: [BLOQUE COM] Error copiando Hoja1 de Libro2.xlsx a Libro3.xlsx -> RuntimeError: No se encontró el libro destino 'Libro3.xlsx' entre los libros de Excel abiertos.
+Libros actualmente abiertos: []
+Abre 'Libro3.xlsx' en Excel antes de ejecutar esta celda.
