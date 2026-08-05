@@ -1,0 +1,94 @@
+An exception has occurred, use %tb to see the full traceback.
+
+SystemExit: 2
+C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\IPython\core\interactiveshell.py:3755: UserWarning: To exit: use 'exit', 'quit', or Ctrl-D.
+  warn("To exit: use 'exit', 'quit', or Ctrl-D.", stacklevel=1)
+G&P C5 = 2026-07-22 00:00:00
+valor dólar = 3.4005
+
+================  RAMA NORMAL  ================
+[OK] Portafolio -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 Portafolio.xlsx
+[OK] BD1 -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 BD1.xlsx
+
+[DESCARTES] Resumen para rama NORMAL:
+
+================  INSTRUMENTOS DESCARTADOS  ================
+IOPub data rate exceeded.
+The Jupyter server will temporarily stop sending output
+to the client in order to avoid crashing it.
+To change this limit, set the config variable
+`--ServerApp.iopub_data_rate_limit`.
+
+Current values:
+ServerApp.iopub_data_rate_limit=1000000.0 (bytes/sec)
+ServerApp.rate_limit_window=3.0 (secs)
+
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_11128\3622866847.py", line 994, in main
+    res_n = procesar_rama(base, soberanos=False)
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_11128\3622866847.py", line 932, in procesar_rama
+    imprimir_descartes()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_11128\3622866847.py", line 113, in imprimir_descartes
+    resumen = df_desc.groupby('SBS')['Valor'].apply(
+        lambda s: pd.to_numeric(s, errors='coerce').sum())
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\groupby\generic.py", line 312, in apply
+    return super().apply(func, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\groupby\groupby.py", line 1650, in apply
+    return self._python_apply_general(f, self._obj_with_exclusions)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\groupby\groupby.py", line 1687, in _python_apply_general
+    values, mutated = self._grouper.apply_groupwise(f, data)
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\groupby\ops.py", line 1018, in apply_groupwise
+    splitter = self._get_splitter(data)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\groupby\ops.py", line 644, in _get_splitter
+    self.ngroups,
+    ^^^^^^^^^^^^
+  File "pandas/_libs/properties.pyx", line 36, in pandas._libs.properties.CachedProperty.__get__
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\groupby\ops.py", line 766, in ngroups
+    return len(self.result_index)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\groupby\ops.py", line 770, in result_index
+    return self.result_index_and_ids[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/properties.pyx", line 36, in pandas._libs.properties.CachedProperty.__get__
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\groupby\ops.py", line 779, in result_index_and_ids
+    Index._with_infer(ping.uniques, copy=False) for ping in self.groupings
+                      ^^^^^^^^^^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\groupby\grouper.py", line 618, in uniques
+    return self._codes_and_uniques[1]
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "pandas/_libs/properties.pyx", line 36, in pandas._libs.properties.CachedProperty.__get__
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\groupby\grouper.py", line 680, in _codes_and_uniques
+    codes, uniques = algorithms.factorize(  # type: ignore[assignment]
+                     ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.grouping_vector, sort=self._sort, use_na_sentinel=self._dropna
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\algorithms.py", line 821, in factorize
+    codes, uniques = factorize_array(
+                     ~~~~~~~~~~~~~~~^
+        values,
+        ^^^^^^^
+        use_na_sentinel=use_na_sentinel,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        size_hint=size_hint,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\algorithms.py", line 637, in factorize_array
+    uniques, codes = table.factorize(
+                     ~~~~~~~~~~~~~~~^
+        values,
+        ^^^^^^^
+    ...<3 lines>...
+        ignore_na=use_na_sentinel,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7873, in pandas._libs.hashtable.PyObjectHashTable.factorize
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7783, in pandas._libs.hashtable.PyObjectHashTable._unique
+TypeError: unhashable type: 'Series'
