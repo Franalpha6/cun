@@ -1,0 +1,65 @@
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py:3641, in Index.get_loc(self, key)
+   3640 try:
+-> 3641     return self._engine.get_loc(casted_key)
+   3642 except KeyError as err:
+
+File pandas/_libs/index.pyx:168, in pandas._libs.index.IndexEngine.get_loc()
+--> 168 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/index.pyx:197, in pandas._libs.index.IndexEngine.get_loc()
+--> 197 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/hashtable_class_helper.pxi:7668, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+-> 7668 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/hashtable_class_helper.pxi:7676, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+-> 7676 'Could not get source, probably due dynamically evaluated source code.'
+
+KeyError: 'Total Créditos_'
+
+The above exception was the direct cause of the following exception:
+
+KeyError                                  Traceback (most recent call last)
+Cell In[14], line 9
+      5     mes = meses[int(m)-1]
+      6     anio = i[2::]
+      7     mes_ = meses_[int(m)-1]
+      8     print(mes + ' ' + anio)
+----> 9     main(mes,mes_,anio)
+
+Cell In[13], line 624, in main(mes, mes_, anio)
+    620     DF.columns = DF.iloc[0, ::]
+    621     DF = DF.drop([0])
+    622 
+    623     # ###### Calculos
+--> 624     DF['Normal'] = DF['Normal_']*DF['Total Créditos_']/100
+    625     DF['Con Problemas'] = DF['Con Problemas_']*DF['Total Créditos_']/100
+    626     DF['Deficiente'] = DF['Deficiente_']*DF['Total Créditos_']/100
+    627     DF['Dudoso'] = DF['Dudoso_']*DF['Total Créditos_']/100
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py:4378, in DataFrame.__getitem__(self, key)
+   4374 
+   4375         if is_single_key:
+   4376             if self.columns.nlevels > 1:
+   4377                 return self._getitem_multilevel(key)
+-> 4378             indexer = self.columns.get_loc(key)
+   4379             if is_integer(indexer):
+   4380                 indexer = [indexer]
+   4381         else:
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py:3648, in Index.get_loc(self, key)
+   3643     if isinstance(casted_key, slice) or (
+   3644         isinstance(casted_key, abc.Iterable)
+   3645         and any(isinstance(x, slice) for x in casted_key)
+   3646     ):
+   3647         raise InvalidIndexError(key) from err
+-> 3648     raise KeyError(key) from err
+   3649 except TypeError:
+   3650     # If we have a listlike key, _check_indexing_error will raise
+   3651     #  InvalidIndexError. Otherwise we fall through and re-raise
+   3652     #  the TypeError.
+   3653     self._check_indexing_error(key)
+
+KeyError: 'Total Créditos_'
