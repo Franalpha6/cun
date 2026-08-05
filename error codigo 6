@@ -1,0 +1,48 @@
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+Cell In[10], line 134
+    130         DF2.insert(0, 'Entidad', 'Bancos')
+    131         DF2.insert(2,'Tipo', c1.loc[4].iloc[i])
+    132         DF2.insert(3, 'Tipo2', 'General')
+    133         DF2.insert(4, 'Detalle', 'Vigentes')
+--> 134         DF2[fecha_col] = DF2.apply(dic_bc,axis=1)
+    135 
+    136         DF3 = DF.get(['Empresas'])
+    137         DF3.insert(0, 'Entidad', 'Bancos')
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py:12423, in DataFrame.apply(self, func, axis, raw, result_type, args, by_row, engine, engine_kwargs, **kwargs)
+  12419                 engine_kwargs=engine_kwargs,
+  12420                 args=args,
+  12421                 kwargs=kwargs,
+  12422             )
+> 12423             return op.apply().__finalize__(self, method="apply")
+  12424         elif hasattr(engine, "__pandas_udf__"):
+  12425             if result_type is not None:
+  12426                 raise NotImplementedError(
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\apply.py:1015, in FrameApply.apply(self)
+   1012 elif self.raw:
+   1013     return self.apply_raw(engine=self.engine, engine_kwargs=self.engine_kwargs)
+-> 1015 return self.apply_standard()
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\apply.py:1167, in FrameApply.apply_standard(self)
+   1165 def apply_standard(self):
+   1166     if self.engine == "python":
+-> 1167         results, res_index = self.apply_series_generator()
+   1168     else:
+   1169         results, res_index = self.apply_series_numba()
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\apply.py:1183, in FrameApply.apply_series_generator(self)
+   1180 results = {}
+   1182 for i, v in enumerate(series_gen):
+-> 1183     results[i] = self.func(v, *self.args, **self.kwargs)
+   1184     if isinstance(results[i], ABCSeries):
+   1185         # If we have a view on v, we need to make a copy because
+   1186         #  series_generator will swap out the underlying data
+   1187         results[i] = results[i].copy(deep=False)
+
+Cell In[10], line 111, in dic_bc(row)
+    110 def dic_bc(row):
+--> 111     return dic_[row['Tipo'] + ' ' + row['Detalle']][row['Empresas']]
+
+KeyError: 'Total Créditos Directos* Vigentes'
