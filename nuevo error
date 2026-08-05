@@ -1,0 +1,30 @@
+---------------------------------------------------------------------------
+IndexError                                Traceback (most recent call last)
+Cell In[4], line 1204
+   1202     except Exception as e:
+   1203         # Fail-fast identificando el periodo exacto que falló
+-> 1204         raise RuntimeError(
+   1205             "Error procesando el periodo {} {} -> {}: {}".format(mes, anio, type(e).__name__, e)
+
+Cell In[4], line 345, in main(mes, mes_, anio)
+    343     for i in range(0, len(DF_F.columns) - 2, 3):
+    344         DF_F_ = DF_F.copy()
+--> 345         a = DF_F_.columns[2::][i][:-3]
+    346         fecha_col = '01' + '/' + meses_n[meses_.index(mes_)] + '/' + anio
+
+IndexError: invalid index to scalar variable.
+
+The above exception was the direct cause of the following exception:
+
+RuntimeError                              Traceback (most recent call last)
+Cell In[4], line 1204
+   1200     try:
+   1201         valores = main(mes, mes_, anio)
+   1202     except Exception as e:
+   1203         # Fail-fast identificando el periodo exacto que falló
+-> 1204         raise RuntimeError(
+   1205             "Error procesando el periodo {} {} -> {}: {}".format(mes, anio, type(e).__name__, e)
+   1206         ) from e
+   1207     if valores:
+
+RuntimeError: Error procesando el periodo Junio 2026 -> IndexError: invalid index to scalar variable.
