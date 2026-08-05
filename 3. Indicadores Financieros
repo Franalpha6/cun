@@ -1,0 +1,853 @@
+#%%
+# Parameters
+inicio = "062026"
+final = "062026"
+
+#%%
+import pandas as pd
+import numpy as np
+import re
+import datetime
+import os
+#%%
+# mes = 'Enero'
+# anio = '2023'
+# mes_ = "en"
+# meses_n = "01"
+# meses_ = "en"
+#%%
+a1, a2, m1, m2 = inicio[2::], final[2::], inicio[0:2], final[0:2]
+rango_anios = range(int(a1),int(a2)+1)
+#%%
+meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre']
+meses_ = ['en','fe','ma','ab','my','jn','jl','ag','se','oc','no','di']
+meses_n = ['01','02','03','04','05','06','07','08','09','10','11','12']
+#%% md
+#### Generador de Backups
+#%%
+import os
+import shutil
+
+#Archivo
+source_file = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Historicos\\3.Indicadores Financieros.xlsx"
+#landing
+destination_dir = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Historicos\\Backups"
+
+
+def copy_file_to_directory(source, des):
+    # Crear el directorio de destino si no existe
+    if not os.path.exists(des):
+        os.makedirs(des)
+    # Extraer el nombre del archivo de la ruta de origen
+    file_name = os.path.basename(source)
+    # Construir la ruta de destino completa
+    dest_file = os.path.join(des, file_name)
+    try:
+        # Copiar el archivo
+        shutil.copyfile(source, dest_file)
+        print(f"Archivo copiado exitosamente.")
+    except Exception as e:
+        print(f"Error al copiar el archivo: {str(e)}")
+        
+copy_file_to_directory(source_file, destination_dir)
+#%%
+array_rutas = []
+for i in rango_anios:
+    if(rango_anios[-1]==i):
+        if (len(rango_anios)==1):
+            for j in range(int(m1),int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                    
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+
+        else:
+            for j in range(1,int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i) 
+                array_rutas.append(ruta)
+                
+    elif(i != rango_anios[0]):
+        for j in range(1,13):
+            if(len(str(j))==1):
+                j = '0' + str(j)
+            ruta = str(j) + str(i)
+            array_rutas.append(ruta)
+        
+    else:
+        if (len(rango_anios)==1):
+            for j in range(int(m1),int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+
+        else:
+            for j in range(int(m1),13):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+#%%
+array_rutas
+#%%
+import warnings
+warnings.filterwarnings("ignore")
+#%%
+def main(mes,mes_,anio):
+#######Bancos########
+    archivo = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Carpeta de Descarga\\3. Indicadores Financieros\\descargas_SBS\\Bancos\\" + "B-2401-" + mes_ + anio + ".XLS"
+    file_found = False
+
+    for i in range(12, 0, -1):
+        if os.path.isfile(archivo):
+            file_found = True
+            last_file = archivo
+            break
+
+    if not file_found:
+        print("Error: Bancos"+ mes)
+        if (meses_n[meses_.index(mes_)] == '01'):
+            mesA = '12'
+            a = str(int(anio) -1)
+        else:
+            mesA = str(int(meses_n[meses_.index(mes_)]) - 1)
+            if (len(mesA) == 1 ):
+                   mesA = '0' + mesA
+            a = anio
+        months = {"01": "en", "02": "fe", "03": "ma", "04": "ab", "05": "my", "06": "jn", "07": "jl", "08": "ag","09":"se", "10":"oc", "11":"no","12": "di"}
+        mesB = months.get(mesA)
+        archivo = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Carpeta de Descarga\\3. Indicadores Financieros\\descargas_SBS\\Bancos\\" + "B-2401-" + mesB + a + ".XLS"
+    
+    DF = pd.read_excel(archivo, sheet_name=0)
+
+    for index, row in enumerate(DF.iloc[:, 1]):
+        if not pd.isnull(row):
+            column_index = index
+            break
+
+    DF.columns = DF.iloc[column_index]
+    DF = DF.drop(column_index)
+    DF =DF.transpose()
+    DF.columns = DF.iloc[0, ::]
+    mask = DF.index.notna()
+    DF = DF[mask]
+    DF = DF.transpose()
+    DF = DF.rename_axis("Detallada")
+    DF = DF.reset_index()
+
+    ## renom detallada
+    ruta_renombre = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Diccionario_SBS.xlsx'
+    df_ren = pd.read_excel(ruta_renombre, sheet_name ='Indicadores Financieros')
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+
+    def dic_cambio_n(row):
+        try:
+            nom = dic_ren['Nombre_Nuevo'][row["Detallada"]]
+        except:
+            nom =  row["Detallada"]
+        return nom
+
+    DF["Detallada"] = DF.apply(dic_cambio_n, axis = 1)
+    DF = DF.drop([0,1,2])
+    #DF = DF.drop(index= DF.index[28:])
+    DF = DF.transpose( )
+
+    ruta_renombre = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Diccionario_SBS.xlsx'
+    df_ren = pd.read_excel(ruta_renombre, sheet_name ='Indicadores Financieros')
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+    DF.columns = DF.iloc[0, ::]
+    DF = DF.reset_index()
+    DF.rename(columns = {DF.columns[0]: "Index"}, inplace = True)
+
+    def dic_cambio_n(row):
+        try:
+            nom = dic_ren['Nombre_Nuevo'][row["Index"]]
+        except:
+            nom =  row["Index"]
+        return nom
+
+    DF["Index"]= DF.apply(dic_cambio_n, axis=1)
+    DF = DF.drop([0])
+    DF= DF.transpose()
+    DF.columns = DF.iloc[0, ::]
+    DF = DF.reset_index()
+    DF = DF.drop([0])
+
+    tipos = ["SOLVENCIA", "CALIDAD DE ACTIVOS", "EFICIENCIA Y GESTIÓN", "RENTABILIDAD", "LIQUIDEZ"]
+
+    index_ = []
+    for i in tipos:   
+        n = DF.loc[DF['Detallada'].isin([i])].index[0]
+        index_.append(n)
+
+    DF_Bancos = pd.DataFrame()
+    for i in range(0,len(index_)-1):
+        df = DF.loc[index_[i]:index_[i+1]]
+        df = df.dropna(subset=[df.columns[1]])
+        df.insert(0,'Tipo',tipos[i])
+        DF_Bancos = pd.concat([DF_Bancos, df]).sort_index(ignore_index = True)
+
+    last_index = index_[-1]
+    last_df = DF.loc[last_index:]
+    last_df = last_df.dropna(subset=[last_df.columns[1]])
+    last_df.insert(0, 'Tipo', tipos[-1])
+    DF_Bancos = pd.concat([DF_Bancos, last_df]).sort_index(ignore_index = True)
+
+
+    DF_Base_Bancos = pd.DataFrame()
+
+    for i in range(0,len(DF_Bancos.columns)-2):
+        DF_ = DF_Bancos.copy()
+        a = DF_Bancos.columns[2::][i]
+        fecha_col = '01' +'/'+ meses_n[meses_.index(mes_)] +'/'+ anio
+        fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+        DF_1 = DF_.get(["Tipo" , 'Detallada']) 
+        DF_1.insert(0, 'Nombre', a)
+        DF_1.insert(0, 'Moneda', "MN" )
+        DF_1.insert(0, 'Institución', "Bancos" )
+        DF_1.insert(1, 'Estructura', "Indicadores" )
+        DF_1.insert(6, fecha_col, DF_Bancos[a])
+
+        DF_Base_Bancos = pd.concat([DF_Base_Bancos, DF_1])
+
+
+    ######Financieras#######
+
+    archivo = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Carpeta de Descarga\\3. Indicadores Financieros\\descargas_SBS\\Financieras\\" + "B-3301-" + mes_ + anio + ".XLS"
+    file_found = False
+
+    for i in range(12, 0, -1):
+        if os.path.isfile(archivo):
+            file_found = True
+            last_file = archivo
+            break
+
+    if not file_found:
+        print("Error: Financieras"+ mes)
+        if (meses_n[meses_.index(mes_)] == '01'):
+            mesA = '12'
+            a = str(int(anio) -1)
+        else:
+            mesA = str(int(meses_n[meses_.index(mes_)]) - 1)
+            if (len(mesA) == 1 ):
+                   mesA = '0' + mesA
+            a = anio
+        months = {"01": "en", "02": "fe", "03": "ma", "04": "ab", "05": "my", "06": "jn", "07": "jl", "08": "ag","09":"se", "10":"oc", "11":"no","12": "di"}
+        mesB = months.get(mesA)
+        archivo = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Carpeta de Descarga\\3. Indicadores Financieros\\descargas_SBS\\Financieras\\" + "B-3301-" + mesB + a + ".XLS"
+    
+    DF = pd.read_excel(archivo, sheet_name=0)
+
+    for index, row in enumerate(DF.iloc[:, 1]):
+        if not pd.isnull(row):
+            column_index = index
+            break
+
+    DF.columns = DF.iloc[column_index]
+    DF = DF.drop(column_index)
+    DF =DF.transpose()
+    DF.columns = DF.iloc[0, ::]
+    mask = DF.index.notna()
+    DF = DF[mask]
+    DF = DF.transpose()
+    DF = DF.rename_axis("Detallada")
+    DF = DF.reset_index()
+
+    # ## renom detallada
+    ruta_renombre = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Diccionario_SBS.xlsx'
+    df_ren = pd.read_excel(ruta_renombre, sheet_name ='Indicadores Financieros')
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+
+    def dic_cambio_n(row):
+        try:
+            nom = dic_ren['Nombre_Nuevo'][row["Detallada"]]
+        except:
+            nom =  row["Detallada"]
+        return nom
+
+    DF["Detallada"] = DF.apply(dic_cambio_n, axis = 1)
+    DF = DF.drop([0,1,2, 3])
+    DF = DF.drop(index= DF.index[21:])
+    DF = DF.transpose( )
+
+    ruta_renombre = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Diccionario_SBS.xlsx'
+    df_ren = pd.read_excel(ruta_renombre, sheet_name ='Indicadores Financieros')
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+    DF.columns = DF.iloc[0, ::]
+    DF = DF.reset_index()
+    DF.rename(columns = {DF.columns[0]: "Index"}, inplace = True)
+
+    def dic_cambio_n(row):
+        try:
+            nom = dic_ren['Nombre_Nuevo'][row["Index"]]
+        except:
+            nom =  row["Index"]
+        return nom
+
+    DF["Index"]= DF.apply(dic_cambio_n, axis=1)
+    DF = DF.drop([0])
+    DF= DF.transpose()
+    DF.columns = DF.iloc[0, ::]
+    DF = DF.reset_index()
+    DF = DF.drop([0])
+
+    tipos = ["SOLVENCIA", "CALIDAD DE ACTIVOS", "EFICIENCIA Y GESTIÓN", "RENTABILIDAD", "LIQUIDEZ"]
+
+    index_ = []
+    for i in tipos:   
+        n = DF.loc[DF['Detallada'].isin([i])].index[0]
+        index_.append(n)
+
+    DF_F = pd.DataFrame()
+    for i in range(0,len(index_)-1):
+        df = DF.loc[index_[i]:index_[i+1]]
+        df = df.dropna(subset=[df.columns[1]])
+        df.insert(0,'Tipo',tipos[i])
+        DF_F = pd.concat([DF_F, df]).sort_index(ignore_index = True)
+
+    last_index = index_[-1]
+    last_df = DF.loc[last_index:]
+    last_df = last_df.dropna(subset=[last_df.columns[1]])
+    last_df.insert(0, 'Tipo', tipos[-1])
+    DF_F = pd.concat([DF_F, last_df]).sort_index(ignore_index = True)
+
+    DF_Base_F = pd.DataFrame()
+    for i in range(0,len(DF_F.columns)-2):
+        DF_ = DF_F.copy()
+        a = DF_.columns[2::][i]
+        fecha_col = '01' +'/'+ meses_n[meses_.index(mes_)] +'/'+ anio
+        fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+        DF_1 = DF_.get(["Tipo" , 'Detallada']) 
+        DF_1.insert(0, 'Nombre', a)
+        DF_1.insert(0, 'Moneda', "MN" )
+        DF_1.insert(0, 'Institución', "Financieras" )
+        DF_1.insert(1, 'Estructura', "Indicadores" )
+        DF_1.insert(6, fecha_col, DF_F[a])
+
+        DF_Base_F = pd.concat([DF_Base_F, DF_1])
+
+
+    #########Mypes#####################
+    archivo = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Carpeta de Descarga\\3. Indicadores Financieros\\descargas_SBS\\Mypes\\" + "C-4301-" + mes_ + anio + ".XLS"
+    file_found = False
+
+    for i in range(12, 0, -1):
+        if os.path.isfile(archivo):
+            file_found = True
+            last_file = archivo
+            break
+
+    if not file_found:
+        print("Error: Mypes"+ mes)
+        if (meses_n[meses_.index(mes_)] == '01'):
+            mesA = '12'
+            a = str(int(anio) -1)
+        else:
+            mesA = str(int(meses_n[meses_.index(mes_)]) - 1)
+            if (len(mesA) == 1 ):
+                   mesA = '0' + mesA
+            a = anio
+        months = {"01": "en", "02": "fe", "03": "ma", "04": "ab", "05": "my", "06": "jn", "07": "jl", "08": "ag","09":"se", "10":"oc", "11":"no","12": "di"}
+        mesB = months.get(mesA)
+        archivo = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Carpeta de Descarga\\3. Indicadores Financieros\\descargas_SBS\\Mypes\\" + "C-4301-" + mesB + a + ".XLS"
+    
+    DF = pd.read_excel(archivo, sheet_name=0)
+
+    for index, row in enumerate(DF.iloc[:, 1]):
+        if not pd.isnull(row):
+            column_index = index
+            break
+
+    DF.columns = DF.iloc[column_index]
+    DF = DF.drop(column_index)
+    DF =DF.transpose()
+    DF.columns = DF.iloc[0, ::]
+    mask = DF.index.notna()
+    DF = DF[mask]
+    DF = DF.transpose()
+    DF = DF.rename_axis("Detallada")
+    DF = DF.reset_index()
+    DF= DF.dropna(how= "all")
+
+    # # ## renom detallada
+    ruta_renombre = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Diccionario_SBS.xlsx'
+    df_ren = pd.read_excel(ruta_renombre, sheet_name ='Indicadores Financieros')
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+
+    def dic_cambio_n(row):
+        try:
+            nom = dic_ren['Nombre_Nuevo'][row["Detallada"]]
+        except:
+            nom =  row["Detallada"]
+        return nom
+
+    DF["Detallada"] = DF.apply(dic_cambio_n, axis = 1)
+    DF = DF.drop([0])
+    DF = DF.drop(index= DF.index[26:])
+    DF = DF.transpose( )
+
+    ruta_renombre = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Diccionario_SBS.xlsx'
+    df_ren = pd.read_excel(ruta_renombre, sheet_name ='Indicadores Financieros')
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+    DF.columns = DF.iloc[0, ::]
+    DF = DF.reset_index()
+    DF.rename(columns = {DF.columns[0]: "Index"}, inplace = True)
+
+    def dic_cambio_n(row):
+        try:
+            nom = dic_ren['Nombre_Nuevo'][row["Index"]]
+        except:
+            nom =  row["Index"]
+        return nom
+
+    DF["Index"]= DF.apply(dic_cambio_n, axis=1)
+    DF = DF.drop([0])
+    DF= DF.transpose()
+    DF.columns = DF.iloc[0, ::]
+    DF = DF.reset_index()
+    DF = DF.drop([0])
+
+    tipos = ["SOLVENCIA","CALIDAD DE ACTIVOS", "EFICIENCIA Y GESTIÓN", "RENTABILIDAD", "LIQUIDEZ", "POSICIÓN EN MONEDA EXTRANJERA"]
+
+    index_ = []
+    for i in tipos:
+        n = DF.loc[DF['Detallada'].isin([i])].index[0]
+        index_.append(n)
+
+    DF_M = pd.DataFrame()
+    for i in range(0,len(index_)-1):
+        df = DF.loc[index_[i]:index_[i+1]]
+        df = df.dropna(subset=[df.columns[1]])
+        df.insert(0,'Tipo',tipos[i])
+        DF_M = pd.concat([DF_M, df]).sort_index(ignore_index = True)
+
+    last_index = index_[-1]
+    last_df = DF.loc[last_index:]
+    last_df = last_df.dropna(subset=[last_df.columns[1]])
+    last_df.insert(0, 'Tipo', tipos[-1])
+    DF_M = pd.concat([DF_M, last_df]).sort_index(ignore_index = True)
+
+    DF_Base_Myp=pd.DataFrame()
+    for i in range(0,len(DF_M.columns)-2):
+        DF_ = DF_M.copy()
+        a = DF_.columns[2::][i]
+        fecha_col = '01' +'/'+ meses_n[meses_.index(mes_)] +'/'+ anio
+        fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+        DF_1 = DF_.get(["Tipo" , 'Detallada']) 
+        DF_1.insert(0, 'Nombre', a)
+        DF_1.insert(0, 'Moneda', "MN" )
+        DF_1.insert(0, 'Institución', "Mypes")
+        DF_1.insert(1, 'Estructura', "Indicadores" )
+        DF_1.insert(6, fecha_col, DF_M[a])
+
+        DF_Base_Myp =pd.concat([DF_Base_Myp, DF_1])
+
+
+    ##########Cajas########
+    archivo = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Carpeta de Descarga\\3. Indicadores Financieros\\descargas_SBS\\Cajas\\" + "C-1301-" + mes_ + anio + ".XLS"
+    file_found = False
+
+    for i in range(12, 0, -1):
+        if os.path.isfile(archivo):
+            file_found = True
+            last_file = archivo
+            break
+
+    if not file_found:
+        print("Error: Cajas"+ mes)
+        if (meses_n[meses_.index(mes_)] == '01'):
+            mesA = '12'
+            a = str(int(anio) -1)
+        else:
+            mesA = str(int(meses_n[meses_.index(mes_)]) - 1)
+            if (len(mesA) == 1 ):
+                   mesA = '0' + mesA
+            a = anio
+        months = {"01": "en", "02": "fe", "03": "ma", "04": "ab", "05": "my", "06": "jn", "07": "jl", "08": "ag","09":"se", "10":"oc", "11":"no","12": "di"}
+        mesB = months.get(mesA)
+        archivo = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Carpeta de Descarga\\3. Indicadores Financieros\\descargas_SBS\\Cajas\\" + "C-1301-" + mesB + a + ".XLS"
+    
+    DF = pd.read_excel(archivo, sheet_name=0)
+
+    for index, row in enumerate(DF.iloc[:, 1]):
+        if not pd.isnull(row):
+            column_index = index
+            break
+
+    DF.columns = DF.iloc[column_index]
+    DF = DF.drop(column_index)
+    DF =DF.transpose()
+    DF.columns = DF.iloc[0, ::]
+    mask = DF.index.notna()
+    DF = DF[mask]
+    DF = DF.transpose()
+    DF = DF.rename_axis("Detallada")
+    DF = DF.reset_index()
+    DF= DF.dropna(how= "all")
+
+    ## renom detallada
+    ruta_renombre = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Diccionario_SBS.xlsx'
+    df_ren = pd.read_excel(ruta_renombre, sheet_name ='Indicadores Financieros')
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+
+    def dic_cambio_n(row):
+        try:
+            nom = dic_ren['Nombre_Nuevo'][row["Detallada"]]
+        except:
+            nom =  row["Detallada"]
+        return nom
+
+    DF["Detallada"] = DF.apply(dic_cambio_n, axis = 1)
+    DF = DF.drop([0])
+    #DF = DF.drop(index= DF.index[26:])
+    DF = DF.transpose( )
+
+    ruta_renombre = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Diccionario_SBS.xlsx'
+    df_ren = pd.read_excel(ruta_renombre, sheet_name ='Indicadores Financieros')
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+    DF.columns = DF.iloc[0, ::]
+    DF = DF.reset_index()
+    DF.rename(columns = {DF.columns[0]: "Index"}, inplace = True)
+
+    def dic_cambio_n(row):
+        try:
+            nom = dic_ren['Nombre_Nuevo'][row["Index"]]
+        except:
+            nom =  row["Index"]
+        return nom
+
+    DF["Index"]= DF.apply(dic_cambio_n, axis=1)
+    DF = DF.drop([0])
+    DF= DF.transpose()
+    DF.columns = DF.iloc[0, ::]
+    DF = DF.reset_index()
+    DF = DF.drop([0])
+
+    tipos = ["SOLVENCIA","CALIDAD DE ACTIVOS", "EFICIENCIA Y GESTIÓN", "RENTABILIDAD", "LIQUIDEZ", "POSICIÓN EN MONEDA EXTRANJERA"]
+
+    index_ = []
+    for i in tipos:
+        n = DF.loc[DF['Detallada'].isin([i])].index[0]
+        index_.append(n)
+
+    DF_C = pd.DataFrame()
+    for i in range(0,len(index_)-1):
+        df = DF.loc[index_[i]:index_[i+1]]
+        df = df.dropna(subset=[df.columns[1]])
+        df.insert(0,'Tipo',tipos[i])
+        DF_C = pd.concat([DF_C, df]).sort_index(ignore_index = True)
+
+    last_index = index_[-1]
+    last_df = DF.loc[last_index:]
+    last_df = last_df.dropna(subset=[last_df.columns[1]])
+    last_df.insert(0, 'Tipo', tipos[-1])
+    DF_C = pd.concat([DF_C, last_df]).sort_index(ignore_index = True)
+
+    DF_Base_Caj=pd.DataFrame()
+    for i in range(0,len(DF_C.columns)-2):
+        DF_ = DF_C.copy()
+        a = DF_.columns[2::][i]
+        fecha_col = '01' +'/'+ meses_n[meses_.index(mes_)] +'/'+ anio
+        fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+        DF_1 = DF_.get(["Tipo" , 'Detallada']) 
+        DF_1.insert(0, 'Nombre', a)
+        DF_1.insert(0, 'Moneda', "MN" )
+        DF_1.insert(0, 'Institución', "Cajas")
+        DF_1.insert(1, 'Estructura', "Indicadores" )
+        DF_1.insert(6, fecha_col, DF_C[a])
+
+        DF_Base_Caj =pd.concat([DF_Base_Caj, DF_1])
+
+
+    ########Estatales######
+    archivo = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Carpeta de Descarga\\3. Indicadores Financieros\\descargas_SBS\\Estatales\\" + "E-5201-" + mes_ + anio + ".XLS"
+    file_found = False
+
+    for i in range(12, 0, -1):
+        if os.path.isfile(archivo):
+            file_found = True
+            last_file = archivo
+            break
+
+    if not file_found:
+        print("Error: Estatales "+ mes)
+        if (meses_n[meses_.index(mes_)] == '01'):
+            mesA = '12'
+            a = str(int(anio) -1)
+        else:
+            mesA = str(int(meses_n[meses_.index(mes_)]) - 1)
+            if (len(mesA) == 1 ):
+                   mesA = '0' + mesA
+            a = anio
+        months = {"01": "en", "02": "fe", "03": "ma", "04": "ab", "05": "my", "06": "jn", "07": "jl", "08": "ag","09":"se", "10":"oc", "11":"no","12": "di"}
+        mesB = months.get(mesA)
+        archivo = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Carpeta de Descarga\\3. Indicadores Financieros\\descargas_SBS\\Estatales\\" + "E-5201-" + mesB + a + ".XLS"
+    
+    DF = pd.read_excel(archivo, sheet_name=0)
+    for index, row in enumerate(DF.iloc[:, 1]):
+        if not pd.isnull(row):
+            column_index = index
+            break
+
+    DF.columns = DF.iloc[column_index]
+    DF = DF.drop(column_index)
+    DF =DF.transpose()
+    DF.columns = DF.iloc[0, ::]
+    mask = DF.index.notna()
+    DF = DF[mask]
+    DF = DF.transpose()
+    DF = DF.rename_axis("Detallada")
+    DF = DF.reset_index()
+    DF= DF.dropna(how= "all")
+
+    ## renom detallada
+    ruta_renombre = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Diccionario_SBS.xlsx'
+    df_ren = pd.read_excel(ruta_renombre, sheet_name ='Indicadores Financieros')
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+
+    def dic_cambio_n(row):
+        try:
+            nom = dic_ren['Nombre_Nuevo'][row["Detallada"]]
+        except:
+            nom =  row["Detallada"]
+        return nom
+
+    DF["Detallada"] = DF.apply(dic_cambio_n, axis = 1)
+    DF = DF.drop([0,1,2])
+    #DF = DF.drop(index= DF.index[24:])
+    DF = DF.transpose( )
+
+    ruta_renombre = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Diccionario_SBS.xlsx'
+    df_ren = pd.read_excel(ruta_renombre, sheet_name ='Indicadores Financieros')
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+    DF.columns = DF.iloc[0, ::]
+    DF = DF.reset_index()
+    DF.rename(columns = {DF.columns[0]: "Index"}, inplace = True)
+
+    def dic_cambio_n(row):
+        try:
+            nom = dic_ren['Nombre_Nuevo'][row["Index"]]
+        except:
+            nom =  row["Index"]
+        return nom
+
+    DF["Index"]= DF.apply(dic_cambio_n, axis=1)
+    DF = DF.drop([0])
+    DF= DF.transpose()
+    DF.columns = DF.iloc[0, ::]
+    DF = DF.reset_index()
+    DF = DF.drop([0])
+
+    tipos = ["SOLVENCIA","CALIDAD DE ACTIVOS", "EFICIENCIA Y GESTIÓN", "RENTABILIDAD", "LIQUIDEZ"]
+
+    index_ = []
+    for i in tipos:
+        n = DF.loc[DF['Detallada'].isin([i])].index[0]
+        index_.append(n)
+
+    DF_E = pd.DataFrame()
+    for i in range(0,len(index_)-1):
+        df = DF.loc[index_[i]:index_[i+1]]
+        df = df.dropna(subset=[df.columns[1]])
+        df.insert(0,'Tipo',tipos[i])
+        DF_E = pd.concat([DF_E, df]).sort_index(ignore_index = True)
+
+    last_index = index_[-1]
+    last_df = DF.loc[last_index:]
+    last_df = last_df.dropna(subset=[last_df.columns[1]])
+    last_df.insert(0, 'Tipo', tipos[-1])
+    DF_E = pd.concat([DF_E, last_df]).sort_index(ignore_index = True)
+
+    DF_Base_Es=pd.DataFrame()
+    for i in range(0,len(DF_E.columns)-2):
+        DF_ = DF_E.copy()
+        a = DF_.columns[2::][i]
+        fecha_col = '01' +'/'+ meses_n[meses_.index(mes_)] +'/'+ anio
+        fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+        DF_1 = DF_.get(["Tipo" , 'Detallada']) 
+        DF_1.insert(0, 'Nombre', a)
+        DF_1.insert(0, 'Moneda', "MN" )
+        DF_1.insert(0, 'Institución', "Estatales")
+        DF_1.insert(1, 'Estructura', "Indicadores" )
+        DF_1.insert(6, fecha_col, DF_E[a])
+
+        DF_Base_Es =pd.concat([DF_Base_Es, DF_1])
+
+##############Cajas Rurales ############################################
+    archivo = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Carpeta de Descarga\\3. Indicadores Financieros\\descargas_SBS\\Cajas Rurales\\" + "C-2301-" + mes_ + anio + ".XLS"
+    file_found = False
+
+    for i in range(12, 0, -1):
+        if os.path.isfile(archivo):
+            file_found = True
+            last_file = archivo
+            break
+
+    if not file_found:
+        print("Error: Cajas Rurales "+ mes)
+        if (meses_n[meses_.index(mes_)] == '01'):
+            mesA = '12'
+            a = str(int(anio) -1)
+        else:
+            mesA = str(int(meses_n[meses_.index(mes_)]) - 1)
+            if (len(mesA) == 1 ):
+                   mesA = '0' + mesA
+            a = anio
+        months = {"01": "en", "02": "fe", "03": "ma", "04": "ab", "05": "my", "06": "jn", "07": "jl", "08": "ag","09":"se", "10":"oc", "11":"no","12": "di"}
+        mesB = months.get(mesA)
+        archivo = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Carpeta de Descarga\\3. Indicadores Financieros\\descargas_SBS\\Cajas Rurales\\" + "C-2301-" + mesB + a + ".XLS"
+    
+    DF = pd.read_excel(archivo, sheet_name=0)
+    for index, row in enumerate(DF.iloc[:, 1]):
+        if not pd.isnull(row):
+            column_index = index
+            break
+
+    DF.columns = DF.iloc[column_index]
+    DF = DF.drop(column_index)
+    DF =DF.transpose()
+    DF.columns = DF.iloc[0, ::]
+    mask = DF.index.notna()
+    DF = DF[mask]
+    DF = DF.transpose()
+    DF = DF.rename_axis("Detallada")
+    DF = DF.reset_index()
+
+
+    ## renom detallada
+    ruta_renombre = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Diccionario_SBS.xlsx'
+    df_ren = pd.read_excel(ruta_renombre, sheet_name ='Indicadores Financieros')
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+
+    def dic_cambio_n(row):
+        try:
+            nom = dic_ren['Nombre_Nuevo'][row["Detallada"]]
+        except:
+            nom =  row["Detallada"]
+        return nom
+
+    DF["Detallada"] = DF.apply(dic_cambio_n, axis = 1)
+    DF = DF.drop([0,1,2])
+    #DF = DF.drop(index= DF.index[28:])
+    DF = DF.transpose( )
+
+    ruta_renombre = 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Diccionario_SBS.xlsx'
+    df_ren = pd.read_excel(ruta_renombre, sheet_name ='Indicadores Financieros')
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+    DF.columns = DF.iloc[0, ::]
+    DF = DF.reset_index()
+    DF.rename(columns = {DF.columns[0]: "Index"}, inplace = True)
+
+    def dic_cambio_n(row):
+        try:
+            nom = dic_ren['Nombre_Nuevo'][row["Index"]]
+        except:
+            nom =  row["Index"]
+        return nom
+
+    DF["Index"]= DF.apply(dic_cambio_n, axis=1)
+    DF = DF.drop([0])
+    DF= DF.transpose()
+    DF.columns = DF.iloc[0, ::]
+    DF = DF.reset_index()
+    DF = DF.drop([0])
+
+    tipos = ["SOLVENCIA", "CALIDAD DE ACTIVOS", "EFICIENCIA Y GESTIÓN", "RENTABILIDAD", "LIQUIDEZ", "POSICIÓN EN MONEDA EXTRANJERA"]
+
+    index_ = []
+    for i in tipos:   
+        n = DF.loc[DF['Detallada'].isin([i])].index[0]
+        index_.append(n)
+
+    DF_CajR = pd.DataFrame()
+    for i in range(0,len(index_)-1):
+        df = DF.loc[index_[i]:index_[i+1]]
+        df = df.dropna(subset=[df.columns[1]])
+        df.insert(0,'Tipo',tipos[i])
+        DF_CajR = pd.concat([DF_CajR, df]).sort_index(ignore_index = True)
+
+    last_index = index_[-1]
+    last_df = DF.loc[last_index:]
+    last_df = last_df.dropna(subset=[last_df.columns[1]])
+    last_df.insert(0, 'Tipo', tipos[-1])
+    DF_CajR = pd.concat([DF_CajR, last_df]).sort_index(ignore_index = True)
+
+
+    DF_Base_CajR = pd.DataFrame()
+
+    for i in range(0,len(DF_CajR.columns)-2):
+        DF_ = DF_CajR.copy()
+        a = DF_CajR.columns[2::][i]
+        fecha_col = '01' +'/'+ meses_n[meses_.index(mes_)] +'/'+ anio
+        fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+        DF_1 = DF_.get(["Tipo" , 'Detallada']) 
+        DF_1.insert(0, 'Nombre', a)
+        DF_1.insert(0, 'Moneda', "MN" )
+        DF_1.insert(0, 'Institución', "Cajas Rurales" )
+        DF_1.insert(1, 'Estructura', "Indicadores" )
+        DF_1.insert(6, fecha_col, DF_CajR[a])
+
+        DF_Base_CajR = pd.concat([DF_Base_CajR, DF_1])
+
+
+    ##############Base Total#####################
+    DF_Total = pd.concat([DF_Base_Bancos,  DF_Base_F, DF_Base_Myp, DF_Base_Caj, DF_Base_Es, DF_Base_CajR])
+    mask = DF_Total["Detallada"].str.contains("Ratio de Capital Global")
+    DF_Total.loc[mask, "Detallada"] = "Ratio de Capital Global(-1M)"
+    DF_Total.insert(0, "key",DF_Total["Institución"] +DF_Total["Estructura"]+ DF_Total["Moneda"] + DF_Total["Nombre"] + DF_Total["Tipo"] + DF_Total["Detallada"])
+
+    ruta_base = "Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\1. Emisores\\1. One pagers\\Complementos\\Historicos\\3.Indicadores Financieros.xlsx"
+
+    with pd.ExcelFile(ruta_base) as writer:  
+        BD_Total = writer.parse(sheet_name='Indicadores')
+        
+    BD_Total_ = BD_Total.copy()
+    BD_Total_['Indicador'] = 'Mapeado'
+    BD_Total_ = BD_Total_.set_index("key")
+    dic_Total_ = BD_Total_.to_dict()
+
+
+    DF_Total2 = DF_Total.copy()
+    DF_Total2['Indicador'] =  DF_Total2['key'].map(dic_Total_['Indicador'])
+    DF_Total2 = DF_Total2.loc[DF_Total2['Indicador'].isin([np.nan])].sort_index(ignore_index=True) 
+    DF_Total2 = DF_Total2.drop(['Indicador'], axis=1)
+    BD_Total = pd.concat([BD_Total, DF_Total2])
+
+    DF_Total = DF_Total.set_index("key")
+    dic_cr = DF_Total.to_dict()
+    fecha_col = '01' +'/'+ meses_n[meses_.index(mes_)] +'/'+ anio
+    fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')  
+    BD_Total[fecha_col] = BD_Total['key'].map(dic_cr[fecha_col])   
+
+    with pd.ExcelWriter(ruta_base ,  mode="a", engine="openpyxl",if_sheet_exists = 'replace') as writer:
+        BD_Total.to_excel(writer, sheet_name="Indicadores", index = False)
+
+
+
+#%%
+import warnings
+warnings.filterwarnings("ignore")
+for i in array_rutas[::1]:
+    m = i[0:2]
+    mes = meses[int(m)-1]
+    anio = i[2::] 
+    mes_ = meses_[int(m)-1]
+    print(mes + ' ' + anio)
+    main(mes,mes_,anio)
+#%%
+n = DF.loc[DF['Detallada'].isin([i])].index[0]
