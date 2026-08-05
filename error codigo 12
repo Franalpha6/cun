@@ -1,0 +1,129 @@
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:2144, in _iLocIndexer._setitem_single_column(self, loc, value, plane_indexer)
+   2143 try:
+-> 2144     self.obj._mgr.column_setitem(
+   2145         loc, plane_indexer, value, inplace_only=True
+   2146     )
+   2147 except (ValueError, TypeError, LossySetitemError) as exc:
+   2148     # If we're setting an entire column and we can't do it inplace,
+   2149     #  then we can use value's dtype (or inferred dtype)
+   2150     #  instead of object
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\internals\managers.py:1518, in BlockManager.column_setitem(self, loc, idx, value, inplace_only)
+   1517 if inplace_only:
+-> 1518     col_mgr.setitem_inplace(idx, value)
+   1519 else:
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\internals\managers.py:2226, in SingleBlockManager.setitem_inplace(self, indexer, value)
+   2224     value = value[0, ...]
+-> 2226 arr[indexer] = value
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\arrays\arrow\array.py:2225, in ArrowExtensionArray.__setitem__(self, key, value)
+   2224 key = check_array_indexer(self, key)
+-> 2225 value = self._maybe_convert_setitem_value(value)
+   2227 if com.is_null_slice(key):
+   2228     # fast path (GH50248)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\arrays\string_arrow.py:299, in ArrowStringArray._maybe_convert_setitem_value(self, value)
+    296     if len(value) and not (
+    297         value.ndim == 1 and lib.is_string_array(value, skipna=True)
+    298     ):
+--> 299         raise TypeError(
+    300             "Invalid value for dtype 'str'. Value should be a "
+    301             "string or missing value (or array of those)."
+    302         )
+    303 return super()._maybe_convert_setitem_value(value)
+
+TypeError: Invalid value for dtype 'str'. Value should be a string or missing value (or array of those).
+
+The above exception was the direct cause of the following exception:
+
+TypeError                                 Traceback (most recent call last)
+Cell In[11], line 9
+      5     mes = meses[int(m)-1]
+      6     anio = i[2::]
+      7     mes_ = meses_[int(m)-1]
+      8     print(mes + ' ' + anio)
+----> 9     main(mes,mes_,anio)
+
+Cell In[10], line 43, in main(mes, mes_, anio)
+     39     # DF.columns.values[8]= "Total"
+     40     DF = renombrar_columnas_por_posicion(DF, {0: "Detallada"})
+     41     DF = renombrar_columnas_por_posicion(DF, {8: "Total"})
+     42     DF = DF.dropna()
+---> 43     DF.iloc[:, 1:] = DF.iloc[:, 1:].apply(pd.to_numeric, errors = "coerce")
+     44     DF = DF.fillna(0)
+     45 
+     46     ## renom detallada
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:938, in _LocationIndexer.__setitem__(self, key, value)
+    933 self._has_valid_setitem_indexer(key)
+    935 iloc: _iLocIndexer = (
+    936     cast("_iLocIndexer", self) if self.name == "iloc" else self.obj.iloc
+    937 )
+--> 938 iloc._setitem_with_indexer(indexer, value, self.name)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:1953, in _iLocIndexer._setitem_with_indexer(self, indexer, value, name)
+   1950 # align and set the values
+   1951 if take_split_path:
+   1952     # We have to operate column-wise
+-> 1953     self._setitem_with_indexer_split_path(indexer, value, name)
+   1954 else:
+   1955     self._setitem_single_block(indexer, value, name)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:1988, in _iLocIndexer._setitem_with_indexer_split_path(self, indexer, value, name)
+   1986 if is_list_like_indexer(value) and getattr(value, "ndim", 1) > 0:
+   1987     if isinstance(value, ABCDataFrame):
+-> 1988         self._setitem_with_indexer_frame_value(indexer, value, name)
+   1990     elif np.ndim(value) == 2:
+   1991         # TODO: avoid np.ndim call in case it isn't an ndarray, since
+   1992         #  that will construct an ndarray, which will be wasteful
+   1993         self._setitem_with_indexer_2d_value(indexer, value)
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:2084, in _iLocIndexer._setitem_with_indexer_frame_value(self, indexer, value, name)
+   2082     for i, loc in enumerate(ilocs):
+   2083         val = value.iloc[:, i]
+-> 2084         self._setitem_single_column(loc, val, pi)
+   2086 elif not unique_cols and value.columns.equals(self.obj.columns):
+   2087     # We assume we are already aligned, see
+   2088     # test_iloc_setitem_frame_duplicate_columns_multiple_blocks
+   2089     for loc in ilocs:
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexing.py:2163, in _iLocIndexer._setitem_single_column(self, loc, value, plane_indexer)
+   2151         dtype = self.obj.dtypes.iloc[loc]
+   2152         if dtype not in (np.void, object) and not self.obj.empty:
+   2153             # - Exclude np.void, as that is a special case for expansion.
+   2154             #   We want to raise for
+   (...)   2161             # - Exclude empty initial object with enlargement,
+   2162             #   as then there's nothing to be inconsistent with.
+-> 2163             raise TypeError(
+   2164                 f"Invalid value '{value}' for dtype '{dtype}'"
+   2165             ) from exc
+   2166         self.obj.isetitem(loc, value)
+   2167 else:
+   2168     # set value into the column (first attempting to operate inplace, then
+   2169     #  falling back to casting if necessary)
+
+TypeError: Invalid value '6    NaN
+7    NaN
+8    NaN
+9    NaN
+10   NaN
+11   NaN
+12   NaN
+13   NaN
+14   NaN
+15   NaN
+16   NaN
+17   NaN
+18   NaN
+19   NaN
+20   NaN
+21   NaN
+22   NaN
+23   NaN
+24   NaN
+25   NaN
+26   NaN
+Name: Corporativos, dtype: float64' for dtype 'str'
