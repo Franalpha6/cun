@@ -1,0 +1,6 @@
+Archivo copiado exitosamente.
+Junio 2026
+[10:43:06] [ESCRITURA OMITIDA] El archivo NO se actualizó: hay Nombres NUEVOS sin mapear en el Diccionario_SBS.
+[10:43:06]   Nombres nuevos: ['Banco Efectiva']
+[10:43:06]   -> Agrégalos al Diccionario_SBS (hoja 'IS y BS') y vuelve a ejecutar.
+[['Banco Efectiva']]
