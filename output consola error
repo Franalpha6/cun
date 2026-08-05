@@ -1,0 +1,20 @@
+---------------------------------------------------------------------------
+com_error                                 Traceback (most recent call last)
+Cell In[2], line 7
+      3 # Conectarse al Excel abierto
+      4 excel = win32.GetActiveObject("Excel.Application")
+      5 
+      6 # Libro destino (abierto en OneDrive)
+----> 7 wb_destino = excel.Workbooks("Libro3.xlsx")
+      8 
+      9 # Abrir archivo origen
+     10 wb_origen = excel.Workbooks.Open(
+
+File ~\AppData\Local\Temp\gen_py\3.14\00020813-0000-0000-C000-000000000046x0x1x9.py:41420, in Workbooks.__call__(self, Index)
+  41419         def __call__(self, Index=defaultNamedNotOptArg):
+> 41420 		ret = self._oleobj_.InvokeTypes(0, LCID, 2, (13, 0), ((12, 1),),Index
+  41421                         )
+  41422                 if ret is not None:
+  41423                         # See if this IUnknown is really an IDispatch
+
+com_error: (-2147352567, 'Ocurrió una excepción.', (0, None, None, None, 0, -2147352565), None)
