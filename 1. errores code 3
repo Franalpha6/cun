@@ -1,0 +1,6 @@
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[12], line 1
+----> 1 n = DF.loc[DF['Detallada'].isin([i])].index[0]
+
+NameError: name 'DF' is not defined
