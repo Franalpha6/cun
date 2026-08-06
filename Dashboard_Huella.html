@@ -4123,9 +4123,10 @@ function apiladoPorCorte(div, objeto, metrica, cAct, cCmp, opts){
   });
   else keys.sort((x,y)=>(a.get(y)||0)-(a.get(x)||0));
 
-  const cortesX = [cCmp, cAct];
+  const etiqCmp = etiquetaCorte(cCmp), etiqAct = etiquetaCorte(cAct);
+  const ejeX = [etiqCmp, etiqAct];
   const traces = keys.map((k,i)=>({
-    type:'bar', name:k, x:cortesX,
+    type:'bar', name:k, x:ejeX,
     y:[b.get(k)||0, a.get(k)||0],
     marker: opts.marker ? opts.marker(k, i) : {color:P[i % P.length]},
     text:[fmt(b.get(k)||0), fmt(a.get(k)||0)],
@@ -4135,19 +4136,14 @@ function apiladoPorCorte(div, objeto, metrica, cAct, cCmp, opts){
   const totB = keys.reduce((s,k)=>s+(b.get(k)||0),0);
   const totA = keys.reduce((s,k)=>s+(a.get(k)||0),0);
   const lay = LAYOUT();
-
   lay.xaxis.type = 'category';
-  lay.xaxis.tickvals = cortesX;
-  lay.xaxis.ticktext = cortesX.map(etiquetaCorte);
-
-
-  lay.barmode='stack';
-  lay.bargap=0.55;
+  lay.barmode = 'stack';
+  lay.bargap = 0.55;
   lay.yaxis.title = opts.y || metrica;
   const varPct = totB ? (totA/totB - 1) : null;
   lay.annotations = [
-    {x:cCmp, y:totB, text:'<b>'+fmt(totB)+'</b>', showarrow:false, yshift:16},
-    {x:cAct, y:totA, text:'<b>'+fmt(totA)+'</b>' +
+    {x:etiqCmp, y:totB, text:'<b>'+fmt(totB)+'</b>', showarrow:false, yshift:16},
+    {x:etiqAct, y:totA, text:'<b>'+fmt(totA)+'</b>' +
       (varPct===null ? '' :
         '<br><span style="color:'+(varPct<0?'#1B8F5A':'#C0392B')+'">'+
         (varPct>0?'+':'')+(varPct*100).toFixed(1)+'%</span>'),
@@ -4267,23 +4263,34 @@ function render(){
   document.getElementById('lblActual').textContent = cAct;
   document.getElementById('lblCompara').textContent = cCmp;
 
-  kpis(cAct, cCmp);
-  serieMetricas('gSerie');
-  bloquesPorCorte('gHuellaBloque','Huella',     cAct, cCmp);
-  bloquesPorCorte('gIntBloque',   'Intensidad', cAct, cCmp);
-  apiladoPorCorte('gEstrategia',   'Estrategia_x_Plus1','Huella',     cAct,cCmp,{y:'Tn CO2'});
-  apiladoPorCorte('gIntEstrategia','Estrategia_x_Plus1','Intensidad', cAct,cCmp,{y:'Intensidad'});
-  apiladoPorCorte('gSoberanos',    'Soberanos','Huella',              cAct,cCmp,{y:'Tn CO2'});
-  apiladoPorCorte('gTipoRenta','Por_Tipo_Renta','Huella', cAct,cCmp,{y:'Tn CO2'});
-  barrasComparadas('gGrupoEcon','', 'Por_Grupo_Economico','Huella', cAct,cCmp,{y:'Tn CO2',top:12});
-  pieAUM('gAUM', cAct, cCmp);
-  sectorMsciProxies('gSector52','Huella',     cAct, cCmp);
-  sectorMsciProxies('gSector63','Intensidad', cAct, cCmp);
-  comparables('gComp49','Huella',     cAct, cCmp);
-  comparables('gComp48','Intensidad', cAct, cCmp);
-  soberanosPais('gSobPais','Huella',  cAct, cCmp);
-  ranking('gContribBUTD','Contrib_BU_TD',cAct,15);
-  ranking('gContribGral','Contrib_General',cAct,20);
+  const safe = (id, fn) => {
+    try { fn(); }
+    catch (e) {
+      console.error('[chart]', id, e);
+      const d = document.getElementById(id);
+      if (d) d.innerHTML =
+        '<div style="padding:10px;font:12px monospace;color:#C0392B">'
+        + id + ' — error: ' + (e && e.message ? e.message : e) + '</div>';
+    }
+  };
+
+  safe('kpis',          () => kpis(cAct, cCmp));
+  safe('gSerie',        () => serieMetricas('gSerie'));
+  safe('gHuellaBloque', () => bloquesPorCorte('gHuellaBloque','Huella', cAct, cCmp));
+  safe('gIntBloque',    () => bloquesPorCorte('gIntBloque','Intensidad', cAct, cCmp));
+  safe('gEstrategia',   () => apiladoPorCorte('gEstrategia','Estrategia_x_Plus1','Huella', cAct,cCmp,{y:'Tn CO2'}));
+  safe('gIntEstrategia',() => apiladoPorCorte('gIntEstrategia','Estrategia_x_Plus1','Intensidad', cAct,cCmp,{y:'Intensidad'}));
+  safe('gSoberanos',    () => apiladoPorCorte('gSoberanos','Soberanos','Huella', cAct,cCmp,{y:'Tn CO2'}));
+  safe('gTipoRenta',    () => apiladoPorCorte('gTipoRenta','Por_Tipo_Renta','Huella', cAct,cCmp,{y:'Tn CO2'}));
+  safe('gGrupoEcon',    () => barrasComparadas('gGrupoEcon','','Por_Grupo_Economico','Huella', cAct,cCmp,{y:'Tn CO2',top:12}));
+  safe('gAUM',          () => pieAUM('gAUM', cAct, cCmp));
+  safe('gSector52',     () => sectorMsciProxies('gSector52','Huella', cAct, cCmp));
+  safe('gSector63',     () => sectorMsciProxies('gSector63','Intensidad', cAct, cCmp));
+  safe('gComp49',       () => comparables('gComp49','Huella', cAct, cCmp));
+  safe('gComp48',       () => comparables('gComp48','Intensidad', cAct, cCmp));
+  safe('gSobPais',      () => soberanosPais('gSobPais','Huella', cAct, cCmp));
+  safe('gContribBUTD',  () => ranking('gContribBUTD','Contrib_BU_TD',cAct,15));
+  safe('gContribGral',  () => ranking('gContribGral','Contrib_General',cAct,20));
 }
 
 function onCorteChange(){
