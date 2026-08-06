@@ -1,0 +1,14 @@
+Rendimiento RVL — corrida 06.08.26
+DQ IN — última fecha en Monitor: 2026-08-03 00:00:00
+DQ IN — 3 registros nuevos anexados.
+DQ SIS — última fecha en Monitor: 46227
+Fecha de corte: 04-08-2026
+
+An exception has occurred, use %tb to see the full traceback.
+
+SystemExit: 
+[ERROR] AUM: no se encontró la serie 'IN-FONDOF1' en DataHistórica de DataValorCuota_IN.xlsm. Rótulos detectados (fila 6): ['HA-FONDO0', 'HA-FONDO1', 'HA-FONDO2', 'HA-FONDO3', 'HO-FONDO0', 'HO-FONDO1', 'HO-FONDO2', 'HO-FONDO3', 'IN-FONDO0', 'IN-FONDO1', 'IN-FONDO2', 'IN-FONDO3']…
+
+
+C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\IPython\core\interactiveshell.py:3755: UserWarning: To exit: use 'exit', 'quit', or Ctrl-D.
+  warn("To exit: use 'exit', 'quit', or Ctrl-D.", stacklevel=1)
