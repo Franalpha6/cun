@@ -1,0 +1,148 @@
+Config(semestre=202606, B1=20260630, MMYYYY=062026, T-1=202512, base_msci_sheet='202606', base_msci_sheet_t1='202512')
+************************************************************************
+  ANTES DE CORRER EL PIPELINE (refresco MANUAL de queries):
+    1) Abre el workbook:
+       Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Inputs\Reporte de Huella con Proxies - 202606.xlsm
+    2) En la hoja 'Valorización de Instrumentos', fija B1 = 20260630
+    3) Datos -> Actualizar todo (RefreshAll).
+    4) Guarda y CIERRA el archivo.
+  Python solo LEE la data ya materializada (openpyxl, sin bloqueo).
+************************************************************************
+========================================================================
+  BLINDAJE DE INPUTS — SEMESTRE 202606 (B1=20260630, MMYYYY=062026, T-1=202512)
+========================================================================
+  [OK ] Reporte de Huella con Proxies - 202606.xlsm (query base, B1=20260630)
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Inputs\Reporte de Huella con Proxies - 202606.xlsm
+  [OK ] Base MSCI (Sob+ETF+BU).xlsx
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\MSCI\Base MSCI (Sob+ETF+BU).xlsx
+  [OK ] G&P_MLab_062026.xlsm
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\G&P input\G&P_MLab_062026.xlsm
+  [OK ] Nueva Lista Proxies (corte 062026).xlsx
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Huella Total  (SURA e Integra)\Nueva Lista Proxies (corte 062026).xlsx
+  [OK ] Comparables MSCI - Huella.xlsx (intensidades benchmarks)
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Inputs\Comparables MSCI - Huella.xlsx
+  [OK ] Base MSCI hoja periodo: '202606'
+  [OK ] Base MSCI hoja T-1: '202512'
+------------------------------------------------------------------------
+  RESULTADO: todos los inputs presentes. OK
+========================================================================
+  [OK ] B1 del workbook = 20260630 coincide con SEMESTRE.
+  [OK ] B1 del workbook = 20251231 coincide con SEMESTRE.
+  [Módulo 1] 'Valorización de Instrumentos' -> 649 filas x 43 cols (mapeadas: 24).
+  [Módulo 1] 'Cálculo Caja' -> 22 filas x 8 cols (mapeadas: 8).
+  [Módulo 1] 'Tipo de Cambio' -> 35 filas x 6 cols (mapeadas: 6).
+  [Módulo 1] QueryData(valorizacion=(649, 43), caja=(22, 8), tipo_cambio=(35, 6))
+  [Módulo 2] CajaLoader: 5 portafolios.
+  [Módulo 3] USD (código '2') = 3.3609
+  [Módulo 2] AUM multifondos = 11,038.86 USD MM (TC 3.3609)
+  [Módulo 5] Parametria directa (input manual): 3061 SBS.
+  [Módulo 5] Sector-buckets: 806 por SBS, 238 por Name.
+  [Módulo 6] BD(MSCI) hoja '202512' -> 977x24.
+  [Módulo 6] Proxies hoja 'Alts': +50 filas
+  [Módulo 6] Proxies hoja 'TD': +10 filas
+  [Módulo 6] Proxies hoja 'BU': +88 filas
+  [Módulo 6] BD(MSCI) con proxies: 977 -> 1048 filas (148 de proxies, los repetidos sobrescriben).
+  [Módulo 7] BD MSCI (T-1): hoja '202506'.
+  [Módulo 6] BD(MSCI) hoja '202506' -> 935x24.
+  [Módulo 8] 'Perdieron Huella' -> 11 instrumentos.
+  [Módulo 9] Overrides de proxies: 30 Client_ID.
+  [Módulo 9] BD(MSCI).T tras proxies: 1061 Client_ID.
+  [Módulo 10] Filtro exclusión (IN-FONDO0 / DPZ* / CDLP): 182 filas excluidas, quedan 467.
+  [Módulo 10] Descartadas 18 col(s) formuladas del Excel (se recalculan en Python).
+  [Módulo 9] Herencia por emisor: 20 instrumentos heredaron.
+  [Módulo 10] CO2-H sin match -> 0. Legítimos (sin exposición): 8. PROBLEMÁTICOS (con exposición, revisar): 13.
+  [Módulo 10] [ATENCIÓN] 13 instrumentos con inversión pero sin huella. Ver reporte 'NoMatch_conExposicion'.
+  [Módulo 10] AU4 (SUM Huella) = 1,133,862.96
+  [Módulo 10] Valorización formulada -> 467x49.
+  [MarketCap] fila 2025-12-31 | AUM MM: {'ILF': 2481.7, 'EMB': 16589.0, 'ACWI': 25213.5, 'CEMB': 387.6}
+  [Comparables] hoja 202512 | {'ILF': 145.75, 'EMB': 388.1, 'ACWI': 39.57, 'CEMB': 202.58}
+  [Módulo 12] Distribución de Plus: {'Proxies': 180, 'ETF': 140, 'Portafolio': 76, 'Cuestionario Integra': 33, 'SOV': 30}
+  [Módulo 12] Sector identificado en 66% de las filas BU (el resto cae al bucket 'Otros').
+  [Módulo 12] Sector identificado en 29% de las filas BU (el resto cae al bucket 'Otros').
+  [T-1] [AVISO] no se pudo armar 202512: 'PresentacionBuilder' object has no attribute 'aum_comp'
+  [Módulo 1] 'Valorización de Instrumentos' -> 627 filas x 43 cols (mapeadas: 24).
+  [Módulo 1] 'Cálculo Caja' -> 22 filas x 8 cols (mapeadas: 8).
+  [Módulo 1] 'Tipo de Cambio' -> 35 filas x 6 cols (mapeadas: 6).
+  [Módulo 1] QueryData(valorizacion=(627, 43), caja=(22, 8), tipo_cambio=(35, 6))
+  [Módulo 2] CajaLoader: 5 portafolios.
+  [Módulo 3] USD (código '2') = 3.4075
+  [Módulo 2] AUM multifondos = 11,536.75 USD MM (TC 3.4075)
+  [Módulo 5] Parametria directa (input manual): 3132 SBS.
+  [Módulo 5] Sector-buckets: 813 por SBS, 245 por Name.
+  [Módulo 6] BD(MSCI) hoja '202606' -> 1000x24.
+  [Módulo 6] Proxies hoja 'Alts': +50 filas
+  [Módulo 6] Proxies hoja 'TD': +10 filas
+  [Módulo 6] Proxies hoja 'BU': +89 filas
+  [Módulo 6] BD(MSCI) con proxies: 1000 -> 1071 filas (149 de proxies, los repetidos sobrescriben).
+  [Módulo 7] BD MSCI (T-1): hoja '202512'.
+  [Módulo 6] BD(MSCI) hoja '202512' -> 977x24.
+  [Módulo 8] 'Perdieron Huella' -> 11 instrumentos.
+  [Módulo 9] Overrides de proxies: 30 Client_ID.
+  [Módulo 9] BD(MSCI).T tras proxies: 1084 Client_ID.
+  [Módulo 10] Filtro exclusión (IN-FONDO0 / DPZ* / CDLP): 183 filas excluidas, quedan 444.
+  [Módulo 10] Descartadas 19 col(s) formuladas del Excel (se recalculan en Python).
+  [Módulo 9] Herencia por emisor: 23 instrumentos heredaron.
+  [Módulo 10] CO2-H sin match -> 0. Legítimos (sin exposición): 8. PROBLEMÁTICOS (con exposición, revisar): 9.
+  [Módulo 10] [ATENCIÓN] 9 instrumentos con inversión pero sin huella. Ver reporte 'NoMatch_conExposicion'.
+  [Módulo 10] AU4 (SUM Huella) = 963,106.62
+  [Módulo 10] Valorización formulada -> 444x48.
+  [MarketCap] fila 2026-06-30 | AUM MM: {'ILF': 3737.8, 'EMB': 14678.2, 'ACWI': 33214.9, 'CEMB': 397.2}
+  [Comparables] hoja 202606 | {'ILF': 109.31, 'EMB': 388.1, 'ACWI': 33.99, 'CEMB': 186.25}
+  [Módulo 12] Distribución de Plus: {'Proxies': 171, 'ETF': 127, 'Portafolio': 69, 'SOV': 37, 'Cuestionario Integra': 32}
+  [Módulo 12] Sector identificado en 68% de las filas BU (el resto cae al bucket 'Otros').
+  [Módulo 12] Sector identificado en 28% de las filas BU (el resto cae al bucket 'Otros').
+
+
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+Cell In[1], line 3488
+   3484     SEMESTRE = "202606"                 # semestre en revisión (yyyymm)
+   3485     OUTPUT_DIR = OUTPUT_DIR_DEFAULT     # Z:\...\Python\Output
+   3486     # ========================================================================
+   3487 
+-> 3488     resultado = run_pipeline(SEMESTRE, output_dir=OUTPUT_DIR)
+   3489     print("\nListo:")
+   3490     print("  Histórico :", resultado["ruta_historico"])
+   3491     print("  Dashboard :", resultado["ruta_dashboard"])
+
+Cell In[1], line 3471, in run_pipeline(semestre, output_dir, ruta_historico, ruta_dashboard, verbose)
+   3467         if verbose:
+   3468             print(f"  [T-1] [AVISO] no se pudo armar {cfg.semestre_t1}: {exc}")
+   3469 
+   3470     # --- T: corte actual -----------------------------------------------------
+-> 3471     val, ctx, objetos = _procesar_corte(cfg, exp, verbose=verbose)
+   3472 
+   3473     # --- Módulo 14: dashboard ------------------------------------------------
+   3474     construir_dashboard(ruta_historico, ruta_dashboard)
+
+Cell In[1], line 3430, in _procesar_corte(cfg, exp, verbose)
+   3426         aum_comp=(mkt.aum if mkt is not None else {}),
+   3427         caja_neta_mm=ctx["caja"].caja_neta_multifondos_mm(ctx["tipo_cambio"].usd_rate()),
+   3428         aum_total_mm=ctx.get("aum_multifondos_mm"),
+   3429     )
+-> 3430     objetos = pres.build_all()
+   3431     if verbose:
+   3432         print(f"  [Módulo 12] {len(objetos)} objetos ({len(pres.df)} registros) "
+   3433               f"para corte {cfg.semestre}.")
+
+Cell In[1], line 2622, in PresentacionBuilder.build_all(self)
+   2618             "Por_Tipo_Renta": self.por_dimension(COL["tipo_renta"], "Tipo de Renta"),
+   2619             "Por_Estrategia": self.por_dimension(COL["estrategia"], "Estrategia"),
+   2620             "Por_Grupo_Economico": self.por_dimension(COL["grupo_econ"], "Grupo Económico"),
+   2621             "Sector_MSCI_Proxies": self.sector_msci_vs_proxies(),
+-> 2622             "Comparables": self.comparables(),
+   2623             "Soberanos_Por_Pais": self.soberanos_por_pais(),
+   2624         }
+   2625         for k, v in o.items():
+
+Cell In[1], line 2551, in PresentacionBuilder.comparables(self)
+   2547         for alias in ("ACWI", "ILF", "CEMB", "EMB"):
+   2548             if alias not in self.intensidades_comp:
+   2549                 continue
+   2550             inten = float(self.intensidades_comp[alias])
+-> 2551             aum = float(self.aum_comp.get(alias, 0.0))
+   2552             filas.append({"Serie": alias,
+   2553                           COL["huella"]: aum * inten,
+   2554                           COL["intensidad"]: inten,
+
+AttributeError: 'PresentacionBuilder' object has no attribute 'aum_comp'
