@@ -1,0 +1,309 @@
+G&P C5 = 2026-07-22 00:00:00
+[OK] Proxies: SBS=col 0, ISIN_proxy=col 7 en 'Reporte ASG Mensual'. (verifica que sean las correctas)
+valor dólar = 3.6555
+
+--- ISIN: rescate por proxy (VP.xlsm -> proxies) ---
+  Reales (VP)            : 1814
+  Resueltos por proxy    : 748
+  Sin ISIN tras intentar : 190
+  ISIN proxy compartidos por >1 SBS distinto: 26 caso(s)
+    (afecta el cruce EPU/ETF SOLO si además coinciden en Fondo/AFP/AssetClass/Strategy)
+      US4642873339: 213 SBS
+      01100028DF60: 83 SBS
+      US4642873909: 68 SBS
+      US4642887115: 46 SBS
+      US4642881829: 37 SBS
+      08400528AX90: 35 SBS
+      0840002CJZ59: 31 SBS
+      US4642887370: 31 SBS
+      US4642886950: 27 SBS
+      IE00B66F4759: 22 SBS
+      US92189H3003: 21 SBS
+      US4642887453: 19 SBS
+      US4642887297: 18 SBS
+      US4642873412: 17 SBS
+      US4642866085: 16 SBS
+      US4642872752: 12 SBS
+      08400623AV04: 9 SBS
+      US4642873255: 7 SBS
+      US4642898427: 6 SBS
+      US4642882579: 6 SBS
+      084003411726: 5 SBS
+      08400425EP60: 4 SBS
+      US4642872000: 4 SBS
+      US4642872919: 4 SBS
+      US4642883726: 2 SBS
+      US46434V6478: 2 SBS
+
+================  RAMA NORMAL  ================
+
+[52-CHECK NORMAL] sin clasificar por ÍNDICE=744 | por SBS=569 | rescatados por SBS=493
+  Rescatados (estaban en TD/SOB, el índice reseteado los marcaba fuera): {'52': 474, '49': 14, '48': 2, '54': 2, '50': 1}
+[DEJADOS DE LADO NORMAL] instrumentos únicos perdidos=970 (con peso=232, sin peso=738)
+Fondo            F1        F2        F3
+AFP                                    
+Habitat    0.670014  0.691572  0.595400
+Integra    0.720888  0.712729  0.588630
+Prima      0.718768  0.680347  0.561657
+Profuturo  0.705748  0.709481  0.595085
+[DEJADOS DE LADO NORMAL] -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\Dejados de lado NORMAL.xlsx
+
+[SIN CLASIFICAR] 569 instrumento(s) no calzan en BU/TD/SOB (NORMAL):
+        N             AC_Dir                                                                                                                                                                                                                                                         Categoria
+SBS2                                                                                                                                                                                                                                                                                          
+08    286  [DMS, EMHC, EMLC]  [HCD_INT_DM_GOB_AUS, HCD_INT_DM_GOB_CAN, HCD_INT_DM_GOB_JPN, HCD_INT_DM_GOB_UK, HCD_INT_DM_GOB_US, HCD_INT_EM_GOB_BRA, HCD_INT_EM_GOB_CHI, HCD_INT_EM_GOB_COL, HCD_INT_EM_GOB_MEX, LCD_GOB_BRA, LCD_GOB_CHI, LCD_GOB_COL, LCD_GOB_MEX, LCD_GOB_RUS, LCD_GOB_SUD]
+53    118              [ALT]                                                                                                                                                                       [ALT_D, ALT_I_INF, ALT_I_PD, ALT_I_PE_FF, ALT_I_PE_PE, ALT_I_PE_SPE, ALT_I_RE, ALT_L_PE_PE]
+64     56              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_CD]
+01     53              [PEG]                                                                                                                                                                                                                     [HCD_LOC_GOB_HC, PEN_NOM_GOB_LC, PEN_VAC_GOB]
+51     29              [ALT]                                                                                                                                                                                                            [ALT_D, ALT_L_INF, ALT_L_PE_PD, ALT_L_PE_PE, ALT_L_RE]
+04     11              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_LC]
+43      9              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_LC]
+PR      2            [INTER]                                                                                                                                                                                                                                       [COMM_EN_OG, RVI_DM_US_AGG]
+56      2              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_CD]
+37      1               [PE]                                                                                                                                                                                                                                                      [RVL_FM_FIB]
+4A      1            [INTER]                                                                                                                                                                                                                                                 [RVI_EM_LATAM_FM]
+77      1              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_CD]
+
+[VERIFICAR SBS2=64] 56 instrumento(s) — nombres únicos:
+['Gobierno Central']
+
+[SIN CLASIFICAR] Detalle (SBS, SBS2, Asset Class, Nombre):
+         SBS SBS2  Asset Class                                                            Nombre
+5374914AIP4B   53 Alternativos                                  Antin Infrastructure Partners IV
+5374462SPIF3   53 Alternativos                             Stonepeak Infrastructure Partners III
+5374792GIP4F   53 Alternativos                                 Global Infrastructure GP IV, L.P.
+5374642EQTI4   53 Alternativos                                    EQT Infrastructure IV (GP) SCS
+5375254EQTI5   53 Alternativos                     EQT Infrastructure V (General Partner) S.à.r.
+5375454IEF5S   53 Alternativos                                     InfraVia European Fund V SCSp
+5377304IEF6S   53 Alternativos                                    InfraVia European Fund VI SCSp
+5375052PGD20   53 Alternativos                         Partners Group Direct Infrastructure 2020
+5375002NHIP3   53 Alternativos                          Morgan Stanley - Infrastructure Fund III
+5374702OSF6F   53 Alternativos                       Oaktree Special Situations Fund II GP, L.P.
+5374702OSF3F   53 Alternativos                               Oaktree Special Situations Fund III
+5374802BCDSS   53 Alternativos                             Bain Capital - Distr. & Sp. Sits 2019
+5371072PBCR2   53 Alternativos                             PineBridge - Credit Opportunities II 
+5373382ACOA3   53 Alternativos                                     Apollo Credit Opportunity III
+5373592OPF6F   53 Alternativos                                Oaktree Principal Fund VI GP, L.P.
+5373852ASSIV   53 Alternativos                                   ASSF - Operating Manager IV, LP
+5377262VECIX   53 Alternativos                                       Veritas Capital Partners IX
+5373892AESS3   53 Alternativos                         Avenue - Europe Capital Partners III, LLC
+5374672SPOS8   53 Alternativos                                         Strategic Partners - VIII
+5374232CSOF3   53 Alternativos                 GSO Capital Solutions Overseas Feeder Fund III LP
+5374602CVCII   53 Alternativos CVC Credit Partners Global Special Situations Feeder Fund II SCSp
+5374224AEPF3   53 Alternativos          Apollo European Principal Finance Fund III (EURO B), L.P
+5375072PDCO3   53 Alternativos         Portfolio Advisors - Direct Credit Opportunities Fund III
+5373914ICGVI   53 Alternativos                                   ICG - Europe Fund VI GP Limited
+5377544ICG9F   53 Alternativos                                                ICG Europe Fund IX
+5374152CIP6F   53 Alternativos                                 Cerberus - CIP VI Overseas Feeder
+5374442FREO3   53 Alternativos                     Fortress - Real Estate Opportunities Fund III
+5374592NBDF3   53 Alternativos                                Neuberger Bergman Private Debt III
+5370964ALT08   53 Alternativos                                         Altamar - PE Program VIII
+5370964ALT10   53 Alternativos                                            Altamar - PE Program V
+  (mostrando 30 de 569; detalle completo en el Excel de 'Dejados de lado')
+[OK] Portafolio -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 Portafolio.xlsx
+[ 101.8s] Portafolio escrito, entrando a par_bu
+[ 113.1s] par_bu terminado
+[OK] BD1 -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 BD1.xlsx
+
+[DESCARTES] Resumen para rama NORMAL:
+[DESCARTES] Detalle completo (28702 filas) -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\Descartes NORMAL.xlsx
+
+--- Resumen por Etapa (conteo de SBS descartados) ---
+Etapa
+BU() - filtros Bottom-Up       1248
+Clasificación BU/TD/SOB         569
+EPU/ETF - generar_relacion      545
+Mapeo ISIN (VP.xlsm)            938
+df_result() - Fondo HAF1       1650
+df_result() - Fondo HAF2       1640
+df_result() - Fondo HAF3       1688
+df_result() - Fondo INF1       1662
+df_result() - Fondo INF2       1646
+df_result() - Fondo INF3       1705
+df_result() - Fondo PFF1       1703
+df_result() - Fondo PFF2       1697
+df_result() - Fondo PFF3       1737
+df_result() - Fondo RIF1       1683
+df_result() - Fondo RIF2       1669
+df_result() - Fondo RIF3       1735
+df_result() - Fondo SIF1       1570
+df_result() - Fondo SIF2       1557
+df_result() - Fondo SIF3       1656
+operaciones() - Asset Class     404
+
+--- Weight/valor diluido total por Etapa ---
+Etapa
+BU() - filtros Bottom-Up       0.000000e+00
+Clasificación BU/TD/SOB        0.000000e+00
+EPU/ETF - generar_relacion     0.000000e+00
+Mapeo ISIN (VP.xlsm)           0.000000e+00
+df_result() - Fondo HAF1      -1.734420e-04
+df_result() - Fondo HAF2      -3.129741e-20
+df_result() - Fondo HAF3      -1.760071e-05
+df_result() - Fondo INF1       0.000000e+00
+df_result() - Fondo INF2       0.000000e+00
+df_result() - Fondo INF3       0.000000e+00
+df_result() - Fondo PFF1      -1.193043e-04
+df_result() - Fondo PFF2      -7.888477e-08
+df_result() - Fondo PFF3      -1.994932e-17
+df_result() - Fondo RIF1      -6.324289e-08
+df_result() - Fondo RIF2      -7.477736e-08
+df_result() - Fondo RIF3      -2.737428e-10
+df_result() - Fondo SIF1      -6.619950e-05
+df_result() - Fondo SIF2      -3.333257e-08
+df_result() - Fondo SIF3      -8.394308e-06
+operaciones() - Asset Class    0.000000e+00
+
+--- Top 15 SBS con más Weight diluido (revisa el Excel para el resto) ---
+SBS
+ZMW                    0.0
+PTCMEF0-II259C-CALL    0.0
+PTCMEF0-II258C-CALL    0.0
+PTCMEF0-II257C-CALL    0.0
+PTCMEF0-II256C-CALL    0.0
+PTCMEF0-II255C-PUT     0.0
+PTCMEF0-II254C-CALL    0.0
+PTCMEF0-II253C-CALL    0.0
+PTCMEF0-II252C-CALL    0.0
+PTCMEF0-II251C-CALL    0.0
+PTCMEF0-II250C-CALL    0.0
+PTCMEF0-II249C-CALL    0.0
+PTCMEF0-II248C-CALL    0.0
+PTCMEF0-II247C-CALL    0.0
+PTCMEF0-II246C-CALL    0.0
+
+================  RAMA SOBERANOS  ================
+
+[52-CHECK SOBERANOS] sin clasificar por ÍNDICE=744 | por SBS=221 | rescatados por SBS=668
+  Rescatados (estaban en TD/SOB, el índice reseteado los marcaba fuera): {'52': 474, '08': 113, '01': 53, '49': 14, '43': 9, '48': 2, '54': 2, '50': 1}
+[DEJADOS DE LADO SOBERANOS] instrumentos únicos perdidos=622 (con peso=186, sin peso=436)
+Fondo            F1        F2        F3
+AFP                                    
+Habitat    0.491103  0.576745  0.555892
+Integra    0.507864  0.592293  0.577031
+Prima      0.509906  0.561154  0.548769
+Profuturo  0.504336  0.607857  0.572626
+[DEJADOS DE LADO SOBERANOS] -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\Dejados de lado SOBERANOS.xlsx
+
+[SIN CLASIFICAR] 221 instrumento(s) no calzan en BU/TD/SOB (SOBERANOS):
+        N   AC_Dir                                                                                    Categoria
+SBS2                                                                                                           
+53    118    [ALT]  [ALT_D, ALT_I_INF, ALT_I_PD, ALT_I_PE_FF, ALT_I_PE_PE, ALT_I_PE_SPE, ALT_I_RE, ALT_L_PE_PE]
+64     56    [PEG]                                                                             [PEN_NOM_GOB_CD]
+51     29    [ALT]                                       [ALT_D, ALT_L_INF, ALT_L_PE_PD, ALT_L_PE_PE, ALT_L_RE]
+04     11    [PEG]                                                                             [PEN_NOM_GOB_LC]
+56      2    [PEG]                                                                             [PEN_NOM_GOB_CD]
+PR      2  [INTER]                                                                  [COMM_EN_OG, RVI_DM_US_AGG]
+4A      1  [INTER]                                                                            [RVI_EM_LATAM_FM]
+37      1     [PE]                                                                                 [RVL_FM_FIB]
+77      1    [PEG]                                                                             [PEN_NOM_GOB_CD]
+
+[VERIFICAR SBS2=64] 56 instrumento(s) — nombres únicos:
+['Gobierno Central']
+
+[SIN CLASIFICAR] Detalle (SBS, SBS2, Asset Class, Nombre):
+         SBS SBS2  Asset Class                                                            Nombre
+5374914AIP4B   53 Alternativos                                  Antin Infrastructure Partners IV
+5374462SPIF3   53 Alternativos                             Stonepeak Infrastructure Partners III
+5374792GIP4F   53 Alternativos                                 Global Infrastructure GP IV, L.P.
+5374642EQTI4   53 Alternativos                                    EQT Infrastructure IV (GP) SCS
+5375254EQTI5   53 Alternativos                     EQT Infrastructure V (General Partner) S.à.r.
+5375454IEF5S   53 Alternativos                                     InfraVia European Fund V SCSp
+5377304IEF6S   53 Alternativos                                    InfraVia European Fund VI SCSp
+5375052PGD20   53 Alternativos                         Partners Group Direct Infrastructure 2020
+5375002NHIP3   53 Alternativos                          Morgan Stanley - Infrastructure Fund III
+5374702OSF6F   53 Alternativos                       Oaktree Special Situations Fund II GP, L.P.
+5374702OSF3F   53 Alternativos                               Oaktree Special Situations Fund III
+5374802BCDSS   53 Alternativos                             Bain Capital - Distr. & Sp. Sits 2019
+5371072PBCR2   53 Alternativos                             PineBridge - Credit Opportunities II 
+5373382ACOA3   53 Alternativos                                     Apollo Credit Opportunity III
+5373592OPF6F   53 Alternativos                                Oaktree Principal Fund VI GP, L.P.
+5373852ASSIV   53 Alternativos                                   ASSF - Operating Manager IV, LP
+5377262VECIX   53 Alternativos                                       Veritas Capital Partners IX
+5373892AESS3   53 Alternativos                         Avenue - Europe Capital Partners III, LLC
+5374672SPOS8   53 Alternativos                                         Strategic Partners - VIII
+5374232CSOF3   53 Alternativos                 GSO Capital Solutions Overseas Feeder Fund III LP
+5374602CVCII   53 Alternativos CVC Credit Partners Global Special Situations Feeder Fund II SCSp
+5374224AEPF3   53 Alternativos          Apollo European Principal Finance Fund III (EURO B), L.P
+5375072PDCO3   53 Alternativos         Portfolio Advisors - Direct Credit Opportunities Fund III
+5373914ICGVI   53 Alternativos                                   ICG - Europe Fund VI GP Limited
+5377544ICG9F   53 Alternativos                                                ICG Europe Fund IX
+5374152CIP6F   53 Alternativos                                 Cerberus - CIP VI Overseas Feeder
+5374442FREO3   53 Alternativos                     Fortress - Real Estate Opportunities Fund III
+5374592NBDF3   53 Alternativos                                Neuberger Bergman Private Debt III
+5370964ALT08   53 Alternativos                                         Altamar - PE Program VIII
+5370964ALT10   53 Alternativos                                            Altamar - PE Program V
+  (mostrando 30 de 221; detalle completo en el Excel de 'Dejados de lado')
+[OK] Portafolio_S -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 Portafolio_S.xlsx
+[  81.0s] Portafolio escrito, entrando a par_bu
+[  92.6s] par_bu terminado
+[OK] BD1_S -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 BD1_S.xlsx
+
+[DESCARTES] Resumen para rama SOBERANOS:
+[DESCARTES] Detalle completo (32417 filas) -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\Descartes SOBERANOS.xlsx
+
+--- Resumen por Etapa (conteo de SBS descartados) ---
+Etapa
+BU() - filtros Bottom-Up       1248
+Clasificación BU/TD/SOB         221
+EPU/ETF - generar_relacion      545
+df_result() - Fondo HAF1       1982
+df_result() - Fondo HAF2       1977
+df_result() - Fondo HAF3       2030
+df_result() - Fondo INF1       1986
+df_result() - Fondo INF2       1982
+df_result() - Fondo INF3       2051
+df_result() - Fondo PFF1       2039
+df_result() - Fondo PFF2       2033
+df_result() - Fondo PFF3       2077
+df_result() - Fondo RIF1       2008
+df_result() - Fondo RIF2       1995
+df_result() - Fondo RIF3       2080
+df_result() - Fondo SIF1       1889
+df_result() - Fondo SIF2       1878
+df_result() - Fondo SIF3       1992
+operaciones() - Asset Class     404
+
+--- Weight/valor diluido total por Etapa ---
+Etapa
+BU() - filtros Bottom-Up       0.000000e+00
+Clasificación BU/TD/SOB        0.000000e+00
+EPU/ETF - generar_relacion     0.000000e+00
+df_result() - Fondo HAF1      -1.734420e-04
+df_result() - Fondo HAF2      -3.129741e-20
+df_result() - Fondo HAF3      -1.760071e-05
+df_result() - Fondo INF1       0.000000e+00
+df_result() - Fondo INF2       0.000000e+00
+df_result() - Fondo INF3       0.000000e+00
+df_result() - Fondo PFF1      -1.193043e-04
+df_result() - Fondo PFF2      -7.888477e-08
+df_result() - Fondo PFF3      -1.994932e-17
+df_result() - Fondo RIF1      -6.324289e-08
+df_result() - Fondo RIF2      -7.477736e-08
+df_result() - Fondo RIF3      -2.737428e-10
+df_result() - Fondo SIF1      -6.619950e-05
+df_result() - Fondo SIF2      -3.333257e-08
+df_result() - Fondo SIF3      -8.394308e-06
+operaciones() - Asset Class    0.000000e+00
+
+--- Top 15 SBS con más Weight diluido (revisa el Excel para el resto) ---
+SBS
+ZMW                    0.0
+PTCMEF0-II259C-CALL    0.0
+PTCMEF0-II258C-CALL    0.0
+PTCMEF0-II257C-CALL    0.0
+PTCMEF0-II256C-CALL    0.0
+PTCMEF0-II255C-PUT     0.0
+PTCMEF0-II254C-CALL    0.0
+PTCMEF0-II253C-CALL    0.0
+PTCMEF0-II252C-CALL    0.0
+PTCMEF0-II251C-CALL    0.0
+PTCMEF0-II250C-CALL    0.0
+PTCMEF0-II249C-CALL    0.0
+PTCMEF0-II248C-CALL    0.0
+PTCMEF0-II247C-CALL    0.0
+PTCMEF0-II246C-CALL    0.0
+
+================  LISTO  ================
+NORMAL   : {'BD1': 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\\\202607 BD1.xlsx', 'Portafolio': 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\\\202607 Portafolio.xlsx'}
+SOBERANOS: {'BD1': 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\\\202607 BD1_S.xlsx', 'Portafolio': 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\\\202607 Portafolio_S.xlsx'}
