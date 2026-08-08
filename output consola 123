@@ -1,0 +1,817 @@
+G&P C5 = 2026-07-22 00:00:00
+[OK] Proxies: SBS=col 0, ISIN_proxy=col 7 en 'Reporte ASG Mensual'. (verifica que sean las correctas)
+valor dólar = 3.6555
+
+--- ISIN: rescate por proxy (VP.xlsm -> proxies) ---
+  Reales (VP)            : 1814
+  Resueltos por proxy    : 748
+  Sin ISIN tras intentar : 190
+  ISIN proxy compartidos por >1 SBS distinto: 26 caso(s)
+    (afecta el cruce EPU/ETF SOLO si además coinciden en Fondo/AFP/AssetClass/Strategy)
+      US4642873339: 213 SBS
+      01100028DF60: 83 SBS
+      US4642873909: 68 SBS
+      US4642887115: 46 SBS
+      US4642881829: 37 SBS
+      08400528AX90: 35 SBS
+      0840002CJZ59: 31 SBS
+      US4642887370: 31 SBS
+      US4642886950: 27 SBS
+      IE00B66F4759: 22 SBS
+      US92189H3003: 21 SBS
+      US4642887453: 19 SBS
+      US4642887297: 18 SBS
+      US4642873412: 17 SBS
+      US4642866085: 16 SBS
+      US4642872752: 12 SBS
+      08400623AV04: 9 SBS
+      US4642873255: 7 SBS
+      US4642898427: 6 SBS
+      US4642882579: 6 SBS
+      084003411726: 5 SBS
+      08400425EP60: 4 SBS
+      US4642872000: 4 SBS
+      US4642872919: 4 SBS
+      US4642883726: 2 SBS
+      US46434V6478: 2 SBS
+
+================  RAMA NORMAL  ================
+
+[52-CHECK NORMAL] sin clasificar por ÍNDICE=744 | por SBS=569 | rescatados por SBS=493
+  Rescatados (estaban en TD/SOB, el índice reseteado los marcaba fuera): {'52': 474, '49': 14, '48': 2, '54': 2, '50': 1}
+[DEJADOS DE LADO NORMAL] instrumentos únicos perdidos=970 (con peso=232, sin peso=738)
+Fondo            F1        F2        F3
+AFP                                    
+Habitat    0.670014  0.691572  0.595400
+Integra    0.720888  0.712729  0.588630
+Prima      0.718768  0.680347  0.561657
+Profuturo  0.705748  0.709481  0.595085
+[DEJADOS DE LADO NORMAL] -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\Dejados de lado NORMAL.xlsx
+
+[SIN CLASIFICAR] 744 instrumento(s) no calzan en BU/TD/SOB (NORMAL):
+        N                          AC_Dir                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Categoria
+SBS2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+52    474  [DMHY, DMIG, EMC, EMLC, INTER]  [COMM_AGG, COMM_EN_NU, COMM_EN_OG, COMM_MB, COMM_MP_EM, COMM_MP_F, COMM_SC, HCD_INT_DM_CORP_FMHY, HCD_INT_DM_CORP_FMIG, LCD_CORP_FM, LCD_GOB_FM, RVI_DM_AGG, RVI_DM_ASEU_SIN, RVI_DM_CADAUS, RVI_DM_EU_BE, RVI_DM_EU_CE, RVI_DM_EU_CF, RVI_DM_EU_SC, RVI_DM_JAPAN_AGG, RVI_DM_JAPAN_SC, RVI_DM_US_AGG, RVI_DM_US_CON, RVI_DM_US_CSERV, RVI_DM_US_FIN, RVI_DM_US_HC, RVI_DM_US_IND, RVI_DM_US_TECH_CORE, RVI_DM_US_TECH_SEMI, RVI_DM_US_TECH_SFTW, RVI_DM_US_TECH_THEM, RVI_DM_US_THEM, RVI_DM_US_UT, RVI_EM_AGG, RVI_EM_ASEU_ASD, RVI_EM_ASEU_CHI, RVI_EM_ASEU_EXJAP, RVI_EM_ASEU_IND, RVI_EM_ASEU_KOR, RVI_EM_ASEU_MAL, RVI_EM_ASEU_TAI, RVI_EM_EUR, RVI_EM_LATAM_ARG_FM, RVI_EM_LATAM_BRA_FM, RVI_EM_LATAM_CHI_FM, RVI_EM_LATAM_FM, RVI_EM_LATAM_MEX_FM]
+08    113                          [EMLC]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              [LCD_GOB_BRA, LCD_GOB_CHI, LCD_GOB_COL, LCD_GOB_MEX, LCD_GOB_RUS, LCD_GOB_SUD]
+64     56                           [PEG]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            [PEN_NOM_GOB_CD]
+01     53                           [PEG]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               [HCD_LOC_GOB_HC, PEN_NOM_GOB_LC, PEN_VAC_GOB]
+49     14                      [PEC, PEG]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           [PEN_NOM_CORP_FM, PEN_NOM_GOB_LC]
+04     11                           [PEG]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            [PEN_NOM_GOB_LC]
+43      9                           [PEG]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            [PEN_NOM_GOB_LC]
+48      2                   [EMLC, INTER]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    [LCD_GOB_FM, RVI_EM_AGG]
+PR      2                         [INTER]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 [COMM_EN_OG, RVI_DM_US_AGG]
+56      2                           [PEG]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            [PEN_NOM_GOB_CD]
+54      2                            [PE]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                [RVL_FM_ETF]
+53      2                           [ALT]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 [ALT_I_INF]
+4A      1                         [INTER]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           [RVI_EM_LATAM_FM]
+37      1                            [PE]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                [RVL_FM_FIB]
+50      1                            [PE]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                [RVL_FM_ETF]
+77      1                           [PEG]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            [PEN_NOM_GOB_CD]
+
+[SIN CLASIFICAR] Detalle (SBS, SBS2, Asset Class, Nombre):
+          SBS SBS2    Asset Class                                                                       Nombre
+ 01100028DF60   01     Renta Fija                                                             Gobierno Central
+ 01100028DU38   01     Renta Fija                                                             Gobierno Central
+ 01100028DW93   01     Renta Fija                                                             Gobierno Central
+ 01100028DP43   01     Renta Fija                                                             Gobierno Central
+ 01100028DQ26   01     Renta Fija                                                             Gobierno Central
+ 01100028DR09   01     Renta Fija                                                             Gobierno Central
+ 011000238AS1   01     Renta Fija                                                             Gobierno Central
+ 011000238AU6   01     Renta Fija                                                             Gobierno Central
+ 01100028AN22   01     Renta Fija                                                             Gobierno Central
+ 01100028DA73   01     Renta Fija                                                             Gobierno Central
+ 01100028AP79   01     Renta Fija                                                             Gobierno Central
+ 01100028AQ52   01     Renta Fija                                                             Gobierno Central
+ 01100028AW21   01     Renta Fija                                                             Gobierno Central
+ 01100028BM30   01     Renta Fija                                                             Gobierno Central
+ 01100028DT64   01     Renta Fija                                                             Gobierno Central
+ 01100028BU55   01     Renta Fija                                                             Gobierno Central
+ 01100028FC12   01     Renta Fija                                                             Gobierno Central
+ 011000481182   01     Renta Fija                                                             Gobierno Central
+ 011000481708   01     Renta Fija                                                             Gobierno Central
+ 5211082FRFML   52     Renta Fija                                                                Larrain Vial 
+ 5277512F3236   52     Renta Fija                                                           DNCA - Alpha Bonds
+ 5274822F3552   52     Renta Fija                                                     Moneda - Deuda Latam LCC
+ 5270582MDLOC   52     Renta Fija                                               Moneda - Deuda Latinoamericana
+ 0840038TF147   08     Renta Fija                                                           Gobierno de Brasil
+ 0840038BRA16   08     Renta Fija                                                           Gobierno de Brasil
+ 0840038TF238   08     Renta Fija                                                           Gobierno de Brasil
+ 0840038TF2K7   08     Renta Fija                                                           Gobierno de Brasil
+ 08400386BT66   08     Renta Fija                                                           Gobierno de Brasil
+ 0840038TF212   08     Renta Fija                                                           Gobierno de Brasil
+ 0840038TF1Q6   08     Renta Fija                                                           Gobierno de Brasil
+ 0840038TF0N5   08     Renta Fija                                                           Gobierno de Brasil
+ 0840038TF7J0   08     Renta Fija                                                           Gobierno de Brasil
+ 0840038TF1P8   08     Renta Fija                                                           Gobierno de Brasil
+ 0840038TF170   08     Renta Fija                                                           Gobierno de Brasil
+ 0840038TN7S1   08     Renta Fija                                                           Gobierno de Brasil
+0840038BRAZ21   08     Renta Fija                                                           Gobierno de Brasil
+ 0840038TF204   08     Renta Fija                                                           Gobierno de Brasil
+ 0840038BRALT   08     Renta Fija                                                           Gobierno de Brasil
+ 0840038BRA22   08     Renta Fija                                                           Gobierno de Brasil
+ 08400386BN96   08     Renta Fija                                                           Gobierno de Brasil
+ 084006C40138   08     Renta Fija                                                            Gobierno de Chile
+ 084006C98016   08     Renta Fija                                                            Gobierno de Chile
+ 084006C74774   08     Renta Fija                                                            Gobierno de Chile
+ 084006C39505   08     Renta Fija                                                            Gobierno de Chile
+ 084006C04540   08     Renta Fija                                                            Gobierno de Chile
+ 084006C37767   08     Renta Fija                                                            Gobierno de Chile
+ 084006C52621   08     Renta Fija                                                            Gobierno de Chile
+ 084006C55640   08     Renta Fija                                                            Gobierno de Chile
+ 084006C03013   08     Renta Fija                                                            Gobierno de Chile
+ 084006C55668   08     Renta Fija                                                            Gobierno de Chile
+ 084006C69331   08     Renta Fija                                                            Gobierno de Chile
+ 084006C72501   08     Renta Fija                                                            Gobierno de Chile
+ 084006C48207   08     Renta Fija                                                            Gobierno de Chile
+ 084006C86989   08     Renta Fija                                                            Gobierno de Chile
+ 084006C87822   08     Renta Fija                                                            Gobierno de Chile
+ 084006C56457   08     Renta Fija                                                            Gobierno de Chile
+ 084006C57422   08     Renta Fija                                                            Gobierno de Chile
+ 084006C54230   08     Renta Fija                                                            Gobierno de Chile
+ 084006C54248   08     Renta Fija                                                            Gobierno de Chile
+ 084006C20275   08     Renta Fija                                                            Gobierno de Chile
+ 084006C57349   08     Renta Fija                                                            Gobierno de Chile
+ 084006C58669   08     Renta Fija                                                            Gobierno de Chile
+ 084006C57778   08     Renta Fija                                                            Gobierno de Chile
+ 084006C99166   08     Renta Fija                                                            Gobierno de Chile
+ 084004F72122   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F58444   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F04084   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F03862   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F04001   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F03813   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F03938   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F03771   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F03557   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F03722   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F03615   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F03490   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F03672   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F02625   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F03011   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F22065   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F02302   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F02385   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F03342   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F02864   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F02914   08     Renta Fija                                                         Gobierno de Colombia
+ 084004FCOL28   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F03748   08     Renta Fija                                                         Gobierno de Colombia
+ 084004F03581   08     Renta Fija                                                         Gobierno de Colombia
+ 5276642FJ177   52     Renta Fija                              Colchester Local Markets Bond Fund USD Unhedged
+ 5270062FFN53   52     Renta Fija                                    BNY Mellon - Emerging Market Debt LC Fund
+ 5270064EMDEB   52     Renta Fija                                    BNY Mellon - Emerging Market Debt LC Fund
+ 5270182F5243   52     Renta Fija                                               GAM - Local Emerging Bond Fund
+ 5270802F2756   52     Renta Fija                                   Pictet - Latin America Local Currency Debt
+ 5270804F2853   52     Renta Fija                                   Pictet - Latin America Local Currency Debt
+ 5270512FGKM4   52     Renta Fija                                   Barings - Emerging Markets Local Debt Fund
+ 5270296FDJP0   52     Renta Fija                                    Investec - Emerging Markets  LC Debt Fund
+ 5270462F0367   52     Renta Fija                                          Parvest - Bond World Emerging Local
+ 5270652EF494   52     Renta Fija                                                  VanEck - JPM EM LC Bond ETF
+ 5270772F5196   52     Renta Fija                              Franklin Templeton - Emerging Markets Bond Fund
+ 5270772F5315   52     Renta Fija                                Franklin Templeton - Global Total Return Fund
+ 5270772F9726   52     Renta Fija                                             Franklin Templeton - Global Fund
+ 5270802F0077   52     Renta Fija                                                       Pictet Chinese LC Debt
+ 5270802F9801   52     Renta Fija                                                   Pictet - EM Local Currency
+ 5270734IE00B   52     Renta Fija                                 BlackRock - iShares China CNY Bond UCITS ETF
+ 5270732E4WH5   52     Renta Fija                             BlackRock - iShares JPM EM Local Government Bond
+ 5271112E6517   52     Renta Fija                              BlackRock - iShares JP Morgan EM Local Currency
+ 5274142F4590   52     Renta Fija                          Ashmore - Emerging Markets Local Currency Bond Fund
+  52AVIV2EMLC   52     Renta Fija                            Aviva - Emerging Markets Local Currency Bond Fund
+ 4874174EMLCC   48     Renta Fija                                    Candriam - Bonds EM Debt Local Currencies
+ 5275502U1193   52     Renta Fija                                               Aktia EM Frontier Bond+ CapCap
+ 5274262F6624   52     Renta Fija                               Global Evolution Funds - Frontier Markets Fund
+ 5275152LU084   52     Renta Fija                          Schroder - Selection Fund China Local Currency Bond
+ 5274082LU201   52     Renta Fija                                                 Invesco - EM Local Debt Fund
+ 5274122FK0P9   52     Renta Fija                                     Pimco - Emerging Markets Local Bond Fund
+ 52WELI2NVR20   52     Renta Fija                                        Wellington - Emerging Local Debt Fund
+ 5274472F3543   52     Renta Fija                                                DPAM L - EM  Sustainable Debt
+ 52DTRG2EDMLC   52     Renta Fija                                                      DMS - EM Local Currency
+ 5274742F8681   52     Renta Fija                                                         Lemaik - Local Bonds
+ 5274352INVDY   52     Renta Fija                                      Investec Luxembourg - EM Local Currency
+ 084005900015   08     Renta Fija                                                           Gobierno de México
+ 084005900056   08     Renta Fija                                                           Gobierno de México
+ 0840059000B2   08     Renta Fija                                                           Gobierno de México
+ 0840059000CO   08     Renta Fija                                                           Gobierno de México
+ 0840059000D8   08     Renta Fija                                                           Gobierno de México
+ 0840059000U2   08     Renta Fija                                                           Gobierno de México
+ 0840059000F3   08     Renta Fija                                                           Gobierno de México
+ 0840059000G1   08     Renta Fija                                                           Gobierno de México
+ 0840059000H9   08     Renta Fija                                                           Gobierno de México
+ 0840059001F1   08     Renta Fija                                                           Gobierno de México
+ 0840059000J5   08     Renta Fija                                                           Gobierno de México
+ 0840059000L1   08     Renta Fija                                                           Gobierno de México
+ 0840059000N7   08     Renta Fija                                                           Gobierno de México
+ 0840059000P2   08     Renta Fija                                                           Gobierno de México
+ 0840059000Q0   08     Renta Fija                                                           Gobierno de México
+ 0840059001D6   08     Renta Fija                                                           Gobierno de Mexico
+ 0840059001E4   08     Renta Fija                                                           Gobierno de Mexico
+ 0840059000R8   08     Renta Fija                                                           Gobierno de México
+ 084005900GF0   08     Renta Fija                                                           Gobierno de México
+ 084005900OA5   08     Renta Fija                                                           Gobierno de México
+ 084005900M95   08     Renta Fija                                                           Gobierno de México
+ 084005900GL8   08     Renta Fija                                                           Gobierno de México
+ 084005900GV7   08     Renta Fija                                                           Gobierno de México
+ 084005900GW5   08     Renta Fija                                                           Gobierno de México
+ 084005900H43   08     Renta Fija                                                           Gobierno de México
+ 084005900H50   08     Renta Fija                                                           Gobierno de México
+ 084005900HH4   08     Renta Fija                                                           Gobierno de México
+ 084005900HR3   08     Renta Fija                                                           Gobierno de México
+ 084005900JZ2   08     Renta Fija                                                           Gobierno de México
+ 084005900K22   08     Renta Fija                                                           Gobierno de México
+ 084005900KJ4   08     Renta Fija                                                           Gobierno de México
+ 084005900KL0   08     Renta Fija                                                           Gobierno de México
+ 084005900LR5   08     Renta Fija                                                           Gobierno de México
+ 084005900LE3   08     Renta Fija                                                           Gobierno de México
+ 084005900NA7   08     Renta Fija                                                           Gobierno de México
+ 084005900NO8   08     Renta Fija                                                           Gobierno de México
+ 084005900N52   08     Renta Fija                                                           Gobierno de México
+ 0840059MCET2   08     Renta Fija                                                           Gobierno de México
+ 084005900OK4   08     Renta Fija                                                           Gobierno de México
+ 08400590CO78   08     Renta Fija                                                           Gobierno de México
+ 084005900078   08     Renta Fija                                                           Gobierno de México
+ 0840059000Y4   08     Renta Fija                                                           Gobierno de México
+ 084005900M38   08     Renta Fija                                                           Gobierno de México
+ 084005900MQ5   08     Renta Fija                                                           Gobierno de México
+ 084005900MJ0   08     Renta Fija                                                           Gobierno de México
+ 084015T25972   08     Renta Fija                                                        Gobierno de Sudáfrica
+ 084015T96173   08     Renta Fija                                                        Gobierno de Sudáfrica
+ 084007XJTJL3   08     Renta Fija                                                              RFLB 7 01/25/23
+ 4975141HMPSX   49     Renta Fija                                                           Fondo HMC II (PEN)
+ 4911021PYME1   49     Renta Fija                                                              Compass - Pymes
+ 4911021PYMR2   49     Renta Fija                                                            Compass - Pymes 2
+ 4911021PYMR3   49     Renta Fija                                                            Compass - Pymes 3
+ 4911011FCDS1   49     Renta Fija                                                  Fondo Credicorp Deuda Soles
+ 4911011FCDS2   49     Renta Fija                                               Fondo Credicorp Deuda Soles II
+ 4911011CCDTI   49     Renta Fija                                     Fondo Credicorp Deuda Titulizada Clase C
+ 4975142HMCPD   49     Renta Fija                                                           Fondo HMC II (USD)
+ 4911141MIND1   49     Renta Fija                                                     Macrocapitales SAFI S.A.
+ 4975141HMCSY   49     Renta Fija                                                                Fondo HMC PEN
+ 4911181HMCSY   49     Renta Fija                                                                Fondo HMC PEN
+ 560001115G16   56     Renta Fija                                                             Gobierno Central
+ 560001120L16   56     Renta Fija                                                             Gobierno Central
+ 640001109M17   64     Renta Fija                                                             Gobierno Central
+ 640001106F14   64     Renta Fija                                                             Gobierno Central
+ 640001106N14   64     Renta Fija                                                             Gobierno Central
+ 640001107G14   64     Renta Fija                                                             Gobierno Central
+ 640001107S17   64     Renta Fija                                                             Gobierno Central
+ 640001107Y15   64     Renta Fija                                                             Gobierno Central
+ 640001108E15   64     Renta Fija                                                             Gobierno Central
+ 640001108F18   64     Renta Fija                                                             Gobierno Central
+ 640001108M18   64     Renta Fija                                                             Gobierno Central
+ 640001108Y14   64     Renta Fija                                                             Gobierno Central
+ 640001109A15   64     Renta Fija                                                             Gobierno Central
+ 640001109F17   64     Renta Fija                                                             Gobierno Central
+ 640001109L15   64     Renta Fija                                                             Gobierno Central
+ 640001110A14   64     Renta Fija                                                             Gobierno Central
+ 640001110G17   64     Renta Fija                                                             Gobierno Central
+ 640001111D14   64     Renta Fija                                                             Gobierno Central
+ 640001111J15   64     Renta Fija                                                             Gobierno Central
+ 640001111S14   64     Renta Fija                                                             Gobierno Central
+ 640001112F15   64     Renta Fija                                                             Gobierno Central
+ 640001112J14   64     Renta Fija                                                             Gobierno Central
+ 640001113D16   64     Renta Fija                                                             Gobierno Central
+ 640001113M14   64     Renta Fija                                                             Gobierno Central
+ 640001115A14   64     Renta Fija                                                             Gobierno Central
+ 640001115E15   64     Renta Fija                                                             Gobierno Central
+ 640001115O15   64     Renta Fija                                                             Gobierno Central
+ 640001116F17   64     Renta Fija                                                             Gobierno Central
+ 640001116O14   64     Renta Fija                                                             Gobierno Central
+ 640001117G17   64     Renta Fija                                                             Gobierno Central
+ 640001127D16   64     Renta Fija                                                             Gobierno Central
+ 770001105M15   77     Renta Fija                                                             Gobierno Central
+ 640001115D16   64     Renta Fija                                                             Gobierno Central
+ 640001112Y16   64     Renta Fija                                                             Gobierno Central
+ 640001110N16   64     Renta Fija                                                             Gobierno Central
+ 640001106A17   64     Renta Fija                                                             Gobierno Central
+ 640001113L17   64     Renta Fija                                                             Gobierno Central
+ 640001108S16   64     Renta Fija                                                             Gobierno Central
+ 640001112O17   64     Renta Fija                                                             Gobierno Central
+ 640001113O16   64     Renta Fija                                                             Gobierno Central
+ 640001106L17   64     Renta Fija                                                             Gobierno Central
+ 640001105E17   64     Renta Fija                                                             Gobierno Central
+ 640001109E18   64     Renta Fija                                                             Gobierno Central
+ 640001117N16   64     Renta Fija                                                             Gobierno Central
+ 640001113F18   64     Renta Fija                                                             Gobierno Central
+ 640001112A18   64     Renta Fija                                                             Gobierno Central
+ 640001107M17   64     Renta Fija                                                             Gobierno Central
+ 640001115M17   64     Renta Fija                                                             Gobierno Central
+ 640001116Y17   64     Renta Fija                                                             Gobierno Central
+ 640001106J17   64     Renta Fija                                                             Gobierno Central
+ 640001110A17   64     Renta Fija                                                             Gobierno Central
+ 640001117A17   64     Renta Fija                                                             Gobierno Central
+ 640001124A17   64     Renta Fija                                                             Gobierno Central
+ 640001102Y17   64     Renta Fija                                                             Gobierno Central
+ 640001114S17   64     Renta Fija                                                             Gobierno Central
+ 640001112D17   64     Renta Fija                                                             Gobierno Central
+ 640001106F18   64     Renta Fija                                                             Gobierno Central
+ 640001106S18   64     Renta Fija                                                             Gobierno Central
+ 640001108N18   64     Renta Fija                                                             Gobierno Central
+ 011000112G33   01     Renta Fija                                                             Gobierno Central
+ 011000105Y15   01     Renta Fija                                                             Gobierno Central
+ 011000112B29   01     Renta Fija                                                             Gobierno Central
+ 011000112F29   01     Renta Fija                                                             Gobierno Central
+ 011000112F42   01     Renta Fija                                                             Gobierno Central
+ 011000112F55   01     Renta Fija                                                             Gobierno Central
+ 011000112G17   01     Renta Fija                                                             Gobierno Central
+ 011000112G20   01     Renta Fija                                                             Gobierno Central
+ 011000112G24   01     Renta Fija                                                             Gobierno Central
+ 011000112G26   01     Renta Fija                                                             Gobierno Central
+ 011000112G28   01     Renta Fija                                                             Gobierno Central
+ 011000112G31   01     Renta Fija                                                             Gobierno Central
+ 011000112G34   01     Renta Fija                                                             Gobierno Central
+ 011000112G35   01     Renta Fija                                                             Gobierno Central
+ 011000112G37   01     Renta Fija                                                             Gobierno Central
+ 011000112G39   01     Renta Fija                                                             Gobierno Central
+ 011000112G40   01     Renta Fija                                                             Gobierno Central
+ 011000112S23   01     Renta Fija                                                             Gobierno Central
+ 041000101J14   04     Renta Fija                                                             Gobierno Central
+ 041000104Y14   04     Renta Fija                                                             Gobierno Central
+ 041000104Y16   04     Renta Fija                                                             Gobierno Central
+ 041000113J15   04     Renta Fija                                                             Gobierno Central
+ 041000114F15   04     Renta Fija                                                             Gobierno Central
+ 041000114M15   04     Renta Fija                                                             Gobierno Central
+ 041000114O15   04     Renta Fija                                                             Gobierno Central
+ 041000115N14   04     Renta Fija                                                             Gobierno Central
+ 041000118O14   04     Renta Fija                                                             Gobierno Central
+ 0110001PEB40   01     Renta Fija                                                             Gobierno Central
+ 431000112G33   43     Renta Fija                                                             Gobierno Central
+ 4310001PEB40   43     Renta Fija                                                             Gobierno Central
+ 431000112B29   43     Renta Fija                                                             Gobierno Central
+ 431000112G20   43     Renta Fija                                                             Gobierno Central
+ 431000112G24   43     Renta Fija                                                             Gobierno Central
+ 431000112G26   43     Renta Fija                                                             Gobierno Central
+ 431000112G28   43     Renta Fija                                                             Gobierno Central
+ 431000112G31   43     Renta Fija                                                             Gobierno Central
+ 431000112G37   43     Renta Fija                                                             Gobierno Central
+ 4911021COORF   49     Renta Fija                        COMPASS - FONDO DE INVERSION OPORTUNIDADES RENTA FIJA
+ 4911021CORF2   49     Renta Fija      VINCI COMPASS- FONDO DE INVERSIÓN OPORTUNIDADES RENTA FIJA II (Serie C)
+ 4911021CORF1   49     Renta Fija                                                              60%Sob + 40%TTR
+ 041000118A15   04     Renta Fija                                                             Gobierno Central
+ 041000127L15   04     Renta Fija                                                             Gobierno Central
+ 011000112G32   01     Renta Fija                                                             Gobierno Central
+ 011000311D13   01     Renta Fija                                                             Gobierno Central
+ 011000312F18   01     Renta Fija                                                             Gobierno Central
+ 011000312F30   01     Renta Fija                                                             Gobierno Central
+ 011000312F40   01     Renta Fija                                                             Gobierno Central
+ 011000312F54   01     Renta Fija                                                             Gobierno Central
+ 011000312G46   01     Renta Fija                                                             Gobierno Central
+ 011000313J19   01     Renta Fija                                                             Gobierno Central
+ 011000313O24   01     Renta Fija                                                             Gobierno Central
+ 011000314A16   01     Renta Fija                                                             Gobierno Central
+ 011000330E14   01     Renta Fija                                                             Gobierno Central
+ 011000331E35   01     Renta Fija                                                             Gobierno Central
+ 011000308J16   01     Renta Fija                                                             Gobierno Central
+ 5260012EV107   52 Renta Variable                                                    State Street - Gold Trust
+ 5271112E5105   52 Renta Variable                                               BlackRock - iShares Gold Trust
+ 5271112EQ109   52 Renta Variable                                             BlackRock - iShares Silver Trust
+ 5270652EF106   52 Renta Variable                                                     VanEck - Gold Miners ETF
+ 5270652EU100   52 Renta Variable                                                     VanEck - Gold Miners ETF
+ 5270652EU589   52 Renta Variable                                                  VanEck - Junior Gold Miners
+ 5275282EY848   52 Renta Variable                                                Global X - Silvers Miners ETF
+ 5274862F9504   52 Renta Variable                                              Edmond de Rothschild - Big Data
+ 5270172AWXUS   52 Renta Variable                                                      Vanguard - ACWI ex - US
+ 5270172E2742   52 Renta Variable                                                              Vanguard - ACWI
+ 5270222GCONS   52 Renta Variable                                                          NN - Consumer Goods
+ 5270242INTCO   52 Renta Variable                                              DFA - International Core Equity
+ 5270404GLOHC   52 Renta Variable                                            Fidelity - Global Healthcare Fund
+ 5270414F4783   52 Renta Variable                                                   DWS - Global Agribusiness 
+ 5270414F1120   52 Renta Variable                                             DWS - Invest Global Agribusiness
+ 5270772FGV78   52 Renta Variable              Franklin Templeton - FTGF ClearBridge Infrastructure Value Fund
+ 5270942F5733   52 Renta Variable                                                  Pinebridge - Global Dynamic
+ 5270732F0NJ2   52 Renta Variable                                 BlackRock - Global Unconstrained Equity Fund
+ 5270732E5Y98   52 Renta Variable                                BlackRock - iShares Core MSCI World UCITS ETF
+ 5271112E7465   52 Renta Variable                                            BlackRock - iShares MSCI EAFE ETF
+ 5271112E8257   52 Renta Variable                                                BlackRock - iShares MSCI ACWI
+ 5271112E8240   52 Renta Variable                                    Blackrock - iShares MSCI ACWI ex U.S. ETF
+ 5271112EV464   52 Renta Variable                                        BlackRock - iShares ACWI - Low Carbon
+ 5271112EC608   52 Renta Variable                  BlackRock - iShares World ex US Carbon Transition Readiness
+ 5275332JJ945   52 Renta Variable                  Baillie Gifford & Co Ltd - Worldwide Health Innovation Fund
+ 5274082CONST   52 Renta Variable                                      Invesco - Global Consumer Trends Fund S
+ 5274082GLEIS   52 Renta Variable                                             Invesco - Global Consumer Trends
+ 5273884CONSU   52 Renta Variable                                              Robeco - Global Consumer Trends
+ 5275122EG706   52 Renta Variable                                                          Invesco - Solar ETF
+ 5275562F4898   52 Renta Variable                          NS Partners - Diversified Growth Company GCC Equity
+ 5276702F8117   52 Renta Variable                                 Ninety One - Global Natural Resources Fund I
+ 5276702INGDR   52 Renta Variable                                 Ninety One - Global Natural Resources Fund A
+ 5276672F0093   52 Renta Variable                                               HSBC - Frontier Markets Equity
+ 5273882F5578   52 Renta Variable                                 Robeco - QI Emerging Markets Active Equities
+ 5271112CANAD   52 Renta Variable                                              BlackRock - iShares MSCI Canada
+ 5271112AUSTR   52 Renta Variable                                          BlackRock - iShares MSCI Australia 
+ 5271112NEWZL   52 Renta Variable                                         BlackRock - iShares MSCI New Zealand
+ 5270172E2874   52 Renta Variable                                                       Vanguard - FTSE Europe
+ 5270194SCEUR   52 Renta Variable                                           Schroders - European Opportunities
+ 52751942546L   52 Renta Variable                                          Joh Berenberg - European Focus Fund
+ 5275194F2546   52 Renta Variable                                          Joh Berenberg - European Focus Fund
+ 5275504F2546   52 Renta Variable                                          Joh Berenberg - European Focus Fund
+ 52COMG4QNN83   52 Renta Variable                                           Comgest- Europe Opportunities Fund
+ 5270292F85G6   52 Renta Variable                                                 Investec - European Equities
+ 5270474F8182   52 Renta Variable                                                    Allianz - Wachstum Europa
+ 52COMG4N3467   52 Renta Variable                                            Comgest - European Dynamic Growth
+ 527049485137   52 Renta Variable                                                   Vontobel - European Equity
+ 5271112E7861   52 Renta Variable                                                   BlackRock - iShares Europe
+ 5271112E9180   52 Renta Variable                                   BlackRock - iShares MSCI Europe Financials
+ 5273874F4273   52 Renta Variable                                           Fidelity - European Dynamic Growth
+ 5273956E5VV1   52 Renta Variable                                                       Vanguard - Europe UCIT
+ 5274136F2800   52 Renta Variable                                               Invesco - European Equity Fund
+ 5270884SGWEU   52 Renta Variable                                          JP Morgan - Europe Strategic Growth
+ 5276846FQVT8   52 Renta Variable                                Liontrust - Liontrust European Dynamic Fund S
+ 5276846FM1M7   52 Renta Variable                               Liontrust - Liontrust European Dynamic Fund II
+ 5275234F1560   52 Renta Variable                                                  MSIM - European Opportunity
+ 5270194EURVA   52 Renta Variable                                                   Schroders - European Value
+ 5270734EUVAF   52 Renta Variable                            BlackRock - iShares Edge MSCI Europe Value Factor
+ 5273974E3308   52 Renta Variable                                                     DB Platinum - CROCU Euro
+ 5273974F3782   52 Renta Variable                                                     DB Platinum - CROCU Euro
+ 5270414CROCI   52 Renta Variable                                                     DB Platinum - CROCU Euro
+ 5274566FYND8   52 Renta Variable                                 Jupiter Unit Trust - Asian Income Fund I GBP
+ 5274564LA16C   52 Renta Variable                           Jupiter Unit Trust - European Smaller Companies I 
+  5274566EURG   52 Renta Variable                                         Jupiter Unit Trust - European Growth
+  5274566EURO   52 Renta Variable                                           Jupiter Unit Trust - European Fund
+ 5274564JEURG   52 Renta Variable                                         Jupiter Unit Trust - European Growth
+ 5275064CAELE   52 Renta Variable                                                     Candriam  SICAV - Europe
+ 5273874EURDG   52 Renta Variable                                           Fidelity - European Dynamic Growth
+ 5274504EUREQ   52 Renta Variable                                             Acadian  - European Equity UCITS
+ 5277324FC1W6   52 Renta Variable                                  Premier Miton - European Opportunities Fund
+ 5277336FM1M7   52 Renta Variable                                                 Liontrust - European Dynamic
+ 5270194EUREQ   52 Renta Variable                                                      Schroders - Euro Equity
+ 5270224F8686   52 Renta Variable                                                      NN - Euro High Dividend
+ 5270324F9339   52 Renta Variable                                  Janus Henderson - Continental European Fund
+ 5270414F7722   52 Renta Variable                                                           DWS - Top Euroland
+ 5274244F1260   52 Renta Variable                                      Janus Henderson - Horizon Euroland Fund
+ 5270474F8219   52 Renta Variable                                             Allianz - Euroland Equity Growth
+ 5270474F8984   52 Renta Variable                                                  Allianz - Wachstum Euroland
+ 5270734EQG56   52 Renta Variable                                      BlackRock - iShares Core MSCI EMU UCITS
+ 5270734EG562   52 Renta Variable                                  BlackRock - iShares Core MSCI EMU UCITS ETF
+ 5270734EL3W7   52 Renta Variable                                      BlackRock - iShares Euro STOXX 50 UCITS
+ 5270854F1002   52 Renta Variable                                             Threadneedle - European Equities
+ 5275552EQ191   52 Renta Variable                                              JP Morgan - Betabuilders Europe
+ 5271112E6608   52 Renta Variable                                        BlackRock - iShares MSCI Eurozone ETF
+ 5271112EV639   52 Renta Variable                           BlackRock - iShares European Monetary Union Hedged
+ 5271116EEURO   52 Renta Variable                                BlackRock - iShares MSCI Easter Europe Capped
+ 5272872EX701   52 Renta Variable                                            WisdomTree - Europa Hedged Equity
+ 5273976E9477   52 Renta Variable                                                       Xtrackers -  MSCI EMU 
+ 52GAML4ECIEA   52 Renta Variable                                                     GAM - Continental Europe
+ 52GAML4FTFW2   52 Renta Variable                                                     GAM - Continental Europe
+ 5270736FDFD7   52 Renta Variable                                               BlackRock - Sustainable Europe
+ 5274084F6545   52 Renta Variable                                                  Invesco  - Euro Equity Fund
+ 5274186F1948   52 Renta Variable                                        Man GLG - Continental European Growth
+ 5271284E8930   52 Renta Variable                             BlackRock - iShares Euro Stoxx Banks 30-15 UCITS
+ 52INVE4CESEA   52 Renta Variable                                     Invesco - Continental European Small Cap
+ 5274134CESEA   52 Renta Variable                                     Invesco - Continental European Small Cap
+ 5273952EUZSI   52 Renta Variable                                              Vanguard - Eurozone Stock Index
+ 5271112E6699   52 Renta Variable                                                       BlackRock - iShares UK
+ 5275282EY319   52 Renta Variable                                                            Global X - Greece
+ 5270184JBGER   52 Renta Variable                                      GAM / Julius Baer - German Focus Equity
+ 5270474ALALE   52 Renta Variable                                                  Allianz - Concentra Germany
+ 5270474ALLGR   52 Renta Variable                                                      Allianz - German Equity
+ 5270856UKEQI   52 Renta Variable                                         Threadneedle - UK Equity Income Fund
+ 5271112E6814   52 Renta Variable                                     BlackRock - iShares MSCI Netherlands ETF
+ 5271112E6764   52 Renta Variable                                                    BlackRock - iShares Spain
+ 5271112E6806   52 Renta Variable                                        BlackRock - iShares MSCI Germany Fund
+ 5271112E6855   52 Renta Variable                                               BlackRock - iShares MSCI Italy
+ 5271112FRANC   52 Renta Variable                                              BlackRock - iShares MSCI France
+ 5272872ALEMI   52 Renta Variable                                             WisdomTree - Germany Hedged Fund
+ 5273874F8985   52 Renta Variable                                                       Fidelity - Iberia Fund
+ 5273874FIBER   52 Renta Variable                                                       Fidelity - Iberia Fund
+ 5273986E5574   52 Renta Variable                                            Amundi ETF - MSCI Spain UCITS ETF
+ 5274136F3115   52 Renta Variable                                              Invesco - UK Opportunities Fund
+ 52EDMG4SPAIN   52 Renta Variable                                      EDM International - Spanish Equity Fund
+ 52EDMG4INVES   52 Renta Variable                                                  EDM International - FI Fund
+ 5270464BPESC   52 Renta Variable                                            Parvest - Equity Europe Small Cap
+ 5275504F6750   52 Renta Variable                                            Joh Berenberg- European Small Cap
+ 52751946750L   52 Renta Variable                                            Joh Berenberg- European Small Cap
+ 5270324JHESC   52 Renta Variable                                        Janus Henderson - European Small Caps
+ 5275194BERSC   52 Renta Variable                                              Berenberg - European Small Caps
+ 52COMG4QNP08   52 Renta Variable                                        Comgest  - European Growth Small Caps
+ 5270434F2486   52 Renta Variable                                                     AXA  - Europe Small Caps
+ 5270854TSMEQ   52 Renta Variable                                    Threadneedle - European Smaller Companies
+ 5274104F8932   52 Renta Variable                                      Groupama - Avenir Euro (Mid Small Caps)
+ 5274104AVEUR   52 Renta Variable                         Groupama - G Fund Avenir Europe (Mid Small Caps) - C
+ 5274104AVEAC   52 Renta Variable                         Groupama - G Fund Avenir Europe (Mid Small Caps) - A
+ 5275104LU126   52 Renta Variable                                 Credit Suisse - Europe Small Caps Index Fund
+ 52CRSU4EURSC   52 Renta Variable                                 Credit Suisse - Europe Small Caps Index Fund
+ 5274294F1538   52 Renta Variable                                              BGFI2ER - Japan Equity Flexible
+ 5277445FGVH8   52 Renta Variable                                           Lazard - Japanese Strategic Equity
+ 5277285FGVH8   52 Renta Variable                                           Lazard - Japanese Strategic Equity
+ 5270132F4904   52 Renta Variable                                            JP Morgan - Japan Equity Fund - C
+5270132F56110   52 Renta Variable                                            JP Morgan - Japan Equity Fund - I
+ 5270185F0537   52 Renta Variable                                             GAM / Julius Baer - Japan Equity
+ 5270195F4053   52 Renta Variable                                                   Schroders - Japanes Equity
+ 5270805F9898   52 Renta Variable                                           Pictet - Japanese Equity Selection
+ 5270252F6294   52 Renta Variable                                                   Aberdeen - Japanese Equity
+ 5270382PJAPE   52 Renta Variable                                           Amundi / Pioneer - Japanese Equity
+ 5270732E5YX2   52 Renta Variable                                BlackRock - iShares Core MSCI Japan UCITS ETF
+ 5271112E8487   52 Renta Variable                                               BlackRock - iShares MSCI Japan
+ 5273865FTL69   52 Renta Variable                            Nomura Funds Ireland - Japan Strategic Value Fund
+ 5275246FLC77   52 Renta Variable                                            Legg Mason - IF Japan Equity Fund
+ 5271112V8862   52 Renta Variable                                        BlackRock - iShares MSCI Japan Hedged
+ 5272872EW851   52 Renta Variable                                             WisdomTree - Japan Hedged Equity
+ 5273952EPGT3   52 Renta Variable                                                        Vanguard - Japan UCIT
+ 5273952JAPIX   52 Renta Variable                                                    Vanguard - Japan Equities
+ 5273972E0974   52 Renta Variable                                                 Xtrackers - MSCI Japan UCITS
+ 5273972E3540   52 Renta Variable                                                 Xtrackers - MSCI Japan UCITS
+ 52EAIN2JAPEQ   52 Renta Variable                                              Eastspring - Japan Dynamic Fund
+ 5274095F6533   52 Renta Variable                                              Eastspring - Japan Dynamic Fund
+ 5270942PB572   52 Renta Variable                                           Pinebridge - Asia Ex-Japan All Cap
+ 52TOKI5JAPEF   52 Renta Variable                                         Tokio Marine - Japanese Equity Focus
+ 52INVE5JAPAN   52 Renta Variable                                          Invesco - Japanese Equity Core Fund
+ 5274085INJAD   52 Renta Variable                                          Invesco - Japanese Equity Advantage
+ 5274186JPALP   52 Renta Variable                                                   Man GLG - Japan Core Alpha
+ 5275552EQ217   52 Renta Variable                                                 JP Morgan - Japan Equity ETF
+ 5274374MGJAP   52 Renta Variable                                                             M&G - Japan Fund
+ 5274374JAPSC   52 Renta Variable                                                M&G - Japan Smaller Companies
+ 5274372JAPSC   52 Renta Variable                                                M&G - Japan Smaller Companies
+ 5272092F0792   52 Renta Variable                                                       Matthews - Japan Fund 
+ 5272092F5713   52 Renta Variable                                                       Matthews - Japan Fund 
+ 5274566GB445   52 Renta Variable                                            Jupiter Unit Trust - Japan Equity
+ 5274532FTGR4   52 Renta Variable                                                             GAM - Star Japan
+ 5272872JPSCD   52 Renta Variable                                        WisdomTree - Japan Small Cap Dividend
+ 52COMG5JAPGR   52 Renta Variable                                                       Comgest - Japan Growth
+ 5270255A0234   52 Renta Variable                                           Aberdeen - Japan Smaller Companies
+ 5270195F3982   52 Renta Variable                                       Schroders - Japanese Smaller Companies
+ 5275336F1492   52 Renta Variable           Baillie Gifford Overseas Growth Funds - Japanese Smaller Companies
+ 5274242JPYSC   52 Renta Variable                                 Janus Henderson - Japanese Smaller Companies
+ 5270465F0075   52 Renta Variable                                               BNP Paribas - Japan Small Caps
+ 5274245YJPSC   52 Renta Variable                                       Janus Henderson  Horizon - Japanese SC
+ 5270942F9584   52 Renta Variable                                             Pinebridge - Japan Small Cap - Y
+ 5270945PBJSC   52 Renta Variable                                            Pinebridge - Japan Small Cap - Y3
+ 5273932EA854   52 Renta Variable                                                  SSGA Funds Management, Inc.
+ 5260012EX109   52 Renta Variable                                 State Street - Dow Jones Industrial Average 
+ 5260012E1030   52 Renta Variable                                                   State Street - S&P 500 ETF
+ 5260022E7598   52 Renta Variable                                       BlackRock - iShares Russell 1000 Value
+ 5270172E8413   52 Renta Variable                                                       Vanguard - S&P 500 ETF
+ 5270172E8744   52 Renta Variable                                                         Vanguard Total Value
+ 5270172EDVAP   52 Renta Variable                                             Vanguard - Dividend Appreciation
+ 5270172MCGRO   52 Renta Variable                                                    Vanguard - Mid Cap Growth
+ 5270172TOMKT   52 Renta Variable                                                Vanguard - Total Stock Market
+ 5270242F3819   52 Renta Variable                                           DFA - US Small Cap Value Portfolio
+ 5270242F3827   52 Renta Variable                                                     DFA - US Large Cap Value
+5270242USACOR   52 Renta Variable                                                       DFA - US Core Equity 1
+5270242USMALL   52 Renta Variable                                                 DFA - US Small Cap Portfolio
+ 5270462USMCP   52 Renta Variable                                                      Parvest - USA Small Cap
+ 5270732EMR08   52 Renta Variable                                       BlackRock - iShares Core S&P 500 UCITS
+ 5271112E7200   52 Renta Variable                                             BlackRock - iShares Core S&P 500
+ 5275122EV357   52 Renta Variable                                             Invesco S&P 500 Equal Weight ETF
+ 5271112E7655   52 Renta Variable                                         BlackRock - iShares Russell 2000 ETF
+ 5271112E5094   52 Renta Variable                           BlackRock - iShares US Carbon Transition Readiness
+ 5271112QUALU   52 Renta Variable                                         BlackRock - iShares MSCI USA Quality
+ 5275552EQ761   52 Renta Variable                                                 JPMorgan U.S. Quality Factor
+ 5271112USMIV   52 Renta Variable                                    BlackRock - iShares Russell Mid-Cap Value
+ 5275242LEGGM   52 Renta Variable                                                   Legg Mason - US Small Caps
+ 5271112VLUEU   52 Renta Variable                                           BlackRock - iShares MSCI USA Value
+ 5272872W3079   52 Renta Variable                                           WisdomTree - US Large Cap Dividend
+ 5273952EXRP0   52 Renta Variable                                                      Vanguard S&P 500 - UCIT
+ 5274042USLCP   52 Renta Variable                                           First Trust - US Mega Cap AlphaDEX
+ 5274042EX102   52 Renta Variable                           First Trust SMID Cap Rising Dividend Achievers ETF
+ 5270882JPUSV   52 Renta Variable                                                    JP Morgan - US Value Fund
+ 52WELL2USRES   52 Renta Variable                                              Wellington - US Research Equity
+    PROXYS2US   PR Renta Variable                                                                    FONDOS US
+ 5271112SPSMC   52 Renta Variable                                  BlackRock - iShares S&P Small-Cap 600 Value
+ 5274162E4151   52 Renta Variable                                         Ossiam - Shiller Barclays Cape Value
+ 5271112E7804   52 Renta Variable                                       BlackRock - iShares Core S&P Small Cap
+ 5271282GALLO   52 Renta Variable                                           BlackRock - Global Allocation Fund
+ 5272872USDGQ   52 Renta Variable                                      WisdomTree - US Quality Dividend Growth
+ 5271112MULTI   52 Renta Variable                                BlackRock - iShares Edge MSCI Multifactor USA
+ 5275122EV134   52 Renta Variable                                            Invesco - Wilderhill Clean Energy
+ 5274122STOCK   52 Renta Variable                                                       Pimco - StockPLUS Fund
+ 5273932ER853   52 Renta Variable                                                 SSGA - S&P 600 Small Cap ETF
+ 5273882RGCTI   52 Renta Variable                                                     Robeco - Consumer Trends
+ 5273932EY308   52 Renta Variable                                State Street - Consumer Staples Select Sector
+ 5260012E3080   52 Renta Variable                                State Street - Consumer Staples Select Sector
+ 5260012E4070   52 Renta Variable                          State Street - Consumer Discretionary Select Sector
+ 5260012RETAI   52 Renta Variable                                                State Street - S&P Retail ETF
+ 5273932EY852   52 Renta Variable                          State Street - Communication Services Select Sector
+ 5260012EA698   52 Renta Variable                                                State Street - Regional Banks
+ 5260012EY605   52 Renta Variable                                      State Street - Financials Select Sector
+ 5271112E7770   52 Renta Variable                                       BlackRock - iShares Financial Services
+ 5271112E8778   52 Renta Variable                                        BlackRock - iShares US Regional Banks
+ 5275122EE628   52 Renta Variable                                                       Invesco LLC - US Banks
+ 5270732ENQZ4   52 Renta Variable                                 BlackRock - iShares S&P 500 Financials UCITS
+ 5274172CACEL   52 Renta Variable                                                   CACELBV LX - Biotechnology
+ 5260012E2090   52 Renta Variable                                      State Street - Healthcare Select Sector
+ 5273932EA581   52 Renta Variable                                               XHE US - Health Care Equipment
+ 5271112E7325   52 Renta Variable                             BlackRock - iShares S&P Global Healthcare Sector
+ 5271112E8810   52 Renta Variable                                       BlackRock - iShares US Medical Devices
+ 5271112EUSHC   52 Renta Variable                                             BlackRock - iShares US Heathcare
+ 5274042US337   52 Renta Variable                                  First Trust - Arca Biotechnology Index Fund
+ 5260012A8889   52 Renta Variable                                              State Street - Homebuilders ETF
+ 5260012EY704   52 Renta Variable                                      State Street - Industrial Select Sector
+ 5271112E8752   52 Renta Variable                             BlackRock - iShares DJ US Home Construction Fund
+ 5271112TRANS   52 Renta Variable                                   BlackRock - iShares Transportation Average
+ 5270432F2994   52 Renta Variable                                 AXA - World Funds Framligton Digital Economy
+ 5277592EQ807   52 Renta Variable                                         ARK - Space & Defense Innovation ETF
+ 5275102CSGDE   52 Renta Variable                                               Credit Suisse - Digital Health
+ 5260012EA862   52 Renta Variable                                  State Street - Semiconductors Select Sector
+ 5260012EY803   52 Renta Variable                                      State Street - Technology Select Sector
+ 5259252EG498   52 Renta Variable                                      Roundhill Financial - Magnificent Seven
+ 5270172A7028   52 Renta Variable                                            Vanguard - Information Technology
+ 5270802F3332   52 Renta Variable                                                              Pictet Robotics
+ 5270802PTDIG   52 Renta Variable                                                             Pictet - Digital
+ 5274042EX846   52 Renta Variable                                       First Trust - Nasdaq Cybersecurity ETF
+ 5270474GAIWT   52 Renta Variable                                            Allianz - Artificial Intelligence
+ 52751023193L   52 Renta Variable                                    Credit Suisse - Lux Digital Health Equity
+ 5275282EY236   52 Renta Variable                          Global X - Data Center & Digital Infrastructure ETF
+ 5274042ER704   52 Renta Variable                        AIRR US - First Trust American Industrial Rennaisance
+ 5275282EY673   52 Renta Variable                                     Global X U.S. Infrastructure Development
+ 5274042EA108   52 Renta Variable                      First Trust NASDAQ Clean Edge Smart Grid Infrastructure
+ 5275522EX192   52 Renta Variable                                    SKYY US - First Trust Cloud Computing ETF
+ 5271112E7515   52 Renta Variable                          BlackRock - iShares S&P NA Technology-Software Fund
+ 5275122EG649   52 Renta Variable                                                     Invesco - Nasdaq 100 ETF
+ 5275322EQM38   52 Renta Variable                                          INVESCO - Nasdaq-100 Swap UCITS ETF
+ 5274722KFVG8   52 Renta Variable                                  Krane - CICC China 5G and Semiconductor ETF
+ 5271112E7531   52 Renta Variable                                           BlackRock - iShares NA Tech-Multim
+ 5271112ISQQQ   52 Renta Variable                                 BlackRock - iShares Nasdaq Biotechnology ETF
+ 5270652EF676   52 Renta Variable                                                     VanEck Semiconductor ETF
+ 5270652EH821   52 Renta Variable                                        VanEck Vectors Digital Transformation
+ 5271112E7523   52 Renta Variable                                   BlackRock - iShares PHLX Semiconductor ETF
+ 5272872US977   52 Renta Variable                                                 WisdomTree - Cloud Computing
+ 5272872EY477   52 Renta Variable                                                  WisdomTree - Quality Growth
+ 5275322ESA8K   52 Renta Variable                                      Invesco - Nasdaq 100 Equal Weight UCITS
+ 5275122EE103   52 Renta Variable                                                   Invesco - Power Shares QQQ
+ 5260002EE103   52 Renta Variable                                                   Invesco - Power Shares QQQ
+ 5274292E2260   52 Renta Variable                                           Black Rock - World Technology Fund
+ 5275122V7203   52 Renta Variable                                                Invesco - DYNAMIC LEISURE AND
+ 5274042EE302   52 Renta Variable                                                 First Trust - DJI Index Fund
+ 5272872Y5437   52 Renta Variable                      WisdomTree - Artificial Intelligence and Innovation ETF
+ 5274722KARS0   52 Renta Variable                           Krane - KElectric Vehicles and Future Mobility ETF
+ 5260012EY886   52 Renta Variable                                       State Street - Utilities Select Sector
+ 5270172A8760   52 Renta Variable                                                     Vanguard - Utilities ETF
+ 52MSIM2CA24X   52 Renta Variable                                        MSIM - Emerging Leaders Equity Fund Z
+ 527417246594   52 Renta Variable                                             Candriam - Sustainable Equity EM
+ 5270172E2858   52 Renta Variable                                       Vanguard - Emerging Markets Index Fund
+ 5270242EMECO   52 Renta Variable                                                         DFA - EM Core Equity
+ 527025212106   52 Renta Variable                                           Aberdeen - Emerging Markets Equity
+ 527040275426   52 Renta Variable                                          Fidelity - Emerging Markets -Retail
+ 5270492F0703   52 Renta Variable                                           Vontobel - Emerging Markets Equity
+ 5271112E6533   52 Renta Variable                            BlackRock - iShares MSCI Emerging Markets Min Vol
+ 5271112E7234   52 Renta Variable                                   BlackRock - iShares MSCI Emerging Markets 
+ 5271112EG764   52 Renta Variable                           BlackRock - iShares MSCI Emerging Markets ex China
+ 5270732E4GZ6   52 Renta Variable                 BlackRock - iShares Core MSCI Emerging Markets IMI UCITS ETF
+ 5274042FEMUS   52 Renta Variable                                    First Ttrust - Emerging Markets Alpha Dex
+ 5271112EG103   52 Renta Variable                           BlackRock - iShares Core MSCI Emerging Markets ETF
+ 5272872X5784   52 Renta Variable                                WisdomTree - Emerging Markets ex. State-Owned
+ 5273872FIDEM   52 Renta Variable                                           Fidelity - Emerging Markets - Inst
+ 5273872F0606   52 Renta Variable                          Fidelity - Sustainable Emerging Markets Equity Fund
+ 5270882EMIUS   52 Renta Variable                                                 JP Morgan - Emerging Markets
+ 5273884F3049   52 Renta Variable                                      Robeco - Emerging Conservative Equities
+ 5273932EMERG   52 Renta Variable                                            SSGA - Defensive Emerging Markets
+ 5273932EX509   52 Renta Variable                                                      SSGA - Emerging Markets
+ 5270252ABEEM   52 Renta Variable                                      Aberdeen - Emerging Markets Equity Fund
+ 5270182JBEME   52 Renta Variable                                  GAM / Julius Baer - Emerging Markets Equity
+ 52ALLB2EMGRO   52 Renta Variable                                 Alliance Bernstein - Emerging Markets Growth
+ 52NORD4EMSTR   52 Renta Variable                                               Nordea - Emerging Stars Equity
+ 5273984A9676   52 Renta Variable                                                Amundi - ETF Emerging Market 
+ 5274812ASHFM   52 Renta Variable                                 Ashmore - Emerging Markets Frontier Equities
+ 5272872W2816   52 Renta Variable                             WisdomTree - Emerging Markets Small Cap Dividend
+ 5271112FRONT   52 Renta Variable                                BlackRock - iShares MSCI Frontier Markets 100
+ 5273982AEEMF   52 Renta Variable                                               Amundi - Equity Emerging Focus
+ 52NORD2EMSEF   52 Renta Variable                                          Nordea - Emerging Stars Equity Fund
+ 5270882F3560   52 Renta Variable                                                     JP Morgan - EM Small Cap
+ 4874174EMVCE   48 Renta Variable                                                       Candriam - EM Equities
+ 5275064CSEEM   52 Renta Variable                                            Candriam  SICAV - SRI EM Equities
+ 5270272F5825   52 Renta Variable                                        Goldman Sachs - Emerging Markets Core
+ 5270492F6660   52 Renta Variable                                        Vontobel MTX - EM Susrainable Leaders
+ 5271112XA24C   52 Renta Variable                                    BlackRock - iShares MSCI Saudi Arabia ETF
+ 5270082F8062   52 Renta Variable                                                         UBS -  Lux All China
+ 5270082F1215   52 Renta Variable                                                  UBS - China Opportunity - P
+ 5270082F8671   52 Renta Variable                                                 UBS - China Opportunity - A3
+ 5270252F5799   52 Renta Variable                                            Aberdeen - Standard China A-Share
+ 5270252F8374   52 Renta Variable                                               Aberdeen - Chinese Equity Fund
+ 5273882F0328   52 Renta Variable                                                     Robeco - Chinese A-Share
+ 5270264F7309   52 Renta Variable                                                   Robeco - Chineese Equities
+ 5275152F0769   52 Renta Variable                              Schroder - International Selection Fund China A
+ 5270402F0855   52 Renta Variable                                                Fidelity - Greater China Fund
+ 5273792E1879   52 Renta Variable                                                        DWS - CSI 300 China-A
+ 5270472AGIF2   52 Renta Variable                                                Allianz China A Opportunities
+ 5270472F4576   52 Renta Variable                                                            Allianz - China-A
+ 5271112E6871   52 Renta Variable                                                BlackRock - iShares Hong Kong
+ 5271112E7184   52 Renta Variable                          BlackRock - iShares FTSE/Xinhua China 25 Index Fund
+ 5274722KGRN2   52 Renta Variable                                      Krane - MSCI China Clean Technology ETF
+ 5271112EB671   52 Renta Variable                                               BlackRock - iShares MSCI China
+ 5274722KURE3   52 Renta Variable                                               Krane - MSCI China all China H
+ 5274722K4055   52 Renta Variable                                                       Krane - MSCI China 50 
+ 5274722E7306   52 Renta Variable                                              Krane - CSI China Internet Fund
+ 5274722E7694   52 Renta Variable                                     Krane - China Technology y Semiconductor
+ 5272092MICFX   52 Renta Variable                                                             Matthews - China
+ 5272092MACSM   52 Renta Variable                                                  Matthews - China Small Caps
+ 5272872X7194   52 Renta Variable                           WisdomTree - China ex-State-Owned Enterprises Fund
+ 5273112FXVT8   52 Renta Variable                                        Janus Henderson - China Opportunities
+ 52GAML2CHINA   52 Renta Variable                                                           GAM - China Equity
+ 5274082CHINA   52 Renta Variable                                               Invesco - Greater China Equity
+ 5270012F2664   52 Renta Variable                                             BNP Paribas - China Equity Class
+ 5274352CHINA   52 Renta Variable                                       Investec Luxembourg - All China Equity
+ 5270882LU205   52 Renta Variable                                 JP Morgan - China A Share Opportunities Fund
+ 5273882F7240   52 Renta Variable                                                    Robeco - Chinese Equities
+ 5275122EE800   52 Renta Variable                                               Invesco - China Technology ETF
+ 5270882F3877   52 Renta Variable                                               JP Morgan - Greater China Fund
+ 5270192F5998   52 Renta Variable                                              Schroders - Asian Opportunities
+ 5270192F9988   52 Renta Variable                                              Schroders - Asian Opportunities
+ 5270252F5910   52 Renta Variable                                           Aberdeen - Asian Smaller Companies
+ 5270464ASEXJ   52 Renta Variable                                       Parvest - Best Selection Asia Ex Japan
+ 5270472ALLEM   52 Renta Variable                                                      Allianz - Emerging Asia
+ 527049208755   52 Renta Variable                                               Vontobel - Asia Pacific Equity
+ 5271112E6665   52 Renta Variable                                    BlackRock - iShares MSCI Pacific Ex Japan
+ 5271112E8182   52 Renta Variable                                            BlackRock - iShares Asia Ex-Japan
+ 5272092F0834   52 Renta Variable                                                     Matthews - Pacific Tiger
+ 5272092MIAPX   52 Renta Variable                                                      Matthews - Asian Growth
+ 5272092MISMX   52 Renta Variable                                      Matthews - Asian Smaller Companies Fund
+ 5275336F6323   52 Renta Variable         Baillie Gifford & Co Ltd - Overseas Growth Funds ICVC - Pacific Fund
+ 52BRAF2BRADF   52 Renta Variable                                                BlackRock - Asian Dragon Fund
+ 52INVE4ASEQT   52 Renta Variable                                                  Invesco - Asian Equity Fund
+ 5270882ALCIA   52 Renta Variable                                        JP Morgan - Asia Ex-Japan Growth Fund
+ 5273882RBAST   52 Renta Variable                                                         Robeco - Asian Stars
+ 5275232F8604   52 Renta Variable                                                      MSIM - Asia Opportunity
+ 5274302ASIAN   52 Renta Variable                                                         Veritas - Asian Fund
+ 5270942F9527   52 Renta Variable                                        Pinebridge - Asia Ex-Japan Small Caps
+ 5270192SCHEC   52 Renta Variable                                                    Schroders - Emerging Asia
+ 5274302F65N6   52 Renta Variable                                                         Veritas - Asian Fund
+ 5273992F5753   52 Renta Variable                                 Wellington Luxembourg - Asia Technology Fund
+ 5270272F1107   52 Renta Variable                                       Goldman Sachs - India Equity Portfolio
+ 5271112EB614   52 Renta Variable                                                              India Small-Cap
+ 5275562FQ7C3   52 Renta Variable                                   Rams UT - India Equities Portfolio Fund II
+ 5273862HFF36   52 Renta Variable                                                       Nomura - Indian Equity
+ 5270772F0470   52 Renta Variable                                                Franklin Templeton India Fund
+ 5270192SCIND   52 Renta Variable                                                    Schroders - Indian Equity
+ 52UTII2C7R45   52 Renta Variable                                                          UTI - Indian Equity
+ 5270462BNPIN   52 Renta Variable                                                       Parvest - Equity India
+ 5276672F8135   52 Renta Variable                                                          HSBC - India Equity
+ 5274082F8388   52 Renta Variable                                                              Invesco - India
+ 5271112EB598   52 Renta Variable                                               BlackRock - iShares MSCI India
+ 5272092MIDNX   52 Renta Variable                                                             Matthews - India
+ 5270942FY6L5   52 Renta Variable                                               Pinebridge - India Equity Fund
+ 5273882F8861   52 Renta Variable                                             Robeco Luxembourg - India Equity
+ 5277022F1992   52 Renta Variable                        Jupiter Asset Management International - India Select
+ 5274082F9751   52 Renta Variable                                                              Invesco - India
+ 5270772TEMKO   52 Renta Variable                                              Franklin Templeton - Korea Fund
+ 5270882F3974   52 Renta Variable                                                JP Morgan - Korea Equity Fund
+ 5271112E6772   52 Renta Variable                                                    BlackRock - iShares Korea
+ 5259252EX320   52 Renta Variable                                                         Roundhill Memory ETF
+ 5272092KOREA   52 Renta Variable                                                             Matthews - Korea
+ 5271112MALAS   52 Renta Variable                                                  BlackRock - iShares Malasya
+ 5271112SINGA   52 Renta Variable                                           BlackRock - iShares MSCI Singapore
+ 5271112E6731   52 Renta Variable                                                   BlackRock - iShares Taiwan
+ 5270224EMEUR   52 Renta Variable                                                  NN - Emerging Europe Equity
+ 5270802PRUSI   52 Renta Variable                                                      Pictet - Russian Equity
+ 5270652EU506   52 Renta Variable                                                              VanEck - Russia
+ 5271112G7988   52 Renta Variable                                              BlackRock - iShares MSCI Russia
+ 5271112EPOLO   52 Renta Variable                                               BlackRock - iShares PoloniaETF
+ 5270224CZCHE   52 Renta Variable                                            NN L - International Czech Equity
+ 5270464F4267   52 Renta Variable                                                      Parvest - Equity Russia
+ 527023418073   52 Renta Variable                                                     Pictet - Emerging Europe
+ 5270194F2029   52 Renta Variable                                                  Schroders - Emerging Europe
+ 5275154F8101   52 Renta Variable                                               Schroder ISF - Emerging Europe
+ 5270414DBRZE   52 Renta Variable                                                     DWS - Brazilian Equities
+ 5270652EF825   52 Renta Variable                                                    VanEck - Brazil Small Cap
+ 5270652EU613   52 Renta Variable                                                    VanEck - Brazil Small Cap
+ 5271282EQ4R8   52 Renta Variable                                        BlackRock - iShares MSCI Brazil UCITS
+ 5271112E6400   52 Renta Variable                                              BlackRock - iShares MSCI Brazil
+ 5271112E9131   52 Renta Variable                                   BlackRock - iShares MSCI Brazil Small Caps
+ 5275282EE259   52 Renta Variable                                                     Global X - Argentina ETF
+ 5271112E6640   52 Renta Variable                                               BlackRock - iShares MSCI Chile
+ 5274972DI16R   52 Renta Variable                                   Larrainvial - Latin American Equity Fund I
+ 5270292F0472   52 Renta Variable                                   Investec - Latin America Smaller Companies
+ 5277132F2733   52 Renta Variable                          Carne Global - Moneda Latin America Small Caps Fund
+ 5270414DFC5I   52 Renta Variable                                  DWS - Invest Latin American Equities - FC50
+ 5270414F9401   52 Renta Variable                                    DWS - Invest Latin American Equities - IC
+ 5271112E7390   52 Renta Variable                                            BlackRock - iShares MSCI LATAM 40
+ 5272022F1437   52 Renta Variable                          Larrain Vial - Small & Mid Cap Latin America Equity
+ 5274742MONLA   52 Renta Variable                                           Moneda AM - Latin America Equities
+ 5273662MES44   52 Renta Variable                      Waystone - Credicorp Capital_Latin American Equity Fund
+ 52MDOM2MES44   52 Renta Variable                         MDO - Credicorp Capital - Latin American Equity Fund
+ 5270292LATAM   52 Renta Variable                                             Investec - Latin American Equity
+ 4A7482254332   4A Renta Variable Moneda S.A. Administradora General de Fondos - Certificado de suscripción OP
+ 5274822MSCLA   52 Renta Variable                                                       Moneda Small Cap Latam
+ 5271112E6822   52 Renta Variable                                              BlackRock - iShares MSCI Mexico
+  52GBMA9FEME   52 Renta Variable                                                                 GBM - Mexico
+ 5076822E0800   50 Renta Variable                                                     Van Eck - El Dorado Peru
+ 5470652E0800   54 Renta Variable                                                     Van Eck - El Dorado Peru
+ 5460042E8427   54 Renta Variable                                                BlackRock - iShares MSCI Peru
+ 3777582FPRIM   37 Renta Variable                                                                  FIBPRIME PE
+ 5260012EY100   52 Renta Variable                                       State Street - Materials Select Sector
+ 5270172MATER   52 Renta Variable                                                         Vanguard - Materials
+ 5275282EY830   52 Renta Variable                                                 Global X - Copper Miners ETF
+ 5270652EH805   52 Renta Variable                                   VanEck Rare Earth and Strategic Metals ETF
+ 5275282EY871   52 Renta Variable                                                Global X - Uranium Miners ETF
+ 5271112EG848   52 Renta Variable                BlackRock - iShares MSCI Global Metals & Mining Producers ETF
+ 5260012EA755   52 Renta Variable                                       State Street - S&P Metals & Mining ETF
+ 5260012E5069   52 Renta Variable                                          State Street - Energy Select Sector
+ 5274042EX127   52 Renta Variable                                                First Trust - AlphaDex Energy
+ 5277402F6R19   52     Renta Fija                                            Aegon High Yield Global Bond Fund
+ 5270496F7171   52     Renta Fija                                        Vontobel - Twentyfour Strategy Income
+ 5275322ECGJ3   52 Renta Variable                                                       Invesco - S&P500 UCITS
+ 5376614AIP5B   53   Alternativos                                       Antin Infrastructure Partners V-B SCSp
+ 5376894EQTI6   53   Alternativos                                       EQT Infrastructure VI (No.1) EUR SCSp.
+ 01100028EB48   01     Renta Fija                                                             Gobierno Central
+ 01100028EC21   01     Renta Fija                                                             Gobierno Central
+ 5273932ER556   52 Renta Variable                            State Street - Oil & Gas Exploration & Production
+ 5260012ER556   52 Renta Variable                                         State Street - Oil & Gas Exploration
+ 5270172ENERG   52 Renta Variable                                                            Vanguard - Energy
+  PROXYS2ENER   PR Renta Variable                                                                    Proxys FM
+ 5270652EF718   52 Renta Variable                                                    VanEck - Oil Services ETF
+ 5270652EU191   52 Renta Variable                                                    VanEck - Oil Services ETF
+ 5271112E8851   52 Renta Variable                  BlackRock - iShares US Oil & Gas Exploration and Production
+ 5271112I3412   52 Renta Variable                                        BlackRock - iShares Global Energy ETF
+ 5271112OEQ&S   52 Renta Variable                              BlackRock - iShares US Oil Equipment & Services
+ 5271112V3504   52 Renta Variable                                         BlackRock - iShares MSCI Agriculture
+ 5275512EF700   52 Renta Variable                                                        VanEck - Agribusiness
+[OK] Portafolio -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 Portafolio.xlsx
