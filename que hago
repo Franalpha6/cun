@@ -1,0 +1,18 @@
+Dame un codigo o bloques de codigo python para mejorar mi script "2. Dashboard Juntas de Accionistas - old", la idea es que no me devuelvas el script completo, ni me des explicaciones de nada, unicamente, necesito me devuelvas estos bloques de codigo que mejoren mi script para que yo manualmente los incorpore a mi script, a continuacion las mejoras para corregir esto: 
+1. El texto no cabe dentro del área (El nombre de la categoría con porcentaje mas pequeño sufre al quedar comprimido y visualmente pegado al borde.) para el primer chart del documento docx exportado correspondiente al "Total de JOAs y Distribución por Sector". Falta de contraste visual (El fondo gris claro tiene menos contraste con el texto blanco que los demás colores. Al reducirse el tamaño del área, el problema se acentúa y la legibilidad disminuye.)
+El rectángulo es extremadamente angosto (Al ser un treemap, el ancho es proporcional al porcentaje, por lo que los bloques que corresponden a porcentajes pequeños queda muy estrecho.)  
+2. Asimismo, en las lineas 985-986, necesito mejorarlo porque la fecha que debe mostrarse debe ser algo como "*El reporte ha sido elaborado con la informacion disponible al " + "ultimo día hábil del ultimo trimestre culminado", donde el ultimo trimestre culminado es por ejemplo si hoy estamos 11/08/2026, el ultimo trimestre culminado sería el segundo trimestre del 2026, es decir Junio 2026, y el ultimo dia habil de ese mes para ese año fue el "19 de junio del 2026."
+3. Necesito que para las palabras en español este documento tenga bien revisado a nivel ortografico y tildes (recordar que este documento admite palabras en ingles y español pero todo las palabras que el mismo script ya define, deben ser español)
+Entonces, devuelveme estos bloques de codigo que mejoren mi script para que yo manualmente los incorpore a mi script y las instrucciones claras para que con un control find sepa donde exactamente incorporar estos cambios, y no perderme , porque mi nivel de python es bajisimo.
+
+
+
+
+
+
+
+
+
+
+
+
