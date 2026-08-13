@@ -1,0 +1,429 @@
+G&P C5 = 2026-07-22 00:00:00
+[OK] Proxies: SBS=col 0, ISIN_proxy=col 7 en 'Reporte ASG Mensual'. (verifica que sean las correctas)
+valor dólar = 3.6555
+
+--- ISIN: rescate por proxy (VP.xlsm -> proxies) ---
+  Reales (VP)            : 1814
+  Resueltos por proxy    : 748
+  Sin ISIN tras intentar : 190
+  ISIN proxy compartidos por >1 SBS distinto: 26 caso(s)
+    (afecta el cruce EPU/ETF SOLO si además coinciden en Fondo/AFP/AssetClass/Strategy)
+      US4642873339: 213 SBS
+      01100028DF60: 83 SBS
+      US4642873909: 68 SBS
+      US4642887115: 46 SBS
+      US4642881829: 37 SBS
+      08400528AX90: 35 SBS
+      0840002CJZ59: 31 SBS
+      US4642887370: 31 SBS
+      US4642886950: 27 SBS
+      IE00B66F4759: 22 SBS
+      US92189H3003: 21 SBS
+      US4642887453: 19 SBS
+      US4642887297: 18 SBS
+      US4642873412: 17 SBS
+      US4642866085: 16 SBS
+      US4642872752: 12 SBS
+      08400623AV04: 9 SBS
+      US4642873255: 7 SBS
+      US4642898427: 6 SBS
+      US4642882579: 6 SBS
+      084003411726: 5 SBS
+      08400425EP60: 4 SBS
+      US4642872000: 4 SBS
+      US4642872919: 4 SBS
+      US4642883726: 2 SBS
+      US46434V6478: 2 SBS
+
+================  RAMA NORMAL  ================
+
+[52-CHECK NORMAL] sin clasificar por ÍNDICE=741 | por SBS=423 | rescatados por SBS=493
+  Rescatados (estaban en TD/SOB, el índice reseteado los marcaba fuera): {'52': 474, '49': 14, '48': 2, '54': 2, '50': 1}
+  [Asset Class ruido excluido del reporte] Derivados=345, Monedas=51
+[DEJADOS DE LADO NORMAL] instrumentos únicos perdidos=428 (con peso=46, sin peso=382)
+Fondo            F1        F2        F3
+AFP                                    
+Habitat    0.178911  0.114827  0.039508
+Integra    0.213025  0.120436  0.011599
+Prima      0.208863  0.119193  0.012888
+Profuturo  0.201412  0.101624  0.022459
+[DEJADOS DE LADO NORMAL] -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\Dejados de lado NORMAL.xlsx
+
+[VERIFICAR SBS2=04] 11 instrumento(s):
+         SBS           Nombre
+041000101J14 Gobierno Central
+041000104Y14 Gobierno Central
+041000104Y16 Gobierno Central
+041000113J15 Gobierno Central
+041000114F15 Gobierno Central
+041000114M15 Gobierno Central
+041000114O15 Gobierno Central
+041000115N14 Gobierno Central
+041000118O14 Gobierno Central
+041000118A15 Gobierno Central
+041000127L15 Gobierno Central
+
+[VERIFICAR SBS2=56] 2 instrumento(s):
+         SBS           Nombre
+560001115G16 Gobierno Central
+560001120L16 Gobierno Central
+
+[VERIFICAR SBS2=77] 1 instrumento(s):
+         SBS           Nombre
+770001105M15 Gobierno Central
+
+[SIN CLASIFICAR] 423 instrumento(s) no calzan en BU/TD/SOB (NORMAL):
+        N             AC_Dir                                                                                                                                                                                                                                                         Categoria
+SBS2                                                                                                                                                                                                                                                                                          
+08    286  [DMS, EMHC, EMLC]  [HCD_INT_DM_GOB_AUS, HCD_INT_DM_GOB_CAN, HCD_INT_DM_GOB_JPN, HCD_INT_DM_GOB_UK, HCD_INT_DM_GOB_US, HCD_INT_EM_GOB_BRA, HCD_INT_EM_GOB_CHI, HCD_INT_EM_GOB_COL, HCD_INT_EM_GOB_MEX, LCD_GOB_BRA, LCD_GOB_CHI, LCD_GOB_COL, LCD_GOB_MEX, LCD_GOB_RUS, LCD_GOB_SUD]
+64     56              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_CD]
+01     53              [PEG]                                                                                                                                                                                                                     [HCD_LOC_GOB_HC, PEN_NOM_GOB_LC, PEN_VAC_GOB]
+04     11              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_LC]
+43      9              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_LC]
+56      2              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_CD]
+PR      2            [INTER]                                                                                                                                                                                                                                       [COMM_EN_OG, RVI_DM_US_AGG]
+53      1                 []                                                                                                                                                                                                                                                           [ALT_D]
+51      1                 []                                                                                                                                                                                                                                                           [ALT_D]
+4A      1            [INTER]                                                                                                                                                                                                                                                 [RVI_EM_LATAM_FM]
+77      1              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_CD]
+
+[VERIFICAR SBS2=64] 56 instrumento(s) — nombres únicos:
+['Gobierno Central']
+
+[SIN CLASIFICAR] Detalle (SBS, SBS2, Asset Class, Nombre):
+         SBS SBS2  Asset Class                         Nombre
+53CCCC1CCCCC   53 Alternativos                            NaN
+51CCCC1CCCCC   51 Alternativos                            NaN
+0840016JD997   08   Renta Fija       Gobierno del Reino Unido
+084001682C90   08   Renta Fija       Gobierno del Reino Unido
+0840016R2809   08   Renta Fija       Gobierno del Reino Unido
+0840016L1D50   08   Renta Fija       Gobierno del Reino Unido
+084009B97495   08   Renta Fija          Gobierno de Australia
+084009B49302   08   Renta Fija          Gobierno de Australia
+084009B00535   08   Renta Fija          Gobierno de Australia
+084009BLWAG2   08   Renta Fija          Gobierno de Australia
+084009B17101   08   Renta Fija          Gobierno de Australia
+084009B75681   08   Renta Fija          Gobierno de Australia
+084009B83768   08   Renta Fija          Gobierno de Australia
+08401377N837   08   Renta Fija             Gobierno de Canada
+08401377N266   08   Renta Fija             Gobierno de Canada
+085905581R57   08   Renta Fija              Gobierno de Japon
+085905591P70   08   Renta Fija              Gobierno de Japon
+085905521PA1   08   Renta Fija              Gobierno de Japon
+085905551N57   08   Renta Fija              Gobierno de Japon
+085905541NA0   08   Renta Fija              Gobierno de Japon
+085905581NA2   08   Renta Fija              Gobierno de Japon
+0840002CJZ59   08   Renta Fija Gobierno de los Estados Unidos
+0840002CGM73   08   Renta Fija Gobierno de los Estados Unidos
+08400020TN81   08   Renta Fija Gobierno de los Estados Unidos
+08400020TQ13   08   Renta Fija Gobierno de los Estados Unidos
+0840002CNC19   08   Renta Fija Gobierno de los Estados Unidos
+0840002CHT18   08   Renta Fija Gobierno de los Estados Unidos
+0840002CJY84   08   Renta Fija Gobierno de los Estados Unidos
+0840002CJJ18   08   Renta Fija Gobierno de los Estados Unidos
+08400020TT51   08   Renta Fija Gobierno de los Estados Unidos
+  (mostrando 30 de 423; detalle completo en el Excel de 'Dejados de lado')
+[OK] Portafolio -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 Portafolio.xlsx
+[  43.4s] Portafolio escrito, entrando a par_bu
+[  45.1s] par_bu terminado
+[OK] BD1 -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 BD1.xlsx
+
+[DESCARTES] Resumen para rama NORMAL:
+
+--- Resumen por Etapa (conteo de SBS descartados) ---
+Etapa
+BU() - filtros Bottom-Up       1102
+Clasificación BU/TD/SOB         423
+EPU/ETF - generar_relacion      545
+Mapeo ISIN (VP.xlsm)            938
+df_result() - Fondo HAF1       1796
+df_result() - Fondo HAF2       1755
+df_result() - Fondo HAF3       1798
+df_result() - Fondo INF1       1808
+df_result() - Fondo INF2       1746
+df_result() - Fondo INF3       1822
+df_result() - Fondo PFF1       1848
+df_result() - Fondo PFF2       1792
+df_result() - Fondo PFF3       1845
+df_result() - Fondo RIF1       1829
+df_result() - Fondo RIF2       1785
+df_result() - Fondo RIF3       1868
+df_result() - Fondo SIF1       1715
+df_result() - Fondo SIF2       1609
+df_result() - Fondo SIF3       1723
+operaciones() - Asset Class       8
+
+--- Weight/valor diluido total por Etapa ---
+Etapa
+BU() - filtros Bottom-Up       0.000000e+00
+Clasificación BU/TD/SOB        0.000000e+00
+EPU/ETF - generar_relacion     0.000000e+00
+Mapeo ISIN (VP.xlsm)           0.000000e+00
+df_result() - Fondo HAF1      -1.734420e-04
+df_result() - Fondo HAF2      -3.129741e-20
+df_result() - Fondo HAF3      -1.760071e-05
+df_result() - Fondo INF1       0.000000e+00
+df_result() - Fondo INF2       0.000000e+00
+df_result() - Fondo INF3       0.000000e+00
+df_result() - Fondo PFF1      -1.193043e-04
+df_result() - Fondo PFF2      -7.888477e-08
+df_result() - Fondo PFF3      -1.994932e-17
+df_result() - Fondo RIF1      -6.324289e-08
+df_result() - Fondo RIF2      -7.477736e-08
+df_result() - Fondo RIF3      -2.737428e-10
+df_result() - Fondo SIF1      -6.619950e-05
+df_result() - Fondo SIF2      -3.333257e-08
+df_result() - Fondo SIF3      -8.394308e-06
+operaciones() - Asset Class    0.000000e+00
+
+--- Top 15 SBS con más Weight diluido (revisa el Excel para el resto) ---
+SBS
+ZMW             0.0
+011000105Y15    0.0
+011000112B29    0.0
+011000112F29    0.0
+011000112F42    0.0
+011000112F55    0.0
+011000112G17    0.0
+011000112G20    0.0
+011000112G24    0.0
+011000112G26    0.0
+PROXYS2ENER     0.0
+PLN             0.0
+PKR             0.0
+PHP             0.0
+NZD             0.0
+
+================  RAMA SOBERANOS  ================
+
+[52-CHECK SOBERANOS] sin clasificar por ÍNDICE=741 | por SBS=5 | rescatados por SBS=738
+  Rescatados (estaban en TD/SOB, el índice reseteado los marcaba fuera): {'52': 474, '08': 113, '64': 56, '01': 53, '49': 14, '04': 11, '43': 9, '48': 2, '56': 2, '54': 2, '77': 1, '50': 1}
+  [Asset Class ruido excluido del reporte] Derivados=345, Monedas=51
+[DEJADOS DE LADO SOBERANOS] instrumentos únicos perdidos=10 (con peso=0, sin peso=10)
+Fondo       F1   F2   F3
+AFP                     
+Habitat    0.0  0.0  0.0
+Integra    0.0  0.0  0.0
+Prima      0.0  0.0  0.0
+Profuturo  0.0  0.0  0.0
+[DEJADOS DE LADO SOBERANOS] -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\Dejados de lado SOBERANOS.xlsx
+
+[VERIFICAR SBS2=04] 11 instrumento(s):
+         SBS           Nombre
+041000101J14 Gobierno Central
+041000104Y14 Gobierno Central
+041000104Y16 Gobierno Central
+041000113J15 Gobierno Central
+041000114F15 Gobierno Central
+041000114M15 Gobierno Central
+041000114O15 Gobierno Central
+041000115N14 Gobierno Central
+041000118O14 Gobierno Central
+041000118A15 Gobierno Central
+041000127L15 Gobierno Central
+
+[VERIFICAR SBS2=56] 2 instrumento(s):
+         SBS           Nombre
+560001115G16 Gobierno Central
+560001120L16 Gobierno Central
+
+[VERIFICAR SBS2=77] 1 instrumento(s):
+         SBS           Nombre
+770001105M15 Gobierno Central
+
+[SIN CLASIFICAR] 5 instrumento(s) no calzan en BU/TD/SOB (SOBERANOS):
+      N   AC_Dir                    Categoria
+SBS2                                         
+PR    2  [INTER]  [COMM_EN_OG, RVI_DM_US_AGG]
+4A    1  [INTER]            [RVI_EM_LATAM_FM]
+51    1       []                      [ALT_D]
+53    1       []                      [ALT_D]
+
+[SIN CLASIFICAR] Detalle (SBS, SBS2, Asset Class, Nombre):
+         SBS SBS2    Asset Class                                                                       Nombre
+53CCCC1CCCCC   53   Alternativos                                                                          NaN
+51CCCC1CCCCC   51   Alternativos                                                                          NaN
+   PROXYS2US   PR Renta Variable                                                                    FONDOS US
+4A7482254332   4A Renta Variable Moneda S.A. Administradora General de Fondos - Certificado de suscripción OP
+ PROXYS2ENER   PR Renta Variable                                                                    Proxys FM
+  (mostrando 30 de 5; detalle completo en el Excel de 'Dejados de lado')
+[OK] Portafolio_S -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 Portafolio_S.xlsx
+[  22.7s] Portafolio escrito, entrando a par_bu
+[  24.9s] par_bu terminado
+[OK] BD1_S -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 BD1_S.xlsx
+
+[DESCARTES] Resumen para rama SOBERANOS:
+
+--- Resumen por Etapa (conteo de SBS descartados) ---
+Etapa
+BU() - filtros Bottom-Up       1102
+Clasificación BU/TD/SOB           5
+EPU/ETF - generar_relacion      545
+df_result() - Fondo HAF1       2198
+df_result() - Fondo HAF2       2162
+df_result() - Fondo HAF3       2210
+df_result() - Fondo INF1       2202
+df_result() - Fondo INF2       2152
+df_result() - Fondo INF3       2238
+df_result() - Fondo PFF1       2254
+df_result() - Fondo PFF2       2198
+df_result() - Fondo PFF3       2255
+df_result() - Fondo RIF1       2224
+df_result() - Fondo RIF2       2181
+df_result() - Fondo RIF3       2283
+df_result() - Fondo SIF1       2104
+df_result() - Fondo SIF2       2000
+df_result() - Fondo SIF3       2129
+operaciones() - Asset Class       8
+
+--- Weight/valor diluido total por Etapa ---
+Etapa
+BU() - filtros Bottom-Up       0.000000e+00
+Clasificación BU/TD/SOB        0.000000e+00
+EPU/ETF - generar_relacion     0.000000e+00
+df_result() - Fondo HAF1      -1.734420e-04
+df_result() - Fondo HAF2      -3.129741e-20
+df_result() - Fondo HAF3      -1.760071e-05
+df_result() - Fondo INF1       0.000000e+00
+df_result() - Fondo INF2       0.000000e+00
+df_result() - Fondo INF3       0.000000e+00
+df_result() - Fondo PFF1      -1.193043e-04
+df_result() - Fondo PFF2      -7.888477e-08
+df_result() - Fondo PFF3      -1.994932e-17
+df_result() - Fondo RIF1      -6.324289e-08
+df_result() - Fondo RIF2      -7.477736e-08
+df_result() - Fondo RIF3      -2.737428e-10
+df_result() - Fondo SIF1      -6.619950e-05
+df_result() - Fondo SIF2      -3.333257e-08
+df_result() - Fondo SIF3      -8.394308e-06
+operaciones() - Asset Class    0.000000e+00
+
+--- Top 15 SBS con más Weight diluido (revisa el Excel para el resto) ---
+SBS
+VC              0.0
+011000105Y15    0.0
+011000112B29    0.0
+011000112F29    0.0
+011000112F42    0.0
+640001116O14    0.0
+640001116F17    0.0
+640001115O15    0.0
+640001115M17    0.0
+640001115E15    0.0
+640001115D16    0.0
+640001115A14    0.0
+640001114S17    0.0
+640001113O16    0.0
+640001113M14    0.0
+
+[DESCARTES] Archivo único (2 hojas) -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\Descartes.xlsx
+
+================  HUELLA: ENRIQUECIMIENTO  ================
+[HUELLA] BD1_S leído: 3637 filas, 16 columnas.
+[HUELLA] TIPO_RENTA asignado:
+         RENTA VARIABLE: 1861
+         RENTA FIJA: 1776
+[HUELLA] Sector_GICS: 1012/3637 instrumentos con sector asignado.
+[HUELLA]   Sin Sector_GICS por Strategy/assetclass:
+           TD/RVI: 752
+           BU/ALT: 708
+           TD/RFIG: 436
+           BU/RFLC: 183
+           SOB/RFLG: 179
+           SOB/RFIG: 171
+           TD/RFLG: 90
+           BU/RFIC: 54
+           BU/RVL: 40
+           TD/ALT: 12
+         → Para agregar: editar Parametria.xlsx hoja 'BU', columna 'Sector' (indexado por ISIN).
+[HUELLA] Valorización leída: 204 SBS con GRUPO_ECONOMICO, 490 registros con VVL.
+[HUELLA] GRUPO_ECONOMICO: 64/495 SBS únicos matchearon (12.9%). 431 sin match.
+[HUELLA]   Top SBS sin GRUPO_ECONOMICO (por Weight máximo):
+           SBS=5271112E7523  ISIN=US4642875235  Weight=0.110416  BlackRock - iShares PHLX Semiconductor E
+           SBS=5270652EF676  ISIN=US92189F6768  Weight=0.100668  VanEck Semiconductor ETF
+           SBS=5271112E6772  ISIN=US4642867729  Weight=0.094769  BlackRock - iShares Korea
+           SBS=011000112G39  ISIN=PEP01000C5J8  Weight=0.093540  Gobierno Central
+           SBS=5460042E8427  ISIN=US4642898427  Weight=0.079474  BlackRock - iShares MSCI Peru
+           SBS=5259252EX320  ISIN=US77926X3200  Weight=0.076722  Roundhill Memory ETF
+           SBS=011000112G37  ISIN=PEP01000C2Z1  Weight=0.071770  Gobierno Central
+           SBS=011000112G35  ISIN=PEP01000C5K6  Weight=0.065085  Gobierno Central
+           SBS=0840038TF238  ISIN=BRSTNCNTF238  Weight=0.064731  Gobierno de Brasil
+           SBS=5275282EY830  ISIN=US37954Y8306  Weight=0.062053  Global X - Copper Miners ETF
+           SBS=0840038TF2K7  ISIN=BRSTNCNTF2K7  Weight=0.054265  Gobierno de Brasil
+           SBS=5271112EG102  ISIN=US46435G1022  Weight=0.051097  BlackRock - iShares Convertible Bond ETF
+           SBS=011000112G33  ISIN=PEP01000C5I0  Weight=0.047736  Gobierno Central
+           SBS=0840038TF204  ISIN=BRSTNCNTF204  Weight=0.047601  Gobierno de Brasil
+           SBS=011000112G34  ISIN=PEP01000C5G4  Weight=0.045906  Gobierno Central
+[HUELLA]   Cobertura GRUPO_ECONOMICO por AFP:
+           Ex_Integra: 13.5% (165/1221)
+           Habitat: 16.5% (116/705)
+           Integra: 29.3% (198/675)
+           Prima: 22.9% (122/533)
+           Profuturo: 20.7% (104/503)
+         → Fuente: Valorización de Instrumentos (solo Integra).
+           Instrumentos exclusivos de otras AFPs quedan sin match.
+[HUELLA] VVL (informativo): 1255/3637 filas con valor de Valorización (solo Integra F1/F2/F3).
+[HUELLA] Inv_MM_USD calculado con TC = 3.6555
+
+[HUELLA] ✓ Output -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\202607 BD1_S_Huella.xlsx
+[HUELLA]   Columnas: ['SBS', 'ISIN', 'Weight', 'Fondo', 'assetclass', 'Strategy', 'Afp', 'AUM', 'Tipo', 'Q', 'Nombre', 'Fecha', 'codEmisor', 'Precio', 'Inversión', 'ISIN_Origen', 'TIPO_RENTA', 'Categoria', 'RANKEST', 'Sector_GICS', 'GRUPO_ECONOMICO', 'VVL', 'Inv_MM_USD', 'TC_USD']
+[HUELLA]   Filas: 3637
+================  HUELLA: FIN  ================
+
+
+================  LISTO  ================
+NORMAL   : {'BD1': 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\\\202607 BD1.xlsx', 'Portafolio': 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\\\202607 Portafolio.xlsx', 'descartes':                 SBS          ISIN Nombre                       Etapa  \
+0      5377304IEF6S           NaN    NaN        Mapeo ISIN (VP.xlsm)   
+1      5374702OSF3F           NaN    NaN        Mapeo ISIN (VP.xlsm)   
+2      5377262VECIX           NaN    NaN        Mapeo ISIN (VP.xlsm)   
+3      5377544ICG9F           NaN    NaN        Mapeo ISIN (VP.xlsm)   
+4      53AAAA1AAAAA           NaN    NaN        Mapeo ISIN (VP.xlsm)   
+...             ...           ...    ...                         ...   
+29750  5076822E0800  US84265V1052    NaN  EPU/ETF - generar_relacion   
+29751  5076822E0800  PEP648014202    NaN  EPU/ETF - generar_relacion   
+29752  5076822E0800  PEP622005002    NaN  EPU/ETF - generar_relacion   
+29753  5076822E0800  PEP239501005    NaN  EPU/ETF - generar_relacion   
+29754  5076822E0800  PEP646501002    NaN  EPU/ETF - generar_relacion   
+
+                                                  Motivo  
+0                               SBS sin ISIN en VP!CalcP  
+1                               SBS sin ISIN en VP!CalcP  
+2                               SBS sin ISIN en VP!CalcP  
+3                               SBS sin ISIN en VP!CalcP  
+4                               SBS sin ISIN en VP!CalcP  
+...                                                  ...  
+29750  Instrumento del ETF/EPU sin Weight en BD (no e...  
+29751  Instrumento del ETF/EPU sin Weight en BD (no e...  
+29752  Instrumento del ETF/EPU sin Weight en BD (no e...  
+29753  Instrumento del ETF/EPU sin Weight en BD (no e...  
+29754  Instrumento del ETF/EPU sin Weight en BD (no e...  
+
+[29755 rows x 5 columns]}
+SOBERANOS: {'BD1': 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\\\202607 BD1_S.xlsx', 'Portafolio': 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\\\202607 Portafolio_S.xlsx', 'descartes':                 SBS          ISIN Nombre                        Etapa  \
+0               NaN           NaN    NaN  operaciones() - Asset Class   
+1               NDF           NaN    NaN  operaciones() - Asset Class   
+2               NaN           NaN    NaN  operaciones() - Asset Class   
+3               NaN           NaN    NaN  operaciones() - Asset Class   
+4               NaN           NaN    NaN  operaciones() - Asset Class   
+...             ...           ...    ...                          ...   
+34445  5076822E0800  US84265V1052    NaN   EPU/ETF - generar_relacion   
+34446  5076822E0800  PEP648014202    NaN   EPU/ETF - generar_relacion   
+34447  5076822E0800  PEP622005002    NaN   EPU/ETF - generar_relacion   
+34448  5076822E0800  PEP239501005    NaN   EPU/ETF - generar_relacion   
+34449  5076822E0800  PEP646501002    NaN   EPU/ETF - generar_relacion   
+
+                                                  Motivo  
+0      Asset Class no admitido (excl. Derivados/Monedas)  
+1      Asset Class no admitido (excl. Derivados/Monedas)  
+2      Asset Class no admitido (excl. Derivados/Monedas)  
+3      Asset Class no admitido (excl. Derivados/Monedas)  
+4      Asset Class no admitido (excl. Derivados/Monedas)  
+...                                                  ...  
+34445  Instrumento del ETF/EPU sin Weight en BD (no e...  
+34446  Instrumento del ETF/EPU sin Weight en BD (no e...  
+34447  Instrumento del ETF/EPU sin Weight en BD (no e...  
+34448  Instrumento del ETF/EPU sin Weight en BD (no e...  
+34449  Instrumento del ETF/EPU sin Weight en BD (no e...  
+
+[34450 rows x 5 columns]}
+HUELLA   : {'BD1_S_Huella': 'Z:\\Mesa de Inversiones\\Bottom-Up\\2 Proceso de Inversión Renta Fija\\Corporates - Emisiones\\Crédito - BU\\3. ESG\\9. ESG Manager - MSCI\\1.Data Histórica\\Output\\Intermedio\\\\202607 BD1_S_Huella.xlsx'}
