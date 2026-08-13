@@ -1,0 +1,8 @@
+Se ejecuto correctamente y se muestran limpios los charts. Y tengo estos resultados del chart "Comparativo Multi-AFP — KPIs por AFP (corte seleccionado)
+" en mi dashboard generado: AFP	Huella (miles Tn)	Intensidad	AUM (MM$)	Cobertura
+Ex_Integra	718.24	113.81	12,438	82.00%
+Habitat	228.94	127.6	3,864	81.70%
+Integra	391.95	114.33	7,280	94.10%
+Prima	306.93	118	5,151	83.30%
+Profuturo	182.6	101.02	3,423	80.60%
+, entonces quiero recordar como se calcula (explicamelo en sencillo como para un novato, sin tener que entrar al codigo): "Huella (miles Tn)" e "Intensidad", mientras que lo que si quiero profundizar es en saber como se calcula el "AUM (MM$)"(dado que esos valores entre AFP es demasiado disparejo)  y "Cobertura" (dado que me sorprende porcentajes de cobertura muy disparejos entre las AFPs).
