@@ -1,0 +1,33 @@
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[1], line 4434
+   4430     if not ruta_bd1s.exists():
+   4431         raise SystemExit(f"No se encontró BD1_S_Huella:\n  {ruta_bd1s}\n"
+   4432                          f"Ejecuta primero BD_G&P_total.py para generarlo.")
+   4433 
+-> 4434     resultado = run_pipeline_bd1s(
+   4435         PERIODO, str(ruta_bd1s),
+   4436         output_dir=OUTPUT_DIR,
+   4437         afps=AFPS,
+
+Cell In[1], line 4097, in run_pipeline_bd1s(semestre, ruta_bd1s, output_dir, afps, ruta_historico, ruta_dashboard, hoja_proxy_yyyymm, verbose)
+   4093     out.mkdir(parents=True, exist_ok=True)
+   4094     ruta_historico = ruta_historico or str(out / NOMBRE_HISTORICO)
+   4095     ruta_dashboard = ruta_dashboard or str(out / NOMBRE_DASHBOARD)
+   4096 
+-> 4097     cfg = Config.from_semestre(semestre)
+   4098     if verbose:
+   4099         print(cfg.summary())
+   4100 
+
+Cell In[1], line 221, in Config.from_semestre(cls, semestre, dataset_root, reportes_root, inputs_dir, path_workbook, path_proxies)
+    217         # ---- Rutas ----------------------------------------------------------
+    218         root = Path(dataset_root)          # inputs de datos
+    219         rep = Path(reportes_root)          # workbook + proxies
+    220 
+--> 221         p_base_msci = str(root / SUBDIR_MSCI / FNAME_BASE_MSCI)
+    222         p_gyp = str(root / SUBDIR_GYP / FNAME_GYP.format(mmyyyy=mmyyyy))
+    223         p_market_cap = str(root / SUBDIR_COMPARABLES / FNAME_MARKET_CAP)
+    224 
+
+NameError: name 'FNAME_BASE_MSCI' is not defined
