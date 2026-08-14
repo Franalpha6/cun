@@ -1,0 +1,21 @@
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+Cell In[1], line 1353
+   1349 # ==============================================================================
+   1350 # PUNTO DE ENTRADA
+   1351 # ==============================================================================
+   1352 if __name__ == "__main__":
+-> 1353     main()
+   1354 
+
+Cell In[1], line 1285, in main()
+   1281     )
+   1282     errores_gics = []
+   1283     for ticker in empresas_portafolio:
+   1284         nombre = mapa_emp.get(ticker)
+-> 1285         if nombre is None or nombre.strip() == "":
+   1286             errores_gics.append(f"  ✗ {ticker}: SIN nombre en hoja GICS")
+   1287         else:
+   1288             # Detectar si el nombre está asignado a otro ticker también
+
+AttributeError: 'float' object has no attribute 'strip'
