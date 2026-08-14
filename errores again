@@ -1,0 +1,49 @@
+======================================================================
+  ZODA — MONITOR DE VALORIZACIÓN AFP INTEGRA
+  Inicio: 14/08/2026 18:17:47
+======================================================================
+
+[1/9] Leyendo configuración de Baskets desde ZODA.xlsm...
+  → 3 financieras | 10 Cons/Const | 12 Min/Utl
+
+[2/9] Actualizando base DQ_IN...
+  → DQ_IN: última fecha registrada = 2024-03-29 00:00:00
+⚠ Advertencia: fecha 2024-03-29 00:00:00 no encontrada en QEST. Usando 2024-03-27 en su lugar.
+
+[3/9] Leyendo datos de Bloomberg y Capital IQ desde ZODA.xlsm...
+
+[4/9] Limpiando datos y calculando múltiplos de valorización...
+  → 149/157 tickers con datos en el Excel
+  → Múltiplos calculados para 149 empresas
+  ✓ CSV exportado: Multiplos_diarios.csv
+    → 149 tickers | 606,579 filas | 102.6 MB
+
+[5/9] Calculando Z-scores...
+
+[6/9] Calculando Baskets y Z relativos (basket y BVL)...
+
+[7/9] Consolidando Z-scores y exportando a Excel...
+  ✓ Escrito: ZODA.xlsm → hoja 'BD'
+  ✓ Escrito: ZODA.xlsm → hoja 'DQ_IN'
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ALERTA: Problemas en hoja GICS para empresas del portafolio:
+  ✗ HBM CN Equity: SIN nombre en hoja GICS
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  Corrige la hoja GICS antes de continuar. Abortando exportación.
+  (El resto del script ya se ejecutó correctamente.)
+
+
+[8/9] Exportando múltiplos comparables a la red...
+  ✗ Error al escribir en red: [Errno 2] No such file or directory: '\\\\sppeapp00023\\Inversiones\\Mesa de Inversiones\\Bottom-Up\\5 Estrategia del Portafolio\\Monitores\\ZODA\\Evolución de Múltiplos Comparables.xlsx'
+
+[9/9] Generando PDF de gráficos...
+  ✓ PDF generado: Z:\Mesa de Inversiones\Bottom-Up\5 Estrategia del Portafolio\Monitores\ZODA\PDFs\Evolucion Z y Multiplos 14.08.26.pdf
+
+======================================================================
+  ✓ Completado en 0:22:16.469601
+  Hora de término: 14/08/2026 18:40:03
+======================================================================
+  \(._.)/  ¡Corrió con éxito!
+     |
+    7 7
