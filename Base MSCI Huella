@@ -1,0 +1,68 @@
+### Librerías
+import pandas as pd
+import xlwings as xw
+from pathlib import Path
+import re
+import time
+mes = '06'
+anio = '2026'
+dia = '30'
+esc = anio + mes
+
+def recor3(dato):
+    if(str(dato)!= "None"):
+        dato = str(dato)
+        dato = dato[0:2]
+    return dato
+
+def recor2(dato):
+    if(str(dato)!= "None"):
+        dato = str(dato)
+        dato = dato[2:6]
+    return dato
+
+def recor(dato):
+    if(str(dato)!= "None"):
+        dato = str(dato)[0:2]
+    return dato
+
+def verif(dato):
+    dato = str(dato)
+    if(re.findall("index",dato) != []):
+        n = 'Eliminar'
+    elif(re.findall("Index",dato) != []):
+        n = 'Eliminar'
+    elif(re.findall("Com",dato) != []):
+        n = 'Eliminar'
+    elif(re.findall("PUT",dato) != []):
+        print(dato)
+        n = 'Eliminar'
+    elif(re.findall("CALL",dato) != []):
+        print(dato)
+        n = 'Eliminar'
+    elif(dato == "-" or dato == "ISIN" or dato == "Name"):
+        print(dato)
+        n = 'Eliminar'
+    else:
+        n = 'Mantener'
+    return n
+
+def txt_obtenido(mes,anio):
+    wb = xw.Book(r'Z:\Benchmarking\VP.xlsm',read_only=True, update_links=False)
+    sheet = wb.sheets['CalcP']
+    sheet = sheet.used_range.value
+    df = pd.DataFrame(sheet)
+    wb.close()
+    df = df.iloc[4:,[3,2]]
+    df.columns = df.iloc[0,::]
+    df = df.drop([4],axis=0)
+    df.insert(2, 'SBS2', df["SBS"].apply(recor))
+    df = df.dropna(subset=['ISIN'])
+
+    ruta2 = 'Z:/Mesa de Inversiones/Bottom-Up/2 Proceso de Inversión Renta Fija/Corporates - Emisiones/Crédito - BU/3. ESG/9. ESG Manager - MSCI/1.Data Histórica/Dofile/CObertura ' + mes + anio + '.txt'
+    df.to_csv(Path(ruta2),sep=',',index=False)
+
+    return df
+
+
+vp_detallada = txt_obtenido(mes,anio)
