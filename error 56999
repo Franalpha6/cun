@@ -1,0 +1,170 @@
+An exception has occurred, use %tb to see the full traceback.
+
+SystemExit: 2
+C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\IPython\core\interactiveshell.py:3755: UserWarning: To exit: use 'exit', 'quit', or Ctrl-D.
+  warn("To exit: use 'exit', 'quit', or Ctrl-D.", stacklevel=1)
+
+G&P C5 = 2026-07-16 00:00:00
+[G&P] Columnas 'PBS' a eliminar: 15 (se esperan 15)
+[G&P] Mapeo OK -> INF1: 188 >0, 2555 en 0, 7 vacias/no-numericas.
+[OK] Proxies: SBS=col 0, ISIN_proxy=col 7 en 'Reporte ASG Mensual'. (verifica que sean las correctas)
+valor dólar = 3.6555
+
+--- ISIN: rescate por proxy (VP.xlsm -> proxies) ---
+  Reales (VP)            : 1814
+  Resueltos por proxy    : 748
+  Sin ISIN tras intentar : 190
+  ISIN proxy compartidos por >1 SBS distinto: 26 caso(s)
+    (afecta el cruce EPU/ETF SOLO si además coinciden en Fondo/AFP/AssetClass/Strategy)
+      US4642873339: 213 SBS
+      01100028DF60: 83 SBS
+      US4642873909: 68 SBS
+      US4642887115: 46 SBS
+      US4642881829: 37 SBS
+      08400528AX90: 35 SBS
+      0840002CJZ59: 31 SBS
+      US4642887370: 31 SBS
+      US4642886950: 27 SBS
+      IE00B66F4759: 22 SBS
+      US92189H3003: 21 SBS
+      US4642887453: 19 SBS
+      US4642887297: 18 SBS
+      US4642873412: 17 SBS
+      US4642866085: 16 SBS
+      US4642872752: 12 SBS
+      08400623AV04: 9 SBS
+      US4642873255: 7 SBS
+      US4642898427: 6 SBS
+      US4642882579: 6 SBS
+      084003411726: 5 SBS
+      08400425EP60: 4 SBS
+      US4642872000: 4 SBS
+      US4642872919: 4 SBS
+      US4642883726: 2 SBS
+      US46434V6478: 2 SBS
+
+================  RAMA NORMAL  ================
+
+[52-CHECK NORMAL] sin clasificar por ÍNDICE=741 | por SBS=423 | rescatados por SBS=493
+  Rescatados (estaban en TD/SOB, el índice reseteado los marcaba fuera): {'52': 474, '49': 14, '48': 2, '54': 2, '50': 1}
+  [Asset Class ruido excluido del reporte] Derivados=345, Monedas=51
+[DEJADOS DE LADO NORMAL] instrumentos únicos perdidos=428 (con peso=45, sin peso=383)
+Fondo            F1        F2        F3
+AFP                                    
+Habitat    0.178928  0.115039  0.039630
+Integra    0.212100  0.120858  0.011661
+Prima      0.209361  0.119582  0.012951
+Profuturo  0.202270  0.102050  0.022553
+[DEJADOS DE LADO NORMAL] -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\\Dejados de lado NORMAL.xlsx
+
+[VERIFICAR SBS2=04] 11 instrumento(s):
+         SBS           Nombre
+041000101J14 Gobierno Central
+041000104Y14 Gobierno Central
+041000104Y16 Gobierno Central
+041000113J15 Gobierno Central
+041000114F15 Gobierno Central
+041000114M15 Gobierno Central
+041000114O15 Gobierno Central
+041000115N14 Gobierno Central
+041000118O14 Gobierno Central
+041000118A15 Gobierno Central
+041000127L15 Gobierno Central
+
+[VERIFICAR SBS2=56] 2 instrumento(s):
+         SBS           Nombre
+560001115G16 Gobierno Central
+560001120L16 Gobierno Central
+
+[VERIFICAR SBS2=77] 1 instrumento(s):
+         SBS           Nombre
+770001105M15 Gobierno Central
+
+[SIN CLASIFICAR] 423 instrumento(s) no calzan en BU/TD/SOB (NORMAL):
+        N             AC_Dir                                                                                                                                                                                                                                                         Categoria
+SBS2                                                                                                                                                                                                                                                                                          
+08    286  [DMS, EMHC, EMLC]  [HCD_INT_DM_GOB_AUS, HCD_INT_DM_GOB_CAN, HCD_INT_DM_GOB_JPN, HCD_INT_DM_GOB_UK, HCD_INT_DM_GOB_US, HCD_INT_EM_GOB_BRA, HCD_INT_EM_GOB_CHI, HCD_INT_EM_GOB_COL, HCD_INT_EM_GOB_MEX, LCD_GOB_BRA, LCD_GOB_CHI, LCD_GOB_COL, LCD_GOB_MEX, LCD_GOB_RUS, LCD_GOB_SUD]
+64     56              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_CD]
+01     53              [PEG]                                                                                                                                                                                                                     [HCD_LOC_GOB_HC, PEN_NOM_GOB_LC, PEN_VAC_GOB]
+04     11              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_LC]
+43      9              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_LC]
+56      2              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_CD]
+PR      2            [INTER]                                                                                                                                                                                                                                       [COMM_EN_OG, RVI_DM_US_AGG]
+53      1                 []                                                                                                                                                                                                                                                           [ALT_D]
+51      1                 []                                                                                                                                                                                                                                                           [ALT_D]
+4A      1            [INTER]                                                                                                                                                                                                                                                 [RVI_EM_LATAM_FM]
+77      1              [PEG]                                                                                                                                                                                                                                                  [PEN_NOM_GOB_CD]
+
+[VERIFICAR SBS2=64] 56 instrumento(s) — nombres únicos:
+['Gobierno Central']
+
+[SIN CLASIFICAR] Detalle (SBS, SBS2, Asset Class, Nombre):
+         SBS SBS2  Asset Class                         Nombre
+53CCCC1CCCCC   53 Alternativos                            NaN
+51CCCC1CCCCC   51 Alternativos                            NaN
+0840016JD997   08   Renta Fija       Gobierno del Reino Unido
+084001682C90   08   Renta Fija       Gobierno del Reino Unido
+0840016R2809   08   Renta Fija       Gobierno del Reino Unido
+0840016L1D50   08   Renta Fija       Gobierno del Reino Unido
+084009B97495   08   Renta Fija          Gobierno de Australia
+084009B49302   08   Renta Fija          Gobierno de Australia
+084009B00535   08   Renta Fija          Gobierno de Australia
+084009BLWAG2   08   Renta Fija          Gobierno de Australia
+084009B17101   08   Renta Fija          Gobierno de Australia
+084009B75681   08   Renta Fija          Gobierno de Australia
+084009B83768   08   Renta Fija          Gobierno de Australia
+08401377N837   08   Renta Fija             Gobierno de Canada
+08401377N266   08   Renta Fija             Gobierno de Canada
+085905581R57   08   Renta Fija              Gobierno de Japon
+085905591P70   08   Renta Fija              Gobierno de Japon
+085905521PA1   08   Renta Fija              Gobierno de Japon
+085905551N57   08   Renta Fija              Gobierno de Japon
+085905541NA0   08   Renta Fija              Gobierno de Japon
+085905581NA2   08   Renta Fija              Gobierno de Japon
+0840002CJZ59   08   Renta Fija Gobierno de los Estados Unidos
+0840002CGM73   08   Renta Fija Gobierno de los Estados Unidos
+08400020TN81   08   Renta Fija Gobierno de los Estados Unidos
+08400020TQ13   08   Renta Fija Gobierno de los Estados Unidos
+0840002CNC19   08   Renta Fija Gobierno de los Estados Unidos
+0840002CHT18   08   Renta Fija Gobierno de los Estados Unidos
+0840002CJY84   08   Renta Fija Gobierno de los Estados Unidos
+0840002CJJ18   08   Renta Fija Gobierno de los Estados Unidos
+08400020TT51   08   Renta Fija Gobierno de los Estados Unidos
+  (mostrando 30 de 423; detalle completo en el Excel de 'Dejados de lado')
+
+[ERROR INESPERADO]
+Traceback (most recent call last):
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\ops\array_ops.py", line 220, in _na_arithmetic_op
+    result = func(left, right)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\computation\expressions.py", line 243, in evaluate
+    return _evaluate(op, op_str, left_op, right_op)  # type: ignore[misc]
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\computation\expressions.py", line 74, in _evaluate_standard
+    return op(left_op, right_op)
+TypeError: can't multiply sequence by non-int of type 'float'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_30816\1151950191.py", line 1591, in main
+    res_n = procesar_rama(base, soberanos=False)
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_30816\1151950191.py", line 1142, in procesar_rama
+    df_p_m['Inversión'] = df_p_m['Precio'] * df_p_m['Q'] * df_p_m['Tipo']
+                          ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\ops\common.py", line 85, in new_method
+    return method(self, other)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\arraylike.py", line 206, in __mul__
+    return self._arith_method(other, operator.mul)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\series.py", line 6751, in _arith_method
+    return base.IndexOpsMixin._arith_method(self, other, op)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\base.py", line 1644, in _arith_method
+    result = ops.arithmetic_op(lvalues, rvalues, op)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\ops\array_ops.py", line 289, in arithmetic_op
+    res_values = _na_arithmetic_op(left, right, op)  # type: ignore[arg-type]
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\ops\array_ops.py", line 229, in _na_arithmetic_op
+    result = _masked_arith_op(left, right, op)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\ops\array_ops.py", line 165, in _masked_arith_op
+    result[mask] = op(xrav[mask], yrav[mask])
+                   ~~^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: can't multiply sequence by non-int of type 'float'
