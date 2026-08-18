@@ -1,0 +1,26 @@
+busco un gráfico con grouped x-axis labels o multi-level categorical axis, donde las categorías individuales estén agrupadas visualmente mediante líneas delimitadoras finas.
+Y necesito que en el eje X necesito una estructura jerárquica de dos niveles. El nivel inferior contiene las categorías individuales (empresas o fondos), donde cada etiqueta aparece rotada verticalmente. Encima de este nivel existe un nivel superior de agrupación formado por 4 categorías principales: las AFPs (Integra, Habitat, Profuturo y Prima)
+
+Cada categoría principal debe abarcar un conjunto específico de etiquetas del nivel inferior. Visualmente, quiero que aparezcan divisiones o agrupadores sutiles bajo el eje X, similares a llaves, corchetes o líneas delimitadoras, que indiquen claramente (y sin ser el centro de atención) qué subconjunto de categorías pertenece a cada grupo principal.
+La apariencia deseada es:
+Las etiquetas individuales (nombre empresas de Mayores contribuyentes) permanecen en el eje X principal.
+Debajo de ellas se muestran áreas agrupadas.
+Cada grupo tiene una línea horizontal que cubre el ancho de todas las categorías que contiene.
+Entre grupos existe una línea vertical o separador que marque el inicio y fin de cada bloque.
+Debajo del centro de cada bloque se coloca una etiqueta de grupo de mayor jerarquía: las AFPs (Integra, Habitat, Profuturo y Prima)
+
+Reposiciona la leyenda en una ubicación que no compita visualmente con el gráfico ni interfiera con el eje X multinivel (grouped x-axis labels). La leyenda debe mantenerse claramente separada de las etiquetas de agrupación (Integra, Habitat, Profuturo y Prima), de las líneas delimitadoras y de cualquier otro elemento del chart. Además, aumenta ligeramente el tamaño de los marcadores circulares (aprox. 25%-50%) para mejorar su presencia visual y balance respecto a las barras, sin convertirlos en el foco principal del gráfico. Los colores de Integra será algún tipo de azul oscuro de la paleta de colores, Habitat será algún tipo de color rojo, Profuturo será algún otro tipo de color rojo y Prima será algún tipo de color naranja. La idea que puedan ser tonalidades de colores también algo consistentes a la paleta de colores que ya viene mostrando el dashboard (lo cual debe mantenerse)
+
+
+
+
+CHART 2: Quiero otro gráfico (la idea es que me cuente los mayores contribuyentes de Intensidad por AFP) a un diseño de barras horizontales agrupadas por AFP. Las cuatro AFPs (Integra, Habitat, Profuturo y Prima) deben actuar como categorías principales o encabezados de sección. Dentro de cada AFP, los instrumentos deben mostrarse como categorías secundarias mediante barras horizontales ordenadas de mayor a menor peso.
+
+La separación entre AFPs debe ser claramente visible mediante espacios en blanco, líneas divisorias suaves o títulos de sección, de forma que el lector identifique inmediatamente dónde termina una AFP y empieza otra.
+
+Los nombres de los instrumentos deben aparecer a la izquierda de cada barra para maximizar la legibilidad y evitar etiquetas rotadas. El gráfico debe priorizar la comparación visual dentro de cada AFP y entre AFPs.
+
+Los marcadores circulares superpuestos deben mantenerse, pero con un tamaño moderadamente mayor para lograr un mejor equilibrio visual respecto a las barras. Deben ser visibles y aportar información complementaria, sin convertirse en el principal foco de atención.
+
+La leyenda debe ubicarse en una posición que no interfiera con los encabezados de AFP, las etiquetas de los instrumentos ni los elementos de agrupación. Busco una apariencia limpia, institucional y similar a una tabla jerárquica visual, donde la agrupación por AFP sea el elemento organizador principal.
+Usamos el mismo criterio de color por AFP que en el anterior chart
