@@ -1,0 +1,68 @@
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py:3641, in Index.get_loc(self, key)
+   3640 try:
+-> 3641     return self._engine.get_loc(casted_key)
+   3642 except KeyError as err:
+
+File pandas/_libs/index.pyx:168, in pandas._libs.index.IndexEngine.get_loc()
+--> 168 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/index.pyx:197, in pandas._libs.index.IndexEngine.get_loc()
+--> 197 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/hashtable_class_helper.pxi:7668, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+-> 7668 'Could not get source, probably due dynamically evaluated source code.'
+
+File pandas/_libs/hashtable_class_helper.pxi:7676, in pandas._libs.hashtable.PyObjectHashTable.get_item()
+-> 7676 'Could not get source, probably due dynamically evaluated source code.'
+
+KeyError: 'Afp'
+
+The above exception was the direct cause of the following exception:
+
+KeyError                                  Traceback (most recent call last)
+Cell In[1], line 4514
+   4510     if not ruta_bd1s.exists():
+   4511         raise SystemExit(f"No se encontró BD1_S_Huella:\n  {ruta_bd1s}\n"
+   4512                          f"Ejecuta primero BD_G&P_total.py para generarlo.")
+   4513 
+-> 4514     resultado = run_pipeline_bd1s(
+   4515         PERIODO, str(ruta_bd1s),
+   4516         output_dir=OUTPUT_DIR,
+   4517         afps=AFPS,
+
+Cell In[1], line 4183, in run_pipeline_bd1s(semestre, ruta_bd1s, output_dir, afps, ruta_historico, ruta_dashboard, hoja_proxy_yyyymm, verbose)
+   4179         print(cfg.summary())
+   4180 
+   4181     # --- Determinar AFPs disponibles ---
+   4182     df_full = pd.read_excel(ruta_bd1s, engine="openpyxl")
+-> 4183     available = sorted(df_full["Afp"].unique())
+   4184     if afps is None:
+   4185         afps = available
+   4186     if verbose:
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py:4378, in DataFrame.__getitem__(self, key)
+   4374 
+   4375         if is_single_key:
+   4376             if self.columns.nlevels > 1:
+   4377                 return self._getitem_multilevel(key)
+-> 4378             indexer = self.columns.get_loc(key)
+   4379             if is_integer(indexer):
+   4380                 indexer = [indexer]
+   4381         else:
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py:3648, in Index.get_loc(self, key)
+   3643     if isinstance(casted_key, slice) or (
+   3644         isinstance(casted_key, abc.Iterable)
+   3645         and any(isinstance(x, slice) for x in casted_key)
+   3646     ):
+   3647         raise InvalidIndexError(key) from err
+-> 3648     raise KeyError(key) from err
+   3649 except TypeError:
+   3650     # If we have a listlike key, _check_indexing_error will raise
+   3651     #  InvalidIndexError. Otherwise we fall through and re-raise
+   3652     #  the TypeError.
+   3653     self._check_indexing_error(key)
+
+KeyError: 'Afp'
