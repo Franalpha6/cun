@@ -1,0 +1,43 @@
+C:\Users\p048546\PyCharmMiscProject\.venv\Scripts\python.exe "Z:\Mesa de Inversiones\Bottom-Up\0 Juntas de Accionistas\Dashboard Python\2. Dashboard Juntas de Accionistas - v3.py" 
+======================================================================
+JUNTAS DE ACCIONISTAS - generacion de reportes
+======================================================================
+[OK] BD leida: 339 filas, 25 empresas parametrizadas.
+
+[AVISOS] 11
+  - Fila 128: director sin Especialidad
+  - Fila 146: director sin Especialidad
+  - Fila 148: director sin Especialidad
+  - Fila 149: director sin Especialidad
+  - Fila 151: director sin Especialidad
+  - Fila 209: voto En Contra sin Motivo
+  - Fila 210: voto En Contra sin Motivo
+  - Fila 240: voto En Contra sin Motivo
+  - Fila 241: voto En Contra sin Motivo
+  - Fila 262: voto En Contra sin Motivo
+  - Fila 263: voto En Contra sin Motivo
+[OK] Validacion: 339 filas, sin errores bloqueantes.
+
+[AVISO] 2 fila(s) duplicada(s) en Registro:
+  Fila 92 duplica fila 88: Orygen | JOA | 2025-03-28 | pto 02
+  Fila 340 duplica fila 339: Auna | JOA | 2026-06-30 | pto 06
+
+[AVISO] 4 inconsistencia(s) en puntos de agenda:
+  BBVA Peru | JOA | 2025-03-27 -> falta punto padre '07.1' (existen 07.1.1, 07.1.2, 07.1.3, 07.1.4, 07.1.5, 07.1.6, 07.1.7, 07.1.8, 07.1.9)
+  BBVA Peru | JOA | 2025-03-27 -> falta punto padre '07.1.9' (existen 07.1.9.10, 07.1.9.11)
+  BBVA Peru | JOA | 2025-03-27 -> falta punto padre '07.2' (existen 07.2.1, 07.2.2, 07.2.3, 07.2.4)
+  BBVA Peru | JOA | 2025-03-27 -> falta punto padre '7' (existen 7.2)
+[OK] Dashboard  -> .\Dashboard_Juntas_20260819_1721.html
+Traceback (most recent call last):
+  File "Z:\Mesa de Inversiones\Bottom-Up\0 Juntas de Accionistas\Dashboard Python\2. Dashboard Juntas de Accionistas - v3.py", line 1566, in <module>
+    main()
+    ~~~~^^
+  File "Z:\Mesa de Inversiones\Bottom-Up\0 Juntas de Accionistas\Dashboard Python\2. Dashboard Juntas de Accionistas - v3.py", line 1550, in main
+    bloques = [agregar(sub, param, t) for t in orden]
+               ~~~~~~~^^^^^^^^^^^^^^^
+  File "Z:\Mesa de Inversiones\Bottom-Up\0 Juntas de Accionistas\Dashboard Python\2. Dashboard Juntas de Accionistas - v3.py", line 365, in agregar
+    detalle[r["empresa"]][clave_f].append({
+    ^^^^^^^
+UnboundLocalError: cannot access local variable 'detalle' where it is not associated with a value
+
+Process finished with exit code 1
