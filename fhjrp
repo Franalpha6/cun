@@ -1,0 +1,27 @@
+Quiero usar esta paleta de colores según tu imaginación: 1. Azules y celestes principales
+Hex	Descripción aproximada#00AECB	Turquesa brillante
+#00C9EA	Cian intenso
+#61E8FF	Celeste claro brillante
+#B7EEFF	Celeste muy claro
+#C5F7FF	Celeste hielo
+#3494BA	Azul océano
+#0070C0	Azul corporativo (tipo Office)
+#4472C4	Azul Excel clásico
+#AFC3E6	Azul lavanda claro
+#AEC2E6	Azul pastel
+#A1C6E7	Azul cielo suave
+#BAD5ED	Azul grisáceo claro
+#C3D2ED	Azul muy pálido
+#D8E7F5	Azul casi blanco
+#D4EAF3	Azul hielo muy suave
+#8FD9E8	Turquesa pastel
+2. Verdes y menta
+Hex	Descripción aproximada#ACD7CA	Verde menta
+#C8E5DC	Verde agua suave
+#D2EAE2	Verde muy claro
+#E3F2ED	Verde grisáceo casi blanco
+3. Azul de acento fuerte
+Hex	Descripción aproximada#516FED	Azul eléctrico / índigo
+4. Azul marino
+Hex	Descripción aproximada#002060	Azul marino oscuro
+pero con un grado de priorización/preferencia hacia 60-70% Azules y celestes, 20-25% Verdes menta, 5%-10 Azul eléctrico (acento) para el chart de Costo estimado del FEN sobre el PBI y para el chart de El esfuerzo fiscal FEN , asimismo quisiera que para el caso de Larraín, Macrocapitales y Apoyo al ser idénticamente los mismos datos de Costo FEN (los 3 estiman costo FEN de 1 puntos porcentuales), se unifique en una sola columnas y su xlabel que antes era "Larraín, Macrocapitales, Apoyo" ahora sea "Consultoras". Y por otro lado, sobre el manejo de datos negativos de PBI efectivo , necesito que para poner un ejemplo concreto, si tengo -0.4 de PBI efectivo para 1998 y 2023, y el Costo del FEN en esos años fue de 1.7 y 1.1 respectivamente, entonces la barra de 1998 por ejemplo se vean la porción que va desde el 0 hasta el -04 de ese color que elegiste para "PBI efectivo / proyectado", mientras que luego, sumas internamente el -0.4 + 1.7 = 1.3 (este numero es a lo que hubiese crecido la economía ese año sin FEN), y entonces la porcion de la barra que va desde 0 hasta este 1.3 lo pintaras del color del "Costo FEN (pp)", y usas esta misma lógica en los casos de valores negativos identificados en el PBI efectivo.
