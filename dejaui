@@ -1,0 +1,8 @@
+An exception has occurred, use %tb to see the full traceback.
+
+SystemExit: No se encontró BD1_S_Huella:
+  Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\202606 BD1_S_Huella.xlsx
+Ejecuta primero BD_G&P_total.py para generarlo.
+
+C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\IPython\core\interactiveshell.py:3755: UserWarning: To exit: use 'exit', 'quit', or Ctrl-D.
+  warn("To exit: use 'exit', 'quit', or Ctrl-D.", stacklevel=1)
