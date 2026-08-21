@@ -1,0 +1,139 @@
+Quiero mejorar los charts de "Huella por categoría — MSCI vs Proxies (Chart 52)" y de "Intensidad por categoría — MSCI vs Proxies (Chart 63)"
+
+Esos gráficos actuales ya contiene la información correcta y una base visual cercana a lo que necesito, pero todavía se comporta como un gráfico de barras apiladas tradicional y no como la visual ejecutiva de referencia.
+
+Para que el resultado sea equivalente al chart objetivo "Chart de Referencia.png", aún faltan varios elementos visuales y de jerarquía de información:
+
+1. Eliminar completamente la leyenda inferior
+
+La leyenda no debe existir. Actualmente genera ruido visual, ocupa espacio valioso y además se superpone con otros elementos del gráfico.
+
+La referencia no necesita leyenda porque cada componente ya está identificado directamente dentro de la barra mediante etiquetas internas. El usuario debe poder entender qué representa cada segmento sin mirar ninguna leyenda externa.
+
+2. Incorporar etiquetas internas de categoría dentro de cada segmento
+
+Las porciones de la barra deben mostrar directamente sus nombres:
+
+RV
+RF
+ETF Sobs
+Materials
+Utilities
+Otros
+
+El objetivo es que cada etiqueta esté centrada dentro de su bloque correspondiente y nunca invada otra porción ni salga de sus límites visuales.
+
+Debe priorizarse la legibilidad y la limpieza visual por encima de mostrar demasiados elementos.
+
+3. Sustituir etiquetas numéricas internas por etiquetas estratégicas externas
+
+Actualmente aparecen valores dentro de algunos segmentos.
+
+En la referencia, los elementos que reciben protagonismo no son los componentes internos, sino las estrategias.
+
+Por ello deben aparecer anotaciones externas del tipo:
+
+Alts: valor
+TD: valor
+BU: valor
+
+Estas anotaciones deben ubicarse al costado de la barra correspondiente y no dentro de los segmentos.
+
+4. Respetar la lógica visual de estrategias
+
+Las estrategias son:
+
+Alts
+TD
+BU
+
+y constituyen el segundo nivel de lectura más importante después del Total.
+
+Cada una debe mostrarse como una llamada visual independiente.
+
+El nombre de la estrategia y el valor deben formar una sola unidad visual del tipo:
+
+Alts: 97
+TD: 151
+BU: 468
+
+
+y conservar los colores corporativos ya definidos para este tipo de elementos.
+
+5. Incorporar el bloque superior de Totales
+
+Encima de cada barra debe existir un bloque rectangular independiente mostrando:
+
+Total: XXX
+
+
+Este bloque debe percibirse como un elemento visual separado de la barra.
+
+Los totales deben ser el primer elemento que capture la atención del usuario.
+
+6. Incorporar la narrativa de evolución
+
+Entre ambos totales debe existir un elemento visual que represente la evolución entre períodos.
+
+La referencia utiliza una flecha horizontal acompañada por el porcentaje de variación total.
+
+El gráfico actual no comunica visualmente la transición entre ambos períodos.
+
+7. Agregar indicadores de variación para estrategias en el período actual
+
+La barra correspondiente al período más reciente debe mostrar indicadores de variación asociados a:
+
+TD
+BU
+cualquier otra estrategia que corresponda según la lógica del gráfico
+
+Cada indicador debe estar compuesto por:
+
+un triángulo externo;
+un porcentaje entre paréntesis;
+alineación visual con la estrategia correspondiente.
+
+Ejemplo:
+
+TD: 190
+▲ (26%)
+
+BU: 504
+▲ (8%)
+
+
+Estos indicadores nunca deben aparecer en la barra del período base.
+
+8. Cambiar la jerarquía visual
+
+Actualmente la lectura es:
+
+Barra → Segmentos → Valores
+
+
+La lectura deseada es:
+
+Total
+↓
+Variación Total
+↓
+Estrategias (Alts / TD / BU)
+↓
+Componentes internos (RV, RF, Utilities, etc.)
+
+
+9. Transformar la composición en una lámina ejecutiva
+
+El gráfico actual todavía parece generado automáticamente por una librería de visualización.
+
+El resultado final debe parecer una lámina diseñada para una presentación ejecutiva:
+
+abundante espacio en blanco;
+dos barras claramente separadas;
+anotaciones externas estratégicamente ubicadas;
+elementos perfectamente alineados;
+sin superposiciones;
+sin leyendas innecesarias;
+con una narrativa visual clara.
+
+En resumen, los datos ya están representados correctamente. Lo que falta es migrar desde una visualización analítica convencional hacia la misma arquitectura visual, jerarquía de información y estilo de comunicación que utiliza el chart de referencia.
