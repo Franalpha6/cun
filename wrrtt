@@ -1,0 +1,20 @@
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+Cell In[54], line 10
+      6     mes_cod=meses_cod[int(m)-1]
+      7     mes_cod2=meses_cod2[int(m)-1]
+      8 
+      9     print(mes + ' ' + anio)
+---> 10     main(mes, anio)
+
+Cell In[52], line 58, in main(mes, anio)
+     54     Junto.insert(0,"Key1",Junto["Empresa"]+Junto["Categoría"]+Junto["Tipo"])
+     55 
+     56  #   fecha_col = "01" + "/" + meses_n[meses_.index(mes_)] + "/" + anio
+     57   #  fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+---> 58     fecha_col = "01" + "/" + meses_n[meses_.index(mes)] + "/" + anio
+     59     fecha_col_dt = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+     60     fecha_col_str = fecha_col_dt.strftime('%d/%m/%Y')
+     61 
+
+ValueError: list.index(x): x not in list
