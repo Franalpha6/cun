@@ -1,0 +1,188 @@
+# Parameters
+inicio = "112025"
+final = "072026"
+
+import pandas as pd
+import time
+import os
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.chrome.service import Service
+
+service = webdriver.ChromeService(
+    executable_path="Z://Mesa de Inversiones//Bottom-Up//Practis//Drivers//chromedriver.exe")
+### Eliminando todos exceles de la carpeta
+folder_path = r'Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Construcción\BD\INEI'
+
+# Verifica si la carpeta existe
+if not os.path.exists(folder_path):
+    print(f'La carpeta {folder_path} no existe.')
+else:
+    # Recorre todos los archivos en la carpeta
+    for filename in os.listdir(folder_path):
+        # Comprueba si el archivo tiene la extensión .xlsx o .csv
+        if filename.endswith('.xlsx') or filename.endswith('.csv'):
+            # Construye la ruta completa del archivo
+            file_path = os.path.join(folder_path, filename)
+            try:
+                # Elimina el archivo
+                os.remove(file_path)
+                print(f'Archivo eliminado: {file_path}')
+            except Exception as e:
+                print(f'No se pudo eliminar el archivo {file_path}. Error: {e}')
+
+    print('Proceso completado.')
+
+### Empieza el código
+
+Variables1 = ['Despacho total de Cementos Pacasmayo', 'Despacho total de Cementos Selva', 'Despacho total de Yura S.A.',
+              'Despacho total de Caliza Cemento Inca', 'Despacho total Otros', 'Despacho total de cemento',
+              'Despacho total de UNACEM']
+Variables2 = ['Valor Agregado del Sector Construcción (Índice Base 2007 = 100,0)',
+              'Índice de edificios y obras de concreto  (Índice Base 2007 = 100,0)',
+              'Índice de la vivienda de no concreto (Índice Base 2007 = 100,0)',
+              'Índice del avance físico de obras (Índice Base 2007 = 100,0)',
+              'Maquinaria de Uso General, Importado (Base Diciembre 2013)',
+              'Maquinaria de Uso General, Nacional (Base Diciembre 2013)',
+              'Maquinaria de Uso Especial, Importado (Base Diciembre 2013)',
+              'Partes y Accesorios para Vehículos Automotores, Importado (Base Diciembre 2013)',
+              'Partes y Accesorios para Vehículos Automotores, Nacional (Base Diciembre 2013)',
+              'Producción de Cemento Portland', 'Producción de Concreto Premezclado',
+              'Producción de Bloques de Concreto', 'Producción de Ladrillo King Kong',
+              'Producción de Ladrillo Pandereta', 'Producción de Ladrillo de Techo (Hueco)',
+              'Producción de Otros Ladrillos para Muro', 'Producción de Cerámicos Piso y Pared',
+              'Despacho local de cemento', 'Venta total de cemento', 'Venta local de cemento',
+              'Consumo interno de cemento', 'Exportación de Cemento', 'Importación de cemento',
+              'Producción de barras de construcción ', 'Venta de barras de construcción', 'Venta interna de asfalto']
+Variables3 = ['Aceite, Lubricantes', 'Asfalto', 'Acero de Construcción liso', 'Acero de Construcción Corrugado',
+              'Cemento Portland Tipo I - Area 1', 'Cemento Portland Tipo I - Area 2',
+              'Cemento Portland Tipo I - Area 3', 'Cemento Portland Tipo I - Area 4',
+              'Cemento Portland Tipo I - Area 5', 'Cemento Portland Tipo I - Area 6', 'Cemento Portland Tipo V',
+              'Bloques y Ladrillo - Area 1', 'Bloques y Ladrillo - Area 2', 'Bloques y Ladrillo - Area 3',
+              'Bloques y Ladrillo - Area 4', 'Bloques y Ladrillo - Area 5', 'Bloques y Ladrillo - Area 6',
+              'Loseta - Area 1', 'Loseta - Area 2', 'Loseta - Area 3', 'Loseta - Area 4', 'Loseta - Area 5',
+              'Loseta - Area 6', 'Flete aéreo', 'Flete terrestre', 'Mano de obra', 'Maquinaria y Equipo Nac.',
+              'Maquinaria y Equipo Imp.', 'Concreto premezclado',
+              'Precio Por Mayor Petróleo Industrial 6 (Base Diciembre 2013)',
+              'Precio Por Mayor Petróleo Diesel (Base Diciembre 2013)']
+Variables4 = ['Producción de cemento', 'Producción de Cal', 'Gasolina']
+chrome_options = webdriver.ChromeOptions()
+prefs = {
+    'download.default_directory': r'Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Construcción\BD\INEI',
+    'download.prompt_for_download': False,
+    'download.directory_upgrade': True,
+    'safebrowsing.enabled': True
+}
+chrome_options.add_experimental_option('prefs', prefs)
+# driver = webdriver.Chrome(chrome_options)
+driver = webdriver.Chrome(options=chrome_options)
+driver.get("https://webapp.inei.gob.pe:8443/sirtod-series/")
+#Frecuencia y años
+# Frecuencia = driver.find_element(By.XPATH,"/html/body/span/div[2]/div/form/div[2]/div[2]/span/div[1]/div/table/tbody/tr[2]/td[1]/select")
+# Frecuencia.click()
+FrecuenciaMes = driver.find_element(By.XPATH,
+                                    "/html/body/span/div[2]/div/form/div[2]/div[2]/span/div[1]/div/table/tbody/tr[2]/td[1]/select/option[4]")
+FrecuenciaMes.click()
+time.sleep(1)
+
+AñoINEI = driver.find_element(By.XPATH,
+                              "/html/body/span/div[2]/div/form/div[2]/div[2]/span/div[1]/div/table/tbody/tr[2]/td[2]/span/input")
+AñoINEI.click()
+
+AñoINEI.send_keys(Keys.ARROW_RIGHT)
+AñoINEI.send_keys(Keys.ARROW_RIGHT)
+AñoINEI.send_keys(Keys.ARROW_RIGHT)
+AñoINEI.send_keys(Keys.ARROW_RIGHT)
+
+AñoINEI.send_keys(Keys.BACKSPACE)
+AñoINEI.send_keys(Keys.BACKSPACE)
+AñoINEI.send_keys(Keys.BACKSPACE)
+AñoINEI.send_keys(Keys.BACKSPACE)
+
+AñoINEI.send_keys("2022")
+time.sleep(1)
+AñoINEI.send_keys(Keys.ENTER)
+time.sleep(2)
+for i in Variables1:
+    buscar = driver.find_element(By.XPATH,
+                                 "/html/body/span/div[2]/div/form/div[2]/div[2]/span/table/tbody/tr/td[1]/button/span[2]")
+    buscar.click()
+    time.sleep(1)
+    texto = driver.find_element(By.XPATH, "/html/body/div[6]/table/tbody/tr[2]/td/span/input[1]")
+    texto.send_keys(i)
+    texto.send_keys(Keys.ENTER)
+    time.sleep(2)
+    texto.send_keys(Keys.ENTER)
+    buscar = driver.find_element(By.XPATH,
+                                 "/html/body/span/div[2]/div/form/div[2]/div[2]/span/table/tbody/tr/td[1]/button/span[2]")
+    buscar.click()
+
+for i in Variables2:
+    buscar = driver.find_element(By.XPATH,
+                                 "/html/body/span/div[2]/div/form/div[2]/div[2]/span/table/tbody/tr/td[1]/button/span[2]")
+    buscar.click()
+    time.sleep(1)
+    texto = driver.find_element(By.XPATH, "/html/body/div[6]/table/tbody/tr[2]/td/span/input[1]")
+    texto.send_keys(i)
+    texto.send_keys(Keys.ENTER)
+    time.sleep(2)
+    texto.send_keys(Keys.ENTER)
+    buscar = driver.find_element(By.XPATH,
+                                 "/html/body/span/div[2]/div/form/div[2]/div[2]/span/table/tbody/tr/td[1]/button/span[2]")
+    buscar.click()
+
+for i in Variables3:
+    buscar = driver.find_element(By.XPATH,
+                                 "/html/body/span/div[2]/div/form/div[2]/div[2]/span/table/tbody/tr/td[1]/button/span[2]")
+    buscar.click()
+    time.sleep(1)
+    texto = driver.find_element(By.XPATH, "/html/body/div[6]/table/tbody/tr[2]/td/span/input[1]")
+    texto.send_keys(i)
+    texto.send_keys(Keys.ENTER)
+    time.sleep(2)
+    texto.send_keys(Keys.ENTER)
+    buscar = driver.find_element(By.XPATH,
+                                 "/html/body/span/div[2]/div/form/div[2]/div[2]/span/table/tbody/tr/td[1]/button/span[2]")
+    buscar.click()
+for i in Variables4:
+    buscar = driver.find_element(By.XPATH,
+                                 "/html/body/span/div[2]/div/form/div[2]/div[2]/span/table/tbody/tr/td[1]/button/span[2]")
+    buscar.click()
+    time.sleep(1)
+
+    texto = driver.find_element(By.XPATH, "/html/body/div[6]/table/tbody/tr[2]/td/span/input[1]")
+    texto.send_keys(i)
+    texto.send_keys(Keys.ENTER)
+    time.sleep(2)
+    texto.send_keys(Keys.ARROW_DOWN)
+    texto.send_keys(Keys.ENTER)
+
+    buscar = driver.find_element(By.XPATH,
+                                 "/html/body/span/div[2]/div/form/div[2]/div[2]/span/table/tbody/tr/td[1]/button/span[2]")
+    buscar.click()
+
+
+time.sleep(1)
+Check = driver.find_element(By.XPATH, "/html/body/span/div[2]/div/form/div[2]/div[2]/span/span/table/tbody/tr/td[1]")
+if Check.text[:2] == "67":
+    print("Corrio Correctamente y se descargó")
+    time.sleep(1)
+    Descargar = driver.find_element(By.XPATH,"/html/body/span/div[3]/div/div[1]/div/div[1]/form[2]/span/table/tbody/tr[1]/td/table/tbody/tr/td[3]/button/span[2]")
+    Descargar.click()
+
+    tiempo_max = 60
+    tiempo_transcurrido = 0
+    while tiempo_transcurrido < tiempo_max:
+        archivos_temp = [f for f in os.listdir(folder_path) if f.endswith('.crdownload') or f.endswith('.tmp')]
+        if not archivos_temp:
+            break
+        time.sleep(1)
+        tiempo_transcurrido += 1
+
+    driver.quit()
+else:
+    print("Correr de Nuevo")
