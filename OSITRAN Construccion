@@ -1,0 +1,101 @@
+def main(mes, anio):
+    
+    archivo1= r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Construcción\BD\OSITRÁN\\Carreteras.xlsx"
+    archivo2= r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Construcción\BD\OSITRÁN\\Ferrovias.xlsx"
+
+    File_found = False
+
+    for i in range (12,0, -1):
+        if os.path.isfile(archivo1):
+            File_found=True
+            last_file = archivo1
+            break
+    if not File_found:
+        print("Error Base: "+ mes + " " +anio)
+
+    for i in range (12,0, -1):
+        if os.path.isfile(archivo2):
+            File_found=True
+            last_file = archivo2
+            break
+    if not File_found:
+        print("Error Base: "+ mes + " " +anio)
+
+    #Carreteras:
+
+    nombres_unidad=['Total','Ligero','Pesado']
+    nombres_ingreso=['Total de Recaudación','Livianos','Pesados']
+
+    Canchaque_unidad=carretera('Canchaque','2. CANCHAQUE','A) Tráfico en unidades - Total',nombres_unidad)
+    Canchaque_eje=carretera('Canchaque','2. CANCHAQUE','B) Tráfico en ejes - Total',nombres_unidad)
+    Canchaque_ingreso=carretera('Canchaque','2. CANCHAQUE','C) Ingresos',nombres_ingreso)
+
+    Norvial_unidad=carretera('Norvial','6. NORVIAL','A) Tráfico en unidades - Total',nombres_unidad)
+    Norvial_eje=carretera('Norvial','6. NORVIAL','B) Tráfico en ejes - Total',nombres_unidad)
+    Norvial_ingreso=carretera('Norvial','6. NORVIAL','C) Ingresos',nombres_ingreso)
+
+    Survial_unidad=carretera('Survial','10. SURVIAL','A) Tráfico en unidades - Total',nombres_unidad)
+    Survial_eje=carretera('Survial','10. SURVIAL','B) Tráfico en ejes - Total',nombres_unidad)
+    Survial_ingreso=carretera('Survial','10. SURVIAL','C) Ingresos',nombres_ingreso)
+
+    Total_carretera=pd.concat([Canchaque_unidad,Canchaque_eje,Canchaque_ingreso,Norvial_unidad,Norvial_eje,Norvial_ingreso,Survial_unidad,Survial_eje,Survial_ingreso],ignore_index=True)
+
+    #Ferrovias:
+    Ind_Contr=ferrovias('Línea 1','I. INDICADORES CONTRACTUALES')
+    Ind_Kil=ferrovias('Línea 1','II. KILOMETRAJE')
+    Ind_Tra=ferrovias('Línea 1','III. TRÁFICO DE PASAJEROS')
+    Ind_Rec=ferrovias('Línea 1','IV. RECLAMOS E INCIDENTES')
+    Ind_Ing=ferrovias('Línea 1','VII. INGRESOS (NUEVOS SOLES INCLUIDO IGV)')
+
+    Total_ferrovia=pd.concat([Ind_Contr,Ind_Kil,Ind_Tra,Ind_Rec,Ind_Ing],ignore_index=True)
+
+    #Juntamos ambos
+    Junto=pd.concat([Total_carretera,Total_ferrovia])
+    Junto.insert(0,"Key1",Junto["Empresa"]+Junto["Categoría"]+Junto["Tipo"])
+
+ #   fecha_col = "01" + "/" + meses_n[meses_.index(mes_)] + "/" + anio
+  #  fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+    fecha_col = "01" + "/" + meses_n[meses_.index(mes_)] + "/" + anio
+    fecha_col_dt = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+    fecha_col_str = fecha_col_dt.strftime('%d/%m/%Y')
+
+#    Junto.columns.values[4]=fecha_col
+    cols = list(Junto.columns)
+    cols[4] = fecha_col_str
+    Junto.columns = cols
+
+
+    #Base total
+    Ruta_Base=r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Construcción\Históricos\Ositran.xlsx"
+    DF_F = Junto.copy()
+
+
+    with pd.ExcelFile(Ruta_Base) as writer:
+        BD_Total = writer.parse(sheet_name='Sheet1')
+
+
+    BD_Total_=BD_Total.copy()
+    BD_Total_['Indicador'] = 'Mapeado'
+    BD_Total_ = BD_Total_.set_index("Key1")
+    dic_Total_ = BD_Total_.to_dict()
+
+    DF_Total2 = DF_F.copy()
+    DF_Total2['Indicador'] =  DF_Total2['Key1'].map(dic_Total_['Indicador'])
+
+    DF_Total2 = DF_Total2.loc[DF_Total2['Indicador'].isin([np.nan])].sort_index(ignore_index=True) 
+    DF_Total2 = DF_Total2.drop(['Indicador'], axis=1)
+    BD_Total = pd.concat([BD_Total, DF_Total2])
+
+    DF_Total = DF_F.set_index("Key1")
+    dic_cr = DF_Total.to_dict()
+ #   fecha_col = '01' +'/'+ meses_n[meses_.index(mes_)] +'/'+ anio
+  #  fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+   # BD_Total[fecha_col] = BD_Total['Key1'].map(dic_cr[fecha_col])
+
+
+
+    BD_Total[fecha_col_str] = BD_Total['Key1'].map(dic_cr[fecha_col_str])
+
+
+    with pd.ExcelWriter(Ruta_Base ,  mode="a", engine="openpyxl",if_sheet_exists = 'replace') as writer:
+        BD_Total.to_excel(writer, sheet_name="Sheet1", index = False)
