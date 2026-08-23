@@ -1,0 +1,17 @@
+Si bien las hojas "Huella Soberanos, Intensidad Soberanos, Huella por Sector, Intensidad por Sector", tienen ya esta columnas "
+
+Corte
+
+Corte_Rol
+
+AFP
+
+Categoria
+
+Tipo_Dato
+
+Metrica
+
+Valor
+
+" necesito que tambien tengan una columna "Emisor" (en el caso de las hojas "Huella Soberanos, Intensidad Soberanos" ya esta presente, asi que eso esta bien) y una columna "SBS" (aqui implicariatener mas fila sporque deberia mostrarse todos los instrumentos) aunque eso implique hacer mas desagregado el analisis. Por otro lado, la categoria Alts veo que tiene un valor cero tanto en Huella por Sector e Intensidad por Sector.
