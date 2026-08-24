@@ -1,0 +1,184 @@
+BD1S_Huella: Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Output\Intermedio\202512 BD1_S_Huella.xlsx
+Config(semestre=202512, B1=20251231, MMYYYY=122025, T-1=202511, base_msci_sheet='202512', base_msci_sheet_t1='202511')
+  [BD1S] AFPs disponibles: ['Ex_Integra', 'Habitat', 'Integra', 'Prima', 'Profuturo']
+  [BD1S] AFPs a procesar: ['Ex_Integra', 'Habitat', 'Integra', 'Prima', 'Profuturo']
+========================================================================
+  BLINDAJE DE INPUTS — SEMESTRE 202512 (B1=20251231, MMYYYY=122025, T-1=202511)
+========================================================================
+  [OK ] Reporte de Huella con Proxies - 202512.xlsm (query base, B1=20251231)
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Inputs\Reporte de Huella con Proxies.xlsm
+  [OK ] Base MSCI (Sob+ETF+BU).xlsx
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\MSCI\Base MSCI (Sob+ETF+BU).xlsx
+  [OK ] G&P_MLab_122025.xlsm
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\1.Data Histórica\Dataset\G&P input\G&P_MLab_122025.xlsm
+  [OK ] Nueva Lista Proxies (corte 122025).xlsx
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Reporte Mensual ASG\Lista Proxies - Huella y Comite mensual ASG.xlsx
+  [OK ] Comparables MSCI - Huella.xlsx (intensidades benchmarks)
+         Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Inputs\Comparables MSCI - Huella.xlsx
+  [OK ] Base MSCI hoja periodo: '202512'
+  [FALTA] Base MSCI NO contiene la hoja T-1 '202511'.
+          Hojas disponibles: ['20230522', '20230523', '20230531', '20230531_', '202308', '202311', '202312', '202403', '202404', '202405', '202406', '202407', '202409', '202410', '202412', '202501', '202502', '202503', '202504', '202505', '202506', '202512', '202606', '202607', 'Sheet1']
+------------------------------------------------------------------------
+  RESULTADO: faltan 1 input(s). Corrige antes de continuar.
+========================================================================
+  [SHARED] Construyendo recursos compartidos...
+  [Módulo 6] BD(MSCI) hoja '202512' -> 977x24.
+  [ProxyASG] Hoja '202608': 25 proxies con intensidad.
+  [ProxyASG] Soberanos: 227 con GHG intensity.
+  [ProxyASG] Hoja intensidades: '202608'
+  [ProxyASG] Asignaciones: 1123 | Con intensidad: 1040 | Sin dato: 53 | Ya en BD MSCI (ignorados): 30
+  [ProxyASG] Instrumentos con proxy asignado pero ya cubiertos por BD MSCI (30):
+             USP58072BA92
+             USP32133CH47
+             US05971V2H78
+             USP4R21KAB22
+             USP1400MAD04
+             US05968LAN29
+             US05890PAC05
+             US05971V2J35
+             US05971V2K08
+             USP1S81BAB48
+             USP2000GAA15
+             USP13435AF20
+             USP13435AG03
+             US279158AW93
+             USP6680PAB78
+             ... y 15 más.
+  [SHARED] BD(MSCI) + ProxyASG: 977 -> 1968 filas.
+  [Módulo 8] 'Perdieron Huella' -> 12 instrumentos.
+  [Módulo 9] BD(MSCI).T tras proxies: 1968 Client_ID.
+  [Comparables] hoja 202512 | {'ILF': 145.75, 'EMB': 388.1, 'ACWI': 39.57, 'CEMB': 202.58}
+  [MarketCap] fila 2025-12-31 | AUM MM: {'ILF': 2481.7, 'EMB': 16589.0, 'ACWI': 25213.5, 'CEMB': 387.6}
+  [Módulo 4] Abriendo G&P (read_only), cols 2..21. Puede tardar (~120MB)...
+  [Módulo 4] Detallado -> 2516 SBS únicos.
+
+============================================================
+  HUELLA — AFP: Ex_Integra (Valorización)
+============================================================
+  [Normalización] Ex_Integra — F1: 0.9850 → 1.0000 | F2: 1.0476 → 1.0000 | F3: 0.9931 → 1.0000
+  [BD1S] AFP=Ex_Integra: 822 filas, TC=3.6555, AUM=21,220.24 USD MM, Fondos=['IN-FONDO1', 'IN-FONDO2', 'IN-FONDO3']
+  [Módulo 10] Filtro exclusión (IN-FONDO0 / DPZ* / CDLP): 0 filas excluidas, quedan 822.
+  [Módulo 10] Descartadas 2 col(s) formuladas del Excel (se recalculan en Python).
+  [Módulo 9] Herencia por emisor: 0 instrumentos heredaron.
+  [Módulo 10] CO2-H sin match -> 0. Legítimos (sin exposición): 0. PROBLEMÁTICOS (con exposición, revisar): 24.
+  [Módulo 10] [ATENCIÓN] 24 instrumentos con inversión pero sin huella. Ver reporte 'NoMatch_conExposicion'.
+  [Módulo 10] AU4 (SUM Huella) = 2,038,136.00
+  [Módulo 10] Estrategia -> 'ALT' por GyP_ASSET_CLASS: 175 fila(s).
+  [Módulo 10] Valorización formulada -> 822x58.
+
+============================================================
+  HUELLA — AFP: Habitat (Valorización)
+============================================================
+  [Normalización] Habitat — F1: 1.0834 → 1.0000 | F2: 1.0935 → 1.0000 | F3: 1.0062 → 1.0000
+  [BD1S] AFP=Habitat: 471 filas, TC=3.6555, AUM=6,339.16 USD MM, Fondos=['IN-FONDO1', 'IN-FONDO2', 'IN-FONDO3']
+  [Módulo 10] Filtro exclusión (IN-FONDO0 / DPZ* / CDLP): 0 filas excluidas, quedan 471.
+  [Módulo 10] Descartadas 2 col(s) formuladas del Excel (se recalculan en Python).
+  [Módulo 9] Herencia por emisor: 0 instrumentos heredaron.
+  [Módulo 10] CO2-H sin match -> 0. Legítimos (sin exposición): 0. PROBLEMÁTICOS (con exposición, revisar): 10.
+  [Módulo 10] [ATENCIÓN] 10 instrumentos con inversión pero sin huella. Ver reporte 'NoMatch_conExposicion'.
+  [Módulo 10] AU4 (SUM Huella) = 581,257.34
+  [Módulo 10] Estrategia -> 'ALT' por GyP_ASSET_CLASS: 67 fila(s).
+  [Módulo 10] Valorización formulada -> 471x58.
+
+============================================================
+  HUELLA — AFP: Integra (Valorización)
+============================================================
+  [Normalización] Integra — F1: 0.9979 → 1.0000 | F2: 1.1039 → 1.0000 | F3: 0.9861 → 1.0000
+  [BD1S] AFP=Integra: 459 filas, TC=3.6555, AUM=10,831.17 USD MM, Fondos=['IN-FONDO1', 'IN-FONDO2', 'IN-FONDO3']
+  [Módulo 10] Filtro exclusión (IN-FONDO0 / DPZ* / CDLP): 0 filas excluidas, quedan 459.
+  [Módulo 10] Descartadas 2 col(s) formuladas del Excel (se recalculan en Python).
+  [Módulo 9] Herencia por emisor: 0 instrumentos heredaron.
+  [Módulo 10] CO2-H sin match -> 0. Legítimos (sin exposición): 0. PROBLEMÁTICOS (con exposición, revisar): 7.
+  [Módulo 10] [ATENCIÓN] 7 instrumentos con inversión pero sin huella. Ver reporte 'NoMatch_conExposicion'.
+  [Módulo 10] AU4 (SUM Huella) = 1,033,280.93
+  [Módulo 10] Estrategia -> 'ALT' por GyP_ASSET_CLASS: 79 fila(s).
+  [Módulo 10] Valorización formulada -> 459x58.
+
+============================================================
+  HUELLA — AFP: Prima (Valorización)
+============================================================
+  [Normalización] Prima — F1: 0.9544 → 1.0000 | F2: 1.0190 → 1.0000 | F3: 0.9947 → 1.0000
+  [BD1S] AFP=Prima: 343 filas, TC=3.6555, AUM=8,996.24 USD MM, Fondos=['IN-FONDO1', 'IN-FONDO2', 'IN-FONDO3']
+  [Módulo 10] Filtro exclusión (IN-FONDO0 / DPZ* / CDLP): 0 filas excluidas, quedan 343.
+  [Módulo 10] Descartadas 2 col(s) formuladas del Excel (se recalculan en Python).
+  [Módulo 9] Herencia por emisor: 0 instrumentos heredaron.
+  [Módulo 10] CO2-H sin match -> 0. Legítimos (sin exposición): 0. PROBLEMÁTICOS (con exposición, revisar): 10.
+  [Módulo 10] [ATENCIÓN] 10 instrumentos con inversión pero sin huella. Ver reporte 'NoMatch_conExposicion'.
+  [Módulo 10] AU4 (SUM Huella) = 949,893.57
+  [Módulo 10] Estrategia -> 'ALT' por GyP_ASSET_CLASS: 46 fila(s).
+  [Módulo 10] Valorización formulada -> 343x58.
+
+============================================================
+  HUELLA — AFP: Profuturo (Valorización)
+============================================================
+  [Normalización] Profuturo — F1: 0.9937 → 1.0000 | F2: 1.0490 → 1.0000 | F3: 0.9742 → 1.0000
+  [BD1S] AFP=Profuturo: 379 filas, TC=3.6555, AUM=5,884.84 USD MM, Fondos=['IN-FONDO1', 'IN-FONDO2', 'IN-FONDO3']
+  [Módulo 10] Filtro exclusión (IN-FONDO0 / DPZ* / CDLP): 0 filas excluidas, quedan 379.
+  [Módulo 10] Descartadas 2 col(s) formuladas del Excel (se recalculan en Python).
+  [Módulo 9] Herencia por emisor: 0 instrumentos heredaron.
+  [Módulo 10] CO2-H sin match -> 0. Legítimos (sin exposición): 0. PROBLEMÁTICOS (con exposición, revisar): 11.
+  [Módulo 10] [ATENCIÓN] 11 instrumentos con inversión pero sin huella. Ver reporte 'NoMatch_conExposicion'.
+  [Módulo 10] AU4 (SUM Huella) = 517,653.48
+  [Módulo 10] Estrategia -> 'ALT' por GyP_ASSET_CLASS: 90 fila(s).
+  [Módulo 10] Valorización formulada -> 379x58.
+  [Debug] Universo FFMM/ETF (865 filas) -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Output\Universo_FFMM_ETF_Debug.xlsx
+
+============================================================
+  HUELLA — AFP: Ex_Integra (Presentación)
+============================================================
+  [Módulo 12] Distribución de Plus: {'Proxies': 331, 'ETF': 293, 'Portafolio': 110, 'SOV': 64, 'Cuestionario Integra': 24}
+  [Módulo 12] Sector identificado en 81% de las filas BU (el resto cae al bucket 'Otros').
+  [Módulo 12] Sector identificado en 81% de las filas BU (el resto cae al bucket 'Otros').
+  [Módulo 13] Ex_Integra -> hoja '202512_Ex_Integra' en histórico.
+  [Ex_Integra] 23 objetos, 822 registros.
+
+============================================================
+  HUELLA — AFP: Habitat (Presentación)
+============================================================
+  [Módulo 12] Distribución de Plus: {'ETF': 182, 'Proxies': 179, 'Portafolio': 67, 'SOV': 33, 'Cuestionario Integra': 10}
+  [Módulo 12] Sector identificado en 88% de las filas BU (el resto cae al bucket 'Otros').
+  [Módulo 12] Sector identificado en 88% de las filas BU (el resto cae al bucket 'Otros').
+  [Módulo 13] Habitat -> hoja '202512_Habitat' en histórico.
+  [Habitat] 23 objetos, 471 registros.
+
+============================================================
+  HUELLA — AFP: Integra (Presentación)
+============================================================
+  [Módulo 12] Distribución de Plus: {'Proxies': 190, 'ETF': 143, 'Portafolio': 89, 'SOV': 30, 'Cuestionario Integra': 7}
+  [Módulo 12] Sector identificado en 90% de las filas BU (el resto cae al bucket 'Otros').
+  [Módulo 12] Sector identificado en 90% de las filas BU (el resto cae al bucket 'Otros').
+  [Módulo 13] Integra -> hoja '202512_Integra' en histórico.
+  [Integra] 23 objetos, 459 registros.
+
+============================================================
+  HUELLA — AFP: Prima (Presentación)
+============================================================
+  [Módulo 12] Distribución de Plus: {'Proxies': 120, 'Portafolio': 86, 'ETF': 81, 'SOV': 46, 'Cuestionario Integra': 10}
+  [Módulo 12] Sector identificado en 83% de las filas BU (el resto cae al bucket 'Otros').
+  [Módulo 12] Sector identificado en 83% de las filas BU (el resto cae al bucket 'Otros').
+  [Módulo 13] Prima -> hoja '202512_Prima' en histórico.
+  [Prima] 23 objetos, 343 registros.
+
+============================================================
+  HUELLA — AFP: Profuturo (Presentación)
+============================================================
+  [Módulo 12] Distribución de Plus: {'Proxies': 181, 'ETF': 103, 'Portafolio': 55, 'SOV': 29, 'Cuestionario Integra': 11}
+  [Módulo 12] Sector identificado en 80% de las filas BU (el resto cae al bucket 'Otros').
+  [Módulo 12] Sector identificado en 80% de las filas BU (el resto cae al bucket 'Otros').
+  [Módulo 13] Profuturo -> hoja '202512_Profuturo' en histórico.
+  [Profuturo] 23 objetos, 379 registros.
+
+  [Diagnóstico] 62 PROBLEMÁTICOS + 62 Cuestionario Integra
+  [Diagnóstico] -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Output\Diagnostico_Cobertura.xlsx
+
+  [Dashboard] Generando con 5 AFP(s)...
+  [Benchmarks FFMM] 25 benchmarks cargados de hoja 202606
+  [Emisor→Proxy] 38 emisores con benchmark de 51 en hoja BU
+  [Módulo 14] Dashboard -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Output\Dashboard_Huella.html
+  [Benchmarks FFMM] 25 benchmarks cargados de hoja 202606
+  [Módulo 15] Datos_Graficos_Huella -> Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Output\Datos_Graficos_Huella.xlsx
+
+Listo:
+  Histórico : Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Output\Huella_Historico.xlsx
+  Dashboard : Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\3. ESG\9. ESG Manager - MSCI\2. Reportes\Medición Huella de Carbono\Python\Output\Dashboard_Huella.html
+  AFPs      : ['Ex_Integra', 'Habitat', 'Integra', 'Prima', 'Profuturo']
