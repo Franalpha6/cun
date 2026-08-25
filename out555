@@ -1,0 +1,27 @@
+Archivo copiado exitosamente.
+
+######################################################################
+# PROCESANDO: Junio 2026
+######################################################################
+  [Bancos] procesando Junio 2026...
+  [Financieras] procesando Junio 2026...
+  [Mypes] procesando Junio 2026...
+  [Cajas] procesando Junio 2026...
+  [Cajas Rurales] procesando Junio 2026...
+  [Estatales] procesando Junio 2026...
+======================================================================
+[ERROR CALCULO] Bloque: Estatales  |  Junio 2026
+  -> Faltan columnas requeridas: ['Total Créditos_']
+  -> Columnas presentes (7): ['Empresas', 'Normal_', 'Con Problemas_', 'Deficiente_', 'Dudoso_', 'Pérdida_', 'Total Créditos Directos e Indirectos (En miles de soles)']
+  -> Revisar estructura del XLS de la SBS (filas de encabezado / cambio de formato) o el Diccionario_SBS (Nombre_Nuevo).
+======================================================================
+[FALLO] Junio 2026 -> KeyError: "[Estatales - Junio 2026] Columnas faltantes para el calculo: ['Total Créditos_']"
+  -> Se continua con el siguiente periodo (si existe).
+
+======================================================================
+RESUMEN DE EJECUCION
+======================================================================
+  Periodos OK    (0): []
+  Periodos FALLO (1):
+     - Junio 2026: "[Estatales - Junio 2026] Columnas faltantes para el calculo: ['Total Créditos_']"
+======================================================================
