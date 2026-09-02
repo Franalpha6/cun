@@ -1,0 +1,858 @@
+Private Sub DownloadFile(myURL As String, target As String)
+
+    Dim WinHttpReq As Object
+    Set WinHttpReq = CreateObject("Microsoft.XMLHTTP")
+    WinHttpReq.Open "GET", myURL, False
+    WinHttpReq.send
+
+    myURL = WinHttpReq.responseBody
+    If WinHttpReq.Status = 200 Then
+        Set oStream = CreateObject("ADODB.Stream")
+        oStream.Open
+        oStream.Type = 1
+        oStream.Write WinHttpReq.responseBody
+        oStream.SaveToFile target, 2  ' 1 = no overwrite, 2 = overwrite
+        oStream.Close
+    End If
+
+End Sub
+
+Private Function RandomString(cb As Integer) As String
+
+    Randomize
+    Dim rgch As String
+    rgch = "abcdefghijklmnopqrstuvwxyz"
+    rgch = rgch & UCase(rgch) & "0123456789"
+
+    Dim i As Long
+    For i = 1 To cb
+        RandomString = RandomString & Mid$(rgch, Int(Rnd() * Len(rgch) + 1), 1)
+    Next
+
+End Function
+
+
+Function CallHTTPRequest(myURL As String) As String
+    Dim objXMLHTTP As Object
+    Set objXMLHTTP = CreateObject("Microsoft.XMLHTTP")
+    objXMLHTTP.Open "GET", myURL, False
+    objXMLHTTP.send
+    Status = objXMLHTTP.Status
+    Set objXMLHTTP = Nothing
+    CallHTTPRequest = Status
+End Function
+
+
+
+Sub FORMAL_1()
+    Dim matrizC() As Variant, matrizR() As Variant
+    Dim Final, Final1 As Double
+    Dim FD1, FD2, Range_1, Range_2 As String, ArchivoTrabajo As String
+    Dim año As String, book As String, ruta1 As String, Archivo As String
+    Dim startCell As String, startCell2 As String, colLetter As String
+    Dim startColumn As Integer, startRow As Integer, i As Integer
+    Dim targetFolder As String, targetFile As String, targetFileCSV As String, targetFileTXT As String
+    Dim wkbAll As Workbook, wkbTemp As Workbook
+    Dim sDelimiter As String, utaGuardar As String, url As String, indicador As String
+    Dim newSheet As Worksheet
+
+    Application.ScreenUpdating = False
+    ArchivoTrabajo = "Data One pager Model Financials con Estatales - Consolidado.xlsm"
+    Workbooks(ArchivoTrabajo).Sheets("Monitor").Activate
+    Worksheets("Monitor").Activate
+    año = ThisWorkbook.Worksheets("Monitor").Range("K5").Value
+    mes = ThisWorkbook.Worksheets("Monitor").Range("J5").Value
+    indicador = ThisWorkbook.Worksheets("Monitor").Range("L5").Value
+    Workbooks(ArchivoTrabajo).Sheets("Monitor").Activate
+    Worksheets("Monitor").Activate
+    startCell = "G11"
+    startRow = Range(startCell).Row
+    startCell2 = "S11"
+    matrizC = ThisWorkbook.Worksheets("Monitor").Range(startCell & ":P13").Value
+    matrizR = ThisWorkbook.Worksheets("Monitor").Range(startCell2 & ":AB13").Value
+    ThisWorkbook.Worksheets("Monitor").Range("G11:P13").Interior.Color = RGB(255, 255, 255)
+    '=======================================================
+    For Row = 1 To UBound(matrizC, 1)
+        For col = 1 To UBound(matrizC, 2)
+            book = matrizC(Row, col) & indicador & ".XLS"
+            ruta1 = matrizR(Row, col)
+            
+            If matrizC(Row, col) = "" Or ruta1 = "" Then
+                ' Salta a la siguiente iteración si matrizC o ruta1 están vacíos
+                GoTo SiguienteIteracion
+            End If
+            'Proceso================================
+            Archivo = "https://intranet2.sbs.gob.pe/estadistica/financiera/" & Cells(5, 11).Value & "/" & Cells(5, 10).Value & "/" & book
+
+            element = CallHTTPRequest(Archivo)
+
+            If element = 200 Then
+                ThisWorkbook.Worksheets("Monitor").Cells(startRow + Row - 1, col + 6).Interior.Color = RGB(204, 229, 255)  ' Blue
+            Else
+                ThisWorkbook.Worksheets("Monitor").Cells(startRow + Row - 1, col + 6).Interior.Color = RGB(255, 204, 204) ' Red
+            End If
+            '==================
+            targetFolder = Environ("TEMP") & "\" & RandomString(6) & "\"
+            MkDir targetFolder
+            targetFile = targetFolder & "data.xls"
+            DownloadFile Archivo, targetFile
+            filees = targetFolder & book
+            filea = targetFolder & Dir(targetFolder & "\*.xls")
+            
+            
+            On Error Resume Next
+            Name filea As filees
+            Set wkbTemp = Workbooks.Open(targetFolder & book)
+            wkbTemp.Activate
+            rutaGuardar = ruta1 & "\" & book
+            Application.DisplayAlerts = False ' Desactivar alertas de reemplazo
+            wkbTemp.SaveAs Filename:=rutaGuardar, FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False, ConflictResolution:=xlLocalSessionChanges
+            Application.DisplayAlerts = True ' Activar alertas nuevamente
+            wkbTemp.Close
+            On Error GoTo 0
+
+SiguienteIteracion:
+        Next col
+    Next Row
+End Sub
+
+
+Sub FORMAL_2()
+    Dim matrizC() As Variant, matrizR() As Variant
+    Dim Final, Final1 As Double
+    Dim FD1, FD2, Range_1, Range_2 As String, ArchivoTrabajo As String
+    Dim año As String, book As String, ruta1 As String, Archivo As String
+    Dim startCell As String, startCell2 As String, colLetter As String
+    Dim startColumn As Integer, startRow As Integer, i As Integer
+    Dim targetFolder As String, targetFile As String, targetFileCSV As String, targetFileTXT As String
+    Dim wkbAll As Workbook, wkbTemp As Workbook
+    Dim sDelimiter As String, utaGuardar As String, url As String, indicador As String
+    Dim newSheet As Worksheet
+
+    Application.ScreenUpdating = False
+    ArchivoTrabajo = "Data One pager Model Financials con Estatales - Consolidado.xlsm"
+    Workbooks(ArchivoTrabajo).Sheets("Monitor").Activate
+    Worksheets("Monitor").Activate
+    año = ThisWorkbook.Worksheets("Monitor").Range("K5").Value
+    mes = ThisWorkbook.Worksheets("Monitor").Range("J5").Value
+    indicador = ThisWorkbook.Worksheets("Monitor").Range("L5").Value
+    Workbooks(ArchivoTrabajo).Sheets("Monitor").Activate
+    Worksheets("Monitor").Activate
+    startCell = "G14"
+    startRow = Range(startCell).Row
+    startCell2 = "S14"
+    matrizC = ThisWorkbook.Worksheets("Monitor").Range(startCell & ":P16").Value
+    matrizR = ThisWorkbook.Worksheets("Monitor").Range(startCell2 & ":AB16").Value
+    ThisWorkbook.Worksheets("Monitor").Range("G14:P16").Interior.Color = RGB(255, 255, 255)
+    '=======================================================
+    For Row = 1 To UBound(matrizC, 1)
+        For col = 1 To UBound(matrizC, 2)
+            book = matrizC(Row, col) & indicador & ".XLS"
+            ruta1 = matrizR(Row, col)
+            
+            If matrizC(Row, col) = "" Or ruta1 = "" Then
+                ' Salta a la siguiente iteración si matrizC o ruta1 están vacíos
+                GoTo SiguienteIteracion
+            End If
+            'Proceso================================
+            Archivo = "https://intranet2.sbs.gob.pe/estadistica/financiera/" & Cells(5, 11).Value & "/" & Cells(5, 10).Value & "/" & book
+
+            element = CallHTTPRequest(Archivo)
+
+            If element = 200 Then
+                ThisWorkbook.Worksheets("Monitor").Cells(startRow + Row - 1, col + 6).Interior.Color = RGB(204, 229, 255)  ' Blue
+            Else
+                ThisWorkbook.Worksheets("Monitor").Cells(startRow + Row - 1, col + 6).Interior.Color = RGB(255, 204, 204) ' Red
+            End If
+            '==================
+            targetFolder = Environ("TEMP") & "\" & RandomString(6) & "\"
+            MkDir targetFolder
+            targetFile = targetFolder & "data.xls"
+            DownloadFile Archivo, targetFile
+            filees = targetFolder & book
+            filea = targetFolder & Dir(targetFolder & "\*.xls")
+            
+            
+            On Error Resume Next
+            Name filea As filees
+            Set wkbTemp = Workbooks.Open(targetFolder & book)
+            wkbTemp.Activate
+            rutaGuardar = ruta1 & "\" & book
+            Application.DisplayAlerts = False ' Desactivar alertas de reemplazo
+            wkbTemp.SaveAs Filename:=rutaGuardar, FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False, ConflictResolution:=xlLocalSessionChanges
+            Application.DisplayAlerts = True ' Activar alertas nuevamente
+            wkbTemp.Close
+            On Error GoTo 0
+
+SiguienteIteracion:
+        Next col
+    Next Row
+End Sub
+
+
+
+Sub FORMAL_3()
+    Dim matrizC() As Variant, matrizR() As Variant
+    Dim Final, Final1 As Double
+    Dim FD1, FD2, Range_1, Range_2 As String, ArchivoTrabajo As String
+    Dim año As String, book As String, ruta1 As String, Archivo As String
+    Dim startCell As String, startCell2 As String, colLetter As String
+    Dim startColumn As Integer, startRow As Integer, i As Integer
+    Dim targetFolder As String, targetFile As String, targetFileCSV As String, targetFileTXT As String
+    Dim wkbAll As Workbook, wkbTemp As Workbook
+    Dim sDelimiter As String, utaGuardar As String, url As String, indicador As String
+    Dim newSheet As Worksheet
+
+    Application.ScreenUpdating = False
+    ArchivoTrabajo = "Data One pager Model Financials con Estatales - Consolidado.xlsm"
+    Workbooks(ArchivoTrabajo).Sheets("Monitor").Activate
+    Worksheets("Monitor").Activate
+    año = ThisWorkbook.Worksheets("Monitor").Range("K5").Value
+    mes = ThisWorkbook.Worksheets("Monitor").Range("J5").Value
+    indicador = ThisWorkbook.Worksheets("Monitor").Range("L5").Value
+    Workbooks(ArchivoTrabajo).Sheets("Monitor").Activate
+    Worksheets("Monitor").Activate
+    startCell = "G17"
+    startRow = Range(startCell).Row
+    startCell2 = "S17"
+    matrizC = ThisWorkbook.Worksheets("Monitor").Range(startCell & ":P19").Value
+    matrizR = ThisWorkbook.Worksheets("Monitor").Range(startCell2 & ":AB19").Value
+    ThisWorkbook.Worksheets("Monitor").Range("G17:P19").Interior.Color = RGB(255, 255, 255)
+    '=======================================================
+    For Row = 1 To UBound(matrizC, 1)
+        For col = 1 To UBound(matrizC, 2)
+            book = matrizC(Row, col) & indicador & ".XLS"
+            ruta1 = matrizR(Row, col)
+            
+            If matrizC(Row, col) = "" Or ruta1 = "" Then
+                ' Salta a la siguiente iteración si matrizC o ruta1 están vacíos
+                GoTo SiguienteIteracion
+            End If
+            'Proceso================================
+            Archivo = "https://intranet2.sbs.gob.pe/estadistica/financiera/" & Cells(5, 11).Value & "/" & Cells(5, 10).Value & "/" & book
+
+            element = CallHTTPRequest(Archivo)
+
+            If element = 200 Then
+                ThisWorkbook.Worksheets("Monitor").Cells(startRow + Row - 1, col + 6).Interior.Color = RGB(204, 229, 255)  ' Blue
+            Else
+                ThisWorkbook.Worksheets("Monitor").Cells(startRow + Row - 1, col + 6).Interior.Color = RGB(255, 204, 204) ' Red
+            End If
+            '==================
+            targetFolder = Environ("TEMP") & "\" & RandomString(6) & "\"
+            MkDir targetFolder
+            targetFile = targetFolder & "data.xls"
+            DownloadFile Archivo, targetFile
+            filees = targetFolder & book
+            filea = targetFolder & Dir(targetFolder & "\*.xls")
+            
+            
+            On Error Resume Next
+            Name filea As filees
+            Set wkbTemp = Workbooks.Open(targetFolder & book)
+            wkbTemp.Activate
+            rutaGuardar = ruta1 & "\" & book
+            Application.DisplayAlerts = False ' Desactivar alertas de reemplazo
+            wkbTemp.SaveAs Filename:=rutaGuardar, FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False, ConflictResolution:=xlLocalSessionChanges
+            Application.DisplayAlerts = True ' Activar alertas nuevamente
+            wkbTemp.Close
+            On Error GoTo 0
+
+SiguienteIteracion:
+        Next col
+    Next Row
+End Sub
+
+Sub FORMAL_4()
+    Dim matrizC() As Variant, matrizR() As Variant
+    Dim Final, Final1 As Double
+    Dim FD1, FD2, Range_1, Range_2 As String, ArchivoTrabajo As String
+    Dim año As String, book As String, ruta1 As String, Archivo As String
+    Dim startCell As String, startCell2 As String, colLetter As String
+    Dim startColumn As Integer, startRow As Integer, i As Integer
+    Dim targetFolder As String, targetFile As String, targetFileCSV As String, targetFileTXT As String
+    Dim wkbAll As Workbook, wkbTemp As Workbook
+    Dim sDelimiter As String, utaGuardar As String, url As String, indicador As String
+    Dim newSheet As Worksheet
+
+    Application.ScreenUpdating = False
+    ArchivoTrabajo = "Data One pager Model Financials con Estatales - Consolidado.xlsm"
+    Workbooks(ArchivoTrabajo).Sheets("Monitor").Activate
+    Worksheets("Monitor").Activate
+    año = ThisWorkbook.Worksheets("Monitor").Range("K5").Value
+    mes = ThisWorkbook.Worksheets("Monitor").Range("J5").Value
+    indicador = ThisWorkbook.Worksheets("Monitor").Range("L5").Value
+    Workbooks(ArchivoTrabajo).Sheets("Monitor").Activate
+    Worksheets("Monitor").Activate
+    startCell = "G20"
+    startRow = Range(startCell).Row
+    startCell2 = "S20"
+    matrizC = ThisWorkbook.Worksheets("Monitor").Range(startCell & ":P22").Value
+    matrizR = ThisWorkbook.Worksheets("Monitor").Range(startCell2 & ":AB22").Value
+    ThisWorkbook.Worksheets("Monitor").Range("G20:P22").Interior.Color = RGB(255, 255, 255)
+    '=======================================================
+    For Row = 1 To UBound(matrizC, 1)
+        For col = 1 To UBound(matrizC, 2)
+            book = matrizC(Row, col) & indicador & ".XLS"
+            ruta1 = matrizR(Row, col)
+            
+            If matrizC(Row, col) = "" Or ruta1 = "" Then
+                ' Salta a la siguiente iteración si matrizC o ruta1 están vacíos
+                GoTo SiguienteIteracion
+            End If
+            'Proceso================================
+            Archivo = "https://intranet2.sbs.gob.pe/estadistica/financiera/" & Cells(5, 11).Value & "/" & Cells(5, 10).Value & "/" & book
+
+            element = CallHTTPRequest(Archivo)
+
+            If element = 200 Then
+                ThisWorkbook.Worksheets("Monitor").Cells(startRow + Row - 1, col + 6).Interior.Color = RGB(204, 229, 255)  ' Blue
+            Else
+                ThisWorkbook.Worksheets("Monitor").Cells(startRow + Row - 1, col + 6).Interior.Color = RGB(255, 204, 204) ' Red
+            End If
+            '==================
+            targetFolder = Environ("TEMP") & "\" & RandomString(6) & "\"
+            MkDir targetFolder
+            targetFile = targetFolder & "data.xls"
+            DownloadFile Archivo, targetFile
+            filees = targetFolder & book
+            filea = targetFolder & Dir(targetFolder & "\*.xls")
+            
+            
+            On Error Resume Next
+            Name filea As filees
+            Set wkbTemp = Workbooks.Open(targetFolder & book)
+            wkbTemp.Activate
+            rutaGuardar = ruta1 & "\" & book
+            Application.DisplayAlerts = False ' Desactivar alertas de reemplazo
+            wkbTemp.SaveAs Filename:=rutaGuardar, FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False, ConflictResolution:=xlLocalSessionChanges
+            Application.DisplayAlerts = True ' Activar alertas nuevamente
+            wkbTemp.Close
+            On Error GoTo 0
+
+SiguienteIteracion:
+        Next col
+    Next Row
+End Sub
+
+
+
+Sub FORMAL_5()
+    Dim matrizC() As Variant, matrizR() As Variant
+    Dim Final, Final1 As Double
+    Dim FD1, FD2, Range_1, Range_2 As String, ArchivoTrabajo As String
+    Dim año As String, book As String, ruta1 As String, Archivo As String
+    Dim startCell As String, startCell2 As String, colLetter As String
+    Dim startColumn As Integer, startRow As Integer, i As Integer
+    Dim targetFolder As String, targetFile As String, targetFileCSV As String, targetFileTXT As String
+    Dim wkbAll As Workbook, wkbTemp As Workbook
+    Dim sDelimiter As String, utaGuardar As String, url As String, indicador As String
+    Dim newSheet As Worksheet
+
+    Application.ScreenUpdating = False
+    ArchivoTrabajo = "Data One pager Model Financials con Estatales - Consolidado.xlsm"
+    Workbooks(ArchivoTrabajo).Sheets("Monitor").Activate
+    Worksheets("Monitor").Activate
+    año = ThisWorkbook.Worksheets("Monitor").Range("K5").Value
+    mes = ThisWorkbook.Worksheets("Monitor").Range("J5").Value
+    indicador = ThisWorkbook.Worksheets("Monitor").Range("L5").Value
+    Workbooks(ArchivoTrabajo).Sheets("Monitor").Activate
+    Worksheets("Monitor").Activate
+    startCell = "G23"
+    startRow = Range(startCell).Row
+    startCell2 = "S23"
+    matrizC = ThisWorkbook.Worksheets("Monitor").Range(startCell & ":P26").Value
+    matrizR = ThisWorkbook.Worksheets("Monitor").Range(startCell2 & ":AB26").Value
+    ThisWorkbook.Worksheets("Monitor").Range("G23:P26").Interior.Color = RGB(255, 255, 255)
+    '=======================================================
+    For Row = 1 To UBound(matrizC, 1)
+        For col = 1 To UBound(matrizC, 2)
+            book = matrizC(Row, col) & indicador & ".XLS"
+            ruta1 = matrizR(Row, col)
+            
+            If matrizC(Row, col) = "" Or ruta1 = "" Then
+                ' Salta a la siguiente iteración si matrizC o ruta1 están vacíos
+                GoTo SiguienteIteracion
+            End If
+            'Proceso================================
+            Archivo = "https://intranet2.sbs.gob.pe/estadistica/financiera/" & Cells(5, 11).Value & "/" & Cells(5, 10).Value & "/" & book
+
+            element = CallHTTPRequest(Archivo)
+
+            If element = 200 Then
+                ThisWorkbook.Worksheets("Monitor").Cells(startRow + Row - 1, col + 6).Interior.Color = RGB(204, 229, 255)  ' Blue
+            Else
+                ThisWorkbook.Worksheets("Monitor").Cells(startRow + Row - 1, col + 6).Interior.Color = RGB(255, 204, 204) ' Red
+            End If
+            '==================
+            targetFolder = Environ("TEMP") & "\" & RandomString(6) & "\"
+            MkDir targetFolder
+            targetFile = targetFolder & "data.xls"
+            DownloadFile Archivo, targetFile
+            filees = targetFolder & book
+            filea = targetFolder & Dir(targetFolder & "\*.xls")
+            
+            
+            On Error Resume Next
+            Name filea As filees
+            Set wkbTemp = Workbooks.Open(targetFolder & book)
+            wkbTemp.Activate
+            rutaGuardar = ruta1 & "\" & book
+            Application.DisplayAlerts = False ' Desactivar alertas de reemplazo
+            wkbTemp.SaveAs Filename:=rutaGuardar, FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False, ConflictResolution:=xlLocalSessionChanges
+            Application.DisplayAlerts = True ' Activar alertas nuevamente
+            wkbTemp.Close
+            On Error GoTo 0
+
+SiguienteIteracion:
+        Next col
+    Next Row
+End Sub
+
+Sub FORMAL_6()
+    Dim matrizC() As Variant, matrizR() As Variant
+    Dim Final, Final1 As Double
+    Dim FD1, FD2, Range_1, Range_2 As String, ArchivoTrabajo As String
+    Dim año As String, book As String, ruta1 As String, Archivo As String
+    Dim startCell As String, startCell2 As String, colLetter As String
+    Dim startColumn As Integer, startRow As Integer, i As Integer
+    Dim targetFolder As String, targetFile As String, targetFileCSV As String, targetFileTXT As String
+    Dim wkbAll As Workbook, wkbTemp As Workbook
+    Dim sDelimiter As String, utaGuardar As String, url As String, indicador As String
+    Dim newSheet As Worksheet
+
+    Application.ScreenUpdating = False
+    ArchivoTrabajo = "Data One pager Model Financials con Estatales - Consolidado.xlsm"
+    Workbooks(ArchivoTrabajo).Sheets("Monitor").Activate
+    Worksheets("Monitor").Activate
+    año = ThisWorkbook.Worksheets("Monitor").Range("K5").Value
+    mes = ThisWorkbook.Worksheets("Monitor").Range("J5").Value
+    indicador = ThisWorkbook.Worksheets("Monitor").Range("L5").Value
+    Workbooks(ArchivoTrabajo).Sheets("Monitor").Activate
+    Worksheets("Monitor").Activate
+    startCell = "G27"
+    startRow = Range(startCell).Row
+    startCell2 = "S27"
+    matrizC = ThisWorkbook.Worksheets("Monitor").Range(startCell & ":P29").Value
+    matrizR = ThisWorkbook.Worksheets("Monitor").Range(startCell2 & ":AB29").Value
+    ThisWorkbook.Worksheets("Monitor").Range("G27:P29").Interior.Color = RGB(255, 255, 255)
+    '=======================================================
+    For Row = 1 To UBound(matrizC, 1)
+        For col = 1 To UBound(matrizC, 2)
+            book = matrizC(Row, col) & indicador & ".XLS"
+            ruta1 = matrizR(Row, col)
+            
+            If matrizC(Row, col) = "" Or ruta1 = "" Then
+                ' Salta a la siguiente iteración si matrizC o ruta1 están vacíos
+                GoTo SiguienteIteracion
+            End If
+            'Proceso================================
+            Archivo = "https://intranet2.sbs.gob.pe/estadistica/financiera/" & Cells(5, 11).Value & "/" & Cells(5, 10).Value & "/" & book
+
+            element = CallHTTPRequest(Archivo)
+
+            If element = 200 Then
+                ThisWorkbook.Worksheets("Monitor").Cells(startRow + Row - 1, col + 6).Interior.Color = RGB(204, 229, 255)  ' Blue
+            Else
+                ThisWorkbook.Worksheets("Monitor").Cells(startRow + Row - 1, col + 6).Interior.Color = RGB(255, 204, 204) ' Red
+            End If
+            '==================
+            targetFolder = Environ("TEMP") & "\" & RandomString(6) & "\"
+            MkDir targetFolder
+            targetFile = targetFolder & "data.xls"
+            DownloadFile Archivo, targetFile
+            filees = targetFolder & book
+            filea = targetFolder & Dir(targetFolder & "\*.xls")
+            
+            
+            On Error Resume Next
+            Name filea As filees
+            Set wkbTemp = Workbooks.Open(targetFolder & book)
+            wkbTemp.Activate
+            rutaGuardar = ruta1 & "\" & book
+            Application.DisplayAlerts = False ' Desactivar alertas de reemplazo
+            wkbTemp.SaveAs Filename:=rutaGuardar, FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False, ConflictResolution:=xlLocalSessionChanges
+            Application.DisplayAlerts = True ' Activar alertas nuevamente
+            wkbTemp.Close
+            On Error GoTo 0
+
+SiguienteIteracion:
+        Next col
+    Next Row
+    
+    'Call FORMAL_7
+End Sub
+
+Sub FORMAL_7()
+    Dim matrizC() As Variant, matrizR() As Variant
+    Dim Final, Final1 As Double
+    Dim FD1, FD2, Range_1, Range_2 As String, ArchivoTrabajo As String
+    Dim año As String, book As String, ruta1 As String, Archivo As String
+    Dim startCell As String, startCell2 As String, colLetter As String
+    Dim startColumn As Integer, startRow As Integer, i As Integer
+    Dim targetFolder As String, targetFile As String, targetFileCSV As String, targetFileTXT As String
+    Dim wkbAll As Workbook, wkbTemp As Workbook
+    Dim sDelimiter As String, utaGuardar As String, url As String, indicador As String
+    Dim newSheet As Worksheet
+
+    Application.ScreenUpdating = False
+    ArchivoTrabajo = "Data One pager Model Financials con Estatales - Consolidado.xlsm"
+    Workbooks(ArchivoTrabajo).Sheets("Monitor").Activate
+    Worksheets("Monitor").Activate
+    año = ThisWorkbook.Worksheets("Monitor").Range("K5").Value
+    mes = ThisWorkbook.Worksheets("Monitor").Range("J5").Value
+    indicador = ThisWorkbook.Worksheets("Monitor").Range("L5").Value
+    Workbooks(ArchivoTrabajo).Sheets("Monitor").Activate
+    Worksheets("Monitor").Activate
+    startCell = "G30"
+    startRow = Range(startCell).Row
+    startCell2 = "S30"
+    matrizC = ThisWorkbook.Worksheets("Monitor").Range(startCell & ":P33").Value
+    matrizR = ThisWorkbook.Worksheets("Monitor").Range(startCell2 & ":AB33").Value
+    ThisWorkbook.Worksheets("Monitor").Range("G30:P33").Interior.Color = RGB(255, 255, 255)
+    '=======================================================
+    For Row = 1 To UBound(matrizC, 1)
+        For col = 1 To UBound(matrizC, 2)
+            book = matrizC(Row, col) & indicador & ".XLS"
+            ruta1 = matrizR(Row, col)
+            
+            If matrizC(Row, col) = "" Or ruta1 = "" Then
+                ' Salta a la siguiente iteración si matrizC o ruta1 están vacíos
+                GoTo SiguienteIteracion
+            End If
+            'Proceso================================
+            Archivo = "https://intranet2.sbs.gob.pe/estadistica/financiera/" & Cells(5, 11).Value & "/" & Cells(5, 10).Value & "/" & book
+
+            element = CallHTTPRequest(Archivo)
+
+            If element = 200 Then
+                ThisWorkbook.Worksheets("Monitor").Cells(startRow + Row - 1, col + 6).Interior.Color = RGB(204, 229, 255)  ' Blue
+            Else
+                ThisWorkbook.Worksheets("Monitor").Cells(startRow + Row - 1, col + 6).Interior.Color = RGB(255, 204, 204) ' Red
+            End If
+            '==================
+            targetFolder = Environ("TEMP") & "\" & RandomString(6) & "\"
+            MkDir targetFolder
+            targetFile = targetFolder & "data.xls"
+            DownloadFile Archivo, targetFile
+            filees = targetFolder & book
+            filea = targetFolder & Dir(targetFolder & "\*.xls")
+            
+            
+            On Error Resume Next
+            Name filea As filees
+            Set wkbTemp = Workbooks.Open(targetFolder & book)
+            wkbTemp.Activate
+            rutaGuardar = ruta1 & "\" & book
+            Application.DisplayAlerts = False ' Desactivar alertas de reemplazo
+            wkbTemp.SaveAs Filename:=rutaGuardar, FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False, ConflictResolution:=xlLocalSessionChanges
+            Application.DisplayAlerts = True ' Activar alertas nuevamente
+            wkbTemp.Close
+            On Error GoTo 0
+
+SiguienteIteracion:
+        Next col
+    Next Row
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'====================================================
+'=====================================================
+Sub total()
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Dim uno As String
+    Dim dos As String
+    Dim tres As String
+    Dim sheet_ As String
+    
+    Workbooks.Open Filename:= _
+        "Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\3.Indicadores Financieros.xlsx", ReadOnly:=True
+    Columns("A:A").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.Copy
+    Workbooks("Data One pager Model Financials con Estatales - Consolidado.xlsm").Activate
+    Sheets("Indicadores SBS").Activate
+    Range("b1").Select
+    ActiveSheet.Paste
+    Rows("1:1").Select
+    Selection.NumberFormat = "m/d/yyyy"
+Sheets("Monitor").Activate
+
+Workbooks("3.Indicadores Financieros.xlsx").Close SaveChanges:=False
+Call bs
+End Sub
+
+
+Sub bs()
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Dim uno As String
+    Dim dos As String
+    Dim tres As String
+    Dim sheet_ As String
+    
+    Workbooks.Open Filename:= _
+        "Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\2.Estado Financieros (BS).xlsx", ReadOnly:=True
+    Columns("A:A").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.Copy
+    Workbooks("Data One pager Model Financials con Estatales - Consolidado.xlsm").Activate
+    Sheets("BS").Activate
+    Range("b1").Select
+    ActiveSheet.Paste
+    Rows("1:1").Select
+    Selection.NumberFormat = "m/d/yyyy"
+Sheets("Monitor").Activate
+
+Workbooks("2.Estado Financieros (BS).xlsx").Close SaveChanges:=False
+Call iss
+End Sub
+
+Sub iss()
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Dim uno As String
+    Dim dos As String
+    Dim tres As String
+    Dim sheet_ As String
+    
+    Workbooks.Open Filename:= _
+        "Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\1.Estado Financieros (IS).xlsx", ReadOnly:=True
+    Columns("A:A").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.Copy
+    Workbooks("Data One pager Model Financials con Estatales - Consolidado.xlsm").Activate
+    Sheets("IS").Activate
+    Range("b1").Select
+    ActiveSheet.Paste
+    Rows("1:1").Select
+    Selection.NumberFormat = "m/d/yyyy"
+Sheets("Monitor").Activate
+
+Workbooks("1.Estado Financieros (IS).xlsx").Close SaveChanges:=False
+Call appr
+End Sub
+
+Sub appr()
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Dim uno As String
+    Dim dos As String
+    Dim tres As String
+    Dim sheet_ As String
+    
+    Workbooks.Open Filename:= _
+        "Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\4.Requerimiento de Patrimonio Efectivo y Ratio de Capital Global.xlsx", ReadOnly:=True
+    Columns("A:A").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.Copy
+    Workbooks("Data One pager Model Financials con Estatales - Consolidado.xlsm").Activate
+    Sheets("APPR").Activate
+    Range("b1").Select
+    ActiveSheet.Paste
+    Rows("1:1").Select
+    Selection.NumberFormat = "m/d/yyyy"
+Sheets("Monitor").Activate
+
+Workbooks("4.Requerimiento de Patrimonio Efectivo y Ratio de Capital Global.xlsx").Close SaveChanges:=False
+Call EsctCred
+End Sub
+
+Sub EsctCred()
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Dim uno As String
+    Dim dos As String
+    Dim tres As String
+    Dim sheet_ As String
+    
+    Workbooks.Open Filename:= _
+        "Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\14.Estruc Créditos por Tipo y Modalidad.xlsx", ReadOnly:=True
+    Columns("A:A").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.Copy
+    Workbooks("Data One pager Model Financials con Estatales - Consolidado.xlsm").Activate
+    Sheets("EstrcturaCredM").Activate
+    Range("b1").Select
+    ActiveSheet.Paste
+    Rows("1:1").Select
+    Selection.NumberFormat = "m/d/yyyy"
+Sheets("Monitor").Activate
+
+Workbooks("14.Estruc Créditos por Tipo y Modalidad.xlsx").Close SaveChanges:=False
+Call DepositosPersona
+End Sub
+
+
+Sub DepositosPersona()
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Dim uno As String
+    Dim dos As String
+    Dim tres As String
+    Dim sheet_ As String
+    
+    Workbooks.Open Filename:= _
+        "Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\22.Depósitos por Tipo y Persona.xlsx", ReadOnly:=True
+    Columns("A:A").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.Copy
+    Workbooks("Data One pager Model Financials con Estatales - Consolidado.xlsm").Activate
+    Sheets("DepositosPersona").Activate
+    Range("b1").Select
+    ActiveSheet.Paste
+    Rows("1:1").Select
+    Selection.NumberFormat = "m/d/yyyy"
+Sheets("Monitor").Activate
+
+Workbooks("22.Depósitos por Tipo y Persona.xlsx").Close SaveChanges:=False
+Call PEfectivo
+End Sub
+
+
+
+Sub PEfectivo()
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Dim uno As String
+    Dim dos As String
+    Dim tres As String
+    Dim sheet_ As String
+    
+    Workbooks.Open Filename:= _
+        "Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\17.Estructura Patrimonio Efectivo.xlsx", ReadOnly:=True
+    Columns("A:A").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.Copy
+    Workbooks("Data One pager Model Financials con Estatales - Consolidado.xlsm").Activate
+    Sheets("P.Efectivo").Activate
+    Range("b1").Select
+    ActiveSheet.Paste
+    Rows("1:1").Select
+    Selection.NumberFormat = "m/d/yyyy"
+Sheets("Monitor").Activate
+
+Workbooks("17.Estructura Patrimonio Efectivo.xlsx").Close SaveChanges:=False
+Call moros
+End Sub
+
+
+Sub moros()
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Dim uno As String
+    Dim dos As String
+    Dim tres As String
+    Dim sheet_ As String
+    
+    Workbooks.Open Filename:= _
+        "Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\9.Morosidad por crédito y modalidad.xlsx", ReadOnly:=True
+    Columns("A:A").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.Copy
+    Workbooks("Data One pager Model Financials con Estatales - Consolidado.xlsm").Activate
+    Sheets("Morosidad").Activate
+    Range("b1").Select
+    ActiveSheet.Paste
+    Rows("1:1").Select
+    Selection.NumberFormat = "m/d/yyyy"
+Sheets("Monitor").Activate
+
+Workbooks("9.Morosidad por crédito y modalidad.xlsx").Close SaveChanges:=False
+Call credtt
+End Sub
+
+
+Sub credtt()
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Dim uno As String
+    Dim dos As String
+    Dim tres As String
+    Dim sheet_ As String
+    
+    Workbooks.Open Filename:= _
+        "Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\6.Créditos Directos según Tipo de Crédito y Situación.xlsx", ReadOnly:=True
+    Columns("A:A").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.Copy
+    Workbooks("Data One pager Model Financials con Estatales - Consolidado.xlsm").Activate
+    Sheets("CreditoD_TCS").Activate
+    Range("b1").Select
+    ActiveSheet.Paste
+    Rows("1:1").Select
+    Selection.NumberFormat = "m/d/yyyy"
+Sheets("Monitor").Activate
+
+Workbooks("6.Créditos Directos según Tipo de Crédito y Situación.xlsx").Close SaveChanges:=False
+Call act
+End Sub
+
+
+Sub act()
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Dim uno As String
+    Dim dos As String
+    Dim tres As String
+    Dim sheet_ As String
+    
+    Workbooks.Open Filename:= _
+        "Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\23.Tasas de Interés Activas.xlsx", ReadOnly:=True
+    Columns("A:A").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.Copy
+    Workbooks("Data One pager Model Financials con Estatales - Consolidado.xlsm").Activate
+    Sheets("Tasas Activa").Activate
+    Range("b1").Select
+    ActiveSheet.Paste
+    Rows("1:1").Select
+    Selection.NumberFormat = "m/d/yyyy"
+Sheets("Monitor").Activate
+
+Workbooks("23.Tasas de Interés Activas.xlsx").Close SaveChanges:=False
+Call pas
+End Sub
+
+
+Sub pas()
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Dim uno As String
+    Dim dos As String
+    Dim tres As String
+    Dim sheet_ As String
+    
+    Workbooks.Open Filename:= _
+        "Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\24.Tasas de Interés Pasivas.xlsx", ReadOnly:=True
+    Columns("A:A").Select
+    Range(Selection, Selection.End(xlToRight)).Select
+    Selection.Copy
+    Workbooks("Data One pager Model Financials con Estatales - Consolidado.xlsm").Activate
+    Sheets("Tasa Pasiva").Activate
+    Range("b1").Select
+    ActiveSheet.Paste
+    Rows("1:1").Select
+    Selection.NumberFormat = "m/d/yyyy"
+Sheets("Monitor").Activate
+
+Workbooks("24.Tasas de Interés Pasivas.xlsx").Close SaveChanges:=False
+
+End Sub
+
+
+
