@@ -1,0 +1,9 @@
+
+¿Qué son los umbrales de normalización y por qué se asumen esso valores y no otros?
+¿Por que se asume esos valores del Peso del vulnerability score y no otros, de la hoja "Cálculo"? no entiendo nada del "VULNERABILITY SCORE"
+
+¿Qué son los valores de las elasticidades y por que son esos valores y no otros dentro de "IMPACTO POR HAZARD — ESCENARIO BASE"?
+
+¿Por qué en la hoja "Sensibilidad", en la sección del "Monte Carlo — 10,000 simulaciones", para todos los percentiles no veo ningún valor igual al "Δ EBITDA % (vs. base)" de la hoja "Cálculo" o "Resumen"? 
+
+¿Cómo explico las secciones de "Sensibilidad a Alpha (convexidad)" y "Monte Carlo — 10,000 simulaciones" de forma sencilla y con analogías, y mostrando con claridad como se relaciona esto con los números que muestran los resultados? 
