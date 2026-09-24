@@ -1,0 +1,671 @@
+======================================================================
+INICIO: Actualizacion de Indicadores Financieros SBS
+======================================================================
+[INFO] Periodos a procesar: ['012026', '022026', '032026', '042026', '052026', '062026', '072026']
+[OK]   Backup creado: Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\Backups\20260924_094835_3.Indicadores Financieros.xlsx
+[INFO] ===== Procesando periodo: Enero 2026 =====
+   -> Procesando Bancos (Enero 2026)...
+[OK]   Bancos: procesado correctamente (440 filas).
+   -> Procesando Financieras (Enero 2026)...
+[OK]   Financieras: procesado correctamente (128 filas).
+   -> Procesando Mypes (Enero 2026)...
+[OK]   Mypes: procesado correctamente (126 filas).
+   -> Procesando Cajas (Enero 2026)...
+[OK]   Cajas: procesado correctamente (260 filas).
+   -> Procesando Estatales (Enero 2026)...
+[OK]   Estatales: procesado correctamente (63 filas).
+   -> Procesando Cajas Rurales (Enero 2026)...
+[OK]   Cajas Rurales: procesado correctamente (132 filas).
+[DEBUG Enero 2026] Ingresos Financieros Anualizados -> Mapeado/Nuevo:
+Index    Institución                 Nombre                                                       Detallada                                                                                                                              key Indicador
+13            Bancos                   BBVA  Ingresos Financieros Anualizados / Activo Productivo Promedio                         BancosIndicadoresMNBBVAEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+35            Bancos               Comercio  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNComercioEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+57            Bancos                    BCP  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBCPEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+79            Bancos              Pichincha  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNPichinchaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+101           Bancos                    BIF  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBIFEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+123           Bancos             Scotiabank  Ingresos Financieros Anualizados / Activo Productivo Promedio                   BancosIndicadoresMNScotiabankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+145           Bancos               Citibank  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNCitibankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+167           Bancos              Interbank  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNInterbankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+189           Bancos                Mibanco  Ingresos Financieros Anualizados / Activo Productivo Promedio                      BancosIndicadoresMNMibancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+211           Bancos                    GNB  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNGNBEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+233           Bancos           B. Falabella  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNB. FalabellaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+255           Bancos           B. Santander  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNB. SantanderEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+277           Bancos              B. Ripley  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNB. RipleyEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+299           Bancos               B. Alfin  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNB. AlfinEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+321           Bancos                   ICBC  Ingresos Financieros Anualizados / Activo Productivo Promedio                         BancosIndicadoresMNICBCEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+343           Bancos          Bank of China  Ingresos Financieros Anualizados / Activo Productivo Promedio                BancosIndicadoresMNBank of ChinaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+365           Bancos                    BCI  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBCIEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+387           Bancos      Compartamos Banco  Ingresos Financieros Anualizados / Activo Productivo Promedio            BancosIndicadoresMNCompartamos BancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+409           Bancos   Santander Cons. Bank  Ingresos Financieros Anualizados / Activo Productivo Promedio         BancosIndicadoresMNSantander Cons. BankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+431           Bancos           Total Bancos  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNTotal BancosEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+449      Financieras              Confianza  Ingresos Financieros Anualizados / Activo Productivo Promedio               FinancierasIndicadoresMNConfianzaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+465      Financieras               Efectiva  Ingresos Financieros Anualizados / Activo Productivo Promedio                FinancierasIndicadoresMNEfectivaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+481      Financieras                  Qapaq  Ingresos Financieros Anualizados / Activo Productivo Promedio                   FinancierasIndicadoresMNQapaqEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+497      Financieras                    Oh!  Ingresos Financieros Anualizados / Activo Productivo Promedio                     FinancierasIndicadoresMNOh!EFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+513      Financieras                 Mitsui  Ingresos Financieros Anualizados / Activo Productivo Promedio                  FinancierasIndicadoresMNMitsuiEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+529      Financieras             Proempresa  Ingresos Financieros Anualizados / Activo Productivo Promedio              FinancierasIndicadoresMNProempresaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+545      Financieras      Financiera Surgir  Ingresos Financieros Anualizados / Activo Productivo Promedio       FinancierasIndicadoresMNFinanciera SurgirEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+561      Financieras      Total Financieras  Ingresos Financieros Anualizados / Activo Productivo Promedio       FinancierasIndicadoresMNTotal FinancierasEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+578            Mypes            Alternativa  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNAlternativaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+596            Mypes                  Volvo  Ingresos Financieros Anualizados / Activo Productivo Promedio                         MypesIndicadoresMNVolvoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+614            Mypes                 Vívela  Ingresos Financieros Anualizados / Activo Productivo Promedio                        MypesIndicadoresMNVívelaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+632            Mypes            Solidaridad  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNSolidaridadEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+650            Mypes      Santander Consumo  Ingresos Financieros Anualizados / Activo Productivo Promedio             MypesIndicadoresMNSantander ConsumoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+668            Mypes  Servicios Financieros  Ingresos Financieros Anualizados / Activo Productivo Promedio         MypesIndicadoresMNServicios FinancierosEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+686            Mypes            Total Mypes  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNTotal MypesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+704            Cajas          CMAC Arequipa  Ingresos Financieros Anualizados / Activo Productivo Promedio                 CajasIndicadoresMNCMAC ArequipaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+724            Cajas             CMAC Cusco  Ingresos Financieros Anualizados / Activo Productivo Promedio                    CajasIndicadoresMNCMAC CuscoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+744            Cajas         CMAC Del Santa  Ingresos Financieros Anualizados / Activo Productivo Promedio                CajasIndicadoresMNCMAC Del SantaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+764            Cajas          CMAC Huancayo  Ingresos Financieros Anualizados / Activo Productivo Promedio                 CajasIndicadoresMNCMAC HuancayoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+784            Cajas               CMAC Ica  Ingresos Financieros Anualizados / Activo Productivo Promedio                      CajasIndicadoresMNCMAC IcaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+804            Cajas            CMAC Maynas  Ingresos Financieros Anualizados / Activo Productivo Promedio                   CajasIndicadoresMNCMAC MaynasEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+824            Cajas             CMAC Paita  Ingresos Financieros Anualizados / Activo Productivo Promedio                    CajasIndicadoresMNCMAC PaitaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+844            Cajas             CMAC Piura  Ingresos Financieros Anualizados / Activo Productivo Promedio                    CajasIndicadoresMNCMAC PiuraEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+864            Cajas             CMAC Tacna  Ingresos Financieros Anualizados / Activo Productivo Promedio                    CajasIndicadoresMNCMAC TacnaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+884            Cajas          CMAC Trujillo  Ingresos Financieros Anualizados / Activo Productivo Promedio                 CajasIndicadoresMNCMAC TrujilloEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+904            Cajas         Total Cajas AC  Ingresos Financieros Anualizados / Activo Productivo Promedio                CajasIndicadoresMNTotal Cajas ACEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+924            Cajas               CMCPLima  Ingresos Financieros Anualizados / Activo Productivo Promedio                      CajasIndicadoresMNCMCPLimaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+944            Cajas            Total Cajas  Ingresos Financieros Anualizados / Activo Productivo Promedio                   CajasIndicadoresMNTotal CajasEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+966        Estatales                 Nación  Ingresos Financieros Anualizados / Activo Productivo Promedio                    EstatalesIndicadoresMNNaciónEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+987        Estatales                 Cofide  Ingresos Financieros Anualizados / Activo Productivo Promedio                    EstatalesIndicadoresMNCofideEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+1008       Estatales              Agrobanco  Ingresos Financieros Anualizados / Activo Productivo Promedio                 EstatalesIndicadoresMNAgrobancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+1029   Cajas Rurales       CRAC B. Cencosud  Ingresos Financieros Anualizados / Activo Productivo Promedio      Cajas RuralesIndicadoresMNCRAC B. CencosudEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+1051   Cajas Rurales         CRAC Los Andes  Ingresos Financieros Anualizados / Activo Productivo Promedio        Cajas RuralesIndicadoresMNCRAC Los AndesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+1073   Cajas Rurales           CRAC Prymera  Ingresos Financieros Anualizados / Activo Productivo Promedio          Cajas RuralesIndicadoresMNCRAC PrymeraEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+1095   Cajas Rurales           CRAC Incasur  Ingresos Financieros Anualizados / Activo Productivo Promedio          Cajas RuralesIndicadoresMNCRAC IncasurEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+1117   Cajas Rurales        CRAC del Centro  Ingresos Financieros Anualizados / Activo Productivo Promedio       Cajas RuralesIndicadoresMNCRAC del CentroEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+1139   Cajas Rurales    Total Cajas Rurales  Ingresos Financieros Anualizados / Activo Productivo Promedio   Cajas RuralesIndicadoresMNTotal Cajas RuralesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+[OK]   Periodo Enero 2026: guardado exitosamente en 'Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\3.Indicadores Financieros.xlsx'.
+[INFO] ===== Procesando periodo: Febrero 2026 =====
+   -> Procesando Bancos (Febrero 2026)...
+[OK]   Bancos: procesado correctamente (440 filas).
+   -> Procesando Financieras (Febrero 2026)...
+[ERROR] Financieras: fallo inesperado -> KeyError: 'Total Empresas Financieras'
+Traceback (most recent call last):
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Total Empresas Financieras'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_10828\2762136943.py", line 326, in procesar_institucion
+    DF_1.insert(6, fecha_col, DF_grupo[a])
+                              ~~~~~~~~^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py", line 4378, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Total Empresas Financieras'
+
+   -> Procesando Mypes (Febrero 2026)...
+[OK]   Mypes: procesado correctamente (140 filas).
+   -> Procesando Cajas (Febrero 2026)...
+[ERROR] Cajas: fallo inesperado -> KeyError: 'CMAC Piura'
+Traceback (most recent call last):
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'CMAC Piura'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_10828\2762136943.py", line 326, in procesar_institucion
+    DF_1.insert(6, fecha_col, DF_grupo[a])
+                              ~~~~~~~~^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py", line 4378, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'CMAC Piura'
+
+   -> Procesando Estatales (Febrero 2026)...
+[OK]   Estatales: procesado correctamente (63 filas).
+   -> Procesando Cajas Rurales (Febrero 2026)...
+[OK]   Cajas Rurales: procesado correctamente (132 filas).
+[DEBUG Febrero 2026] Ingresos Financieros Anualizados -> Mapeado/Nuevo:
+Index    Institución                 Nombre                                                       Detallada                                                                                                                              key Indicador
+13            Bancos                   BBVA  Ingresos Financieros Anualizados / Activo Productivo Promedio                         BancosIndicadoresMNBBVAEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+35            Bancos               Comercio  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNComercioEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+57            Bancos                    BCP  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBCPEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+79            Bancos              Pichincha  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNPichinchaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+101           Bancos                    BIF  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBIFEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+123           Bancos             Scotiabank  Ingresos Financieros Anualizados / Activo Productivo Promedio                   BancosIndicadoresMNScotiabankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+145           Bancos               Citibank  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNCitibankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+167           Bancos              Interbank  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNInterbankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+189           Bancos                Mibanco  Ingresos Financieros Anualizados / Activo Productivo Promedio                      BancosIndicadoresMNMibancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+211           Bancos                    GNB  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNGNBEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+233           Bancos           B. Falabella  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNB. FalabellaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+255           Bancos           B. Santander  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNB. SantanderEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+277           Bancos              B. Ripley  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNB. RipleyEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+299           Bancos               B. Alfin  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNB. AlfinEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+321           Bancos                   ICBC  Ingresos Financieros Anualizados / Activo Productivo Promedio                         BancosIndicadoresMNICBCEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+343           Bancos          Bank of China  Ingresos Financieros Anualizados / Activo Productivo Promedio                BancosIndicadoresMNBank of ChinaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+365           Bancos                    BCI  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBCIEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+387           Bancos      Compartamos Banco  Ingresos Financieros Anualizados / Activo Productivo Promedio            BancosIndicadoresMNCompartamos BancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+409           Bancos   Santander Cons. Bank  Ingresos Financieros Anualizados / Activo Productivo Promedio         BancosIndicadoresMNSantander Cons. BankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+431           Bancos           Total Bancos  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNTotal BancosEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+452            Mypes            Alternativa  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNAlternativaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+472            Mypes                  Volvo  Ingresos Financieros Anualizados / Activo Productivo Promedio                         MypesIndicadoresMNVolvoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+492            Mypes                 Vívela  Ingresos Financieros Anualizados / Activo Productivo Promedio                        MypesIndicadoresMNVívelaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+512            Mypes            Solidaridad  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNSolidaridadEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+532            Mypes      Santander Consumo  Ingresos Financieros Anualizados / Activo Productivo Promedio             MypesIndicadoresMNSantander ConsumoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+552            Mypes  Servicios Financieros  Ingresos Financieros Anualizados / Activo Productivo Promedio         MypesIndicadoresMNServicios FinancierosEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+572            Mypes            Total Mypes  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNTotal MypesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+592        Estatales                 Nación  Ingresos Financieros Anualizados / Activo Productivo Promedio                    EstatalesIndicadoresMNNaciónEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+613        Estatales                 Cofide  Ingresos Financieros Anualizados / Activo Productivo Promedio                    EstatalesIndicadoresMNCofideEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+634        Estatales              Agrobanco  Ingresos Financieros Anualizados / Activo Productivo Promedio                 EstatalesIndicadoresMNAgrobancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+655    Cajas Rurales       CRAC B. Cencosud  Ingresos Financieros Anualizados / Activo Productivo Promedio      Cajas RuralesIndicadoresMNCRAC B. CencosudEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+677    Cajas Rurales         CRAC Los Andes  Ingresos Financieros Anualizados / Activo Productivo Promedio        Cajas RuralesIndicadoresMNCRAC Los AndesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+699    Cajas Rurales           CRAC Prymera  Ingresos Financieros Anualizados / Activo Productivo Promedio          Cajas RuralesIndicadoresMNCRAC PrymeraEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+721    Cajas Rurales           CRAC Incasur  Ingresos Financieros Anualizados / Activo Productivo Promedio          Cajas RuralesIndicadoresMNCRAC IncasurEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+743    Cajas Rurales        CRAC del Centro  Ingresos Financieros Anualizados / Activo Productivo Promedio       Cajas RuralesIndicadoresMNCRAC del CentroEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+765    Cajas Rurales    Total Cajas Rurales  Ingresos Financieros Anualizados / Activo Productivo Promedio   Cajas RuralesIndicadoresMNTotal Cajas RuralesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+[OK]   Periodo Febrero 2026: guardado exitosamente en 'Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\3.Indicadores Financieros.xlsx'.
+[INFO] ===== Procesando periodo: Marzo 2026 =====
+   -> Procesando Bancos (Marzo 2026)...
+[OK]   Bancos: procesado correctamente (440 filas).
+   -> Procesando Financieras (Marzo 2026)...
+[ERROR] Financieras: fallo inesperado -> KeyError: 'Total Empresas Financieras'
+Traceback (most recent call last):
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Total Empresas Financieras'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_10828\2762136943.py", line 326, in procesar_institucion
+    DF_1.insert(6, fecha_col, DF_grupo[a])
+                              ~~~~~~~~^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py", line 4378, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Total Empresas Financieras'
+
+   -> Procesando Mypes (Marzo 2026)...
+[OK]   Mypes: procesado correctamente (140 filas).
+   -> Procesando Cajas (Marzo 2026)...
+[ERROR] Cajas: fallo inesperado -> KeyError: 'CMAC Piura'
+Traceback (most recent call last):
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'CMAC Piura'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_10828\2762136943.py", line 326, in procesar_institucion
+    DF_1.insert(6, fecha_col, DF_grupo[a])
+                              ~~~~~~~~^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py", line 4378, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'CMAC Piura'
+
+   -> Procesando Estatales (Marzo 2026)...
+[OK]   Estatales: procesado correctamente (63 filas).
+   -> Procesando Cajas Rurales (Marzo 2026)...
+[OK]   Cajas Rurales: procesado correctamente (132 filas).
+[DEBUG Marzo 2026] Ingresos Financieros Anualizados -> Mapeado/Nuevo:
+Index    Institución                 Nombre                                                       Detallada                                                                                                                              key Indicador
+13            Bancos                   BBVA  Ingresos Financieros Anualizados / Activo Productivo Promedio                         BancosIndicadoresMNBBVAEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+35            Bancos               Comercio  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNComercioEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+57            Bancos                    BCP  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBCPEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+79            Bancos              Pichincha  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNPichinchaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+101           Bancos                    BIF  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBIFEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+123           Bancos             Scotiabank  Ingresos Financieros Anualizados / Activo Productivo Promedio                   BancosIndicadoresMNScotiabankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+145           Bancos               Citibank  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNCitibankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+167           Bancos              Interbank  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNInterbankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+189           Bancos                Mibanco  Ingresos Financieros Anualizados / Activo Productivo Promedio                      BancosIndicadoresMNMibancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+211           Bancos                    GNB  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNGNBEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+233           Bancos           B. Falabella  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNB. FalabellaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+255           Bancos           B. Santander  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNB. SantanderEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+277           Bancos              B. Ripley  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNB. RipleyEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+299           Bancos               B. Alfin  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNB. AlfinEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+321           Bancos                   ICBC  Ingresos Financieros Anualizados / Activo Productivo Promedio                         BancosIndicadoresMNICBCEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+343           Bancos          Bank of China  Ingresos Financieros Anualizados / Activo Productivo Promedio                BancosIndicadoresMNBank of ChinaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+365           Bancos                    BCI  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBCIEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+387           Bancos      Compartamos Banco  Ingresos Financieros Anualizados / Activo Productivo Promedio            BancosIndicadoresMNCompartamos BancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+409           Bancos   Santander Cons. Bank  Ingresos Financieros Anualizados / Activo Productivo Promedio         BancosIndicadoresMNSantander Cons. BankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+431           Bancos           Total Bancos  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNTotal BancosEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+452            Mypes            Alternativa  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNAlternativaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+472            Mypes                  Volvo  Ingresos Financieros Anualizados / Activo Productivo Promedio                         MypesIndicadoresMNVolvoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+492            Mypes                 Vívela  Ingresos Financieros Anualizados / Activo Productivo Promedio                        MypesIndicadoresMNVívelaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+512            Mypes            Solidaridad  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNSolidaridadEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+532            Mypes      Santander Consumo  Ingresos Financieros Anualizados / Activo Productivo Promedio             MypesIndicadoresMNSantander ConsumoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+552            Mypes  Servicios Financieros  Ingresos Financieros Anualizados / Activo Productivo Promedio         MypesIndicadoresMNServicios FinancierosEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+572            Mypes            Total Mypes  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNTotal MypesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+592        Estatales                 Nación  Ingresos Financieros Anualizados / Activo Productivo Promedio                    EstatalesIndicadoresMNNaciónEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+613        Estatales                 Cofide  Ingresos Financieros Anualizados / Activo Productivo Promedio                    EstatalesIndicadoresMNCofideEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+634        Estatales              Agrobanco  Ingresos Financieros Anualizados / Activo Productivo Promedio                 EstatalesIndicadoresMNAgrobancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+655    Cajas Rurales       CRAC B. Cencosud  Ingresos Financieros Anualizados / Activo Productivo Promedio      Cajas RuralesIndicadoresMNCRAC B. CencosudEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+677    Cajas Rurales         CRAC Los Andes  Ingresos Financieros Anualizados / Activo Productivo Promedio        Cajas RuralesIndicadoresMNCRAC Los AndesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+699    Cajas Rurales           CRAC Prymera  Ingresos Financieros Anualizados / Activo Productivo Promedio          Cajas RuralesIndicadoresMNCRAC PrymeraEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+721    Cajas Rurales           CRAC Incasur  Ingresos Financieros Anualizados / Activo Productivo Promedio          Cajas RuralesIndicadoresMNCRAC IncasurEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+743    Cajas Rurales        CRAC del Centro  Ingresos Financieros Anualizados / Activo Productivo Promedio       Cajas RuralesIndicadoresMNCRAC del CentroEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+765    Cajas Rurales    Total Cajas Rurales  Ingresos Financieros Anualizados / Activo Productivo Promedio   Cajas RuralesIndicadoresMNTotal Cajas RuralesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+[OK]   Periodo Marzo 2026: guardado exitosamente en 'Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\3.Indicadores Financieros.xlsx'.
+[INFO] ===== Procesando periodo: Abril 2026 =====
+   -> Procesando Bancos (Abril 2026)...
+[OK]   Bancos: procesado correctamente (440 filas).
+   -> Procesando Financieras (Abril 2026)...
+[ERROR] Financieras: fallo inesperado -> KeyError: 'Total Empresas Financieras'
+Traceback (most recent call last):
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Total Empresas Financieras'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_10828\2762136943.py", line 326, in procesar_institucion
+    DF_1.insert(6, fecha_col, DF_grupo[a])
+                              ~~~~~~~~^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py", line 4378, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Total Empresas Financieras'
+
+   -> Procesando Mypes (Abril 2026)...
+[OK]   Mypes: procesado correctamente (140 filas).
+   -> Procesando Cajas (Abril 2026)...
+[ERROR] Cajas: fallo inesperado -> KeyError: 'CMAC Piura'
+Traceback (most recent call last):
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'CMAC Piura'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_10828\2762136943.py", line 326, in procesar_institucion
+    DF_1.insert(6, fecha_col, DF_grupo[a])
+                              ~~~~~~~~^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py", line 4378, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'CMAC Piura'
+
+   -> Procesando Estatales (Abril 2026)...
+[OK]   Estatales: procesado correctamente (63 filas).
+   -> Procesando Cajas Rurales (Abril 2026)...
+[OK]   Cajas Rurales: procesado correctamente (132 filas).
+[DEBUG Abril 2026] Ingresos Financieros Anualizados -> Mapeado/Nuevo:
+Index    Institución                 Nombre                                                       Detallada                                                                                                                              key Indicador
+13            Bancos                   BBVA  Ingresos Financieros Anualizados / Activo Productivo Promedio                         BancosIndicadoresMNBBVAEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+35            Bancos               Comercio  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNComercioEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+57            Bancos                    BCP  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBCPEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+79            Bancos              Pichincha  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNPichinchaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+101           Bancos                    BIF  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBIFEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+123           Bancos             Scotiabank  Ingresos Financieros Anualizados / Activo Productivo Promedio                   BancosIndicadoresMNScotiabankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+145           Bancos               Citibank  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNCitibankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+167           Bancos              Interbank  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNInterbankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+189           Bancos                Mibanco  Ingresos Financieros Anualizados / Activo Productivo Promedio                      BancosIndicadoresMNMibancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+211           Bancos                    GNB  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNGNBEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+233           Bancos           B. Falabella  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNB. FalabellaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+255           Bancos           B. Santander  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNB. SantanderEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+277           Bancos              B. Ripley  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNB. RipleyEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+299           Bancos               B. Alfin  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNB. AlfinEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+321           Bancos                   ICBC  Ingresos Financieros Anualizados / Activo Productivo Promedio                         BancosIndicadoresMNICBCEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+343           Bancos          Bank of China  Ingresos Financieros Anualizados / Activo Productivo Promedio                BancosIndicadoresMNBank of ChinaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+365           Bancos                    BCI  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBCIEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+387           Bancos      Compartamos Banco  Ingresos Financieros Anualizados / Activo Productivo Promedio            BancosIndicadoresMNCompartamos BancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+409           Bancos   Santander Cons. Bank  Ingresos Financieros Anualizados / Activo Productivo Promedio         BancosIndicadoresMNSantander Cons. BankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+431           Bancos           Total Bancos  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNTotal BancosEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+452            Mypes            Alternativa  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNAlternativaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+472            Mypes                  Volvo  Ingresos Financieros Anualizados / Activo Productivo Promedio                         MypesIndicadoresMNVolvoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+492            Mypes                 Vívela  Ingresos Financieros Anualizados / Activo Productivo Promedio                        MypesIndicadoresMNVívelaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+512            Mypes            Solidaridad  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNSolidaridadEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+532            Mypes      Santander Consumo  Ingresos Financieros Anualizados / Activo Productivo Promedio             MypesIndicadoresMNSantander ConsumoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+552            Mypes  Servicios Financieros  Ingresos Financieros Anualizados / Activo Productivo Promedio         MypesIndicadoresMNServicios FinancierosEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+572            Mypes            Total Mypes  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNTotal MypesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+592        Estatales                 Nación  Ingresos Financieros Anualizados / Activo Productivo Promedio                    EstatalesIndicadoresMNNaciónEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+613        Estatales                 Cofide  Ingresos Financieros Anualizados / Activo Productivo Promedio                    EstatalesIndicadoresMNCofideEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+634        Estatales              Agrobanco  Ingresos Financieros Anualizados / Activo Productivo Promedio                 EstatalesIndicadoresMNAgrobancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+655    Cajas Rurales       CRAC B. Cencosud  Ingresos Financieros Anualizados / Activo Productivo Promedio      Cajas RuralesIndicadoresMNCRAC B. CencosudEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+677    Cajas Rurales         CRAC Los Andes  Ingresos Financieros Anualizados / Activo Productivo Promedio        Cajas RuralesIndicadoresMNCRAC Los AndesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+699    Cajas Rurales           CRAC Prymera  Ingresos Financieros Anualizados / Activo Productivo Promedio          Cajas RuralesIndicadoresMNCRAC PrymeraEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+721    Cajas Rurales           CRAC Incasur  Ingresos Financieros Anualizados / Activo Productivo Promedio          Cajas RuralesIndicadoresMNCRAC IncasurEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+743    Cajas Rurales        CRAC del Centro  Ingresos Financieros Anualizados / Activo Productivo Promedio       Cajas RuralesIndicadoresMNCRAC del CentroEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+765    Cajas Rurales    Total Cajas Rurales  Ingresos Financieros Anualizados / Activo Productivo Promedio   Cajas RuralesIndicadoresMNTotal Cajas RuralesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+[OK]   Periodo Abril 2026: guardado exitosamente en 'Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\3.Indicadores Financieros.xlsx'.
+[INFO] ===== Procesando periodo: Mayo 2026 =====
+   -> Procesando Bancos (Mayo 2026)...
+[OK]   Bancos: procesado correctamente (440 filas).
+   -> Procesando Financieras (Mayo 2026)...
+[ERROR] Financieras: fallo inesperado -> KeyError: 'Total Empresas Financieras'
+Traceback (most recent call last):
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Total Empresas Financieras'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_10828\2762136943.py", line 326, in procesar_institucion
+    DF_1.insert(6, fecha_col, DF_grupo[a])
+                              ~~~~~~~~^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py", line 4378, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Total Empresas Financieras'
+
+   -> Procesando Mypes (Mayo 2026)...
+[OK]   Mypes: procesado correctamente (140 filas).
+   -> Procesando Cajas (Mayo 2026)...
+[ERROR] Cajas: fallo inesperado -> KeyError: 'CMAC Piura'
+Traceback (most recent call last):
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'CMAC Piura'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_10828\2762136943.py", line 326, in procesar_institucion
+    DF_1.insert(6, fecha_col, DF_grupo[a])
+                              ~~~~~~~~^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py", line 4378, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'CMAC Piura'
+
+   -> Procesando Estatales (Mayo 2026)...
+[OK]   Estatales: procesado correctamente (63 filas).
+   -> Procesando Cajas Rurales (Mayo 2026)...
+[OK]   Cajas Rurales: procesado correctamente (132 filas).
+[DEBUG Mayo 2026] Ingresos Financieros Anualizados -> Mapeado/Nuevo:
+Index    Institución                 Nombre                                                       Detallada                                                                                                                              key Indicador
+13            Bancos                   BBVA  Ingresos Financieros Anualizados / Activo Productivo Promedio                         BancosIndicadoresMNBBVAEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+35            Bancos               Comercio  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNComercioEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+57            Bancos                    BCP  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBCPEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+79            Bancos              Pichincha  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNPichinchaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+101           Bancos                    BIF  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBIFEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+123           Bancos             Scotiabank  Ingresos Financieros Anualizados / Activo Productivo Promedio                   BancosIndicadoresMNScotiabankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+145           Bancos               Citibank  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNCitibankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+167           Bancos              Interbank  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNInterbankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+189           Bancos                Mibanco  Ingresos Financieros Anualizados / Activo Productivo Promedio                      BancosIndicadoresMNMibancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+211           Bancos                    GNB  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNGNBEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+233           Bancos           B. Falabella  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNB. FalabellaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+255           Bancos           B. Santander  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNB. SantanderEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+277           Bancos              B. Ripley  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNB. RipleyEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+299           Bancos               B. Alfin  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNB. AlfinEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+321           Bancos                   ICBC  Ingresos Financieros Anualizados / Activo Productivo Promedio                         BancosIndicadoresMNICBCEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+343           Bancos          Bank of China  Ingresos Financieros Anualizados / Activo Productivo Promedio                BancosIndicadoresMNBank of ChinaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+365           Bancos                    BCI  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBCIEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+387           Bancos      Compartamos Banco  Ingresos Financieros Anualizados / Activo Productivo Promedio            BancosIndicadoresMNCompartamos BancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+409           Bancos   Santander Cons. Bank  Ingresos Financieros Anualizados / Activo Productivo Promedio         BancosIndicadoresMNSantander Cons. BankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+431           Bancos           Total Bancos  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNTotal BancosEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+452            Mypes            Alternativa  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNAlternativaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+472            Mypes                  Volvo  Ingresos Financieros Anualizados / Activo Productivo Promedio                         MypesIndicadoresMNVolvoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+492            Mypes                 Vívela  Ingresos Financieros Anualizados / Activo Productivo Promedio                        MypesIndicadoresMNVívelaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+512            Mypes            Solidaridad  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNSolidaridadEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+532            Mypes      Santander Consumo  Ingresos Financieros Anualizados / Activo Productivo Promedio             MypesIndicadoresMNSantander ConsumoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+552            Mypes  Servicios Financieros  Ingresos Financieros Anualizados / Activo Productivo Promedio         MypesIndicadoresMNServicios FinancierosEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+572            Mypes            Total Mypes  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNTotal MypesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+592        Estatales                 Nación  Ingresos Financieros Anualizados / Activo Productivo Promedio                    EstatalesIndicadoresMNNaciónEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+613        Estatales                 Cofide  Ingresos Financieros Anualizados / Activo Productivo Promedio                    EstatalesIndicadoresMNCofideEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+634        Estatales              Agrobanco  Ingresos Financieros Anualizados / Activo Productivo Promedio                 EstatalesIndicadoresMNAgrobancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+655    Cajas Rurales       CRAC B. Cencosud  Ingresos Financieros Anualizados / Activo Productivo Promedio      Cajas RuralesIndicadoresMNCRAC B. CencosudEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+677    Cajas Rurales         CRAC Los Andes  Ingresos Financieros Anualizados / Activo Productivo Promedio        Cajas RuralesIndicadoresMNCRAC Los AndesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+699    Cajas Rurales           CRAC Prymera  Ingresos Financieros Anualizados / Activo Productivo Promedio          Cajas RuralesIndicadoresMNCRAC PrymeraEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+721    Cajas Rurales           CRAC Incasur  Ingresos Financieros Anualizados / Activo Productivo Promedio          Cajas RuralesIndicadoresMNCRAC IncasurEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+743    Cajas Rurales        CRAC del Centro  Ingresos Financieros Anualizados / Activo Productivo Promedio       Cajas RuralesIndicadoresMNCRAC del CentroEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+765    Cajas Rurales    Total Cajas Rurales  Ingresos Financieros Anualizados / Activo Productivo Promedio   Cajas RuralesIndicadoresMNTotal Cajas RuralesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+[OK]   Periodo Mayo 2026: guardado exitosamente en 'Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\3.Indicadores Financieros.xlsx'.
+[INFO] ===== Procesando periodo: Junio 2026 =====
+   -> Procesando Bancos (Junio 2026)...
+[OK]   Bancos: procesado correctamente (462 filas).
+   -> Procesando Financieras (Junio 2026)...
+[ERROR] Financieras: fallo inesperado -> KeyError: 'Total Empresas Financieras'
+Traceback (most recent call last):
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Total Empresas Financieras'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_10828\2762136943.py", line 326, in procesar_institucion
+    DF_1.insert(6, fecha_col, DF_grupo[a])
+                              ~~~~~~~~^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py", line 4378, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Total Empresas Financieras'
+
+   -> Procesando Mypes (Junio 2026)...
+[OK]   Mypes: procesado correctamente (126 filas).
+   -> Procesando Cajas (Junio 2026)...
+[OK]   Cajas: procesado correctamente (260 filas).
+   -> Procesando Estatales (Junio 2026)...
+[WARN] Estatales: no existe archivo de jn/2026. Se usara my/2026 (1 mes(es) atras).
+[OK]   Estatales: procesado correctamente (63 filas).
+   -> Procesando Cajas Rurales (Junio 2026)...
+[OK]   Cajas Rurales: procesado correctamente (120 filas).
+[DEBUG Junio 2026] Ingresos Financieros Anualizados -> Mapeado/Nuevo:
+Index    Institución                 Nombre                                                       Detallada                                                                                                                              key Indicador
+13            Bancos                   BBVA  Ingresos Financieros Anualizados / Activo Productivo Promedio                         BancosIndicadoresMNBBVAEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+35            Bancos               Comercio  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNComercioEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+57            Bancos                    BCP  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBCPEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+79            Bancos              Pichincha  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNPichinchaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+101           Bancos                    BIF  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBIFEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+123           Bancos             Scotiabank  Ingresos Financieros Anualizados / Activo Productivo Promedio                   BancosIndicadoresMNScotiabankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+145           Bancos               Citibank  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNCitibankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+167           Bancos              Interbank  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNInterbankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+189           Bancos                Mibanco  Ingresos Financieros Anualizados / Activo Productivo Promedio                      BancosIndicadoresMNMibancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+211           Bancos                    GNB  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNGNBEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+233           Bancos           B. Falabella  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNB. FalabellaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+255           Bancos           B. Santander  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNB. SantanderEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+277           Bancos              B. Ripley  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNB. RipleyEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+299           Bancos               B. Alfin  Ingresos Financieros Anualizados / Activo Productivo Promedio                     BancosIndicadoresMNB. AlfinEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+321           Bancos                   ICBC  Ingresos Financieros Anualizados / Activo Productivo Promedio                         BancosIndicadoresMNICBCEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+343           Bancos          Bank of China  Ingresos Financieros Anualizados / Activo Productivo Promedio                BancosIndicadoresMNBank of ChinaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+365           Bancos                    BCI  Ingresos Financieros Anualizados / Activo Productivo Promedio                          BancosIndicadoresMNBCIEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+387           Bancos      Compartamos Banco  Ingresos Financieros Anualizados / Activo Productivo Promedio            BancosIndicadoresMNCompartamos BancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+409           Bancos   Santander Cons. Bank  Ingresos Financieros Anualizados / Activo Productivo Promedio         BancosIndicadoresMNSantander Cons. BankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+431           Bancos           B. Efectiva*  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNB. Efectiva*EFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+453           Bancos           Total Bancos  Ingresos Financieros Anualizados / Activo Productivo Promedio                 BancosIndicadoresMNTotal BancosEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+472            Mypes            Alternativa  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNAlternativaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+490            Mypes                  Volvo  Ingresos Financieros Anualizados / Activo Productivo Promedio                         MypesIndicadoresMNVolvoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+508            Mypes                 Vívela  Ingresos Financieros Anualizados / Activo Productivo Promedio                        MypesIndicadoresMNVívelaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+526            Mypes            Solidaridad  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNSolidaridadEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+544            Mypes      Santander Consumo  Ingresos Financieros Anualizados / Activo Productivo Promedio             MypesIndicadoresMNSantander ConsumoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+562            Mypes  Servicios Financieros  Ingresos Financieros Anualizados / Activo Productivo Promedio         MypesIndicadoresMNServicios FinancierosEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+580            Mypes            Total Mypes  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNTotal MypesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+598            Cajas          CMAC Arequipa  Ingresos Financieros Anualizados / Activo Productivo Promedio                 CajasIndicadoresMNCMAC ArequipaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+618            Cajas             CMAC Cusco  Ingresos Financieros Anualizados / Activo Productivo Promedio                    CajasIndicadoresMNCMAC CuscoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+638            Cajas         CMAC Del Santa  Ingresos Financieros Anualizados / Activo Productivo Promedio                CajasIndicadoresMNCMAC Del SantaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+658            Cajas          CMAC Huancayo  Ingresos Financieros Anualizados / Activo Productivo Promedio                 CajasIndicadoresMNCMAC HuancayoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+678            Cajas               CMAC Ica  Ingresos Financieros Anualizados / Activo Productivo Promedio                      CajasIndicadoresMNCMAC IcaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+698            Cajas            CMAC Maynas  Ingresos Financieros Anualizados / Activo Productivo Promedio                   CajasIndicadoresMNCMAC MaynasEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+718            Cajas             CMAC Paita  Ingresos Financieros Anualizados / Activo Productivo Promedio                    CajasIndicadoresMNCMAC PaitaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+738            Cajas             CMAC Piura  Ingresos Financieros Anualizados / Activo Productivo Promedio                    CajasIndicadoresMNCMAC PiuraEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+758            Cajas             CMAC Tacna  Ingresos Financieros Anualizados / Activo Productivo Promedio                    CajasIndicadoresMNCMAC TacnaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+778            Cajas          CMAC Trujillo  Ingresos Financieros Anualizados / Activo Productivo Promedio                 CajasIndicadoresMNCMAC TrujilloEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+798            Cajas         Total Cajas AC  Ingresos Financieros Anualizados / Activo Productivo Promedio                CajasIndicadoresMNTotal Cajas ACEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+818            Cajas               CMCPLima  Ingresos Financieros Anualizados / Activo Productivo Promedio                      CajasIndicadoresMNCMCPLimaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+838            Cajas            Total Cajas  Ingresos Financieros Anualizados / Activo Productivo Promedio                   CajasIndicadoresMNTotal CajasEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+860        Estatales                 Nación  Ingresos Financieros Anualizados / Activo Productivo Promedio                    EstatalesIndicadoresMNNaciónEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+881        Estatales                 Cofide  Ingresos Financieros Anualizados / Activo Productivo Promedio                    EstatalesIndicadoresMNCofideEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+902        Estatales              Agrobanco  Ingresos Financieros Anualizados / Activo Productivo Promedio                 EstatalesIndicadoresMNAgrobancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+921    Cajas Rurales       CRAC B. Cencosud  Ingresos Financieros Anualizados / Activo Productivo Promedio      Cajas RuralesIndicadoresMNCRAC B. CencosudEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+941    Cajas Rurales         CRAC Los Andes  Ingresos Financieros Anualizados / Activo Productivo Promedio        Cajas RuralesIndicadoresMNCRAC Los AndesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+961    Cajas Rurales           CRAC Prymera  Ingresos Financieros Anualizados / Activo Productivo Promedio          Cajas RuralesIndicadoresMNCRAC PrymeraEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+981    Cajas Rurales           CRAC Incasur  Ingresos Financieros Anualizados / Activo Productivo Promedio          Cajas RuralesIndicadoresMNCRAC IncasurEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+1001   Cajas Rurales        CRAC del Centro  Ingresos Financieros Anualizados / Activo Productivo Promedio       Cajas RuralesIndicadoresMNCRAC del CentroEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+1021   Cajas Rurales    Total Cajas Rurales  Ingresos Financieros Anualizados / Activo Productivo Promedio   Cajas RuralesIndicadoresMNTotal Cajas RuralesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+[OK]   Periodo Junio 2026: guardado exitosamente en 'Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\3.Indicadores Financieros.xlsx'.
+[INFO] ===== Procesando periodo: Julio 2026 =====
+   -> Procesando Bancos (Julio 2026)...
+[OK]   Bancos: procesado correctamente (462 filas).
+   -> Procesando Financieras (Julio 2026)...
+[ERROR] Financieras: fallo inesperado -> KeyError: 'Total Empresas Financieras'
+Traceback (most recent call last):
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Total Empresas Financieras'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_10828\2762136943.py", line 326, in procesar_institucion
+    DF_1.insert(6, fecha_col, DF_grupo[a])
+                              ~~~~~~~~^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py", line 4378, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Total Empresas Financieras'
+
+   -> Procesando Mypes (Julio 2026)...
+[OK]   Mypes: procesado correctamente (140 filas).
+   -> Procesando Cajas (Julio 2026)...
+[ERROR] Cajas: fallo inesperado -> KeyError: 'CMAC Piura'
+Traceback (most recent call last):
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'CMAC Piura'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_10828\2762136943.py", line 326, in procesar_institucion
+    DF_1.insert(6, fecha_col, DF_grupo[a])
+                              ~~~~~~~~^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py", line 4378, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'CMAC Piura'
+
+   -> Procesando Estatales (Julio 2026)...
+[OK]   Estatales: procesado correctamente (63 filas).
+   -> Procesando Cajas Rurales (Julio 2026)...
+[ERROR] Cajas Rurales: fallo inesperado -> KeyError: 'CRAC\nIncasur'
+Traceback (most recent call last):
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3641, in get_loc
+    return self._engine.get_loc(casted_key)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "pandas/_libs/index.pyx", line 168, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 197, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7668, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7676, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'CRAC\nIncasur'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\p048546\AppData\Local\Temp\ipykernel_10828\2762136943.py", line 326, in procesar_institucion
+    DF_1.insert(6, fecha_col, DF_grupo[a])
+                              ~~~~~~~~^^^
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\frame.py", line 4378, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\p048546\PyCharmMiscProject\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 3648, in get_loc
+    raise KeyError(key) from err
+KeyError: 'CRAC\nIncasur'
+
+[DEBUG Julio 2026] Ingresos Financieros Anualizados -> Mapeado/Nuevo:
+Index Institución                 Nombre                                                       Detallada                                                                                                                        key Indicador
+13         Bancos                   BBVA  Ingresos Financieros Anualizados / Activo Productivo Promedio                   BancosIndicadoresMNBBVAEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+35         Bancos               Comercio  Ingresos Financieros Anualizados / Activo Productivo Promedio               BancosIndicadoresMNComercioEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+57         Bancos                    BCP  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNBCPEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+79         Bancos              Pichincha  Ingresos Financieros Anualizados / Activo Productivo Promedio              BancosIndicadoresMNPichinchaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+101        Bancos                    BIF  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNBIFEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+123        Bancos             Scotiabank  Ingresos Financieros Anualizados / Activo Productivo Promedio             BancosIndicadoresMNScotiabankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+145        Bancos               Citibank  Ingresos Financieros Anualizados / Activo Productivo Promedio               BancosIndicadoresMNCitibankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+167        Bancos              Interbank  Ingresos Financieros Anualizados / Activo Productivo Promedio              BancosIndicadoresMNInterbankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+189        Bancos                Mibanco  Ingresos Financieros Anualizados / Activo Productivo Promedio                BancosIndicadoresMNMibancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+211        Bancos                    GNB  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNGNBEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+233        Bancos           B. Falabella  Ingresos Financieros Anualizados / Activo Productivo Promedio           BancosIndicadoresMNB. FalabellaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+255        Bancos           B. Santander  Ingresos Financieros Anualizados / Activo Productivo Promedio           BancosIndicadoresMNB. SantanderEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+277        Bancos              B. Ripley  Ingresos Financieros Anualizados / Activo Productivo Promedio              BancosIndicadoresMNB. RipleyEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+299        Bancos               B. Alfin  Ingresos Financieros Anualizados / Activo Productivo Promedio               BancosIndicadoresMNB. AlfinEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+321        Bancos                   ICBC  Ingresos Financieros Anualizados / Activo Productivo Promedio                   BancosIndicadoresMNICBCEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+343        Bancos          Bank of China  Ingresos Financieros Anualizados / Activo Productivo Promedio          BancosIndicadoresMNBank of ChinaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+365        Bancos                    BCI  Ingresos Financieros Anualizados / Activo Productivo Promedio                    BancosIndicadoresMNBCIEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+387        Bancos      Compartamos Banco  Ingresos Financieros Anualizados / Activo Productivo Promedio      BancosIndicadoresMNCompartamos BancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+409        Bancos   Santander Cons. Bank  Ingresos Financieros Anualizados / Activo Productivo Promedio   BancosIndicadoresMNSantander Cons. BankEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+431        Bancos        B. Efectiva****  Ingresos Financieros Anualizados / Activo Productivo Promedio        BancosIndicadoresMNB. Efectiva****EFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+453        Bancos           Total Bancos  Ingresos Financieros Anualizados / Activo Productivo Promedio           BancosIndicadoresMNTotal BancosEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+474         Mypes            Alternativa  Ingresos Financieros Anualizados / Activo Productivo Promedio             MypesIndicadoresMNAlternativaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+494         Mypes                  Volvo  Ingresos Financieros Anualizados / Activo Productivo Promedio                   MypesIndicadoresMNVolvoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+514         Mypes                 Vívela  Ingresos Financieros Anualizados / Activo Productivo Promedio                  MypesIndicadoresMNVívelaEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+534         Mypes            Solidaridad  Ingresos Financieros Anualizados / Activo Productivo Promedio             MypesIndicadoresMNSolidaridadEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+554         Mypes      Santander Consumo  Ingresos Financieros Anualizados / Activo Productivo Promedio       MypesIndicadoresMNSantander ConsumoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+574         Mypes  Servicios Financieros  Ingresos Financieros Anualizados / Activo Productivo Promedio   MypesIndicadoresMNServicios FinancierosEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+594         Mypes            Total Mypes  Ingresos Financieros Anualizados / Activo Productivo Promedio             MypesIndicadoresMNTotal MypesEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+614     Estatales                 Nación  Ingresos Financieros Anualizados / Activo Productivo Promedio              EstatalesIndicadoresMNNaciónEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+635     Estatales                 Cofide  Ingresos Financieros Anualizados / Activo Productivo Promedio              EstatalesIndicadoresMNCofideEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+656     Estatales              Agrobanco  Ingresos Financieros Anualizados / Activo Productivo Promedio           EstatalesIndicadoresMNAgrobancoEFICIENCIA Y GESTIÓNIngresos Financieros Anualizados / Activo Productivo Promedio    Mapeado
+[OK]   Periodo Julio 2026: guardado exitosamente en 'Z:\Mesa de Inversiones\Bottom-Up\2 Proceso de Inversión Renta Fija\Corporates - Emisiones\Crédito - BU\1. Emisores\1. One pagers\Complementos\Historicos\3.Indicadores Financieros.xlsx'.
+======================================================================
+RESUMEN DE EJECUCION
+======================================================================
+Periodos con exito (7): ['Enero 2026', 'Febrero 2026', 'Marzo 2026', 'Abril 2026', 'Mayo 2026', 'Junio 2026', 'Julio 2026']
+Periodos con error/omitidos (0): []
+[OK]   Todos los periodos se procesaron correctamente.
+======================================================================
