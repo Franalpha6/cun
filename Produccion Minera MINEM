@@ -1,0 +1,269 @@
+
+# Parameters
+inicio = "042026"
+final = "072026"
+
+
+import pandas as pd
+import numpy as np
+import re
+import datetime
+import os
+import sys
+
+# mes = 'Febrero'
+# anio = '2023'
+# mes_ = "fe"
+# meses_n = "02"
+# meses_ = "fe"
+
+a1, a2, m1, m2 = inicio[2::], final[2::], inicio[0:2], final[0:2]
+rango_anios = range(int(a1),int(a2)+1)
+
+meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre']
+meses_ = ['en','fe','ma','ab','my','jn','jl','ag','se','oc','no','di']
+meses_n = ['01','02','03','04','05','06','07','08','09','10','11','12']
+meses_m = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'setiembre', 'octubre', 'noviembre', 'diciembre']
+meses_cod=['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SET','OCT','NOV','DIC']
+
+import os
+import shutil
+
+#Archivo
+source_file = r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Minería\Históricos\Produccion.xlsx"
+#landing
+destination_dir = r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Minería\Históricos\Backup"
+
+def copy_file_to_directory(source, des):
+    # Crear el directorio de destino si no existe
+    if not os.path.exists(des):
+        os.makedirs(des)
+    # Extraer el nombre del archivo de la ruta de origen
+    file_name = os.path.basename(source)
+    # Construir la ruta de destino completa
+    dest_file = os.path.join(des, file_name)
+    try:
+        # Copiar el archivo
+        shutil.copyfile(source, dest_file)
+        print(f"Archivo copiado exitosamente.")
+    except Exception as e:
+        print(f"Error al copiar el archivo: {str(e)}")
+
+copy_file_to_directory(source_file, destination_dir)
+
+
+array_rutas = []
+for i in rango_anios:
+    if(rango_anios[-1]==i):
+        if (len(rango_anios)==1):
+            for j in range(int(m1),int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0'+ str(j)
+                    
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+
+        else:
+            for j in range(1,int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i) 
+                array_rutas.append(ruta)
+                
+    elif(i != rango_anios[0]):
+        for j in range(1,13):
+            if(len(str(j))==1):
+                j = '0' + str(j)
+            ruta = str(j) + str(i)
+            array_rutas.append(ruta)
+        
+    else:
+        if (len(rango_anios)==1):
+            for j in range(int(m1),int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+
+        else:
+            for j in range(int(m1),13):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+
+def main(mes, anio):
+    
+    archivo= r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Minería\BD\Producción Minera\\Producción metálica " +anio + ".xlsx"
+
+    File_found = False
+
+    for i in range (12,0, -1):
+        if os.path.isfile(archivo):
+            File_found=True
+            last_file = archivo
+            break
+    if not File_found:
+        print("Error Base: "+ mes + " " +anio)
+
+    df = pd.read_excel(archivo,"INFORMACION GENERAL")
+
+    df1 = df.copy()
+    df1 = df1.iloc[2:].copy()
+    df1 = df1.reset_index()
+
+    columns = df1.columns[(df1.iloc[0] == 'MINERAL') | (df1.iloc[0] == 'ETAPA') | (df1.iloc[0] == 'PROCESO') | (df1.iloc[0] == 'TITULAR') |(df1.iloc[0] == 'UNIDAD') | (df1.iloc[0] == mes_cod)]
+    dff = df1[columns]
+    header=dff.iloc[0].tolist()
+    dff.columns=header
+
+    ultfil =dff[dff['MINERAL']=="Cifras Preliminares"].index[0]
+    dff = dff.iloc[:ultfil-1,].copy()
+    dff = dff.dropna(how='all')
+
+    dff2=dff.copy()
+
+    #Diccionario 2
+
+    Diccionario = r'Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Minería\Diccionarios\Diccionario_Mineria.xlsx' 
+    df_ren = pd.read_excel(Diccionario, sheet_name="Producción 2")
+
+
+    df_diccionario =df_ren.copy()
+    valores_diccionario = df_diccionario['Nombre_Antiguo'].unique()
+
+    for valor in dff2['TITULAR']:
+        if valor not in valores_diccionario:
+            print(f"Se encontró un nuevo valor. Agregarlo al diccionario 2: {valor}")
+            sys.exit()
+    
+    for valor in dff2['UNIDAD']:
+        if valor not in valores_diccionario:
+            print(f"Se encontró un nuevo valor. Agregarlo al diccionario 2: {valor}")
+            sys.exit()
+
+    dic_ren = df_ren.set_index("Nombre_Antiguo")["Nombre_Nuevo"].to_dict()
+
+    dff2['TITULAR'] = dff2['TITULAR'].map(dic_ren).fillna(dff2['TITULAR'])
+    dff2['UNIDAD'] = dff2['UNIDAD'].map(dic_ren).fillna(dff2['UNIDAD'])
+
+    dff2['PROCESO'] = dff2['PROCESO'].fillna('No especifica')
+
+    Keysum_= dff2["MINERAL"]+","+dff2["ETAPA"]+","+dff2["PROCESO"]+","+dff2["TITULAR"]+","+dff2["UNIDAD"]
+    dff2.insert(0,"Keysum_",Keysum_)
+    dff2 = dff2.groupby('Keysum_', as_index=False)[mes_cod].sum()
+
+    dff2[['MINERAL',"ETAPA",'PROCESO','TITULAR','UNIDAD']]= dff2["Keysum_"].str.split('[,]', expand= True)
+    dff2=dff2.drop('Keysum_',axis=1)
+    dff2 = dff2.reindex(['MINERAL','ETAPA','PROCESO','TITULAR','UNIDAD',mes_cod], axis=1)
+
+    #Diccionario
+
+    Diccionario = r'Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Minería\Diccionarios\Diccionario_Mineria.xlsx' 
+    df_ren = pd.read_excel(Diccionario, sheet_name="Producción")
+
+
+    df_diccionario =df_ren.copy()
+    valores_diccionario = df_diccionario['Nombre_Antiguo'].unique()
+
+    for valor in dff['TITULAR']:
+        if valor not in valores_diccionario:
+            print(f"Se encontró un nuevo valor. Agregarlo al diccionario: {valor}")
+            sys.exit()
+
+    for valor in dff['UNIDAD']:
+        if valor not in valores_diccionario:
+            print(f"Se encontró un nuevo valor. Agregarlo al diccionario: {valor}")
+            sys.exit()
+
+    dic_ren = df_ren.set_index("Nombre_Antiguo")["Nombre_Nuevo"].to_dict()
+
+    dff['TITULAR'] = dff['TITULAR'].map(dic_ren).fillna(dff['TITULAR'])
+    dff['UNIDAD'] = dff['UNIDAD'].map(dic_ren).fillna(dff['UNIDAD'])
+
+    dff['PROCESO'] = dff['PROCESO'].fillna('No especifica')
+
+    otros = dff[dff['TITULAR'] == 'OTROS']
+    otros['UNIDAD']="OTROS"
+
+    Keysum= otros["MINERAL"]+","+otros["ETAPA"]+","+otros["PROCESO"]+","+otros["UNIDAD"]
+    otros.insert(0,"Keysum",Keysum)
+    otros = otros.groupby('Keysum', as_index=False)[mes_cod].sum()
+    otros.insert(0,"TITULAR",'OTROS')
+    otros.insert(0,"UNIDAD",'OTROS')
+    otros[['MINERAL',"ETAPA",'PROCESO','UNIDAD']]= otros["Keysum"].str.split('[,]', expand= True)
+    otros = otros.reindex(['MINERAL','ETAPA','PROCESO','TITULAR','UNIDAD',mes_cod], axis=1)
+
+    Agrupado= pd.concat([dff2,otros])
+
+#     Agrupado=Agrupado_.iloc[1:]
+
+    Key1= Agrupado["MINERAL"]+Agrupado["ETAPA"]+Agrupado["PROCESO"]+Agrupado["TITULAR"]+Agrupado["UNIDAD"]
+    Agrupado.insert(0,"Key1",Key1)
+
+
+    fecha_col = "01" + "/" + meses_n[meses_.index(mes_)] + "/" + anio
+
+    cols = list(Agrupado.columns)
+    cols[6] = fecha_col
+    Agrupado.columns = cols
+    fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+    
+    #Base total
+    Ruta_Base=r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Minería\Históricos\Produccion.xlsx"
+    DF_F = Agrupado.copy()
+
+
+    with pd.ExcelFile(Ruta_Base) as writer:
+        BD_Total = writer.parse(sheet_name='Sheet1')
+        
+
+
+    BD_Total_=BD_Total.copy()
+    BD_Total_['Indicador'] = 'Mapeado'
+    BD_Total_ = BD_Total_.set_index("Key1")
+    dic_Total_ = BD_Total_.to_dict()
+
+    DF_Total2 = DF_F.copy()
+    DF_Total2['Indicador'] =  DF_Total2['Key1'].map(dic_Total_['Indicador'])
+
+    DF_Total2 = DF_Total2.loc[DF_Total2['Indicador'].isin([np.nan])].sort_index(ignore_index=True) 
+    DF_Total2 = DF_Total2.drop(['Indicador'], axis=1)
+    BD_Total = pd.concat([BD_Total, DF_Total2])
+# cambio 16/04
+    fecha_col = "01" + "/" + meses_n[meses_.index(mes_)] + "/" + anio
+
+    cols = list(Agrupado.columns)
+    cols[6] = fecha_col            # sigue siendo STRING
+    Agrupado.columns = cols
+
+
+    DF_Total = DF_F.set_index("Key1")
+    dic_cr = DF_Total.to_dict()
+    # fecha_col = '01' +'/'+ meses_n[meses_.index(mes_)] +'/'+ anio
+    # fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+
+    BD_Total[fecha_col] = BD_Total['Key1'].map(dic_cr[fecha_col])  
+
+    with pd.ExcelWriter(Ruta_Base ,  mode="a", engine="openpyxl",if_sheet_exists = 'replace') as writer:
+        BD_Total.to_excel(writer, sheet_name="Sheet1", index = False)
+
+import warnings
+warnings.filterwarnings("ignore")
+ md
+<span id="papermill-error-cell" style="color:red; font-family:Helvetica Neue, Helvetica, Arial, sans-serif; font-size:2em;">Execution using papermill encountered an exception here and stopped:</span>
+
+for i in array_rutas[::1]:
+    m = i[0:2]
+    mes = meses_n[int(m)-1]
+    anio = i[2::] 
+    mes_ = meses_[int(m)-1]
+    mes_cod=meses_cod[int(m)-1]
+    print(mes + ' ' + anio)
+    # print(type(i), i)
+    # print(type(anio), anio)
+    # print(type(mes), mes)
+    main(mes, anio)
+    print(main)
+
+
