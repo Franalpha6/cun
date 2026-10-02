@@ -1,0 +1,127 @@
+Fecha objetivo (consultas diarias B/F):   31/08/2026
+Periodo objetivo (consultas mensuales C/R/E): 08/2026
+---------------------------------------------------------------------------
+SessionNotCreatedException                Traceback (most recent call last)
+Cell In[1], line 335
+    331         print(f"  {tip}: {resultados.get(tip, 'no ejecutado')}")
+    332 
+    333 
+    334 if __name__ == "__main__":
+--> 335     main()
+
+
+
+Cell In[1], line 307, in main()
+    303 def main():
+    304     print(f"Fecha objetivo (consultas diarias B/F):   {FECHA_OBJETIVO_STR}")
+    305     print(f"Periodo objetivo (consultas mensuales C/R/E): {MES_OBJETIVO_NUM:02d}/{ANIO_OBJETIVO}\n")
+    306 
+--> 307     driver = iniciar_driver()
+    308     wait = WebDriverWait(driver, TIMEOUT)
+    309     resultados = {}
+    310
+
+
+
+Cell In[1], line 158, in iniciar_driver()
+    154             "download.directory_upgrade": True,
+    155             "safebrowsing.enabled": True,
+    156         },
+    157     )
+--> 158     driver = webdriver.Chrome(service=service, options=options)
+    159     driver.set_page_load_timeout(60)
+    160     return driver
+
+
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\selenium\webdriver\chrome\webdriver.py:45, in WebDriver.__init__(self, options, service, keep_alive)
+     42 service = service if service else Service()
+     43 options = options if options else Options()
+---> 45 super().__init__(
+     46     browser_name=DesiredCapabilities.CHROME["browserName"],
+     47     vendor_prefix="goog",
+     48     options=options,
+     49     service=service,
+     50     keep_alive=keep_alive,
+     51 )
+
+
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\selenium\webdriver\chromium\webdriver.py:66, in ChromiumDriver.__init__(self, browser_name, vendor_prefix, options, service, keep_alive)
+     57 executor = ChromiumRemoteConnection(
+     58     remote_server_addr=self.service.service_url,
+     59     browser_name=browser_name,
+   (...)     62     ignore_proxy=self.options._ignore_local_proxy,
+     63 )
+     65 try:
+---> 66     super().__init__(command_executor=executor, options=self.options)
+     67 except Exception:
+     68     self.quit()
+
+
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\selenium\webdriver\common\webdriver.py:25, in LocalWebDriver.__init__(self, *args, **kwargs)
+     24 def __init__(self, *args, **kwargs):
+---> 25     super().__init__(*args, **kwargs)
+     26     self._is_remote = False
+
+
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py:274, in WebDriver.__init__(self, command_executor, keep_alive, file_detector, options, locator_converter, web_element_cls, client_config)
+    272 self._authenticator_id = None
+    273 self.start_client()
+--> 274 self.start_session(capabilities)
+    275 self._fedcm = FedCM(self)
+    277 self._websocket_connection: WebSocketConnection | None = None
+
+
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py:370, in WebDriver.start_session(self, capabilities)
+    368 caps = _create_caps(capabilities)
+    369 try:
+--> 370     response = self.execute(Command.NEW_SESSION, caps)["value"]
+    371     self.session_id = response.get("sessionId")
+    372     self.caps = response.get("capabilities")
+
+
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\selenium\webdriver\remote\webdriver.py:450, in WebDriver.execute(self, driver_command, params)
+    447 response = cast(RemoteConnection, self.command_executor).execute(driver_command, params)
+    449 if response:
+--> 450     self.error_handler.check_response(response)
+    451     response["value"] = self._unwrap_value(response.get("value", None))
+    452     return response
+
+
+
+File ~\PyCharmMiscProject\.venv\Lib\site-packages\selenium\webdriver\remote\errorhandler.py:232, in ErrorHandler.check_response(self, response)
+    230         alert_text = value["alert"].get("text")
+    231     raise exception_class(message, screen, stacktrace, alert_text)
+--> 232 raise exception_class(message, screen, stacktrace)
+
+
+
+SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 148
+Current browser version is 154.0.8037.93 with binary path C:\Program Files\Google\Chrome\Application\chrome.exe; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+  chromedriver!GetHandleVerifier [0x7ff78442d685+14ef5]
+  chromedriver!GetHandleVerifier [0x7ff78442d6f0+14f60]
+  chromedriver!(No symbol) [0x7ff78417d59d]
+  chromedriver!(No symbol) [0x7ff7841c5fad]
+  chromedriver!(No symbol) [0x7ff7841c4d05]
+  chromedriver!(No symbol) [0x7ff7841beff3]
+  chromedriver!(No symbol) [0x7ff7841b9b59]
+  chromedriver!(No symbol) [0x7ff78420d9e1]
+  chromedriver!(No symbol) [0x7ff78420d246]
+  chromedriver!(No symbol) [0x7ff7841c9608]
+  chromedriver!(No symbol) [0x7ff7841ca4f3]
+  chromedriver!GetHandleVerifier [0x7ff78472b719+312f89]
+  chromedriver!GetHandleVerifier [0x7ff784725c2b+30d49b]
+  chromedriver!GetHandleVerifier [0x7ff784748fb2+330822]
+  chromedriver!GetHandleVerifier [0x7ff78444a435+31ca5]
+  chromedriver!GetHandleVerifier [0x7ff784452e2c+3a69c]
+  chromedriver!GetHandleVerifier [0x7ff784436a24+1e294]
+  chromedriver!GetHandleVerifier [0x7ff784436bb4+1e424]
+  chromedriver!GetHandleVerifier [0x7ff78441b2d7+2b47]
+  KERNEL32!BaseThreadInitThunk [0x7ffbe2eccd87+17]
+  ntdll!RtlUserThreadStart [0x7ffbe368caec+2c]
