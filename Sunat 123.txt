@@ -1,0 +1,425 @@
+
+# Parameters
+inicio = "042026"
+final = "092026"
+trimestre = "4"
+
+
+import os
+import requests
+import pandas as pd
+import numpy as np
+import xlrd
+import datetime
+import time
+import re
+
+### Eliminando todos exceles de la carpeta
+
+folder_path = r'Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Consumo\BD\Sunat'
+
+# Verifica si la carpeta existe
+if not os.path.exists(folder_path):
+    print(f'La carpeta {folder_path} no existe.')
+else:
+    # Recorre todos los archivos en la carpeta
+    for filename in os.listdir(folder_path):
+        # Comprueba si el archivo tiene la extensión .xlsx o .csv
+        if filename.endswith('.xlsx') or filename.endswith('.csv'):
+            # Construye la ruta completa del archivo
+            file_path = os.path.join(folder_path, filename)
+            try:
+                # Elimina el archivo
+                os.remove(file_path)
+                print(f'Archivo eliminado: {file_path}')
+            except Exception as e:
+                print(f'No se pudo eliminar el archivo {file_path}. Error: {e}')
+
+    print('Proceso completado.')
+ md
+### Descarga de los exceles de la SUNAT
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.chrome.service import Service
+service = webdriver.ChromeService(executable_path="Z://Mesa de Inversiones//Bottom-Up//Practis//Drivers//chromedriver.exe")
+
+chrome_options = webdriver.ChromeOptions()
+prefs = {'download.default_directory' : r'Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Consumo\BD\Sunat'}
+chrome_options.add_experimental_option('prefs', prefs)
+
+A3 = 'https://www.sunat.gob.pe/estadisticasestudios/nota_tributaria/cdro_A3.xlsx'
+
+A5 = 'https://www.sunat.gob.pe/estadisticasestudios/nota_tributaria/cdro_A5.xlsx'
+A7 = 'https://www.sunat.gob.pe/estadisticasestudios/nota_tributaria/cdro_A7.xlsx'
+A8 = 'https://www.sunat.gob.pe/estadisticasestudios/nota_tributaria/cdro_A8.xlsx'
+
+#driver = webdriver.Chrome(chrome_options)
+
+driver = webdriver.Chrome(options=chrome_options)
+
+driver.get(A3)
+time.sleep(1)
+driver.get(A5)
+time.sleep(1)
+driver.get(A7)
+time.sleep(1)
+driver.get(A8)
+time.sleep(5)
+
+driver.quit()
+ md
+### Generando Backup
+
+import os
+import shutil
+
+#Archivo
+source_file = r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Consumo\Históricos\Sunat.xlsx"
+#landing
+destination_dir = r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Consumo\Históricos\Backup"
+
+def copy_file_to_directory(source, des):
+    # Crear el directorio de destino si no existe
+    if not os.path.exists(des):
+        os.makedirs(des)
+    # Extraer el nombre del archivo de la ruta de origen
+    file_name = os.path.basename(source)
+    # Construir la ruta de destino completa
+    dest_file = os.path.join(des, file_name)
+    try:
+        # Copiar el archivo
+        shutil.copyfile(source, dest_file)
+        print(f"Archivo copiado exitosamente.")
+    except Exception as e:
+        print(f"Error al copiar el archivo: {str(e)}")
+
+copy_file_to_directory(source_file, destination_dir)
+
+
+ md
+### Procesamiento de la data
+
+# inicio = '012025' #'102023'
+# final = '012025'
+
+# mes = 'Febrero'
+# anio = '2023'
+# mes_ = "fe"
+# meses_n = "02"
+# meses_ = "fe"
+#mes_cod="Feb."
+
+a1, a2, m1, m2 = inicio[2::], final[2::], inicio[0:2], final[0:2]
+rango_anios = range(int(a1),int(a2)+1)
+
+meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre']
+meses_ = ['en','fe','ma','ab','my','jn','jl','ag','se','oc','no','di']
+meses_n = ['01','02','03','04','05','06','07','08','09','10','11','12']
+meses_m = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'setiembre', 'octubre', 'noviembre', 'diciembre']
+meses_cod=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']
+
+array_rutas = []
+for i in rango_anios:
+    if(rango_anios[-1]==i):
+        if (len(rango_anios)==1):
+            for j in range(int(m1),int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0'+ str(j)
+                    
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+
+        else:
+            for j in range(1,int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i) 
+                array_rutas.append(ruta)
+                
+    elif(i != rango_anios[0]):
+        for j in range(1,13):
+            if(len(str(j))==1):
+                j = '0' + str(j)
+            ruta = str(j) + str(i)
+            array_rutas.append(ruta)
+        
+    else:
+        if (len(rango_anios)==1):
+            for j in range(int(m1),int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+
+        else:
+            for j in range(int(m1),13):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+ md
+
+
+
+
+
+def main(mes, anio):
+    
+    ## A3
+
+    archivo= r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Consumo\BD\Sunat\\cdro_A3.xlsx"
+
+    File_found = False
+
+    for i in range (12,0, -1):
+        if os.path.isfile(archivo):
+            File_found=True
+            last_file = archivo
+            break
+    if not File_found:
+        print("Error Base: "+ mes + " " +anio)
+
+    df = pd.read_excel(archivo,"cdroA3",header=None)
+
+    df1=df.iloc[3:]
+    df1 = df1[df1.iloc[:, 2].notna() & (df1.iloc[:, 2] != '')]
+    df1 = df1.reset_index()
+    df1=df1.iloc[::,1:]
+
+   # df1[0] = df1[0].fillna(method='ffill')
+    df1[0] = df1[0].ffill()
+    df1[1] = df1[1].fillna('')
+    df1[0] = df1[0].astype(str) + df1[1].astype(str)
+
+
+    dff=df1.copy()
+
+    dff_t=dff.iloc[1:,0]
+    primcol = dff.columns.get_loc(dff.columns[dff.iloc[0] == int(anio)][0])
+    dff=dff.iloc[1:,primcol:primcol+13]
+
+    dff.insert(0,"Concepto",dff_t)
+    dff.iloc[0]= dff.iloc[0].map(lambda x: x.replace('.', '').replace(',', '') if isinstance(x, str) else x)
+    dff.iloc[0]= dff.iloc[0].map(lambda x: x.replace('Set', 'Sep') if isinstance(x, str) else x)
+
+    
+    mes_col = dff.loc[2:, dff.iloc[0].isin(['Concepto', mes_cod])]
+    mes_col=mes_col.set_axis(['Concepto','Valor'],axis=1)
+    mes_col['Concepto'] = mes_col['Concepto'].str.replace(r'\s\d+/$', '', regex=True)
+
+    mes_col.insert(0,"Cuadro","A3")
+    mes_col.insert(0,"Key1",mes_col["Cuadro"]+mes_col["Concepto"])
+    A3 = mes_col.copy()
+
+    ## A5
+
+    archivo= r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Consumo\BD\Sunat\\cdro_A5.xlsx"
+
+    File_found = False
+
+    for i in range (12,0, -1):
+        if os.path.isfile(archivo):
+            File_found=True
+            last_file = archivo
+            break
+    if not File_found:
+        print("Error Base: "+ mes + " " +anio)
+
+    df = pd.read_excel(archivo,"cdroA5",header=None)
+
+    df1=df.iloc[3:]
+    df1 = df1[df1.iloc[:, 2].notna() & (df1.iloc[:, 2] != '')]
+    df1 = df1.reset_index()
+    df1=df1.iloc[::,1:]
+
+    #df1[0] = df1[0].fillna(method='ffill')
+    df1[0] = df1[0].ffill()
+    df1[1] = df1[1].fillna('')
+    df1[0] = df1[0].astype(str) + df1[1].astype(str)
+
+
+    dff=df1.copy()
+
+    dff_t=dff.iloc[1:,0]
+    primcol = dff.columns.get_loc(dff.columns[dff.iloc[0] == int(anio)][0])
+    dff=dff.iloc[1:,primcol:primcol+13]
+
+    dff.insert(0,"Concepto",dff_t)
+    dff.iloc[0]= dff.iloc[0].map(lambda x: x.replace('.', '').replace(',', '') if isinstance(x, str) else x)
+    dff.iloc[0]= dff.iloc[0].map(lambda x: x.replace('Set', 'Sep') if isinstance(x, str) else x)
+    
+    mes_col = dff.loc[2:, dff.iloc[0].isin(['Concepto', mes_cod])]
+    mes_col=mes_col.set_axis(['Concepto','Valor'],axis=1)
+    mes_col['Concepto'] = mes_col['Concepto'].str.replace(r'\s\d+/$', '', regex=True)
+
+
+    mes_col.insert(0,"Cuadro","A5")
+    mes_col.insert(0,"Key1",mes_col["Cuadro"]+mes_col["Concepto"])
+    A5 = mes_col.copy()
+
+    ## A7
+
+    archivo= r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Consumo\BD\Sunat\\cdro_A7.xlsx"
+
+    File_found = False
+
+    for i in range (12,0, -1):
+        if os.path.isfile(archivo):
+            File_found=True
+            last_file = archivo
+            break
+    if not File_found:
+        print("Error Base: "+ mes + " " +anio)
+
+    df = pd.read_excel(archivo,"CdrA7",header=None)
+
+    df1=df.iloc[3:]
+    df1 = df1[df1.iloc[:, 3].notna() & (df1.iloc[:, 3] != '')]
+    df1 = df1.reset_index()
+    df1=df1.iloc[::,1:]
+
+  #  df1[0] = df1[0].fillna(method='ffill')
+  #  df1[1] = df1[1].fillna(method='ffill')
+
+    df1[0] = df1[0].ffill()
+    df1[1] = df1[1].ffill()
+
+    df1[1] = df1[1].fillna('')
+    df1[2] = df1[2].fillna('')
+    df1[0] = df1[0].astype(str) + df1[1].astype(str)+df1[2].astype(str)
+    dff=df1.copy()
+
+    dff_t=dff.iloc[1:,0]
+    primcol = dff.columns.get_loc(dff.columns[dff.iloc[0] == int(anio)][0])
+    dff=dff.iloc[1:,primcol:primcol+13]
+
+    dff.insert(0,"Concepto",dff_t)
+    dff.iloc[0]= dff.iloc[0].map(lambda x: x.replace('.', '').replace(',', '') if isinstance(x, str) else x)
+    dff.iloc[0]= dff.iloc[0].map(lambda x: x.replace('Set', 'Sep') if isinstance(x, str) else x)
+
+    mes_col = dff.loc[2:, dff.iloc[0].isin(['Concepto', mes_cod])]
+    mes_col=mes_col.set_axis(['Concepto','Valor'],axis=1)
+    mes_col['Concepto'] = mes_col['Concepto'].str.replace(r'\s\d+/$', '', regex=True)
+
+    mes_col.insert(0,"Cuadro","A7")
+    mes_col.insert(0,"Key1",mes_col["Cuadro"]+mes_col["Concepto"])
+    A7 = mes_col.copy()
+
+    ## A8
+
+    archivo= r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Consumo\BD\Sunat\\cdro_A8.xlsx"
+
+    File_found = False
+
+    for i in range (12,0, -1):
+        if os.path.isfile(archivo):
+            File_found=True
+            last_file = archivo
+            break
+    if not File_found:
+        print("Error Base: "+ mes + " " +anio)
+
+    df = pd.read_excel(archivo,"CdrA8",header=None)
+
+    df1=df.iloc[3:]
+    df1 = df1[df1.iloc[:, 3].notna() & (df1.iloc[:, 3] != '')]
+    df1 = df1.reset_index()
+    df1=df1.iloc[::,1:]
+
+    #df1[0] = df1[0].fillna(method='ffill')
+    #df1[1] = df1[1].fillna(method='ffill')
+
+    df1[0] = df1[0].ffill()
+    df1[1] = df1[1].ffill()
+
+    df1[1] = df1[1].fillna('')
+    df1[2] = df1[2].fillna('')
+    df1[0] = df1[0].astype(str) + df1[1].astype(str)+df1[2].astype(str)
+    dff=df1.copy()
+
+    dff_t=dff.iloc[1:,0]
+    primcol = dff.columns.get_loc(dff.columns[dff.iloc[0] == int(anio)][0])
+    dff=dff.iloc[1:,primcol:primcol+13]
+
+    dff.insert(0,"Concepto",dff_t)
+    dff.iloc[0]= dff.iloc[0].map(lambda x: x.replace('.', '').replace(',', '') if isinstance(x, str) else x)
+    dff.iloc[0]= dff.iloc[0].map(lambda x: x.replace('Set', 'Sep') if isinstance(x, str) else x)
+
+    
+    mes_col = dff.loc[2:, dff.iloc[0].isin(['Concepto', mes_cod])]
+    mes_col=mes_col.set_axis(['Concepto','Valor'],axis=1)
+    mes_col['Concepto'] = mes_col['Concepto'].str.replace(r'\s\d+/$', '', regex=True)
+
+    mes_col.insert(0,"Cuadro","A8")
+    mes_col.insert(0,"Key1",mes_col["Cuadro"]+mes_col["Concepto"])
+    A8 = mes_col.copy()
+
+
+
+    Agrupado = pd.concat([A3,A5,A7,A8],ignore_index=True)
+
+        
+    fecha_col = "01" + "/" + meses_n[meses_.index(mes_)] + "/" + anio
+    #fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+    fecha_col = f"01/{meses_n[meses_.index(mes_)]}/{anio}"
+    cols = list(Agrupado.columns)
+    cols[3] = fecha_col
+    Agrupado.columns = cols
+    #Agrupado.columns.values[3]=fecha_col
+
+
+    #Base total
+    Ruta_Base=r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Consumo\Históricos\Sunat.xlsx"
+    DF_F = Agrupado.copy()
+
+
+    with pd.ExcelFile(Ruta_Base) as writer:
+        BD_Total = writer.parse(sheet_name='Sheet1')
+
+
+    BD_Total_=BD_Total.copy()
+    BD_Total_['Indicador'] = 'Mapeado'
+    BD_Total_ = BD_Total_.set_index("Key1")
+    dic_Total_ = BD_Total_.to_dict()
+
+    DF_Total2 = DF_F.copy()
+    DF_Total2['Indicador'] =  DF_Total2['Key1'].map(dic_Total_['Indicador'])
+
+    DF_Total2 = DF_Total2.loc[DF_Total2['Indicador'].isin([np.nan])].sort_index(ignore_index=True) 
+    DF_Total2 = DF_Total2.drop(['Indicador'], axis=1)
+    BD_Total = pd.concat([BD_Total, DF_Total2])
+
+    DF_Total = DF_F.set_index("Key1")
+    dic_cr = DF_Total.to_dict()
+    #fecha_col = '01' +'/'+ meses_n[meses_.index(mes_)] +'/'+ anio
+    #fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+
+
+    BD_Total[fecha_col] = BD_Total['Key1'].map(dic_cr[fecha_col])
+
+    with pd.ExcelWriter(Ruta_Base ,  mode="a", engine="openpyxl",if_sheet_exists = 'replace') as writer:
+        BD_Total.to_excel(writer, sheet_name="Sheet1", index = False)
+
+import warnings
+warnings.filterwarnings("ignore")
+ md
+<span id="papermill-error-cell" style="color:red; font-family:Helvetica Neue, Helvetica, Arial, sans-serif; font-size:2em;">Execution using papermill encountered an exception here and stopped:</span>
+
+for i in array_rutas[::1]:
+    m = i[0:2]
+    mes = meses_n[int(m)-1]
+    anio = i[2::] 
+    mes_ = meses_[int(m)-1]
+    mes_cod=meses_cod[int(m)-1]
+    print(mes + ' ' + anio)
+    main(mes, anio)
+
+
+
+###Finalll
+
