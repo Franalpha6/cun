@@ -1,0 +1,380 @@
+#%%
+# Parameters
+inicio = "062025"
+final = "092025"
+
+#%%
+import pandas as pd
+import numpy as np
+import re
+import datetime
+import os
+#%%
+
+#%%
+# mes = 'Febrero'
+# anio = '2023'
+# mes_ = "fe"
+# meses_n = "02"
+# meses_ = "fe"
+#%%
+a1, a2, m1, m2 = inicio[2::], final[2::], inicio[0:2], final[0:2]
+rango_anios = range(int(a1),int(a2)+1)
+#%%
+meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre']
+meses_ = ['en','fe','ma','ab','my','jn','jl','ag','se','oc','no','di']
+meses_n = ['01','02','03','04','05','06','07','08','09','10','11','12']
+meses_m = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'setiembre', 'octubre', 'noviembre', 'diciembre']
+#%% md
+### Generador de backups
+
+#%%
+import os
+import shutil
+
+source_file = r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Utilities\Históricos\1. BD Produccion.xlsx"
+source_file2 = r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Utilities\Históricos\7. Produccion por Tipo.xlsx"
+
+destination_dir = r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Utilities\Históricos\Backup"
+
+def copy_file_to_directory(source, des):
+    # Crear el directorio de destino si no existe
+    if not os.path.exists(des):
+        os.makedirs(des)
+    # Extraer el nombre del archivo de la ruta de origen
+    file_name = os.path.basename(source)
+    # Construir la ruta de destino completa
+    dest_file = os.path.join(des, file_name)
+    try:
+        # Copiar el archivo
+        shutil.copyfile(source, dest_file)
+        print(f"Archivo copiado exitosamente.")
+    except Exception as e:
+        print(f"Error al copiar el archivo: {str(e)}")
+
+copy_file_to_directory(source_file, destination_dir)
+copy_file_to_directory(source_file2, destination_dir)
+#%% md
+### Establece cuales son los meses actualizar en base de los meses incluidos anteriormente. Esto tiene un output de una lista con el siguiente formato de fechas: mmyyyy
+#%%
+array_rutas = []
+for i in rango_anios:
+    if(rango_anios[-1]==i):
+        if (len(rango_anios)==1):
+            for j in range(int(m1),int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0'+ str(j)
+                    
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+
+        else:
+            for j in range(1,int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i) 
+                array_rutas.append(ruta)
+                
+    elif(i != rango_anios[0]):
+        for j in range(1,13):
+            if(len(str(j))==1):
+                j = '0' + str(j)
+            ruta = str(j) + str(i)
+            array_rutas.append(ruta)
+        
+    else:
+        if (len(rango_anios)==1):
+            for j in range(int(m1),int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+
+        else:
+            for j in range(int(m1),13):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+#%%
+import warnings
+warnings.filterwarnings("ignore")
+#%%
+def main(mes, anio):
+    archivo = r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Utilities\BD\Evaluaciones Mensuales\\"  +mes +anio + ".xlsx"
+    File_found = False
+
+    for i in range (12,0, -1):
+        if os.path.isfile(archivo):
+            File_found=True
+            last_file = archivo
+            break
+    if not File_found:
+        print("Error Base: "+ mes + " " +anio)
+
+    sheet1 = pd.read_excel(archivo,"18. ANEXOI-1",header=None) # 18. ANEXOI-1
+    sheet2 = pd.read_excel(archivo,"19. ANEXOI-2",header=None) # 19. ANEXOI-2
+    sheet3 = pd.read_excel(archivo,"20. ANEXOI-3",header=None) # 20. ANEXOI-3
+
+    sheet2=sheet2[4::].copy()
+    Ultimafila =sheet3[sheet3[0]=="EXPORTACIÓN"].index[0]+1
+    sheet3=sheet3[:Ultimafila].copy()
+    sheet3=sheet3[4::].copy()
+    Agrupado = pd.concat([sheet1,sheet2,sheet3],ignore_index=True) 
+
+    Agrupado[0] = Agrupado[0].ffill()
+    columnas = Agrupado.columns.tolist()
+    columnas_Nombres= columnas[:2]
+    columnas_Numeros= columnas[2:]
+    Agrupado_Nombres = Agrupado[columnas_Nombres].copy()
+    Agrupado_Numeros = Agrupado[columnas_Numeros].copy()
+    Agrupado_Nombres=Agrupado_Nombres.fillna("").copy()
+    Agrupado_Numeros=Agrupado_Numeros.fillna(0).copy()
+
+    Parentesis = r'\(\d+\)'
+    Agrupado_Nombres[1]=Agrupado_Nombres[1].apply(lambda x: re.sub(Parentesis,'',x).strip())
+    Agrupado_Nombres[0]=Agrupado_Nombres[0].apply(lambda x: re.sub(Parentesis,'',x).strip())
+    Corchete = r'\[\d+\]'
+    Agrupado_Nombres[1]=Agrupado_Nombres[1].apply(lambda x: re.sub(Corchete,'',x).strip())
+    Agrupado_Nombres[0]=Agrupado_Nombres[0].apply(lambda x: re.sub(Corchete,'',x).strip())    
+
+
+    def QuitarTotal(fila):
+        if "Total" in fila:
+            return fila.replace(" Total","")
+        return fila
+    def QuitarTOTAL(fila):
+        if "TOTAL" in fila:
+            return fila.replace("TOTAL ","")
+        return fila
+    Agrupado_Nombres[0]=Agrupado_Nombres[0].apply(QuitarTotal)
+    Agrupado_Nombres[0]=Agrupado_Nombres[0].apply(QuitarTOTAL)
+    Agrupado_Nombres[0]=Agrupado_Nombres[0].apply(lambda x: x.replace('Total ','') if isinstance(x,str) else x)
+    Agrupado_Nombres[1]=Agrupado_Nombres[1].replace('','Total')
+
+
+    Agrupado = pd.concat([Agrupado_Nombres,Agrupado_Numeros],axis=1,ignore_index=True) 
+    primerafila=Agrupado[Agrupado[6]==int(anio)].index[0]+2
+    Agrupado=Agrupado.iloc[primerafila:,::]
+    
+  
+    ###### Diccionario
+    Diccionario = r'Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Utilities\Diccionarios\Diccionario_Utilities.xlsx' 
+    df_ren = pd.read_excel(Diccionario, sheet_name="Utilities")
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+
+    def dic_renombre_cambio(fila):
+        try:
+            nom = dic_ren["Nombre_Nuevo"][fila]
+        except KeyError:
+            print(f"Nombre no encontrado: {fila}")
+            raise KeyError(f"Nombre no encontrado: {fila}")
+        return nom
+
+    Agrupado[0] = Agrupado[0].apply(dic_renombre_cambio)
+    Agrupado[1] = Agrupado[1].apply(dic_renombre_cambio)  
+    
+    #########
+    
+    
+    Agrupado=Agrupado.set_axis(["Empresa","Central","Hidroélectrica","Termoeléctrica","RER","Total","Total Acumulado"],axis=1)
+
+    ##Hidro
+
+    Hidro=Agrupado[["Empresa","Central","Hidroélectrica"]]
+    Hidro.insert(2,"Tipo","Hidroeléctrica")
+    Hidro=Hidro.set_axis(["Empresa","Central","Tipo","Valor"],axis=1)
+
+    #Termo
+
+    Termo=Agrupado[["Empresa","Central","Termoeléctrica"]]
+    Termo.insert(2,"Tipo","Termoeléctrica")
+    Termo=Termo.set_axis(["Empresa","Central","Tipo","Valor"],axis=1)
+
+    #RER
+
+    RER=Agrupado[["Empresa","Central","RER"]]
+    RER.insert(2,"Tipo","RER")
+    RER=RER.set_axis(["Empresa","Central","Tipo","Valor"],axis=1)
+
+    #Total mensual
+
+    Total_m=Agrupado[["Empresa","Central","Total"]]
+    Total_m.insert(2,"Tipo","Total mensual")
+    Total_m=Total_m.set_axis(["Empresa","Central","Tipo","Valor"],axis=1)
+
+    #Total acumulado
+
+    Total_a=Agrupado[["Empresa","Central","Total Acumulado"]]
+    Total_a.insert(2,"Tipo","Total Acumulado")
+    Total_a=Total_a.set_axis(["Empresa","Central","Tipo","Valor"],axis=1)
+
+    Junto=pd.concat([Hidro,Termo,RER,Total_m,Total_a])
+
+    fecha_col = "01" + "/" + meses_n[meses_.index(mes_)] + "/" + anio
+    fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+# cambio FRANCO - 21/04/26
+    cols = list(Junto.columns)
+    cols[3] = fecha_col   # fecha_col es datetime
+    Junto.columns = cols
+    print(type(Junto.columns[3]))
+
+
+
+
+    Key= Junto["Empresa"]+Junto["Central"]+Junto["Tipo"]
+    Junto.insert(0,"Key1",Key)
+
+    #Base total
+    Ruta_Base=r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Utilities\Históricos\1. BD Produccion.xlsx"
+
+    DF_F = Junto.copy()
+
+
+    with pd.ExcelFile(Ruta_Base) as writer:
+        BD_Total = writer.parse(sheet_name='Sheet1')
+
+    BD_Total_=BD_Total.copy()
+    BD_Total_['Indicador'] = 'Mapeado'
+    BD_Total_ = BD_Total_.set_index("Key1")
+    dic_Total_ = BD_Total_.to_dict()
+
+    DF_Total2 = DF_F.copy()
+    DF_Total2['Indicador'] =  DF_Total2['Key1'].map(dic_Total_['Indicador'])
+
+    DF_Total2 = DF_Total2.loc[DF_Total2['Indicador'].isin([np.nan])].sort_index(ignore_index=True) 
+    DF_Total2 = DF_Total2.drop(['Indicador'], axis=1)
+    BD_Total = pd.concat([BD_Total, DF_Total2])
+
+    DF_Total = DF_F.set_index("Key1")
+    dic_cr = DF_Total.to_dict()
+    fecha_col = '01' +'/'+ meses_n[meses_.index(mes_)] +'/'+ anio
+    fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')  
+    BD_Total[fecha_col] = BD_Total['Key1'].map(dic_cr[fecha_col])  
+
+    with pd.ExcelWriter(Ruta_Base ,  mode="a", engine="openpyxl",if_sheet_exists = 'replace') as writer:
+        BD_Total.to_excel(writer, sheet_name="Sheet1", index = False)
+#%%
+def main2(mes, anio):
+
+    archivo = r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Utilities\BD\Evaluaciones Mensuales\\"  +mes +anio + ".xlsx"
+    File_found = False
+
+    for i in range (12,0, -1):
+        if os.path.isfile(archivo):
+            File_found=True
+            last_file = archivo
+            break
+    if not File_found:
+        print("Error Base: "+ mes + " " +anio)
+
+
+    sheet4 = pd.read_excel(archivo,"4. Tipo Recurso",header=None) # 4. Tipo Recurso
+    Ultimafila =sheet4[sheet4[0]=="Eólico"].index[0]+1
+    sheet4=sheet4[:Ultimafila].copy()
+    sheet4=sheet4[5::].copy()
+    Producción_Tipo=sheet4[[0,3,6]].dropna()
+
+#     #Diccionario
+#     Diccionario = r'Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\BD Macro\Diccionarios\Diccionario_Utilities.xlsx' 
+#     df_ren = pd.read_excel(Diccionario, sheet_name="Utilities")
+#     df_ren = df_ren.set_index("Nombre_Antiguo")
+#     dic_ren = df_ren.to_dict()
+
+#     def dic_renombre_cambio(fila):
+#         try:
+#             nom = dic_ren["Nombre_Nuevo"][fila]
+#         except KeyError:
+#             nom = fila
+#         return nom
+
+#     Producción_Tipo[0] = Producción_Tipo[0].apply(dic_renombre_cambio)
+    
+    # Diccionario
+    Diccionario = r'Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Utilities\Diccionarios\Diccionario_Utilities.xlsx' 
+    df_ren = pd.read_excel(Diccionario, sheet_name="Utilities")
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+
+    def dic_renombre_cambio(fila):
+        try:
+            nom = dic_ren["Nombre_Nuevo"][fila]
+        except KeyError:
+            print(f"Nombre no encontrado: {fila}")
+            raise KeyError(f"Nombre no encontrado: {fila}")
+        return nom
+
+    Producción_Tipo[0] = Producción_Tipo[0].apply(dic_renombre_cambio)
+
+
+    Producción_Tipo_Acum=Producción_Tipo.groupby([0]).sum().copy()
+    Producción_Tipo_Acum=Producción_Tipo_Acum.reset_index()
+
+    Columnas= ["Tipo", "Mensual","Acumulada"]
+    Producción_Tipo_Acum.columns = Columnas
+
+    Mensual=Producción_Tipo_Acum[["Tipo","Mensual"]]
+    Mensual.insert(1,"Periodicidad","Mensual")
+    Mensual=Mensual.set_axis(["Tipo","Periodicidad","Valor"],axis=1)
+
+    Acumulada=Producción_Tipo_Acum[["Tipo","Acumulada"]]
+    Acumulada.insert(1,"Periodicidad","Acumulada")
+    Acumulada=Acumulada.set_axis(["Tipo","Periodicidad","Valor"],axis=1)
+
+    Junto2=pd.concat([Mensual,Acumulada])
+    fecha_col = "01" + "/" + meses_n[meses_.index(mes_)] + "/" + anio
+    fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')
+# cambio FRANCO - 21/04/26
+    cols = list(Junto2.columns)
+    cols[2] = fecha_col   # fecha_col es datetime
+    Junto2.columns = cols
+# cambio FRANCO - 21/04/26
+
+
+    Key= Junto2["Tipo"]+Junto2["Periodicidad"]
+    Junto2.insert(0,"Key1",Key)
+
+    #Base total
+    Ruta_Base=r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Utilities\Históricos\7. Produccion por Tipo.xlsx"
+
+    DF_F = Junto2.copy()
+
+
+    with pd.ExcelFile(Ruta_Base) as writer:
+        BD_Total = writer.parse(sheet_name='Sheet1')
+
+    BD_Total_=BD_Total.copy()
+    BD_Total_['Indicador'] = 'Mapeado'
+    BD_Total_ = BD_Total_.set_index("Key1")
+    dic_Total_ = BD_Total_.to_dict()
+
+    DF_Total2 = DF_F.copy()
+    DF_Total2['Indicador'] =  DF_Total2['Key1'].map(dic_Total_['Indicador'])
+
+    DF_Total2 = DF_Total2.loc[DF_Total2['Indicador'].isin([np.nan])].sort_index(ignore_index=True) 
+    DF_Total2 = DF_Total2.drop(['Indicador'], axis=1)
+    BD_Total = pd.concat([BD_Total, DF_Total2])
+
+    DF_Total = DF_F.set_index("Key1")
+    dic_cr = DF_Total.to_dict()
+    fecha_col = '01' +'/'+ meses_n[meses_.index(mes_)] +'/'+ anio
+    fecha_col = datetime.datetime.strptime(fecha_col, '%d/%m/%Y')  
+    BD_Total[fecha_col] = BD_Total['Key1'].map(dic_cr[fecha_col])  
+
+    with pd.ExcelWriter(Ruta_Base ,  mode="a", engine="openpyxl",if_sheet_exists = 'replace') as writer:
+        BD_Total.to_excel(writer, sheet_name="Sheet1", index = False)
+#%%
+################################################################################
+#%%
+import warnings
+warnings.filterwarnings("ignore")
+#%%
+for i in array_rutas[::1]:
+    m = i[0:2]
+    mes = meses_n[int(m)-1]
+    anio = i[2::] 
+    mes_ = meses_[int(m)-1]
+    print(mes + ' ' + anio)
+    main(mes, anio)
+    main2(mes, anio)
