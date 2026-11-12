@@ -1,0 +1,75 @@
+import bcchapi
+import pandas as pd
+import os
+
+# Credenciales BCCh
+siete = bcchapi.Siete(
+    "miguel.munoz@sura.pe",
+    "Apichile2024!"
+)
+
+Series_IMCE = siete.cuadro(
+    series=[
+        'G089.IME.IND.A0.M',  # Total
+        'G089.IME.IND.A4.M',  # Minería
+        'G089.IME.IND.A1.M',  # Comercio
+        'G089.IME.IND.A2.M',  # Industria
+        'G089.IME.IND.A3.M'   # Construcción
+    ],
+
+    nombres=[
+        'IMCE: Total',
+        'IMCE: Minería',
+        'IMCE: Comercio',
+        'IMCE: Industria',
+        'IMCE: Construcción'
+    ],
+
+    desde="2014-10-01",
+    hasta=pd.Timestamp.today().strftime("%Y-%m-01"),
+    frecuencia="ME",
+
+    observado={
+        'IMCE: Total': 'last',
+        'IMCE: Minería': 'last',
+        'IMCE: Comercio': 'last',
+        'IMCE: Industria': 'last',
+        'IMCE: Construcción': 'last'
+    }
+)
+
+Ruta_Base = r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Construcción\BD\Chile\BCR\IMCE.xls"
+
+
+
+if os.path.exists(Ruta_Base):
+
+    with pd.ExcelWriter(
+        Ruta_Base,
+        mode="a",
+        engine="openpyxl",
+        if_sheet_exists="replace",
+        datetime_format="DD/MM/YYYY"
+    ) as writer:
+
+        Series_IMCE.to_excel(
+            writer,
+            sheet_name="Sheet1"
+        )
+
+else:
+
+    with pd.ExcelWriter(
+        Ruta_Base,
+        engine="openpyxl",
+        datetime_format="DD/MM/YYYY"
+    ) as writer:
+
+        Series_IMCE.to_excel(
+            writer,
+            sheet_name="Sheet1"
+        )
+
+print("IMCE actualizado correctamente")
+
+
