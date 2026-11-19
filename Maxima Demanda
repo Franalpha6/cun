@@ -1,0 +1,288 @@
+#%%
+# Parameters
+inicio = "062025"
+final = "102025"
+
+#%%
+import pandas as pd
+import numpy as np
+import re
+import datetime
+import os
+#%%
+# mes = 'Febrero'
+# anio = '2023'
+# mes_ = "fe"
+# meses_n = "02"
+# meses_ = "fe"
+#%%
+a1, a2, m1, m2 = inicio[2::], final[2::], inicio[0:2], final[0:2]
+rango_anios = range(int(a1),int(a2)+1)
+#%%
+meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre']
+meses_ = ['en','fe','ma','ab','my','jn','jl','ag','se','oc','no','di']
+meses_n = ['01','02','03','04','05','06','07','08','09','10','11','12']
+meses_m = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'setiembre', 'octubre', 'noviembre', 'diciembre']
+#%% md
+### Generador de backups
+
+#%%
+import os
+import shutil
+
+source_file = r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Utilities\Históricos\8. Maxima Demanda.xlsx"
+destination_dir = r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Utilities\Históricos\Backup"
+
+def copy_file_to_directory(source, des):
+    # Crear el directorio de destino si no existe
+    if not os.path.exists(des):
+        os.makedirs(des)
+    # Extraer el nombre del archivo de la ruta de origen
+    file_name = os.path.basename(source)
+    # Construir la ruta de destino completa
+    dest_file = os.path.join(des, file_name)
+    try:
+        # Copiar el archivo
+        shutil.copyfile(source, dest_file)
+        print(f"Archivo copiado exitosamente.")
+    except Exception as e:
+        print(f"Error al copiar el archivo: {str(e)}")
+
+copy_file_to_directory(source_file, destination_dir)
+#%%
+array_rutas = []
+for i in rango_anios:
+    if(rango_anios[-1]==i):
+        if (len(rango_anios)==1):
+            for j in range(int(m1),int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0'+ str(j)
+                    
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+
+        else:
+            for j in range(1,int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i) 
+                array_rutas.append(ruta)
+                
+    elif(i != rango_anios[0]):
+        for j in range(1,13):
+            if(len(str(j))==1):
+                j = '0' + str(j)
+            ruta = str(j) + str(i)
+            array_rutas.append(ruta)
+        
+    else:
+        if (len(rango_anios)==1):
+            for j in range(int(m1),int(m2)+1):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+
+        else:
+            for j in range(int(m1),13):
+                if(len(str(j))==1):
+                    j = '0' + str(j)
+                ruta = str(j) + str(i)
+                array_rutas.append(ruta)
+#%%
+import warnings
+warnings.filterwarnings("ignore")
+#%%
+
+import os
+import datetime
+import numpy as np
+import pandas as pd
+
+def main(mes, anio):
+    archivo = (r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Utilities\BD\Máxima demanda\\"
+               + mes + anio + ".xlsx")
+    print(f"[INFO] Ruta esperada del archivo: {archivo}")
+
+    File_found = False
+    last_file = None
+
+    # El for original no cambiaba el archivo; mantengo la estructura pero reporto.
+    for i in range(12, 0, -1):
+        if os.path.isfile(archivo):
+            File_found = True
+            last_file = archivo
+            print(f"[INFO] Archivo encontrado (iteración {i}): {last_file}")
+            break
+
+    if not File_found:
+        print("[ERROR] Base no encontrada para:", mes, anio)
+        # Continuar podría dar más contexto; si prefieres cortar aquí, retorna.
+        # return
+
+    # Lectura sin header (tu lógica)
+    BD = pd.read_excel(archivo, header=None)
+    print("[DEBUG] BD.columns tras lectura (header=None):", list(BD.columns))
+    print("[DEBUG] BD.head(3):\n", BD.head(3))
+
+    # Recorte de filas/columnas según tu pipeline
+    BD = BD.iloc[22:, 1:5].copy()
+    BD = BD.reset_index(drop=True).copy()
+    print("[DEBUG] Tras recorte y reset_index:")
+    print("        Columnas:", list(BD.columns))
+    print("        Head(3):\n", BD.head(3))
+
+    # Promover la primera fila como títulos
+    Titulos = BD.iloc[0].tolist()
+    print("[DEBUG] Titulos extraídos de BD.iloc[0]:", Titulos)
+
+    BD = BD[1:]
+    BD.columns = Titulos
+
+    # Normalizar nombres de columnas (strip + eliminar BOM)
+    BD.columns = (pd.Index([str(c) for c in BD.columns])
+                    .str.replace('\ufeff', '', regex=False)
+                    .str.strip())
+    print("[DEBUG] Columnas después de promover y normalizar:", list(BD.columns))
+    print("[DEBUG] BD.head(3) tras promover:\n", BD.head(3))
+
+    # Forward fill
+    BD_Fill = BD.ffill(axis=0)
+    print("[DEBUG] BD_Fill.head(3):\n", BD_Fill.head(3))
+
+    ###### Diccionario
+    Diccionario = (r'Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Utilities\Diccionarios\Diccionario_Utilities.xlsx')
+    print(f"[INFO] Leyendo diccionario desde: {Diccionario}")
+    df_ren = pd.read_excel(Diccionario, sheet_name="Utilities")
+    print("[DEBUG] df_ren columnas:", list(df_ren.columns))
+    df_ren = df_ren.set_index("Nombre_Antiguo")
+    dic_ren = df_ren.to_dict()
+    print("[DEBUG] Claves disponibles en dic_ren:", list(dic_ren.keys()))
+
+    def dic_renombre_cambio(fila):
+        try:
+            nom = dic_ren["Nombre_Nuevo"][fila]
+        except KeyError:
+            print(f"[WARN] Nombre no encontrado en diccionario: {fila}")
+            raise KeyError(f"Nombre no encontrado: {fila}")
+        return nom
+
+    # Función para encontrar columnas de forma robusta
+    def encontrar_columna(df, objetivo):
+        objetivo_norm = objetivo.strip().lower()
+        cols_norm = {c: str(c).strip().lower().replace('\ufeff', '') for c in df.columns}
+        # Exacta
+        for original, norm in cols_norm.items():
+            if norm == objetivo_norm:
+                return original
+        # Contiene (fallback)
+        for original, norm in cols_norm.items():
+            if objetivo_norm in norm:
+                print(f"[INFO] Usando columna '{original}' por coincidencia con '{objetivo}'")
+                return original
+        return None
+
+    col_empresa = encontrar_columna(BD_Fill, 'Empresa')
+    col_central = encontrar_columna(BD_Fill, 'Central')
+    col_unidad  = encontrar_columna(BD_Fill, 'Unidad')
+
+    print("[DEBUG] Mapeo columnas ->",
+          f"Empresa: {col_empresa}, Central: {col_central}, Unidad: {col_unidad}")
+    if not col_empresa or not col_central or not col_unidad:
+        print("[ERROR] No se encuentran columnas requeridas.",
+              "Columnas actuales:", list(BD_Fill.columns))
+        # Si prefieres detener:
+        # return
+
+    # Aplicar renombres
+    BD_Fill[col_empresa] = BD_Fill[col_empresa].apply(dic_renombre_cambio)
+    BD_Fill[col_central] = BD_Fill[col_central].apply(dic_renombre_cambio)
+    BD_Fill[col_unidad]  = BD_Fill[col_unidad].apply(dic_renombre_cambio)
+
+    #########
+    Total = BD_Fill.copy()
+    Total[col_central] = "TOTAL"
+    Total[col_unidad]  = "TOTAL"
+    Total = Total.groupby([col_empresa, col_central, col_unidad], as_index=False).sum()
+    print("[DEBUG] Total.head(3):\n", Total.head(3))
+
+    TotalTotal = Total.copy()
+    TotalTotal[col_empresa] = "MÁXIMA DEMANDA TOTAL"
+    TotalTotal = TotalTotal.groupby([col_empresa, col_central, col_unidad], as_index=False).sum()
+    BD_Fill = pd.concat([BD_Fill, Total, TotalTotal])
+    print("[DEBUG] BD_Fill.shape tras concat:", BD_Fill.shape)
+
+    # Construcción de fecha para columna 3 (index 3)
+    # OJO: meses_n, meses_ y mes_ deben existir en el scope
+    fecha_col_str = "01" + "/" + meses_n[meses_.index(mes_)] + "/" + anio
+    fecha_col = datetime.datetime.strptime(fecha_col_str, '%d/%m/%Y')
+    print(f"[INFO] Fecha de columna calculada: {fecha_col} (desde '{fecha_col_str}')")
+
+    # Reemplazar nombre de la 4ta columna por la fecha
+    if len(BD_Fill.columns) >= 4:
+        old_name = BD_Fill.columns[3]
+        #BD_Fill.columns.values[3] = fecha_col
+        cols = list(BD_Fill.columns)
+        cols[3] = fecha_col        # fecha_col es datetime
+        BD_Fill.columns = cols
+
+
+        print(f"[DEBUG] Renombrada columna índice 3: '{old_name}' -> '{fecha_col}'")
+    else:
+        print("[WARN] No hay 4 columnas para asignar fecha. Columnas:", list(BD_Fill.columns))
+
+    # Key
+    key = BD_Fill[col_empresa] + BD_Fill[col_central] + BD_Fill[col_unidad]
+    BD_Fill.insert(0, "Key1", key)
+    DF_Max_Demanda = BD_Fill.copy()
+    print("[DEBUG] DF_Max_Demanda.head(3):\n", DF_Max_Demanda.head(3))
+
+    # Base total
+    Ruta_Base = (r"Z:\Mesa de Inversiones\Bottom-Up\1 Proceso de Inversión Renta Variable\Proyecto Inputs Macro\Complementos BD\Utilities\Históricos\8. Maxima Demanda.xlsx")
+    DF_F = DF_Max_Demanda.copy()
+    print(f"[INFO] Abriendo base histórica: {Ruta_Base}")
+
+    with pd.ExcelFile(Ruta_Base) as writer:
+        BD_Total = writer.parse(sheet_name='Sheet1')
+
+    print("[DEBUG] BD_Total.head(3):\n", BD_Total.head(3))
+
+    BD_Total_ = BD_Total.copy()
+    BD_Total_['Indicador'] = 'Mapeado'
+    BD_Total_ = BD_Total_.set_index("Key1")
+    dic_Total_ = BD_Total_.to_dict()
+
+    DF_Total2 = DF_F.copy()
+    DF_Total2['Indicador'] = DF_Total2['Key1'].map(dic_Total_['Indicador'])
+    print("[DEBUG] DF_Total2['Indicador'] valores únicos:", DF_Total2['Indicador'].unique())
+
+    DF_Total2 = DF_Total2.loc[DF_Total2['Indicador'].isin([np.nan])].sort_index(ignore_index=True)
+    DF_Total2 = DF_Total2.drop(['Indicador'], axis=1)
+    BD_Total = pd.concat([BD_Total, DF_Total2])
+    print("[DEBUG] BD_Total.shape tras concatenar nuevos:", BD_Total.shape)
+
+    DF_Total = DF_F.set_index("Key1")
+    dic_cr = DF_Total.to_dict()
+    fecha_col_str = '01' + '/' + meses_n[meses_.index(mes_)] + '/' + anio
+    fecha_col = datetime.datetime.strptime(fecha_col_str, '%d/%m/%Y')
+    print(f"[INFO] Fecha para actualización en BD_Total: {fecha_col}")
+
+    BD_Total[fecha_col] = BD_Total['Key1'].map(dic_cr[fecha_col])
+
+    with pd.ExcelWriter(Ruta_Base, mode="a", engine="openpyxl", if_sheet_exists='replace') as writer:
+        BD_Total.to_excel(writer, sheet_name="Sheet1", index=False)
+    print("[INFO] Escritura completada en hoja 'Sheet1'")
+
+#%%
+########################################################################################################################b
+#%%
+for i in array_rutas[::1]:
+    m = i[0:2]
+    mes = meses_n[int(m)-1]
+    anio = i[2::] 
+    mes_ = meses_[int(m)-1]
+    print(mes + ' ' + anio)
+    main(mes, anio)
+#%%
+
+#%%
